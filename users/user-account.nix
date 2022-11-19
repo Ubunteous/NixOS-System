@@ -140,18 +140,17 @@
       # taffybar
       # xmobar
 
-      ############
-      #   TEST   #
-      ############
+      ##############
+      #   BITWIG   #
+      ##############
 
-      bitwig.bitwig-studio # version 3.3.x
+      bitwig-studio
 
       # yabridge
       # yabridgectl
       
       # Install wine, yabridge and vst later
     ];
-
   };
 }
 

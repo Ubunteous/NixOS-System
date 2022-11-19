@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "bitwig": {
-      "locked": {
-        "lastModified": 1624813955,
-        "narHash": "sha256-Wka1Z6uDyL4RYAwgITT8zhUdxNhLrvKal2i5gLOBZT0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2e5da39c7c24e1e132fa3e91850ecbd85d64c0a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2e5da39c7c24e1e132fa3e91850ecbd85d64c0a4",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -71,7 +55,6 @@
     },
     "root": {
       "inputs": {
-        "bitwig": "bitwig",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
