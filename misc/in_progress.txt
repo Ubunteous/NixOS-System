@@ -1,0 +1,67 @@
+## Done Manually
+
+####################
+
+### SOFTWARE:
+
+### OS: EndeavourOS
+### Terminals: Alacritty, kitty, wezterm
+### Window Manager i3wm?=>awesome=>xmonad
+### Shell: zsh
+### AUR helper: paru
+
+### Panels (bar): polybar
+### Compositor: picom
+### Wallpaper Setter: pywal
+### Prompt: Starship and Powerlevel-10k
+### Theme: dracula/nordic (also on firefox)/arc
+
+### Icon Themes: papirus, reversal
+### Widget panel: eww
+### Launcher: rofi
+### Web Browser: firefox, opera
+### File manager: nemo, ranger
+
+### PDF viewer: evince
+### Image Viewer: feh (feh --zoom fill -g 1080x720) # image roll est pas mal mais lourd, nitrogen (reset background. not necessary in nixos)
+### Video Player: VLC
+### Music player: mpd or ncmpcpp? pas convaincu
+### RSS: rien ne me convient
+
+### System Monitor: gnome-system-monitor (gui) and conky (ricing)
+### Disk usage analyser: gdu, dust, baobab # emacs does it anyway
+### Application Menu Editor: alacarte
+### System info: Neofetch
+### Notification daemon: dunst
+
+### Network Manager: networkmanager
+### Photo Editor: darktable
+### Display manager: ly, lightdm
+### Screen locker: cinnamon-screensaver
+### Firewall: firewalld (firewall-config), gufw
+
+# System Requests: activate
+# ohmyzsh
+# RSS reader: none found yet
+# Music Player: none found yet
+# DAW: bitwig studio 3
+
+# To do: Clojure, Rust (cargo, rustup), Java, C?, Haskell, Nix, Ricing Language (Lua?), LaTeX
+
+## https://terminalsare.sexy/
+## one version manager to rule them all:https://github.com/asdf-vm/asdf
+
+####################
+
+
+####################
+#       Misc       #
+####################
+
+## TRY LATER
+
+### Cinnamon utilities: archive manager (file-roller), document viewer (xreader), gnome-screenshot, cinnamon-settings (accessability, account details, display, general, graphics tablet, mouse and touchpad, network, notifications, panel, power management, preferred applications, scrensaver, sound, startup applications, system info, themes, system settings, windows, window tiling, workspaces)
+
+### General command-line utils: lf, fzf, yt-dlp, sc-im, calcurse, ncdu, tldr, top, htop, tlp
+### Replacement of GNU coreutils (mainly written in Rust): exa (ls), bat (cat), fd (find), ripgrep (grep), duf (df), dust (df), sd (sed)
+### System monitors: htop, btop, bpytop, bashtop, gotop, glances

@@ -1,0 +1,3 @@
+#+title: NixOS configuration
+
+Imports are made from the host directory. Flakes determine which host is currently in use.
