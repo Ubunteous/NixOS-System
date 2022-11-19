@@ -26,6 +26,10 @@
       };
       
       initExtra = ''
+            # case insensitive completion
+            autoload -Uz compinit && compinit
+            zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
             zstyle ':completion:*' list-colors /home/${user}/dircolors.ansi-dark
 
             bindkey '^r' history-substring-search-up
