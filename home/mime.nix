@@ -5,7 +5,11 @@
 ############
 
 {
+
   home-manager.users.${user} = {
+    # rewrite mimeapps even if nemo messes with it
+    xdg.configFile."mimeapps.list".force = true;
+
     xdg.mime.enable = true;
 
     xdg.mimeApps = {
