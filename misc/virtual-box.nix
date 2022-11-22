@@ -5,6 +5,8 @@
   #   Virtualbox   #
   ##################
 
+  # NOTE: restart after adding to group (vboxusers)
+  
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "ubunteous" "sudo" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;

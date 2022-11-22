@@ -28,7 +28,7 @@
           # hyperref
 
           # org
-          # dvipng
+          dvipng # essential
           # wrapfig
           # capt-of
           # kpathsea

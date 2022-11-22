@@ -43,7 +43,7 @@
       #############
 
       ../users/user-account.nix
-      
+
       ######################
       #   WINDOW MANAGER   #
       ######################
@@ -87,6 +87,12 @@
       # Troubleshoot: systemctl status "home-manager-$USER.service"
       # Hint: Home manager hates when a config file already exists
       # For unsupported apps: home.file."path/to/file".source = ./a/dotfile/repo/file;
+
+      ###################
+      #   VIRTUAL BOX   #
+      ###################
+      
+      ../misc/virtual-box.nix
     ];
 
   ############

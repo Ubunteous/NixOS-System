@@ -1,4 +1,4 @@
-{ config, pkgs, bitwig, user, ... }:
+{ config, pkgs, user, ... }:
 
 {
   # add zsh to /etc/shells
