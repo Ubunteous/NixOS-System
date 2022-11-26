@@ -5,6 +5,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
     # nur.url = "github:nix-community/NUR";
 
+    # musnix.url = "github:musnix/musnix";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # { inputs.nixpkgs.follows = "nixpkgs"; };
 
@@ -20,14 +22,15 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
   };
-
-  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager }:
+  
+  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager  }:
     let
       user = "ubunteous";
     in
       {
         nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          
           specialArgs = { inherit user; };
 
           modules =
