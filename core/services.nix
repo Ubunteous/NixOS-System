@@ -8,6 +8,10 @@
   #   SERVICES   #
   ################
 
+  # adb for android interactions ("adbusers")
+  # programs.adb.enable = true;
+  services.gvfs.enable = true;
+  
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;

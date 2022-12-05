@@ -42,7 +42,8 @@
       #   USERS   #
       #############
 
-      ../users/user-account.nix
+      ../users/user.nix
+      ../users/user-packages.nix
 
       ######################
       #   WINDOW MANAGER   #
