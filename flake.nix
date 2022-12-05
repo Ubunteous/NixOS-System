@@ -2,7 +2,9 @@
   description = "A flake for building my NixOS configuration";
   
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    # now upgrading from 22.05 to 22.11
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
     # nur.url = "github:nix-community/NUR";
 
     # musnix.url = "github:musnix/musnix";
