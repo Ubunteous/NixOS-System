@@ -80,7 +80,7 @@
       ../home/kitty.nix
       ../home/zsh.nix
       ../home/fish.nix
-      ../home/bash.nix
+      # ../home/bash.nix
       ../home/git.nix
       
       # Unstable: "https://github.com/nix-community/home-manager/archive/master.tar.gz";

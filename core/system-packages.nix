@@ -7,6 +7,10 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Warning: NixOS assumes that Bash is used by default for /bin/sh
+  # Dash is faster than bash
+  environment.binsh = "${pkgs.dash}/bin/dash";
   
   environment.systemPackages = with pkgs; [
 
@@ -15,6 +19,7 @@
     ################
 
     brightnessctl
+    dash
     # feh
     gh # github
     git
