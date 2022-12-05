@@ -140,12 +140,12 @@
       # taffybar
       # xmobar
 
-      ##############
-      #   BITWIG   #
-      ##############
+      #############
+      #   MUSIC   #
+      #############
 
       bitwig-studio
-
+      reaper # Hack with reapack, sws extension
       # yabridge
       # yabridgectl
       

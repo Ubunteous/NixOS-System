@@ -38,6 +38,9 @@
           isort
           pytest
           python-lsp-server
+
+          # Misc
+          pymupdf
           
           # tensorflow
           # screenplain # not on nix   
