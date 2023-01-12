@@ -26,6 +26,10 @@
       };
       
       initExtra = ''
+            # export necessary for yabridgectl
+            # export WINEFSYNC=1
+            # export PATH=$PATH:/etc/profiles/per-user/ubunteous/lib
+
             # case insensitive completion
             autoload -Uz compinit && compinit
             zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
