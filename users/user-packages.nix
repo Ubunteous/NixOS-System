@@ -2,6 +2,7 @@
 
 {
   users.users.${user}.packages = with pkgs; [
+    
     ############
     #   APPS   #
     ############
@@ -21,6 +22,8 @@
     qbittorrent
     tdesktop
     teams
+
+    # virtual box should rather be added from system packages
     # virtualbox # unneeded => "host.enable" suffices
 
     ##############
@@ -38,12 +41,22 @@
     # kitty
     # wezterm
 
+    ############
+    #   MAIL   #
+    ############
+
+    # meson # python build
+    mu # mail utilities
+    notmuch # mail indexer
+    offlineimap
+    
     ###########
     #   CLI   #
     ###########
 
     # sudo cd /mnt && jmtpfs android && nemo android 
     jmtpfs # alt: go-mtpfs or services.gvfs.enable = true;
+    # libnotify # notify-send. alternative to dunstify
     neofetch
     pandoc
     # telegram-cli # does not work
@@ -103,18 +116,26 @@
 
     # Each time ~/.config/nixpkgs/home.nix changes, run:
     # home-manager switch
-    home-manager
+    # home-manager
 
     ##############
     #   RICING   #
     ##############
 
-    # eww # too early
+    eww
+    # eww-wayland # wayland variant
+    
     polybar
+    yad # polybar calendar dependency
+    xdotool # polybar calendar dependency
+    
     # pywal # not necessary
     rofi
+    wofi
     # rofi-power-menu # replace later with rofi theme
+    # swaylock # did not work well last time I tried
     # taffybar
+    waybar
     # xmobar
 
     #############
@@ -123,52 +144,21 @@
 
     bitwig-studio
     reaper # Hack with reapack, sws extension
-    # yabridge
-    # yabridgectl
-    
-    # Install wine, yabridge and vst later
-    ];
-  };
+    yabridge
+    yabridgectl
+    # wine
+    # wine64
+    # wine64Packages.stagingFull # does not work yet
+
+    # support 64-bit only
+    # (wine.override { wineBuild = "wine64"; })
+    wine # changed with an overlay to fix it in NixOS 22.05/11
+    winetricks # useful to get gdiplus for serum
+  ];
+
+  nixpkgs.overlays = [
+    (self: super: {
+      wine = super.wineWowPackages.stable;
+    })
+  ];  
 }
-
-  ###############
-  #     NEXT    #
-  ###############
-
-  # SSH
-  # Touch Typing
-  # V. Data science
-
-  # Later => slick screensaver still in unstable. pick it later
-
-  # Good enough (dealt with elisp) => dunst 20mn message
-  # Good enough => p10k config is impure => XMonad set to only spawn kitty
-  # Good enough => Android connect UBS
-  # Good enough => Put everything in home.nix => firefox/opera, telegram, keepass, qBit, nemo, vlc  
-
-  #######################
-  #   PREFERRED FILES   #
-  #######################
-
-  # TODO
-  # home-manager has xdg.mimeApps.defaultApplications
-  # If you don't want to use home-manager, you can manually edit .config/mimeapps.list
-
-  ############
-  #   MISC   #
-  ############
-
-  # For dunst (see home manager manual)
-  # xsession.enable = true;
-  # xsession.windowManager.command = "…";
-
-  ###########
-  #   ZSH   #
-  ###########
-
-  # some zsh built-in features
-  # compinit: A power completion framework
-  # promptinit: prompt framework, with interactive preview
-  # vcs_info: integration with every version control system
-  # autoload: Support for lazy module loading
-  # zstyle: context aware configuration

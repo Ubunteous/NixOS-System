@@ -11,6 +11,10 @@
   # Warning: NixOS assumes that Bash is used by default for /bin/sh
   # Dash is faster than bash
   environment.binsh = "${pkgs.dash}/bin/dash";
+
+  # gpg encryption
+  # programs.gnupg.agent.enable = true;
+  # services.pcscd.enable = true;
   
   environment.systemPackages = with pkgs; [
 
@@ -27,6 +31,7 @@
     i3lock # brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r
     # inxi
     killall
+    ntfs3g # mount ssd with read/write permission
     pamixer
     # pulseaudio
     xautolock
@@ -64,13 +69,16 @@
     #  TEXT EDITORS  #
     ##################
 
-    #emacs
+    # emacs
     ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
       epkgs.vterm
+      pkgs.mu
     ]))
+    # gnupg # encryption
+    # pinentry # passphrase interface
     
     aspell # emacs spell checker
-    aspellDicts.en # aspell english dictionarxsxcy
+    aspellDicts.en # aspell english dictionary
     aspellDicts.fr # aspell french dictionary
 
     # neovim
@@ -79,7 +87,6 @@
     nano # already installed
   ];
 
-  
   ##############
   #   nanorc   #
   ##############
