@@ -7,6 +7,8 @@
     #############
 
     packages = with pkgs; [
+      # ghostscript # for latex images/equations with preview-region
+      
       (texlive.combine {
         inherit (texlive)
           scheme-basic # base (but not minimal)
@@ -34,6 +36,7 @@
           # kpathsea
           # metafont
           parskip
+
           
           # misc
           beamer
