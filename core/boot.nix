@@ -17,7 +17,7 @@
   boot.kernel.sysctl."kernel.sysrq" = 1;
 
   # Mount external drives (NTFS support)
-  boot.supportedFilesystems = [ "ntfs" ]; # lenovo yoga 7 fix (usb hdd)
+  boot.supportedFilesystems = [ "ntfs" ]; # lenovo yoga 7 fix (mount usb / hdd)
 
   # enable touchpad
   boot.blacklistedKernelModules = [ "elan_i2c" ]; # lenovo fix touchpad
@@ -28,6 +28,14 @@
   # grub device
   # boot.loader.grub.device = # probably "/dev/sda"
 
+  ##################
+  #   LID ACTION   #
+  ##################
+
+  services.logind.lidSwitch = "lock"; # "lock", "suspend"
+  # services.logind.lidSwitchExternalPower = ;
+  # services.logind.lidSwitchDocked = ; # lid closed and another monitor added
+  
   #########################
   #   Lenovo Yoga 7 Fix   #
   #########################
@@ -44,9 +52,3 @@
   # Enable energy savings during sleep
   #boot.kernelParams = ["mem_sleep_default=deep"];
 }
-
-
-
-
-
-
