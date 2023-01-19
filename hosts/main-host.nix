@@ -50,6 +50,7 @@
 
       ../users/user.nix
       ../users/user-packages.nix
+      ../users/musnix.nix
 
       ######################
       #   WINDOW MANAGER   #

@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   ############
@@ -13,6 +13,10 @@
   # boot.loader.grub.configurationLimit = 5; # does not work?
   boot.loader.timeout = 3; # timeout until boots default menu item
 
+  # alt: hardKernel_4_14, hardkernel_latest
+  # sudo nixos-rebuild boot --flake '.nix.d/#' && reboot
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+    
   # System Requests
   boot.kernel.sysctl."kernel.sysrq" = 1;
 

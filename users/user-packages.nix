@@ -6,7 +6,7 @@
     ############
     #   APPS   #
     ############
-    
+
     aseprite
     darktable
     gnome.file-roller
@@ -26,6 +26,10 @@
     # virtual box should rather be added from system packages
     # virtualbox # unneeded => "host.enable" suffices
 
+    # reinstall linux
+    # gparted
+    # ventoy-bin
+    
     ##############
     #   VSCODE   #
     ##############

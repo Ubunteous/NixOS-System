@@ -53,5 +53,3 @@ systemd.user.services.polybar = {
 #   enable = true;
 #   # };
 # };
-
-§

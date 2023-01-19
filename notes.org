@@ -1,6 +1,8 @@
 #+title: notes
 #+OPTIONS: ^:nil
 
+Flake nixos-hardware.nixosModules commented in flake.nix. May be risky
+
 * User packages
 ** Improve
 

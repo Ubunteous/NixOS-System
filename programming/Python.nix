@@ -13,9 +13,7 @@
       sphinx # documentation
       
       # cannot build from source with current ram
-      # python3Packages.tensorflow / tensorflowWithCuda
-
-      conda
+      # python3Packages.tensorflow
       
       (let
         my-python-packages = python-packages: with python-packages; [

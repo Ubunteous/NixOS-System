@@ -3,7 +3,7 @@
   
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    # musnix.url = "github:musnix/musnix";
+    musnix.url = "github:musnix/musnix";
     # nur.url = "github:nix-community/NUR";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -12,15 +12,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    unstable.url = "nixpkgs/nixos-unstable";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # build with your own instance of nixpkgs
-      inputs.nixpkgs.follows = "unstable";
-    };
+    # unstable.url = "nixpkgs/nixos-unstable";
+    # hyprland = {
+    #   url = "github:hyprwm/Hyprland";
+    #   # build with your own instance of nixpkgs
+    #   inputs.nixpkgs.follows = "unstable";
+    # };
   };
   
-  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, unstable, hyprland }:
+  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, musnix }:
     let
       user = "ubunteous";
     in
@@ -40,9 +40,13 @@
               # ./hosts/wayland.nix # not operation yet
               # ./hosts/minimal.nix
               ./hardware/hardware-configuration.nix
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
-              # nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
 
+              # Fix touchpad issues and maybe also wifi
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
+
+              # musnix
+              inputs.musnix.nixosModules.musnix
+              
               ##############
               #   CONFIG   #
               ##############
@@ -58,8 +62,8 @@
               #   HYPRLAND   #
               ################
 
-              inputs.hyprland.nixosModules.default
-              { programs.hyprland.enable = true; }
+              # inputs.hyprland.nixosModules.default
+              # { programs.hyprland.enable = true; }
             ];
         };
 
