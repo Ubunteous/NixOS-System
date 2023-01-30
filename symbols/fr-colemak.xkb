@@ -1,0 +1,8 @@
+xkb_symbols "fr-colemak"
+{
+  include "fr(basic)"            // includes the base FR keys
+  // include "level3(ralt_switch)"  // configures right alt as a third level switch
+
+  key <LatY> { [ z, x, Greek_delta ] };
+  key <LatZ> { [ y, x, Greek_zeta  ] };
+};
