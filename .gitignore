@@ -2,3 +2,7 @@
 *~
 *#
 
+# private
+.*
+nm-isync.nix
+mu-imap.nix
