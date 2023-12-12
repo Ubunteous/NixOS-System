@@ -11,7 +11,8 @@
       
       (texlive.combine {
         inherit (texlive)
-          scheme-basic # base (but not minimal)
+          # scheme-basic # base (but not minimal)
+          scheme-small # for missing mf command
           comment
           
           # fullpage missing => maybe in bigger scheme like
