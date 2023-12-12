@@ -37,10 +37,30 @@
           # kpathsea
           # metafont
           parskip
+          listings
 
+          # presentations
+          beamer
+          beamertheme-metropolis
+          pgfopts # metropolis dependency
+          # lmodern # already available. metropolis dependency
+
+          # background
+          wallpaper
+          # background
+          # everypage
+          # xkeyval # background dependency
+
+          # csv
+          csvsimple
+          siunitx
+          datatool
           
           # misc
-          beamer
+          enumitem
+          forest
+          ragged2e
+          preprint # corresponds to fullpage package
 	        extsizes
 	        caption
           pgfgantt
