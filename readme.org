@@ -8,3 +8,106 @@ A few highlights:
 + Custom Colemak layout which leaves Azerty special characters in place
 
 The configuration is loaded in the following order: flake.nix > hosts/main-host.nix > everything else
+
+* Porting Nix to non-NixOS systems
+** Install Nix
+
+#+begin_src
+# Non-root systems can use --no-daemon instead
+sh <(curl -L https://nixos.org/nix/install) --daemon
+
+# create directory /nix
+sudo mkdir -m 0755 /nix && chown $USER /nix
+#+end_src
+
+** Activating Flakes
+
+Add the following line to /etc/nix/nix.conf to enable flakes. The location may differ if you have change the config file's location (and linked it to /etc/nix with ln)
+
+#+begin_src nix
+experimental-features = nix-command flakes
+#+end_src
+
+Upon success, the following command should succeed
+
+#+begin_src
+nix build nixpkgs#hello
+#+end_src
+
+** Home Manager
+
+In this example, I run flake.nix located in '~/.nix/' alongside '~/.nix/home.nix'. Note that homeConfigurations and mint are names I have chosen myself. They may change in [[https://jeffkreeftmeijer.com/nix-home-manager/][someone else's]] config. Keep that in mind as you will need these names to run the flake.
+
+#+begin_src
+nix run ~/.nix/#homeConfigurations.mint.activationPackage
+#+end_src
+
+#+begin_src nix
+# flake.nix
+{
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+  inputs.home-manager = {
+    url = "github:rycee/home-manager/master";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      homeConfigurations.mint = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          ./home.nix
+        ];
+      };
+    };
+}
+#+end_src
+
+
+#+begin_src nix
+# home.nix
+{ config, pkgs, ... }:
+
+{
+  home = {
+    username = "mint";
+    homeDirectory = "/home/mint";
+    stateVersion = "22.11";
+  };
+
+  programs.home-manager = {
+    enable = true;
+  };
+
+  programs.kakoune.enable = true; # try to install something
+}
+#+end_src
+
+** Remove Nix (Optional)
+
+In case of trouble, the following commands can help you undo changes made by nix to redo a clean install.
+
+I recommend to use only one command at a time as most of them delete important files with elevated privilege.
+
+#+begin_src
+sudo rm -rf /etc/profile/nix.sh /etc/nix /nix ~root/.nix-profile ~root/.nix-defexpr ~root/.nix-channels ~/.nix-profile ~/.nix-defexpr ~/.nix-channels
+
+sudo systemctl stop nix-daemon.socket
+sudo systemctl stop nix-daemon.service
+sudo systemctl disable nix-daemon.socket
+sudo systemctl disable nix-daemon.service
+sudo systemctl daemon-reload
+
+sudo rm /etc/bash.bashrc.backup-before-nix 
+sudo rm /etc/bashrc.backup-before-nix 
+sudo rm /etc/zshrc.backup-before-nix 
+
+sudo rm /etc/profile.d/nix.sh
+sudo rm /etc/profile.d/nix.sh.backup-before-nix 
+sudo rm /etc/systemd/system/nix-daemon.socket
+#+end_src
