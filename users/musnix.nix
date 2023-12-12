@@ -1,4 +1,4 @@
-{ musnix, pkgs, ... }:
+{ musnix, ... }:
 
 {
   musnix.enable = true;
