@@ -1,5 +1,8 @@
 xkb_symbols "fr-colemak"
 {
+  // for key codes, check:
+  // /nix/store/zs3rvwdka1prd2j9iygbh2i4bf692vvg-setxkbmap-1.3.2/share/X11/xkb/symbols/
+  
   include "fr(basic)" // includes the base FR keys
   // include "level3(ralt_switch)"  // configures right alt as a third level switch
 
@@ -15,8 +18,9 @@ xkb_symbols "fr-colemak"
   key <LatU> { [ l, L ] };
   key <LatI> { [ u, U ] };
   key <LatO> { [ y, Y ] };
-  key <LatP> { [ comma, question ] };
-  
+  key <LatP> { [ exclam, question ] };
+  key <AD11> { [ Control_L, dead_circumflex, dead_diaeresis ] };
+    
   key <LatA> { [ a, A ] }; // q. should be a
   key <LatS> { [ r, R ] };
   key <LatD> { [ s, S ] };
@@ -35,4 +39,16 @@ xkb_symbols "fr-colemak"
   key <LatB> { [ v, V ] };
   key <LatN> { [ k, K ] };
   key <LatM> { [ h, H ] }; // ,. should be h
+
+  // replace µ => ù and ù => BackSpace
+  key <AC11> { [ BackSpace, BackSpace ] }; // ù/%. should be BackSpace/percent
+  key <BKSL> { [ asterisk, percent ] }; // */µ. should be asterisk/ugrave */ù
+
+  // replace µ => backspace and make $/£ require maj */$
+  // key <AD12> { [ asterisk, dollar ] };
+
+  // invert ;/. and ://
+  key <AB08> { [ comma, question ] };
+  key <AB09> { [ period, semicolon ] }; // ;/. should be period/semicolon
+  key <AB10> { [ slash, colon ] }; // ;/. should be period/semicolon
 };
