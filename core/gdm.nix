@@ -15,7 +15,7 @@
     # Configure keymap in X11 => controlled by wayland compositor
     layout = "fr";
     xkbVariant = "";
-    xkbOptions = "ctrl:nocaps"; # caps lock as ctrl
+    xkbOptions = "ctrl:nocaps,compose:ralt"; # caps lock as ctrl
     
     #######################
     #   DISPLAY MANAGER   #
@@ -31,7 +31,7 @@
         # debug; settings; autoSuspend; autoLogin.delay;
       };
 
-      # Enable sticky keys at startup
+      # Enable sticky keys at startup in addition to xautolock
       sessionCommands = ''~/.locker/start-xautolock &'';
       
       # Enable automatic login for the user.
