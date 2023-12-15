@@ -13,19 +13,50 @@
 
 {
   home-manager.users.${user} = {
+    # this does not work => option unknown. Try option -b
+    # rewrite search.json.mozlz4 even if firefox messes with it
+    # xdg.configFile."search.json.mozlz4".force = true;
+    # home.file."foo/search.json.mozlz4".force = true;
+      
     programs.firefox = {
       enable = true;
-      # search.default = "DuckDuckGo";
-
-      extensions = with pkgs; [
-        config.nur.repos.rycee.firefox-addons.ublock-origin
-        config.nur.repos.rycee.firefox-addons.darkreader
-      ];
       
       profiles.default = {
         id = 0; # each profile have a unique number (n > 0)
         name = "Default";
         isDefault = true;
+
+        # default = "DuckDuckGo";
+        search.default = "CustomDuckDuckGo";
+
+        extensions = with pkgs; [
+          config.nur.repos.rycee.firefox-addons.darkreader
+          config.nur.repos.rycee.firefox-addons.tridactyl
+          config.nur.repos.rycee.firefox-addons.ublock-origin
+          # config.nur.repos.rycee.firefox-addons.violentmonkey
+        ];
+
+        # systematically delete search.json.mozlz4 to prevent home manager conflict with files in the way
+        search.force = true;
+
+        search.engines = {
+          # Url with DuckDuckGo preferences
+          # Sometimes conflicts with .mozilla/firefox/default/search.json.mozlz4
+          "CustomDuckDuckGo".urls = [{ template = "https://duckduckgo.com/?ks=s&k7=24273a&kae=d&kj=24273a&k9=8bd5ca&kaa=f5a97f&k21=363a4f&k1=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&q={searchTerms}"; }];
+          
+          # Direct acces to nix packages with prefix @np
+          "Nix Packages" = {
+            urls = [{
+              template = "https://search.nixos.org/packages";
+              params = [
+                { name = "type"; value = "packages"; }
+                { name = "query"; value = "{searchTerms}"; }
+              ];
+            }];
+            
+            definedAliases = [ "@np" ];
+          };
+        };
 
         # settings stored in prefs.js (like extraconfig = ...)
         settings = {
@@ -49,7 +80,8 @@
           "permissions.default.geo" = 2;
           "app.shield.optoutstudies.enabled" = false;
           "datareporting.healthreport.uploadEnabled" = false;
-
+          "pdfjs.enableScripting" = false; # pdf security
+          
           # MISC (about:config)
           "browser.aboutConfig.showWarning" = false;
           "browser.tabs.closeWindowWithLastTab" = false;
