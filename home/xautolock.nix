@@ -12,10 +12,11 @@
       text = ''
       ${pkgs.xautolock}/bin/xautolock \
                 -time 5 \
-                -locker "brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r" \
+                -locker ~/.nix.d/files/locker.sh \
                 -notify 55 \
                 -notifier "${pkgs.libnotify}/bin/notify-send 'Locking soon'" \
                 -detectsleep \
+                -corners ++-- \
                 -killtime 30 \
                 -killer "systemctl suspend"
     '';
