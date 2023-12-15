@@ -40,7 +40,8 @@
         corner-radius = 18;
         # round-borders = 20;
         xrender-sync-fence = true; # activates blur
-
+        unredir-if-possible = true; # no notif over lockscreen
+          
         # Exclude conditions for rounded corners.
         rounded-corners-exclude = [
           "window_type = 'dock'" # polybar
