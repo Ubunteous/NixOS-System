@@ -18,7 +18,7 @@
         enable_audio_bell = false;
         update_check_interval = 0;
         confirm_os_window_close = 0;
-        focus_follow_mouse = "yes";
+        # focus_follow_mouse = "yes"; # deprecated
         # font
       };
     };
