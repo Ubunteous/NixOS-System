@@ -1,13 +1,10 @@
-{ pkgs, user, ... }:
+{ user, ... }:
 
 {
-  # TODO  SSH
-  # https://nixos.wiki/wiki/SSH_public_key_authentication
-
   ################
   #   SERVICES   #
   ################
-
+  
   # adb for android interactions ("adbusers")
   # programs.adb.enable = true;
   services.gvfs.enable = true;
@@ -16,17 +13,68 @@
     # Enable the X11 windowing system.
     enable = true;
 
-    ##############
-    #   KEYMAP   #
-    ##############
+    ####################
+    #      XRANDR      #
+    ####################
+
+    # virtualScreen = {
+    #   x = 1920;
+    #   y = 1080;
+    # };
+
+    # xrandrHeads = [
+    #   "Home"
+    #   {
+    #     output = "eDP-1";
+    #     primary = true;
+    #     monitorConfig = "Option \"Disable\" \"true\"";
+    #   }
+    #   {
+    #     output = "HDMI-1";
+    #     primary = false;
+    #   }
+    # ];
+    
+    ####################
+    #   KEYMAP : KBD   #
+    ####################
+
+    # get info on current layout:
+    # setxkbmap -query
+
+    # reset to default:
+    # setxkbmap -layout "fr" -variant "nodeadkeys,basic"
 
     # Configure keymap in X11
-    layout = "fr";
-    xkbVariant = "";
-    xkbOptions = "ctrl:nocaps"; # caps lock as ctrl
+    # Check layouts with gkbd-keyboard-display -l "gb(colemak)" or fr
+    # layout = "fr-colemak, fr";
+    # xkbVariant = ",";
+    # grp:shifts_toggle to toggle layouts, compose:ralt
+    # xkbOptions = "ctrl:nocaps"; # caps lock as ctrl
+    
     # "ctrl:swapcaps"; # swap control and shift
     # More xkbOptions with man xkeyboard-config or at https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee
     
+    # extraLayouts.fr-colemak = {
+    #   description = "Colemak variant of the FR layout";
+    #   languages   = [ "fra" ];
+    #   symbolsFile = ../files/fr-colemak.xkb;
+    # };
+
+    ################################
+    #   KEYMAP : KMONAD / KANATA   #
+    ################################
+
+    layout = "fr-qwerty";
+
+    xkbOptions = "ctrl:nocaps"; # caps lock as ctrl
+
+    extraLayouts.fr-qwerty = {
+      description = "Qwerty with french numrow and special characters";
+      languages   = [ "us" ];
+      symbolsFile = ../files/fr-qwerty.xkb;
+    };
+
     #######################
     #   DISPLAY MANAGER   #
     #######################
@@ -67,10 +115,9 @@
           # };
         };
       };
-        
-      # Enable sticky keys at startup
+      
+      # Enable sticky keys at startup:
       # sleep 3 && xkbset bell sticky -twokey -latchlock feedback led stickybeep &
-      # sleep 5 && sticky &
       sessionCommands = ''
         ~/.locker/start-xautolock &
       '';
