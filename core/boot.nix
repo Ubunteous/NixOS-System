@@ -6,33 +6,36 @@
   ############
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
 
-  # boot.loader.grub.configurationLimit = 5; # if does not work? maybe because I use systemd
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
 
-  # timeout until boots default menu item
-  # if does not work, use t binding at boot to set timeout
-  boot.loader.timeout = 3;
+      # timeout until boots default menu item
+      # if does not work, use t binding at boot to set timeout
+      timeout = 3;
 
-  # Only show 2 latests generations on grub
-  # If you need to rollback to an older generation, use:
-  # nix profile rollback --to 300 # with last number being the gen num
-  # Note: older generations are only hidden. Not deleted from disk
-  # See /nix/var/nix/profiles/ for links to generations on disk
-  boot.loader.systemd-boot.configurationLimit = 2;
+      # Only show 2 latests generations on grub
+      # If you need to rollback to an older generation, use:
+      # nix profile rollback --to 300 # with last number being the gen num
+      # Note: older generations are only hidden. Not deleted from disk
+      # See /nix/var/nix/profiles/ for links to generations on disk
+      systemd-boot.configurationLimit = 2;
+    };
+
+    # alt: hardKernel_4_14, hardkernel_latest
+    # sudo nixos-rebuild boot --flake '.nix.d/#' && reboot
+    # boot.kernelPackages = pkgs.linuxPackages_latest;
+    
+    # System Requests
+    kernel.sysctl."kernel.sysrq" = 1;
+
+    # enable touchpad
+    blacklistedKernelModules = [ "elan_i2c" ]; # lenovo fix touchpad
+  };
   
-  # alt: hardKernel_4_14, hardkernel_latest
-  # sudo nixos-rebuild boot --flake '.nix.d/#' && reboot
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  
-  # System Requests
-  boot.kernel.sysctl."kernel.sysrq" = 1;
-
-  # enable touchpad
-  boot.blacklistedKernelModules = [ "elan_i2c" ]; # lenovo fix touchpad
-
   # Bluetooth
   hardware.bluetooth.enable = false;
 
