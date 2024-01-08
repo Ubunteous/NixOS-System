@@ -1,31 +1,43 @@
-{ ... }:
+{ user, ... }:
 
-{    
+{
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
+
+  home-manager.users.${user}.home = {
+    stateVersion = "23.11";
+    sessionVariables = {
+      EDITOR = "emacs";
+      BROWSER = "firefox";
+      TERMINAL = "alacritty";
+    };
+  };
+
   imports = [
-    ../home/u-he.nix
-    # ../home/game.nix # planescape
+    ./u-he.nix
+    # ./game.nix # planescape
 
     # conflict with .mozilla/firefox/default/search.json.mozlz4
-    ../home/firefox.nix
-    ../home/mime.nix # another app is creating mimes => fixed with force
-    ../home/dunst.nix
-    ../home/picom.nix
-    ../home/flameshot.nix
-    ../home/themes.nix
-    ../home/git.nix
+    ./firefox.nix
+    ./mime.nix # another app is creating mimes => fixed with force
+    ./dunst.nix
+    ./picom.nix
+    ./flameshot.nix
+    ./themes.nix
+    ./git.nix
     
-    ../home/terminal/zsh.nix
-    ../home/terminal/fish.nix
-    ../home/terminal/kitty.nix
-    ../home/terminal/alacritty.nix
-    # ../home/terminal/bash.nix      
-    ../home/neovim.nix
+    ./terminal/zsh.nix
+    ./terminal/fish.nix
+    ./terminal/kitty.nix
+    ./terminal/alacritty.nix
+    # ./terminal/bash.nix      
+    ./neovim.nix
 
-    ../home/xautolock.nix # replace it with a service
-    # ../home/xidlehook.nix # does not seem to start
+    ./xautolock.nix # replace it with a service
+    # ./xidlehook.nix # does not seem to start
     
     # for OB-xD synth
-    # ../home/xdg-user-dir.nix
+    # ./xdg-user-dir.nix
     
     # Unstable: "https://github.com/nix-community/home-manager/archive/master.tar.gz";
     # Troubleshoot: systemctl status "home-manager-$USER.service"

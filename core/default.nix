@@ -1,19 +1,24 @@
 { ... }:
 
+# lib.mkIf (config.networking.hostName == "") { imports = [ ../core/lightdm.nix ]; }
+
 {    
+  
   imports = [
-    ../core/boot.nix
-    ../core/networking.nix
-    # ../core/sddm.nix
-    # ../core/gdm.nix
-    ../core/lightdm.nix
-    ../core/sound.nix
-    ../core/file-systems.nix
-    ../core/system-packages.nix
-    # ../core/neovim.nix
-    ../core/kanata.nix
-    # ../core/autorandr.nix # does not work (9/23)
-    ../core/nix-ld.nix
+    ./boot.nix
+    ./networking.nix
+
+    # ./display-managers/sddm.nix
+    # ./display-managers/gdm.nix
+    ./display-managers/lightdm.nix
+
+    ./sound.nix
+    ./file-systems.nix
+    ./system-packages.nix
+    # ./neovim.nix
+    ./kanata.nix
+    # ./autorandr.nix # does not work (9/23)
+    ./nix-ld.nix
   ];
 }
 
