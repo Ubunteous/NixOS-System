@@ -72,7 +72,7 @@
     extraLayouts.fr-qwerty = {
       description = "Qwerty with french numrow and special characters";
       languages   = [ "us" ];
-      symbolsFile = ../files/fr-qwerty.xkb;
+      symbolsFile = ../../files/fr-qwerty.xkb;
     };
 
     #######################
