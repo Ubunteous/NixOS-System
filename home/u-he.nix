@@ -1,40 +1,50 @@
-{ pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, home-manager, user, ... }:
 
-############
-#   U-HE   #
-############
-
-# You can see rofi's cache and list of desktop files in:
-# $HOME/.cache/rofi3.druncache
-# cockos-reaper.desktop
-# com.bitwig.BitwigStudio.desktop or bitwig-studio.desktop ?
+with lib;
+let
+  cfg = config.home.u-he;
+in
 {
-  home-manager.users.${user} = {
+  options.home.u-he = {
+    enable = mkEnableOption "Enable support for u-he plugins";
+  };
 
-    xdg.desktopEntries = {
+  config = mkIf cfg.enable {
+    home-manager.users.${user} = {
+      ############
+      #   U-HE   #
+      ############
 
-      u-he-reaper = {
-        name = "REAPER";
-        genericName = "REAPER";
+      # You can see rofi's cache and list of desktop files in:
+      # $HOME/.cache/rofi3.druncache
+      # cockos-reaper.desktop
+      # com.bitwig.BitwigStudio.desktop or bitwig-studio.desktop ?
 
-        # u-he dialog fix
-        exec = "nix-shell .nix.d/nix-shell/u-he.nix --run reaper";
+      xdg.desktopEntries = {
 
-        icon = "/home/${user}/.nix.d/home/icons/Reaper Logo.png";
-        terminal = false;
-        type = "Application";
-      };
+        u-he-reaper = {
+          name = "REAPER";
+          genericName = "REAPER";
 
-      u-he-bitwig = {
-        name = "Bitwig Studio";
-        genericName = "Bitwig Studio";
+          # u-he dialog fix
+          exec = "nix-shell .nix.d/nix-shell/u-he.nix --run reaper";
 
-        # u-he dialog fix
-        exec = "nix-shell .nix.d/nix-shell/u-he.nix --run bitwig-studio";
+          icon = "/home/${user}/.nix.d/home/icons/Reaper Logo.png";
+          terminal = false;
+          type = "Application";
+        };
 
-        icon = "/home/${user}/.nix.d/home/icons/Bitwig Logo.png";
-        terminal = false;
-        type = "Application";
+        u-he-bitwig = {
+          name = "Bitwig Studio";
+          genericName = "Bitwig Studio";
+
+          # u-he dialog fix
+          exec = "nix-shell .nix.d/nix-shell/u-he.nix --run bitwig-studio";
+
+          icon = "/home/${user}/.nix.d/home/icons/Bitwig Logo.png";
+          terminal = false;
+          type = "Application";
+        };
       };
     };
   };

@@ -1,15 +1,24 @@
-{ pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, home-manager, user, ... }:
 
-#################
-#   XAUTOLOCK   #
-#################
-
+with lib;
+let
+  cfg = config.home.xautolock;
+in
 {
-  # exec --no-startup-id ~/bin/start-xautolock
-  # ~/.locker/start-xautolock &
-  home-manager.users.${user} = {
-    home.file.".locker/start-xautolock" = {
-      text = ''
+  options.home.xautolock = {
+    enable = mkEnableOption "Enable support for xautolock";
+  };
+
+  config = mkIf cfg.enable {
+    home-manager.users.${user} = {
+      #################
+      #   XAUTOLOCK   #
+      #################
+
+      # exec --no-startup-id ~/bin/start-xautolock
+      # ~/.locker/start-xautolock &
+      home.file.".locker/start-xautolock" = {
+        text = ''
       ${pkgs.xautolock}/bin/xautolock \
                 -time 5 \
                 -locker ~/.nix.d/files/locker.sh \
@@ -20,7 +29,8 @@
                 -killtime 30 \
                 -killer "systemctl suspend"
     '';
-      executable = true;
+        executable = true;
+      };
     };
   };
 }

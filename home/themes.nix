@@ -1,41 +1,51 @@
-{ pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, home-manager, user, ... }:
 
-##############
-#   THEMES   #
-##############
-
+with lib;
+let
+  cfg = config.home.themes;
+in
 {
-  home-manager.users.${user} = {
-    # adapta-gtk-theme
-    # arc-theme
-    # dracula-theme
-    # nordic # also available on firefox
-    # papirus-icon-theme
+  options.home.themes = {
+    enable = mkEnableOption "Enable support for themes";
+  };
 
-    gtk = {
-      enable = true;
-      
-      theme = {
-        name = "Arc-Dark";
-        package = pkgs.arc-theme;
-      };
-      iconTheme = {
-        name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
-      };
-      font = {
-        name = "Noto Sans";
-        package = pkgs.noto-fonts;
-      };
-      cursorTheme = {
-        size = 36;
-        name = "Nordzy-cursors";
-        package = pkgs.nordzy-cursor-theme;
-      };
+  config = mkIf cfg.enable {
+    home-manager.users.${user} = {
+      ##############
+      #   THEMES   #
+      ##############
 
-      # gtk3.extraConfig = {        
-      #   gtk-application-prefer-dark-theme = true;
-      # };
+      # adapta-gtk-theme
+      # arc-theme
+      # dracula-theme
+      # nordic # also available on firefox
+      # papirus-icon-theme
+
+      gtk = {
+        enable = true;
+        
+        theme = {
+          name = "Arc-Dark";
+          package = pkgs.arc-theme;
+        };
+        iconTheme = {
+          name = "Papirus-Dark";
+          package = pkgs.papirus-icon-theme;
+        };
+        font = {
+          name = "Noto Sans";
+          package = pkgs.noto-fonts;
+        };
+        cursorTheme = {
+          size = 36;
+          name = "Nordzy-cursors";
+          package = pkgs.nordzy-cursor-theme;
+        };
+
+        # gtk3.extraConfig = {        
+        #   gtk-application-prefer-dark-theme = true;
+        # };
+      };
     };
   };
 }

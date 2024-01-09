@@ -14,30 +14,26 @@
   };
 
   imports = [
-    ./u-he.nix
-    # ./game.nix # planescape
-
+    ./dunst.nix
+    ./flameshot.nix
     # conflict with .mozilla/firefox/default/search.json.mozlz4
     ./firefox.nix
-    ./mime.nix # another app is creating mimes => fixed with force
-    ./dunst.nix
-    ./picom.nix
-    ./flameshot.nix
-    ./themes.nix
     ./git.nix
+    ./mime.nix # another app is creating mimes => fixed with force
+    ./picom.nix
+    ./themes.nix
+    ./u-he.nix
+    ./xautolock.nix # replace it with a service
     
-    ./terminal/zsh.nix
+    ./terminal/alacritty.nix
+    ./terminal/bash.nix      
     ./terminal/fish.nix
     ./terminal/kitty.nix
-    ./terminal/alacritty.nix
-    # ./terminal/bash.nix      
-    ./neovim.nix
+    ./terminal/neovim.nix
+    ./terminal/zsh.nix
 
-    ./xautolock.nix # replace it with a service
-    # ./xidlehook.nix # does not seem to start
-    
-    # for OB-xD synth
-    # ./xdg-user-dir.nix
+    ./emacs.nix
+    ./xdg-user-dir.nix # for OB-xD synth
     
     # Unstable: "https://github.com/nix-community/home-manager/archive/master.tar.gz";
     # Troubleshoot: systemctl status "home-manager-$USER.service"

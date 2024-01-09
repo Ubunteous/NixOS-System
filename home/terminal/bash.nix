@@ -1,18 +1,28 @@
-{ pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, home-manager, user, ... }:
 
-############
-#   BASH   #
-############
-
+with lib;
+let
+  cfg = config.home.terminal.bash;
+in
 {
-  home-manager.users.${user} = {
-    # !/bin/env bash
-    programs.bash = {
-      shellAliases = {
-        sticky = "xkbset bell sticky -twokey -latchlock feedback led stickybeep &";
-        powermenu = "/home/${user}/.config/rofi/powermenu.sh";
-      };
-    };    
+  options.home.terminal.bash = {
+    enable = mkEnableOption "Enable support for Bash";
+  };
+
+  config = mkIf cfg.enable {
+    home-manager.users.${user} = {
+      ############
+      #   BASH   #
+      ############
+
+      # !/bin/env bash
+      programs.bash = {
+        shellAliases = {
+          sticky = "xkbset bell sticky -twokey -latchlock feedback led stickybeep &";
+          powermenu = "/home/${user}/.config/rofi/powermenu.sh";
+        };
+      };    
+    };
   };
 }
   
