@@ -1,0 +1,395 @@
+# Troubleshoot: leftwm-check
+# Soon, this file will need to be converted to .ron
+
+modkey = "Mod4"
+mousekey = "Mod4"
+tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+
+layouts = ["MainAndVertStack",]
+# layouts = ["MainAndDeck", "MainAndVertStack", "MainAndHorizontalStack", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack",]
+
+layout_mode = "Workspace" # Workspace, Tag
+insert_behavior = "Bottom"
+
+# comment these 3 when creating your own workspace/scratchpad/window_rule
+# workspaces = []
+# scratchpad = [] # breaks other scratchpad
+# window_rules = []
+
+disable_current_tag_swap = false
+disable_tile_drag = false
+focus_behaviour = "Sloppy" # Sloppy, ClickTo or Driven
+focus_new_windows = true
+
+# still need to understand the purpose of this thing
+# sloppy_mouse_follows_focus = true
+
+###################
+#     Custom      #
+###################
+
+[[keybind]]
+command = "Execute"
+value = "brightnessctl set +5%"
+modifier = []
+key = "XF86XK_MonBrightnessUp"
+
+[[keybind]]
+command = "Execute"
+value = "brightnessctl set 5%-"
+modifier = []
+key = "XF86XK_MonBrightnessDown"
+
+[[keybind]]
+command = "Execute"
+value = "pamixer -i 10"
+modifier = []
+key = "XF86XK_AudioRaiseVolume"
+
+[[keybind]]
+command = "Execute"
+value = "pamixer -d 10"
+modifier = []
+key = "XF86XK_AudioLowerVolume"
+
+[[keybind]]
+command = "Execute"
+value = "pamixer -t"
+modifier = []
+key = "XF86XK_AudioMute"
+
+[[keybind]]
+command = "ToggleFullScreen"
+modifier = ["modkey"]
+key = "f"
+
+[[keybind]]
+command = "Execute"
+value = "rofi -show drun"
+modifier = ["modkey"]
+key = "p"
+
+[[keybind]]
+command = "Execute"
+value = "nemo"
+modifier = ["modkey"]
+key = "e"
+
+[[keybind]]
+command = "ToggleSticky"
+modifier = ["modkey"]
+key = "v"
+
+[[keybind]]
+command = "FocusPreviousTag"
+modifier = ["modkey"]
+key = "Left"
+
+[[keybind]]
+command = "FocusNextTag"
+modifier = ["modkey"]
+key = "Right"
+
+[[window_rules]]
+window_class = "krita"
+spawn_on_tag = 3
+
+# Test
+# [[window_rules]]
+# window_class = "Navigator" # window_title can be used instead of class
+# spawn_floating = true
+
+[[scratchpad]]
+name = "Alacritty" # name window
+value = "nemo" # name command
+x = 860 # or float 0.46
+y = 390 # or float 0.20
+height = 500 # or float 0.80
+width = 500 # or float 0.54
+
+[[keybind]]
+command = "ToggleScratchPad"
+value = "Alacritty" # Name set for the scratchpad
+modifier = ["modkey"]
+key = "a"
+
+###################
+#     Others      #
+###################
+
+# ToggleSticky
+
+# like i3, can create tag and send every [type-window] there
+# MoveWindowToPreviousTag
+# MoveWindowToNextTag
+# MoveWindowToPreviousWorkspace
+# MoveWindowToNextWorkspace
+# FloatingToTile
+# TileToFloating
+# ToggleFloating
+# FocusWindowTop
+# SetLayout
+# RotateTag
+# ReturnToLastTag
+# FocusNextTag
+# FocusPreviousTag
+# IncreaseMainWidth
+# SetMarginMultiplier
+# SetMarginMultiplier
+# ToggleScratchpad
+
+###################
+#     Default     #
+###################
+
+[[keybind]]
+command = "Execute"
+value = "alacritty" # kitty
+modifier = ["modkey", "Shift"]
+key = "Return"
+
+[[keybind]]
+command = "CloseWindow"
+value = ""
+modifier = ["modkey"]
+key = "x" # key = "q"
+
+[[keybind]]
+command = "SoftReload"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "r"
+
+[[keybind]]
+command = "Execute"
+value = "loginctl kill-session $XDG_SESSION_ID"
+modifier = ["modkey", "Shift"]
+key = "x"
+
+[[keybind]]
+command = "Execute"
+value = "slock"
+modifier = ["modkey", "Control"]
+key = "l"
+
+[[keybind]]
+command = "MoveToLastWorkspace"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "w"
+
+[[keybind]]
+command = "SwapTags"
+value = ""
+modifier = ["modkey"]
+key = "w"
+
+[[keybind]]
+command = "MoveWindowUp"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "k"
+
+[[keybind]]
+command = "MoveWindowDown"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "j"
+
+[[keybind]]
+command = "MoveWindowTop"
+value = ""
+modifier = ["modkey"]
+key = "Return"
+
+[[keybind]]
+command = "FocusWindowUp"
+value = ""
+modifier = ["modkey"]
+key = "k"
+
+[[keybind]]
+command = "FocusWindowDown"
+value = ""
+modifier = ["modkey"]
+key = "j"
+
+[[keybind]]
+command = "NextLayout"
+value = ""
+modifier = ["modkey", "Control"]
+key = "k"
+
+[[keybind]]
+command = "PreviousLayout"
+value = ""
+modifier = ["modkey", "Control"]
+key = "j"
+
+[[keybind]]
+command = "FocusWorkspaceNext"
+value = ""
+modifier = ["modkey"]
+key = "l"
+
+[[keybind]]
+command = "FocusWorkspacePrevious"
+value = ""
+modifier = ["modkey"]
+key = "h"
+
+[[keybind]]
+command = "MoveWindowUp"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "Up"
+
+[[keybind]]
+command = "MoveWindowDown"
+value = ""
+modifier = ["modkey", "Shift"]
+key = "Down"
+
+[[keybind]]
+command = "FocusWindowUp"
+value = ""
+modifier = ["modkey"]
+key = "Up"
+
+[[keybind]]
+command = "FocusWindowDown"
+value = ""
+modifier = ["modkey"]
+key = "Down"
+
+[[keybind]]
+command = "NextLayout"
+value = ""
+modifier = ["modkey", "Control"]
+key = "Up"
+
+[[keybind]]
+command = "PreviousLayout"
+value = ""
+modifier = ["modkey", "Control"]
+key = "Down"
+
+[[keybind]]
+command = "GotoTag"
+value = "1"
+modifier = ["modkey"]
+key = "ampersand"
+
+[[keybind]]
+command = "GotoTag"
+value = "2"
+modifier = ["modkey"]
+key = "eacute"
+
+[[keybind]]
+command = "GotoTag"
+value = "3"
+modifier = ["modkey"]
+key = "quotedbl"
+
+[[keybind]]
+command = "GotoTag"
+value = "4"
+modifier = ["modkey"]
+key = "apostrophe"
+
+[[keybind]]
+command = "GotoTag"
+value = "5"
+modifier = ["modkey"]
+key = "parenleft"
+
+[[keybind]]
+command = "GotoTag"
+value = "6"
+modifier = ["modkey"]
+key = "minus"
+
+[[keybind]]
+command = "GotoTag"
+value = "7"
+modifier = ["modkey"]
+key = "egrave"
+
+[[keybind]]
+command = "GotoTag"
+value = "8"
+modifier = ["modkey"]
+key = "underscore"
+
+[[keybind]]
+command = "GotoTag"
+value = "9"
+modifier = ["modkey"]
+key = "ccedilla"
+
+[[keybind]]
+command = "GotoTag"
+value = "10"
+modifier = ["modkey"]
+key = "agrave"
+
+[[keybind]]
+command = "MoveToTag"
+value = "1"
+modifier = ["modkey", "Shift"]
+key = "ampersand"
+
+[[keybind]]
+command = "MoveToTag"
+value = "2"
+modifier = ["modkey", "Shift"]
+key = "eacute"
+
+[[keybind]]
+command = "MoveToTag"
+value = "3"
+modifier = ["modkey", "Shift"]
+key = "quotedbl"
+
+[[keybind]]
+command = "MoveToTag"
+value = "4"
+modifier = ["modkey", "Shift"]
+key = "apostrophe"
+
+[[keybind]]
+command = "MoveToTag"
+value = "5"
+modifier = ["modkey", "Shift"]
+key = "parenleft"
+
+[[keybind]]
+command = "MoveToTag"
+value = "6"
+modifier = ["modkey", "Shift"]
+key = "minus"
+
+[[keybind]]
+command = "MoveToTag"
+value = "7"
+modifier = ["modkey", "Shift"]
+key = "egrave"
+
+[[keybind]]
+command = "MoveToTag"
+value = "8"
+modifier = ["modkey", "Shift"]
+key = "underscore"
+
+[[keybind]]
+command = "MoveToTag"
+value = "9"
+modifier = ["modkey", "Shift"]
+key = "ccedilla"
+
+[[keybind]]
+command = "MoveToTag"
+value = "10"
+modifier = ["modkey", "Shift"]
+key = "agrave"

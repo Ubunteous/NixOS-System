@@ -1,0 +1,20 @@
+#![enable(implicit_some)]
+
+modkey: "Mod4"
+mousekey: "Mod4"
+workspaces: []
+tags: ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+layouts: ["MainAndVertStack", "MainAndHorizontalStack", "MainAndDeck", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack"]
+layout_mode: "Workspace"
+scratchpad: []
+disable_current_tag_swap: false
+focus_behaviour: "Sloppy"
+focus_new_windows: true
+
+keybind: [
+    ( command: Execute, value: "rofi -show run", modifier: ["modkey"], key: "p" ),
+    ( command: Execute, value: "alacritty", modifier: ["modkey", "Shift"], key: "Return" ),
+    ( command: Execute, value: "CloseWindow", modifier: ["modkey", "Shift"], key: "q" ),
+    ( command: Execute, value: "SoftReload", modifier: ["modkey", "Shift"], key: "r" ),	   
+    ( command: Execute, value: "firefox", modifier: ["modkey"], key: "f" ),		
+]

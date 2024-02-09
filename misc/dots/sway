@@ -1,0 +1,74 @@
+set $mod Mod4
+set $term alacritty
+set $term-float $term
+
+input * {
+    xkb_layout "fr"
+    xkb_variant "nodeadkeys"
+    xkb_options "grp:alt_shift_toggle"
+}
+
+output eDP-1 background ~/Pictures/sky.jpg fill
+gaps inner 10
+
+# Workspaces:
+bindsym --to-code {
+$mod+r reload
+$mod+return exec $term
+$mod+q kill
+$mod+p exec rofi -show drun
+
+$mod+f fullscreen
+$mod+x quit
+
+
+$mod+h splith
+$mod+v splitv
+
+$mod+e layout toggle split
+# $mod+h layout splith
+# $mod+v layout splitv
+
+$mod+w layout tabbed
+$mod+s layout stacking
+
+#$mod+a Focus on parent container
+#$mod+space Swap focus between tiling and floating
+#$mod+shift + Space Toggle floating mode
+
+$mod+backspace workspace back_and_forth
+$mod+left workspace next
+$mod+right workspace prev
+
+$mod+tab focus left
+$mod+shift+tab focus right
+$mod+up focus up
+$mod+down focus down
+
+$mod+shift+left move left
+$mod+shift+right move right
+$mod+shift+up move up
+$mod+shift+down move down
+
+$mod+shift+ampersand move workspace 1
+$mod+shift+eacute move workspace 2
+$mod+shift+quotedbl move workspace 3
+$mod+shift+apostrophe move workspace 4
+$mod+shift+parenleft move workspace 5
+$mod+shift+minus move workspace 6
+$mod+shift+egrave move workspace 7
+$mod+shift+underscore move workspace 8
+$mod+shift+ccedilla move workspace 9
+$mod+shift+agrave move workspace 10
+
+$mod+ampersand workspace 1
+$mod+eacute workspace 2
+$mod+quotedbl workspace 3
+$mod+apostrophe workspace 4
+$mod+parenleft workspace 5
+$mod+minus workspace 6
+$mod+egrave workspace 7
+$mod+underscore workspace 8
+$mod+ccedilla workspace 9
+$mod+agrave workspace 10
+}
