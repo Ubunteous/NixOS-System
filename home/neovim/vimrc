@@ -1,0 +1,72 @@
+" ####################### " 
+" # colemak ijkl motion # "
+" ####################### "
+
+" m: record current line/position as mark / M: move middle of screen => j
+" n: repeat the search in the same direction / N: opposite => k
+" e: move to end of word / E: end  of token => m
+" i: insert mode / I: at beginning line => l
+
+noremap m h
+noremap n j
+noremap e k
+noremap i l
+
+noremap h e
+noremap j m
+noremap k n
+noremap l i
+
+" #############
+" # WHICH-KEY #
+" #############
+
+" set timeout for which-key
+set timeoutlen=300 " 1000ms by default
+
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+
+" ########
+" # MISC #
+" ########
+
+" set number relativenumber
+
+" leave insert mode quickly
+inoremap jj <ESC>
+inoremap kk <ESC>
+
+" arrow keys and backspace don't get stuck on bol/eol
+" do not use this config with hjkl or plugs will break
+set whichwrap+=<,>,[,]
+set backspace=indent,eol,start
+
+" hide ~ on empty lines
+hi NonText guifg=bg
+
+" see whitespaces
+set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+
+" show line number
+set number
+
+" remove ugly line on line 80
+" note: this option is actually set by python-mode
+" set colorcolumn=0
+
+" ignore case when entering command
+" assumes
+set ignorecase smartcase
+augroup dynamic_smartcase
+  autocmd!
+  autocmd CmdLineEnter : set nosmartcase
+  autocmd CmdLineLeave : set smartcase
+augroup END
+
+" better find file => does not do much
+" set autochdir
+set wildmenu
+set wildignorecase
+set wildmode=longest:full,full " =list:full
+autocmd BufEnter * silent! lcd %:p:h " change dir to current buffer
