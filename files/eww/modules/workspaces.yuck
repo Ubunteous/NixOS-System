@@ -1,0 +1,14 @@
+;;;;;;;;;;;;;;;;;;;;
+;;   WORKSPACES   ;;
+;;;;;;;;;;;;;;;;;;;;
+
+;; (defpoll current-workspace :initial "1" :interval "400ms" "xdotool get_desktop")
+
+(defpoll layout-ws :initial "" :interval "100ms" "~/.config/eww/scripts/workspaces.sh")
+
+(defwidget workspaces []
+  (label :class "workspaces"
+	  :halign "center"
+	   :valign "center"
+	    :vexpand "true"
+	     :text "${((layout-ws))}"))

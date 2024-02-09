@@ -1,0 +1,19 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.deltarune {
+    background-image: url("/home/ubunteous/Pictures/deltarune (blue).png");
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: center;
+
+    min-height: 25px;
+    min-width: 25px;
+    
+    background-color: $edge;
+    
+    padding-left: $paddl;
+    padding-right: $paddr;
+}

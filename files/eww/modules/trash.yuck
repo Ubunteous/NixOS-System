@@ -1,0 +1,9 @@
+;;;;;;;;;;;;;;;
+;;   TRASH   ;;
+;;;;;;;;;;;;;;;
+
+(defpoll trash_poll :interval "10s" "./modules/trash.sh")
+
+(defwidget trash []
+  (icon-module :class "trash" :icon "" 
+		(label :text trash_poll))) 

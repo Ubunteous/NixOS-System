@@ -1,0 +1,1 @@
+/home/ubunteous/qmk_firmware/keyboards/splitkb/aurora/sofle_v2/keymaps/colemak-dh/keymap.c

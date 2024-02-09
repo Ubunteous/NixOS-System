@@ -1,0 +1,14 @@
+;;;;;;;;;;;;;;;;;;;;
+;;   BRIGHTNESS   ;;
+;;;;;;;;;;;;;;;;;;;;
+
+;; (defpoll brightness-value :interval "5s" "brightnessctl -m -d amdgpu_bl0 | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defpoll brightness-value :interval "5s" "brightnessctl -m -d amdgpu_bl0 | awk -F, '{print substr($4, 0, length($4)-1)}'")
+
+(defwidget brightness []
+	   (box :class "brightness" :orientation "h" :valign "fill" :halign "center" :spacing 6 :space-evenly "false" :width 30
+		;;     
+		(label :class "res_text" :text "")
+		(box :class "res_progress" :orientation "h" :valign "center" :halign "center"
+	      (progress :class "progress" :orientation "h" :value brightness-value))))
+;; (label :class "res_text" :halign "end" :halign "center" :text "Brightness ${brightness-value}%")))

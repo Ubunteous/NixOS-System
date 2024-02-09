@@ -1,0 +1,50 @@
+;;;;;;;;;;;;;;;;;
+;;   SPEAKER   ;;
+;;;;;;;;;;;;;;;;;
+
+;; polls are heavier in term of resources
+(defpoll volume :interval "1s" "echo $(($(pamixer --get-volume)))")
+
+(defvar show_volume "false")
+
+;; variables need to be updated manually with eww update varname=x
+;; (defvar volume "INIT")
+
+;; listeners read a script (like tail -f) once and update when its output changes
+;; (deflisten volume :initial "Workspace Name" "xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2) _NET_WM_NAME")
+
+;;;;;;;;;;;;;
+;; SPEAKER ;;
+;;;;;;;;;;;;;
+
+(defwidget speaker []
+  (box :class "speaker" :orientation "h" :valign "fill" :halign "center" :spacing 0 :space-evenly "false" ;; :width 30
+	;; (box :class "res_progress" :orientation "h" :valign "center" :halign "center"
+	;;       (circular-progress :class "res_speaker" :thickness 5 :value volume))
+	;; (progress :class "res_volume" :orientation "h" :value volume)) ;; error: see warning about scss setup
+	;; (scale :class "res_volume" :orientation "h" :value volume)) ;; in progress
+	(label :class "speaker_icon" :text "奄 ")
+	(label :class "res_text" :text "${volume}%")))
+
+;;;;;;;;;;;;;;;;;;;;;;;
+;; EXPANDING SPEAKER ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (defwidget speaker []
+;;   (box :class "speaker" :orientation "h" :valign "fill" :halign "center" :spacing 0 :space-evenly "false" :width 30
+;; 	(eventbox :onhover "eww update show_volume=true"
+;; 		   :onhoverlost "eww update show_volume=false"
+
+;; 		    (expander :expanded show_volume
+;; 			       (box :class "speaker_icon"
+;; 				     (button :onclick "if $(pamixer --get-mute); then pamixer -t; fi; pamixer -i 10"
+;; 					      (label :class "volume_icon" :text "  "))
+
+;; 				     (button :onclick "if $(pamixer --get-mute); then pamixer -t; fi; pamixer -d 10"
+;; 					      (label :class "volume_icon" :text "   "))
+
+;; 				     (button :onclick "pamixer -t"
+;; 					      (label :class "volume_icon" :text "    ")))))
+
+;; 	(label :class "speaker_icon" :halign "start" :text "奄 ")
+;; 	(label :class "res_text" :text "${volume}%")))

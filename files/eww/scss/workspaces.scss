@@ -1,0 +1,19 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.workspaces {
+    // background-color: $workspaces;
+    color: $workspaces;
+
+    margin-top: $ws-top-margin;
+    
+    // padding-left: $padding_workspaces;
+    // padding-right: $padding_workspaces;
+    // padding-bottom: $padding_down_ws;
+    
+    // border-radius: $radius;
+    // font-size: $ws_font;
+    font-size: 18px;
+}

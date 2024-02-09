@@ -1,0 +1,17 @@
+;;;;;;;;;;;;;;;;;
+;;   BATTERY   ;;
+;;;;;;;;;;;;;;;;;
+
+(defpoll battery-energy :interval "60s" "cat /sys/class/power_supply/BAT1/capacity")
+
+;; AC vs battery
+;; (defpoll battery-status :interval "60s" "if [ $(cat /sys/class/power_supply/ACAD/online) -eq 0 ]; then echo   ; else echo   ; fi")
+
+;; Low battery notification
+;; (defpoll battery-energy :interval "60s" "energy=$(cat /sys/class/power_supply/BAT1/capacity); if [ $energy < 20 ]; then dunstify --urgency critical 'Low battery, charge immediately'; fi; echo $energy")
+
+(defwidget battery []
+  (box :class "battery" :orientation "h" :valign "fill" :halign "center" :space-evenly "true" ;; :width 40
+	(label :class "battery_icon" :text " ")
+	;; (label :class "battery_icon" :text "${battery-status}")
+	(label :class "res_text" :text "${battery-energy}%")))

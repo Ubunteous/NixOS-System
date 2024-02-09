@@ -1,0 +1,32 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.speaker_icon {
+    margin-top: $margin_top_speaker_icon;
+    margin-left: $margin_left_speaker_icon;
+    font-size: $size_speaker_icon;
+}
+
+// .volume_icon {
+//     margin-top: -3px;
+//     margin-left: 0px;
+//     margin-right: -10px;
+//     font-size: 16px;
+// }
+
+.speaker {
+    background-color: $speaker;
+    color: $text;
+    
+    padding-left: $paddl;
+    padding-right: $paddr;
+
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+
+    margin-right: $marginr;
+
+    font-size: $normal_font;
+}

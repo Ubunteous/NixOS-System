@@ -1,0 +1,39 @@
+* {
+    all: unset; // Unset all to style everything from scratch
+}
+
+@import "scss/theme_green.scss";
+@import "scss/parameters.scss";
+
+// Global Styles
+.bar {
+    background-color: $main;
+    color: $text;
+}
+
+.right-bar-modules {
+    margin-right: $end-bar-margin;
+}
+
+.icon-module__icon {
+    font-size: 20px;
+    margin-right: -7px;
+}
+
+@import "scss/deltarune.scss";
+@import "scss/mode.scss";
+@import "scss/keyboard.scss";
+
+@import "scss/workspaces.scss";
+
+@import "scss/brightness.scss";
+@import "scss/date.scss";
+@import "scss/battery.scss";
+@import "scss/speaker.scss";
+@import "scss/wifi.scss";
+@import "scss/time.scss";
+
+// @import "scss/calendar.scss";
+
+// date, wifi, time
+// @import "scss/icon-module.scss";

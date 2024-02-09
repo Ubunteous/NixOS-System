@@ -1,0 +1,10 @@
+;;;;;;;;;;;;;;
+;;   ICON   ;;
+;;;;;;;;;;;;;;
+
+(defwidget deltarune []
+  (button :class "deltarune"
+	   :onclick "rofi -show drun &" ;; fail safe security
+	    :tooltip "This is your curse"
+	    ;; :valign "center"
+	    ))

@@ -1,0 +1,9 @@
+;;;;;;;;;;;;;;
+;;   MODE   ;;
+;;;;;;;;;;;;;;
+
+(defvar current_mode "Normal")
+
+(defwidget mode []
+  (box :class "mode" :orientation "h" :halign "baseline" :valign "fill" :space-evenly "false" :width 40
+	(label :class "res_text" :text "| ${current_mode}")))

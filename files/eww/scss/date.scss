@@ -1,0 +1,49 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.date {
+    background-color: $date;
+    color: $text;
+
+    padding-left: $paddl;
+    padding-right: $paddr;
+
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+
+    margin-right: $marginr;
+
+    font-size: $normal_font;
+}
+
+.date_icon {
+    font-size: $dateicon_font;
+    margin-left: $paddl;
+}
+
+// configuration when date is an event box with a calendar
+// @import "theme_green.scss";
+// // @import "theme_catppuccin.scss";
+
+// @import "parameters.scss";
+
+// .date {
+//     background-color: $date;
+//     color: $text;
+
+//     padding-left: $paddl;
+//     padding-right: $paddr;
+
+//     border-top-left-radius: $radius;
+//     border-bottom-left-radius: $radius;
+
+//     margin-right: $marginr;
+
+//     font-size: $normal_font;
+// }
+
+// .date_icon {
+//     font-size: 16px;
+// }

@@ -1,0 +1,130 @@
+(include "modules/deltarune.yuck")
+(include "modules/keyboard.yuck")
+(include "modules/mode.yuck")
+
+(include "modules/workspaces.yuck")
+
+(include "modules/brightness.yuck")
+(include "modules/date.yuck")
+(include "modules/battery.yuck")
+(include "modules/speaker.yuck")
+(include "modules/wifi.yuck")
+(include "modules/time.yuck")
+
+;; (include "modules/calendar.yuck")
+
+;; (include "modules/trash.yuck")
+;; (include "modules/notifications.yuck")
+
+;;;;;;;;;;;;;;;;
+;;   WINDOW   ;;
+;;;;;;;;;;;;;;;;
+
+(defwindow bar
+  :windowtype "dock"
+   :hexpand false
+    :vexpand false
+     :geometry (geometry :anchor "top left" :x 0 :y 0
+			  :width "100%" :height "3%")
+      :reserve (struts :distance "3%" :side "top")
+       (bar))
+
+;;;;;;;;;;;;;
+;;   BAR   ;;
+;;;;;;;;;;;;;
+
+(defwidget bar []
+	   (centerbox :orientation "h"
+		      ;; :space-evenly true
+		      :class "bar"
+		      ;; left
+		      (box :halign "start"
+			   :space-evenly false
+			   (deltarune)
+			   (keyboard)
+			   (mode)
+			   )
+		      ;; middle
+		      (workspaces)
+		      ;; right
+		      (box
+		       :class "right-bar-modules"
+		       :halign "end"
+		       :spacing 12
+		       :hexpand true
+		       :space-evenly false
+		       ;; (notifications) ;; will fix it
+		       ;; (trash) ;; add it later
+
+		       (brightness)
+		       (date)
+		       (speaker)
+		       (battery)
+		       (wifi)
+		       (time)
+		       )))
+
+;; Poly: (MENU CURRENT_WIN === PALETTE)
+;; BRIGHT DATE BATTERY WIFI TIME
+;; (POWER_BUTTON)
+
+;;;;;;;;;;;;;;;;;
+;;   WIDGETS   ;;
+;;;;;;;;;;;;;;;;;
+
+(defwidget icon-module [icon ?class ?visible]
+	   (box :class "${class} icon-module"
+		:orientation "h"
+		:halign "end"
+		:space-evenly false
+		:visible {visible ?: true} ;; this argument is optional
+		(label :class "icon-module__icon" :text "${icon}")
+		(children)))
+
+
+;;;;;;;;;;;;;;;
+;;   SCALE   ;;
+;;;;;;;;;;;;;;;
+
+;; + flipped: (bool)
+;; + marks: (string)
+;; + draw-value: (bool)
+;; + round-digits: (int) number of decimals to round the value
+;; + value: (float)
+;; + min: (float)
+;; + max: (float)
+;; + timeout: (duration)
+;; + onchange: (string) {} will be replaced by the new value
+;; + orientation: (string) "vertical", "v", "horizontal", "h"
+
+;;;;;;;;;;;;;;;;;;
+;;   PROGRESS   ;;
+;;;;;;;;;;;;;;;;;;
+
+;; + flipped: (bool)
+;; + value: (float) between 0-100
+;; + orientation: (string) "vertical", "v", "horizontal", "h"
+
+;;;;;;;;;;;;;;;;;;
+;;   CIRCULAR   ;;
+;;;;;;;;;;;;;;;;;;
+
+;; + value: (float) from 0-100
+;; + start-at: (float) for start angle
+;; + thickness (float)
+;; + clockwise (bool)
+
+;;;;;;;;;;;;;;;
+;;   ICONS   ;;
+;;;;;;;;;;;;;;;
+
+;; ramp-volume-0 = 奄
+;; ramp-volume-1 = 奔
+;; ramp-volume-2 = 墳
+;; format-muted-prefix = 婢
+
+;; animation-charging-0 = 
+;; animation-charging-1 = 
+;; animation-charging-2 = 
+;; animation-charging-3 = 
+;; animation-charging-4 = 

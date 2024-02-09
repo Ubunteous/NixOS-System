@@ -1,0 +1,17 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.mode {
+    background-color: $edge;
+    color: $text;
+    
+    padding-right: $paddr;
+    margin-left: $mode_margin_left;
+    
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+
+    font-size: $normal_font;
+}

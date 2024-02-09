@@ -1,0 +1,44 @@
+;;;;;;;;;;;;;;;;;;
+;;   CALENDAR   ;;
+;;;;;;;;;;;;;;;;;;
+
+(defwindow calendar
+	   :windowtype "dialog"
+           :wm-ignore false
+	   :stack "fg"
+	   ;; :geometry (geometry :anchor "top right" :x -350 :y 50)
+	   :geometry (geometry :anchor "top right" :x -50 :y 50)
+	   (cal))
+
+
+(defwidget cal []
+	   (eventbox
+	    ;; :onhoverlost "${EWW_CMD} open --toggle calendar"
+	    :onhoverlost "${EWW_CMD} close calendar"
+	    (calendar :halign "center" :valign "center" :class "cal")))
+
+
+;; .cal {
+;;     padding: 24px;
+;; }
+
+;; .cal:selected {
+;;     background: red;
+;; }
+
+
+;; ;; Calendar Widgets ;;
+;; (defwidget cal []
+;;   (box :class "cal-box" 
+;; 	(box :class "cal-inner-box"
+;; 	      (calendar :class "cal"
+;; 			 :day 1 
+;; 			  :month 1 
+;; 			   :year 2023))))
+
+;; (defpoll calendar_day :interval "10h"
+;;   "date '+%d'")
+;; (defpoll calendar_month :interval "10h"
+;;   "scripts/calendar")
+;; (defpoll calendar_year :interval "10h"
+;;   "date '+%Y'")

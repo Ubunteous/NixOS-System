@@ -1,0 +1,40 @@
+;;;;;;;;;;;;;;;;;;
+;;   Keyboard   ;;
+;;;;;;;;;;;;;;;;;;
+
+(defvar layout "Colemak")
+
+;; get current layout and show it with gkbd-keyboard-display
+;; setxkbmap -query | grep "layout" | cut -d " " -f 6 | xargs gkbd-keyboard-display -l
+
+;; (defwidget keyboard []
+;;   (box :class "keyboard" :orientation "h" :halign "baseline" :valign "fill" :space-evenly "false" :width 40
+;; 	(label :class "keyboard_icon" :text "⌨")
+;; 	(label :class "keyboard_text" :text "${layout}")))
+
+;; if [ $(setxkbmap -query | grep 'layout' | sed 's/^.*:*\\s //') = 'fr' ]; then setxkbmap fr-colemak; eww update layout='Colemak (fr)'; else setxkbmap fr; eww update layout='Azerty (fr)'; fi
+
+(defwidget keyboard []
+  (box :class "keyboard" :orientation "h" :halign "baseline" :valign "fill" :space-evenly "false" :width 40
+	;; :tooltip "M-v to consult keyboard and M-* to swap"
+	 
+	 (button :onclick "setxkbmap -query | grep 'layout' | cut -d ' ' -f 6 | xargs gkbd-keyboard-display -l"
+		  (label :class "keyboard_icon" :text "⌨"))
+
+	 ;; (button  :onclick "if [ $(setxkbmap -query | grep 'layout' | sed 's/^.*:*\\s //') = 'fr' ]; then setxkbmap fr-colemak; eww update layout='Colemak (fr)'; else setxkbmap fr; eww update layout='Azerty (fr)'; fi"
+
+	 ;; does not work because of kmonad
+	 ;; (button  :onclick "if [ $(setxkbmap -query | grep 'layout' | sed 's/^.*:*\\s //') = 'fr' ]; then setxkbmap fr-qwerty; eww update layout='Colemak (fr)'; kmonad $HOME/.nix.d/files/keyboard/kmonad.kbd; else setxkbmap fr; pkill kmonad; eww update layout='Azerty (fr)'; fi"
+
+	 (label :class "keyboard_text" :text "${layout}")))
+	 
+;; (defwidget keyboard []
+;;   (button  :class "keyboard" :orientation "h" :halign "baseline" :valign "fill" :space-evenly "false" :width 40 :onclick "nm-connection-editor &"
+;; 	    (box
+;; 		  (label :class "keyboard_icon" :text "⌨")
+;; 		  (label :class "keyboard_text" :text "${layout}"))))
+
+
+;; (label :class "keyboard_icon" :text "⌨")
+;; (label :class "keyboard_text" :text "${layout}"))))
+

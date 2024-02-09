@@ -1,0 +1,13 @@
+@import "theme_green.scss";
+@import "parameters.scss";
+
+.cal {
+    // padding: 12px 12px 0px 12px; // top, right, bottom, left
+    padding: $cal_pad;
+    font-size: $cal_font;
+    background-color: $calendar;
+}
+
+.cal:selected {
+    background: teal;
+}

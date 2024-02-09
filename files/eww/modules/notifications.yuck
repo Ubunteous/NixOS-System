@@ -1,0 +1,9 @@
+;;;;;;;;;;;;;;;;;;;;;;;
+;;   NOTIFICATIONS   ;;
+;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (deflisten notifications_listen :initial '{"show": "no", "content": ""}' "./modules/notifications.sh")
+
+;; (defwidget notifications []
+;;   (icon-module :class "notifications" :icon "" :visible {notifications_listen.show == "yes"}
+;; 		(literal :content {notifications_listen.content}))) 

@@ -1,0 +1,14 @@
+;;;;;;;;;;;;;;
+;;   TIME   ;;
+;;;;;;;;;;;;;;
+
+(defvar hide-first "yes")
+(defvar break-needed "yes")
+(defpoll time_poll :interval "1s" "date +%H:%M")
+(defpoll break_poll :interval "22m" "if [ $(eww get hide-first) = 'yes' ]; then eww update hide-first='no'; exit 0; fi; if [ $(eww get break-needed) = 'yes' ]; then dunstify 'It is time for a break'; fi")
+
+(defwidget time []
+  (box :class "time" :orientation "h" :valign "fill" :halign "center" :space-evenly "false" :width 40
+	(button :onclick "if [ $(eww get break-needed) = 'yes' ]; then eww update break-needed='no'; dunstify 'breaks off'; else eww update break-needed='yes'; dunstify 'breaks activated'; fi"
+		 (label :class "time_icon" :text " ${break_poll}"))
+	(label :class "res_text" :text "${time_poll}")))

@@ -1,0 +1,36 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.battery_icon {
+    font-size: 16px;
+    // margin-right: -20px;
+}
+
+.battery {
+    background-color: $battery;
+    color: $text;
+    
+    // padding-left: $paddl;
+    padding-left: $padding_left_battery;
+    padding-right: $paddr;
+
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+
+    margin-right: $marginr;
+
+    font-size: $normal_font;
+}
+
+// background-color: $battery;
+// color: $text;
+
+// padding-left: $paddl;
+// padding-right: $paddr;
+
+// border-top-left-radius: $radius;
+// border-bottom-left-radius: $radius;
+
+// margin-right: $marginr;

@@ -1,0 +1,26 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.keyboard_icon {
+    font-size: $keyboard_icon_size;
+    margin-left: $keyboard_icon_margin_left;
+    margin-right: $keyboard_icon_margin_right;
+}
+
+.keyboard_text {
+    font-size: $normal_font;
+    margin-left: $keyboard_margin_left;
+}
+
+.keyboard {
+    background-color: $edge;
+    color: $text;
+    
+    padding-right: $paddr;
+    margin-left: $keyboard_margin_left;
+    
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+}

@@ -1,0 +1,39 @@
+;;;;;;;;;;;;;;
+;;   DATE   ;;
+;;;;;;;;;;;;;;
+
+(defpoll today :interval "1m" "date '+%a %d %b'")
+
+;; Note that it will not update if the date changes
+;; (defvar today "INIT")
+
+(defwidget date []
+	   (box :class "date"
+		:orientation "h"
+		:valign "fill"
+		:halign "center"
+		:spacing 0
+		:space-evenly "false"
+		(label :class "date_icon" :text "  ")
+		(label :class "res_text" :text "${today}")
+		))
+
+;; with hover properties
+;; (defwidget date []
+;; 	   (box :class "date"
+;; 		(eventbox
+;; 		 :onhover "${EWW_CMD} open calendar"
+;; 		 ;; :onhover "${EWW_CMD} open --toggle calendar"
+;; 		 ;; :onhoverlost "${EWW_CMD} close calendar"
+
+;; 		 (box
+;; 		  :orientation "h"
+;; 		  :valign "fill"
+;; 		  :halign "center"
+;; 		  :space-evenly "false"
+
+;; 		  (label :class "date_icon" :text "  ")
+;; 		  (label :class "res_text" :text "${today}")
+;; 		  ))
+;; 		))
+

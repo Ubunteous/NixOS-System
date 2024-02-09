@@ -1,0 +1,36 @@
+@import "theme_green.scss";
+// @import "theme_catppuccin.scss";
+
+@import "parameters.scss";
+
+.brightness {
+    background-color: $brightness;
+    color: $text;
+
+    padding-left: $paddl;
+    padding-right: $paddr;
+
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+
+    margin-right: $marginr;
+
+    font-size: $normal_font;
+}
+
+.progress {
+    min-width: 60px;
+
+    progress {
+	min-width: 1px;
+	border-radius: 100px;
+	background-color: $progress_filled;
+    }
+    
+    trough {
+	min-width: 1px;
+	border-radius: 100px;
+	background-color: $progress_unfilled;
+    }
+
+}

@@ -1,0 +1,16 @@
+;;;;;;;;;;;;;;
+;;   WIFI   ;;
+;;;;;;;;;;;;;;
+
+;; Messages: Connected to <wifi>, disconnected, unavailable, connecting (configuring) <wifi>
+(defpoll wifi_poll :interval "1s" "nmcli | grep '^wlp' | sed 's/\ connected\ to//' | cut -d ':' -f2")
+
+;; can be improved later by determining signal strength (iwconfig)
+(defpoll wifi_icon :interval "1s" "[ $(cat /sys/class/net/w*/operstate) = down ] && echo ' ' && exit
+echo '  '") ;;  and  do not work anymore with eww
+
+(defwidget wifi []
+	   (box :class "wifi" :orientation "h" :valign "fill" :halign "center" :spacing -3 :space-evenly "false" :width 0
+		(button :onclick "nm-connection-editor &"
+			(label :class "res_text" :text "${wifi_icon}"))
+		(label :class "res_text" :text "${wifi_poll}")))

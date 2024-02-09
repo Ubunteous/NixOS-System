@@ -1,0 +1,41 @@
+xkb_symbols "fr-qwerty"
+{
+  // for key codes, check:
+  // /nix/store/zs3rvwdka1prd2j9iygbh2i4bf692vvg-setxkbmap-1.3.2/share/X11/xkb/symbols/
+  
+  include "us(basic)" // includes the base english keys
+  include "level3(ralt_switch)"  // configures right alt as a third level switch
+
+  key <AE01> { [ ampersand, 1, onesuperior, exclamdown ] };
+  key <AE02> { [ eacute, 2, asciitilde, oneeighth ] };
+  key <AE03> { [ quotedbl, 3, numbersign, sterling ] };
+  key <AE04> { [ apostrophe, 4, braceleft, dollar ] };
+  key <AE05> { [ parenleft, 5, bracketleft, threeeighths ] };
+  key <AE06> { [ minus, 6, bar, fiveeighths ] };
+  key <AE07> { [ egrave, 7, grave, seveneighths ] };
+  key <AE08> { [ underscore, 8, backslash, trademark ] };
+  key <AE09> { [ ccedilla, 9, asciicircum, plusminus ] };
+  key <AE10> { [ agrave, 0, at, degree ] };
+  key <AE11> { [ parenright,ee, bracketright, questiondown ] };
+  key <AE12> { [ equal,us,   braceright,  dead_ogonek ] };
+
+  // Beware: LAT-keys refer to the qwerty layout.
+  // So LATQ and LATZ are in the left corners
+
+  // key <LatP> { [ dead_circumflex, dead_diaeresis ] };
+  // key <AD11> { [ Control_L, dead_circumflex, dead_diaeresis ] };
+  key <AD11> { [ dead_circumflex, exclam, dead_diaeresis, EuroSign ] };
+  key <AD12> { [ dollar, ugrave, ugrave, sterling ] };
+
+  // replace µ => ù and ù => BackSpace
+  key <AC11> { [ BackSpace, BackSpace ] }; // ù/%. should be BackSpace/percent
+  key <BKSL> { [ asterisk, percent, ugrave ] }; // */µ. should be asterisk/ugrave */ù
+
+  // replace µ => backspace and make $/£ require maj */$
+  // key <AD12> { [ asterisk, dollar ] };
+
+  // invert ;/. and ://
+  key <AB08> { [ comma, question ] };
+  key <AB09> { [ period, semicolon ] }; // ;/. should be period/semicolon
+  key <AB10> { [ slash, colon ] }; // ;/. should be period/semicolon
+};
