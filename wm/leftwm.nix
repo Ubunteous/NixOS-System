@@ -1,8 +1,18 @@
-{ ... }:
-# imported from services.nix
+{ config, lib, ... }:
 
+with lib;
+let
+  cfg = config.wm.leftwm;
+  wmcfg = config.wm;
+in
 {
-  # Enable the Left Window Manager.
-  # services.xserver.displayManager.defaultSession = "none+leftwm";
-  services.xserver.windowManager.leftwm.enable = true;
+  options.wm.leftwm = {
+    enable = mkEnableOption "Enables support for the Left windows manager";
+  };
+
+  config = mkIf (wmcfg.enable && cfg.enable) {
+    # Enable the Left Window Manager.
+    # services.xserver.displayManager.defaultSession = "none+leftwm";
+    services.xserver.windowManager.leftwm.enable = true;
+  };
 }
