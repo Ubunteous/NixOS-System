@@ -1,16 +1,15 @@
-{ config, user, lib, ... }:
+{ config, user, pkgs, lib, ... }:
 
 with lib;
 let
-  cfg = config.core.podman;
-  corecfg = config.core;
-in
-{
-  options.core.podman = {
-    enable = mkEnableOption "Enables support for Podman";
-  };
+  cfg = config.lab.podman;
+  corecfg = config.lab;
+  in {
+    options.lab.podman = {
+      enable = mkEnableOption "Enables support for Podman";
+    };
 
-  config = mkIf (corecfg.enable && cfg.enable) {
+    config = mkIf (corecfg.enable && cfg.enable) {
     ##################
     #     PODMAN     #
     ##################
@@ -28,11 +27,14 @@ in
       #   openFirewall
       #   listenAddress
       # };
-        
+
       # dockerSocket.enable = true; # replace docker socket
       # defaultNetwork.settings = { dns_enabled = true;}
 
-      # extraPackages = with packages; [ buildah ];
+      # create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # extraPackages = with pkgs; [ buildah skopeo ]; # gvisor for security
     };
   };
 }
