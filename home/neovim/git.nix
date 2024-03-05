@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
 with lib;
 let
@@ -11,7 +11,6 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
-    home-manager.users.${user} = {
       programs.neovim.plugins = with pkgs.vimPlugins; [
         #######
         # GIT #
@@ -83,5 +82,4 @@ in
         # nerdtree-git-plugin # git status # archived
       ];
     };
-  };
 }

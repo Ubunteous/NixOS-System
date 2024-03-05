@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
 with lib;
 let
@@ -11,17 +11,16 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
-    home-manager.users.${user} = {
-      programs.neovim.plugins = with pkgs.vimPlugins; [
-        ##########
-        # SYNTAX #
-        ##########
+    programs.neovim.plugins = with pkgs.vimPlugins; [
+      ##########
+      # SYNTAX #
+      ##########
 
-        # python
-        # needs pylama for linting
-        {
-          plugin = python-mode;
-          config = ''
+      # python
+      # needs pylama for linting
+      {
+        plugin = python-mode;
+        config = ''
             let g:pymode_lint = 0
 
             " open splits vertically
@@ -33,11 +32,10 @@ in
 
             let g:pymode_run_bind = '<leader>p' " default is r
           '';
-        }
+      }
 
-        # nix
-        vim-nix
-      ];
-    };
+      # nix
+      vim-nix
+    ];
   };
 }

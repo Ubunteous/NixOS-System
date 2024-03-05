@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
 with lib;
 let
@@ -11,17 +11,16 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
-    home-manager.users.${user} = {
-      programs.neovim.plugins = with pkgs.vimPlugins; [
+    programs.neovim.plugins = with pkgs.vimPlugins; [
 
-        ##############
-        # APPEARANCE #
-        ##############
+      ##############
+      # APPEARANCE #
+      ##############
 
-        {
-          plugin = alpha-nvim;
-          type = "lua";
-          config = ''
+      {
+        plugin = alpha-nvim;
+        type = "lua";
+        config = ''
             local alpha = require("alpha")
             local dashboard = require("alpha.themes.dashboard")
             
@@ -65,13 +64,13 @@ in
             ]])
             require("alpha").setup(dashboard.opts)
           '';
-        }
+      }
 
-        {
-          plugin = oil-nvim; # file explorer
-          type = "lua";
+      {
+        plugin = oil-nvim; # file explorer
+        type = "lua";
 
-          config = ''
+        config = ''
             -- default_file_explorer = true,
  
             require("oil").setup({
@@ -88,12 +87,12 @@ in
               },
             })
           '';
-        }
+      }
 
-        {
-          plugin = lualine-nvim;
-          type = "lua";
-          config = ''
+      {
+        plugin = lualine-nvim;
+        type = "lua";
+        config = ''
             require("lualine").setup({
                   options = { theme = "gruvbox" },
             
@@ -108,129 +107,129 @@ in
                   -- },
             })
           '';
-        }
-        
-        {
-          plugin = nvim-web-devicons;
-          type = "lua";
-          config = ''
+      }
+      
+      {
+        plugin = nvim-web-devicons;
+        type = "lua";
+        config = ''
             require('nvim-web-devicons').setup()
           '';
-        }
-        
-        {
-          plugin = monokai-pro-nvim;
-          type = "lua";
-          config = ''
+      }
+      
+      {
+        plugin = monokai-pro-nvim;
+        type = "lua";
+        config = ''
             -- classic | octagon | pro | machine | ristretto | spectrum
             require('monokai-pro').setup()
             vim.cmd([[colorscheme monokai-pro-classic]])
           '';
-        }
+      }
 
-        # requires nvim-web-devicons
-        {
-          plugin = barbar-nvim;
-          type = "lua";
-          config = ''
+      # requires nvim-web-devicons
+      {
+        plugin = barbar-nvim;
+        type = "lua";
+        config = ''
             require'barbar'.setup {
                 -- auto_hide = 1,
                 -- clickable = false,
                 -- minimum_padding = 0,
                 maximum_padding = 0,
-              }
+            }
             
             -- offset required if using a tree
             -- require'barbar.api'.set_offset(20)
           '';
-        }
+      }
 
-        ########################
-        # GARBAGE - APPEARANCE #
-        ########################
+      ########################
+      # GARBAGE - APPEARANCE #
+      ########################
 
-        # {
-            #   plugin = nerdtree;
-            #   config = ''
-            #     autocmd VimEnter * NERDTree | wincmd p
-            #     let g:NERDTreeWinSize=20
-            #     let NERDTreeMinimalUI=1
+      # {
+      #   plugin = nerdtree;
+      #   config = ''
+      #     autocmd VimEnter * NERDTree | wincmd p
+      #     let g:NERDTreeWinSize=20
+      #     let NERDTreeMinimalUI=1
 
-            #     let g:NERDTreeDirArrowExpandable = ""
-            #     let g:NERDTreeDirArrowCollapsible = ""
+      #     let g:NERDTreeDirArrowExpandable = ""
+      #     let g:NERDTreeDirArrowCollapsible = ""
 
-            #     " close nerdtree alongside file
-            #     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") 
-            #     \ && b:NERDTree.isTabTree()) | q | endif
-            #   '';
-            # }
+      #     " close nerdtree alongside file
+      #     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") 
+      #     \ && b:NERDTree.isTabTree()) | q | endif
+      #   '';
+      # }
 
-            # icon colour requires set termguicolors in .vimrc
-            # {
-            #   plugin = chadtree;
-            #   config = ''
-            #     autocmd VimEnter * CHADopen --nofocus --version-ctl
-            #     let g:chadtree_settings = { 'view.width': 25, "theme.text_colour_set": "nord" }
-            #   '';
-            # }
+      # icon colour requires set termguicolors in .vimrc
+      # {
+      #   plugin = chadtree;
+      #   config = ''
+      #     autocmd VimEnter * CHADopen --nofocus --version-ctl
+      #     let g:chadtree_settings = { 'view.width': 25, "theme.text_colour_set": "nord" }
+      #   '';
+      # }
 
-            # vim-airline # alternative: lualine, lightline, vim-powerline
-            # {
-            #   plugin = vim-airline-themes;
-            #   config = "let g:airline_theme='molokai'";
-            # }
+      # vim-airline # alternative: lualine, lightline, vim-powerline
+      # {
+      #   plugin = vim-airline-themes;
+      #   config = "let g:airline_theme='molokai'";
+      # }
 
-            # vim-startify # old startup screen
-            
-            # this plugin is good too but I will stick to alpha
-            # {
-            #   plugin = dashboard-nvim;
-            #   type = "lua";
+      # vim-startify # old startup screen
+      
+      # this plugin is good too but I will stick to alpha
+      # {
+      #   plugin = dashboard-nvim;
+      #   type = "lua";
 
-            #   config = ''
-            #     local db = require("dashboard")
+      #   config = ''
+      #     local db = require("dashboard")
 
-            #     db.setup({
-            #       theme = 'hyper',
-            #       config = {
-            #         week_header = {
-            #          enable = true,
-            #         },
-            #         shortcut = {
-            #           { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
-            #           {
-            #             icon = ' ',
-            #             icon_hl = '@variable',
-            #             desc = 'Files',
-            #             group = 'Label',
-            #             action = 'Telescope find_files',
-            #             key = 'f',
-            #           },
-            #           {
-            #             desc = ' Apps',
-            #             group = 'DiagnosticHint',
-            #             action = 'Telescope app',
-            #             key = 'a',
-            #           },
-            #           {
-            #             desc = ' dotfiles',
-            #             group = 'Number',
-            #             action = 'Telescope dotfiles',
-            #             key = 'd',
-            #           },
-            #         },
-            #       },
-            #     })
-            #   '';
-            # }
+      #     db.setup({
+      #       theme = 'hyper',
+      #       config = {
+      #         week_header = {
+      #          enable = true,
+      #         },
+      #         shortcut = {
+      #           { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+      #           {
+      #             icon = ' ',
+      #             icon_hl = '@variable',
+      #             desc = 'Files',
+      #             group = 'Label',
+      #             action = 'Telescope find_files',
+      #             key = 'f',
+      #           },
+      #           {
+      #             desc = ' Apps',
+      #             group = 'DiagnosticHint',
+      #             action = 'Telescope app',
+      #             key = 'a',
+      #           },
+      #           {
+      #             desc = ' dotfiles',
+      #             group = 'Number',
+      #             action = 'Telescope dotfiles',
+      #             key = 'd',
+      #           },
+      #         },
+      #       },
+      #     })
+      #   '';
+      # }
 
-            # {
-            #   plugin = neo-tree-nvim;
-            #   type = "lua";
-            #   config = ''
-            #     require("neo-tree").setup({
-            #       close_if_last_window = true,
-            
+      # {
+      #   plugin = neo-tree-nvim;
+      #   type = "lua";
+      #   config = ''
+      #     require("neo-tree").setup({
+      #       close_if_last_window = true,
+      
             #       indent = {
             #         indent_size = 2,
             #         padding = 0,
@@ -329,6 +328,5 @@ in
         # use nvim devicons instead
         # vim-devicons # nerdtree icons
     ];
-    };
   };
 }

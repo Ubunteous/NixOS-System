@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
 with lib;
 let
@@ -11,30 +11,29 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
-    home-manager.users.${user} = {
-      programs.neovim.plugins = with pkgs.vimPlugins; [
-        ##############
-        # COMPLETION #
-        ##############
+    programs.neovim.plugins = with pkgs.vimPlugins; [
+      ##############
+      # COMPLETION #
+      ##############
 
-        # will need more time to compare these tools
-        supertab # tab completion
+      # will need more time to compare these tools
+      supertab # tab completion
 
-        {
-          plugin = deoplete-nvim; # extra langs on nixpkg
-          config = ''
+      {
+        plugin = deoplete-nvim; # extra langs on nixpkg
+        config = ''
             let g:deoplete#enable_at_startup = 1
           '';
-        }
-        
-        ############
-        # SNIPPETS #
-        ############
-        
-        {
-          plugin = luasnip;
-          type = "lua";
-          config = ''
+      }
+      
+      ############
+      # SNIPPETS #
+      ############
+      
+      {
+        plugin = luasnip;
+        type = "lua";
+        config = ''
             local ls = require("luasnip")
 
             -- for "all" filetypes create snippet for "def"
@@ -42,7 +41,7 @@ in
               ls.parser.parse_snippet(
                 'def',
                 'def ''${1}(''${2})\n{\n\t''${3}\n}'),
-            })
+                                   })
           
             -- Map "Ctrl + p" (in insert mode)
             -- to expand snippet and jump through fields.
@@ -56,21 +55,21 @@ in
             end
             )
           '';
-        }
-        
-        {
-          plugin = friendly-snippets;
-          type = "lua";
-          config = ''
+      }
+      
+      {
+        plugin = friendly-snippets;
+        type = "lua";
+        config = ''
             require("luasnip.loaders.from_vscode").lazy_load()
           '';
-        }
-        
-        cmp_luasnip
-        {
-          plugin = nvim-cmp;
-          type = "lua";
-          config = ''
+      }
+      
+      cmp_luasnip
+      {
+        plugin = nvim-cmp;
+        type = "lua";
+        config = ''
               local cmp = require('cmp')
         
                cmp.setup({
@@ -96,16 +95,16 @@ in
                 })
                })
             '';
-        }
-        
-        ##########
-        # FORMAT #
-        ##########
+      }
+      
+      ##########
+      # FORMAT #
+      ##########
 
-        {
-          plugin = conform-nvim;
-          type = "lua";
-          config = ''
+      {
+        plugin = conform-nvim;
+        type = "lua";
+        config = ''
             require("conform").setup({
               formatters_by_ft = {
                 -- lua = { "stylua" },
@@ -123,20 +122,20 @@ in
               -- This can also be a function that returns the table.
               format_after_save = {
                 lsp_fallback = true,
-              },
+                                 },
             })
           '';
-        }
-        
-        #########
-        # TESTS #
-        #########
+      }
+      
+      #########
+      # TESTS #
+      #########
 
-        {
-          # uses plenary and neodev
-          plugin = neotest;
-          type = "lua";
-          config = ''
+      {
+        # uses plenary and neodev
+        plugin = neotest;
+        type = "lua";
+        config = ''
             require("neotest").setup({
               adapters = {
                 require("neotest-python")({
@@ -145,122 +144,121 @@ in
               },
             })
           '';
-        }
-        neotest-python
-          
-        # for async commands (like starting a repl)
-        vim-dispatch
+      }
+      neotest-python
+      
+      # for async commands (like starting a repl)
+      vim-dispatch
 
-        #########
-        # LATER #
-        #########
+      #########
+      # LATER #
+      #########
 
-        # check package managers (lazy) and package lazy eval
-        # mini-nvim # 35+ scripts
-        # vim-startuptime
+      # check package managers (lazy) and package lazy eval
+      # mini-nvim # 35+ scripts
+      # vim-startuptime
 
-        # GIT #
-        # git-blame-nvim
-        # git-conflict-nvim
-        # vim-signify # diff in gutter. maybe like nvim
-        # git-messenger-vim # commit message under cursor
+      # GIT #
+      # git-blame-nvim
+      # git-conflict-nvim
+      # vim-signify # diff in gutter. maybe like nvim
+      # git-messenger-vim # commit message under cursor
 
-        # PASSIVE #
-        # targets-vim # more textojects. try later
+      # PASSIVE #
+      # targets-vim # more textojects. try later
 
-        # SEARCH #
-        # fzf-vim # very powerful
-        # ctrlp-vim
-        # unite-vim # development stopped
-        # LeaderF # comes with its own interface
-        # vim-clap # versatile thanks to various providers
+      # SEARCH #
+      # fzf-vim # very powerful
+      # ctrlp-vim
+      # unite-vim # development stopped
+      # LeaderF # comes with its own interface
+      # vim-clap # versatile thanks to various providers
 
-        # UTILITIES #
-        # vim-repeat # add repeat support (with .) to surround and unimpaired        
-        # vimproc-vim # interactive command execution
-        # asyncrun-vim # async commands. see their output with :copen
-        # splitjoin-vim # split one liner into multi lines with gS/gJ
-        # vim-easy-align # works. use later
-        # toggleterm-nvim # invoke term in vim
+      # UTILITIES #
+      # vim-repeat # add repeat support (with .) to surround and unimpaired        
+      # vimproc-vim # interactive command execution
+      # asyncrun-vim # async commands. see their output with :copen
+      # splitjoin-vim # split one liner into multi lines with gS/gJ
+      # vim-easy-align # works. use later
+      # toggleterm-nvim # invoke term in vim
 
-        # LANGUAGES #
-        # vim-python-pep8-indent # already in python-mode
-        # python-syntax # already in python-mode
-        # jedi-vim # python autocompletion
-        # lint: find a plugin for black
-        # vim-js-beautify # requires a pip/npm package
-        # vim-orgmode # needs speed-dating?
-        # neorg # new org (norg) format
-        # misc
-        # vim-json
-        # vim-just
-        # haskell-vim
-        # vim-dadbod # for db
-        # vim-dadbod-ui
-        # vim-dadbod-completion
-        # vim-markdown
-        # vim-instant-markdown # requires pip/npm dependency
-        # html5-vim
-        # scss-syntax-vim
-        # vim-javascript
-        # orgmode
-        
-        # MISC #
-        # hydra-nvim
-        # distant-nvim # remote editing
-        # nvim-bqf # quick fix improvement
-        # sniprun # eval selection (repl like)
-        # bufdelete-nvim # preserve buffer layout on closure
+      # LANGUAGES #
+      # vim-python-pep8-indent # already in python-mode
+      # python-syntax # already in python-mode
+      # jedi-vim # python autocompletion
+      # lint: find a plugin for black
+      # vim-js-beautify # requires a pip/npm package
+      # vim-orgmode # needs speed-dating?
+      # neorg # new org (norg) format
+      # misc
+      # vim-json
+      # vim-just
+      # haskell-vim
+      # vim-dadbod # for db
+      # vim-dadbod-ui
+      # vim-dadbod-completion
+      # vim-markdown
+      # vim-instant-markdown # requires pip/npm dependency
+      # html5-vim
+      # scss-syntax-vim
+      # vim-javascript
+      # orgmode
+      
+      # MISC #
+      # hydra-nvim
+      # distant-nvim # remote editing
+      # nvim-bqf # quick fix improvement
+      # sniprun # eval selection (repl like)
+      # bufdelete-nvim # preserve buffer layout on closure
 
-        ########################
-        # GARBAGE - COMPLETION #
-        ########################
+      ########################
+      # GARBAGE - COMPLETION #
+      ########################
 
-        # neocomplcache # not in nixpkgs
-        # neocomplete-vim # deprecated?
-        # YouCompleteMe # works well but heavy (1gb?)
-        # ncm2 # no updates
+      # neocomplcache # not in nixpkgs
+      # neocomplete-vim # deprecated?
+      # YouCompleteMe # works well but heavy (1gb?)
+      # ncm2 # no updates
 
-        ######################
-        # GARBAGE - SNIPPETS #
-        ######################
-          
-        # # made in vimscript
-        # vim-snipmate
-        # utilsnips
-        # vim-snippets
+      ######################
+      # GARBAGE - SNIPPETS #
+      ######################
+      
+      # # made in vimscript
+      # vim-snipmate
+      # utilsnips
+      # vim-snippets
 
-        # emmet-vim # expand abbrev. last update 3y
+      # emmet-vim # expand abbrev. last update 3y
 
-        ####################
-        # GARBAGE - FORMAT #
-        ####################
+      ####################
+      # GARBAGE - FORMAT #
+      ####################
 
-        # formatter-nvim
+      # formatter-nvim
 
-        # # made in vimspcript
-        # neoformat
-        # vim-autoformat
-        # vim-codefmt
+      # # made in vimspcript
+      # neoformat
+      # vim-autoformat
+      # vim-codefmt
 
-        ##################
-        # GARBAGE - TMUX #
-        ##################
+      ##################
+      # GARBAGE - TMUX #
+      ##################
 
-        # not necessary right now as I use wezterm
-          
-        # vim-tmux-navigator
-        # vimux # tmux interaction
-        # tmuxline-vim # tmux status line
-        # smart-splits-nvim
+      # not necessary right now as I use wezterm
+      
+      # vim-tmux-navigator
+      # vimux # tmux interaction
+      # tmuxline-vim # tmux status line
+      # smart-splits-nvim
 
-        ###################
-        # GARBAGE - TESTS #
-        ###################
-          
-        # those two are in vimscript
-        # neomake
+      ###################
+      # GARBAGE - TESTS #
+      ###################
+      
+      # those two are in vimscript
+      # neomake
       ];
-    };
   };
 }

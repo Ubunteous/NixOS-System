@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
 with lib;
 let
@@ -11,19 +11,19 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
-    home-manager.users.${user} = {
-      programs.neovim.plugins = with pkgs.vimPlugins; [
-        #######
-        # LSP #
-        #######
-        
-        {
-          plugin = nvim-lspconfig;
-          type = "lua";
-          config = ''
+    programs.neovim.plugins = with pkgs.vimPlugins; [
+      #######
+      # LSP #
+      #######
+      
+      {
+        plugin = nvim-lspconfig;
+        type = "lua";
+        config = ''
             local lspconfig = require('lspconfig')
             lspconfig.pyright.setup{}
-        
+            -- lspconfig.pylsp.setup{}
+
             -- Global mappings.
             -- See `:help vim.diagnostic.*` for documentation on any of the below functions
             vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
@@ -62,29 +62,29 @@ in
               end,
             })
           '';
-        }
-        
-        # improve lsp experience
-        {
-          plugin = lspsaga-nvim;
-          type = "lua";
-          config = ''
+      }
+      
+      # improve lsp experience
+      {
+        plugin = lspsaga-nvim;
+        type = "lua";
+        config = ''
             require('lspsaga').setup({})
         '';
-        }
+      }
 
-        #############
-        # DEBUGGERS #
-        #############
+      #############
+      # DEBUGGERS #
+      #############
 
-        nvim-dap
+      nvim-dap
 
-        # uses neodev
-        {
-          plugin = nvim-dap-ui;
-          type = "lua";
+      # uses neodev
+      {
+        plugin = nvim-dap-ui;
+        type = "lua";
 
-          config = ''
+        config = ''
             require("dapui").setup()
             
             local dap, dapui = require("dap"), require("dapui")
@@ -101,12 +101,12 @@ in
               dapui.close()
             end
           '';
-        }
-        
-        {
-          plugin = neodev-nvim; # lua/nvim
-          type = "lua";
-          config = ''
+      }
+      
+      {
+        plugin = neodev-nvim; # lua/nvim
+        type = "lua";
+        config = ''
             require("neodev").setup({
               library = { plugins = { "nvim-dap-ui", "neotest" }, types = true },
 
@@ -118,22 +118,22 @@ in
               end,
             })
           '';
-        }
+      }
 
-        # {
-        #   plugin = nvim-dap-python;
-        #   type = "lua";
-        #   config = ''
-        #     -- require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
-        #     require('dap-python').setup()
-        #     -- require('dap-python').test_runner = 'pytest'
-        #   '';
-        # }
+      # {
+      #   plugin = nvim-dap-python;
+      #   type = "lua";
+      #   config = ''
+      #     -- require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+      #     require('dap-python').setup()
+      #     -- require('dap-python').test_runner = 'pytest'
+      #   '';
+      # }
 
-        {
-          plugin = trouble-nvim;
-          type = "lua";
-          config = ''
+      {
+        plugin = trouble-nvim;
+        type = "lua";
+        config = ''
             require("trouble").setup({
                 position = "right", -- bottom, top, left, right
                 width = 35, -- relevant when position is left or right
@@ -142,62 +142,61 @@ in
                 -- auto_fold = true,
             })
           '';
-        }
-        #################
-        # GARBAGE - LSP #
-        #################
+      }
+      #################
+      # GARBAGE - LSP #
+      #################
 
-        # neodev-nvim # mini distribution to configure neovim
+      # neodev-nvim # mini distribution to configure neovim
 
-        # ctags are probably harder to manage than tree-sitter
-        # tagbar # view tags/ctags
-        # # view lsp symbols/tags
-        # {
-        #   plugin = vista-vim;
-        #   config = ''
-        #     " How each level is indented and what to prepend.
-        #     let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-        
-        #     " Executive used when opening vista sidebar without specifying it.
-        #     " See all the avaliable executives via `:echo g:vista#executives`.
-        #     " let g:vista_default_executive = 'ctags'
-        
-        #     " Set the executive for some filetypes explicitly. Use the explicit executive
-        #     " instead of the default one for these filetypes when using `:Vista` without
-        #     " specifying the executive.
-        #     let g:vista_executive_for = {
-        #       \ 'py': 'vim_lsp',
-        #       \ }
-        
-        #     " To enable fzf's preview window set g:vista_fzf_preview.
-        #     " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-        #     " For example:
-        #     let g:vista_fzf_preview = ['right:50%']
-        #   '';
-        # }
-        
-        # vim-script+rust. last update 2y
-        # {
-        #   plugin = LanguageClient-neovim;
-        #   config = ''
-        #     " Required for operations modifying multiple buffers like rename.
-        #     set hidden
-        
-        #     let g:LanguageClient_serverCommands = {'python': ['/nix/store/2yl2pm26psl76nnddlj7vdmmk4qlhra6-user-environment/bin/pyright'],}
-        
-        #     " note that if you are using Plug mapping you should not use noremap mappings.
-        #     nmap <F5> <Plug>(lcn-menu)
-        #     " Or map each action separately
-        #     nmap <silent>K <Plug>(lcn-hover)
-        #     nmap <silent> gd <Plug>(lcn-definition)
-        #     nmap <silent> <F2> <Plug>(lcn-rename)
-        #   '';
-        # }
+      # ctags are probably harder to manage than tree-sitter
+      # tagbar # view tags/ctags
+      # # view lsp symbols/tags
+      # {
+      #   plugin = vista-vim;
+      #   config = ''
+      #     " How each level is indented and what to prepend.
+      #     let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+      
+      #     " Executive used when opening vista sidebar without specifying it.
+      #     " See all the avaliable executives via `:echo g:vista#executives`.
+      #     " let g:vista_default_executive = 'ctags'
+      
+      #     " Set the executive for some filetypes explicitly. Use the explicit executive
+      #     " instead of the default one for these filetypes when using `:Vista` without
+      #     " specifying the executive.
+      #     let g:vista_executive_for = {
+      #       \ 'py': 'vim_lsp',
+      #       \ }
+      
+      #     " To enable fzf's preview window set g:vista_fzf_preview.
+      #     " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+      #     " For example:
+      #     let g:vista_fzf_preview = ['right:50%']
+      #   '';
+      # }
+      
+      # vim-script+rust. last update 2y
+      # {
+      #   plugin = LanguageClient-neovim;
+      #   config = ''
+      #     " Required for operations modifying multiple buffers like rename.
+      #     set hidden
+      
+      #     let g:LanguageClient_serverCommands = {'python': ['/nix/store/2yl2pm26psl76nnddlj7vdmmk4qlhra6-user-environment/bin/pyright'],}
+      
+      #     " note that if you are using Plug mapping you should not use noremap mappings.
+      #     nmap <F5> <Plug>(lcn-menu)
+      #     " Or map each action separately
+      #     nmap <silent>K <Plug>(lcn-hover)
+      #     nmap <silent> gd <Plug>(lcn-definition)
+      #     nmap <silent> <F2> <Plug>(lcn-rename)
+      #   '';
+      # }
 
-        # vim-lsp # vimscript
-        # ale # technically not lsp (linter) # maybe overkill
-        # vimspector # older more traditional
+      # vim-lsp # vimscript
+      # ale # technically not lsp (linter) # maybe overkill
+      # vimspector # older more traditional
       ];
-    };
   };
 }

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, home-manager, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
 with lib;
 let
@@ -11,16 +11,15 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
-    home-manager.users.${user} = {
-      programs.neovim.plugins = with pkgs.vimPlugins; [
-        ###########
-        # PASSIVE #
-        ###########
+    programs.neovim.plugins = with pkgs.vimPlugins; [
+      ###########
+      # PASSIVE #
+      ###########
 
-        {
-          plugin = rainbow-delimiters-nvim;
-          type = "lua";
-          config = ''
+      {
+        plugin = rainbow-delimiters-nvim;
+        type = "lua";
+        config = ''
             -- This module contains a number of default definitions
             local rainbow_delimiters = require 'rainbow-delimiters'
             
@@ -49,14 +48,14 @@ in
                   'RainbowDelimiterViolet',
                   'RainbowDelimiterCyan',
               },
-             }
+            }
           '';
-        }
-        
-        {
-          plugin = indent-blankline-nvim;
-          type = "lua";
-          config = ''
+      }
+      
+      {
+        plugin = indent-blankline-nvim;
+        type = "lua";
+        config = ''
             local highlight = {
                 "RainbowRed",
                 "RainbowYellow",
@@ -87,23 +86,23 @@ in
             
             hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
           '';
-        }
-        
-        vim-eunuch # sh commands as syntactic sugar
+      }
+      
+      vim-eunuch # sh commands as syntactic sugar
 
-        # use limelight and goyo together
-        # autocmd! User GoyoEnter Limelight
-        # autocmd! User GoyoLeave Limelight!
-        limelight-vim # highlight current block. good addition to goyo
-        goyo-vim # distraction free like olivetti
-        
-        vim-surround # quick pairs operation
-        vim-unimpaired # adds new bindings for common command
+      # use limelight and goyo together
+      # autocmd! User GoyoEnter Limelight
+      # autocmd! User GoyoLeave Limelight!
+      limelight-vim # highlight current block. good addition to goyo
+      goyo-vim # distraction free like olivetti
+      
+      vim-surround # quick pairs operation
+      vim-unimpaired # adds new bindings for common command
 
-        {
-          plugin = nvim-autopairs; # more configurable
-          type = "lua";
-          config = ''
+      {
+        plugin = nvim-autopairs; # more configurable
+        type = "lua";
+        config = ''
             require("nvim-autopairs").setup({
               enable_check_bracket_line = false
 
@@ -111,13 +110,13 @@ in
               -- ignored_next_char = "[%w%.]"
             })            
           '';
-        }
+      }
 
-        # popup suggestion in : menu
-        {
-          plugin = wilder-nvim;
-          type = "lua";
-          config = ''
+      # popup suggestion in : menu
+      {
+        plugin = wilder-nvim;
+        type = "lua";
+        config = ''
             local wilder = require('wilder')
             wilder.setup({
               modes = {':', '/', '?'},
@@ -144,12 +143,12 @@ in
                right = {' ', wilder.popupmenu_scrollbar()},
             }))
           '';
-        }
+      }
 
-        {
-          plugin = nvim-treesitter;
-          type = "lua";
-          config = ''
+      {
+        plugin = nvim-treesitter;
+        type = "lua";
+        config = ''
             require'nvim-treesitter.configs'.setup {
               -- If you need to change the installation directory of the parsers (see -> Advanced Setup)
               -- parser_install_dir = "/some/path/to/store/parsers",
@@ -174,44 +173,60 @@ in
               },
             }
           '';
-        }
-        nvim-treesitter-parsers.python
-        nvim-treesitter-parsers.lua
+      }
+      nvim-treesitter-parsers.python
+      nvim-treesitter-parsers.lua
+    ];
+    
+    #####################
+    # GARBAGE - PASSIVE #
+    #####################
 
-        #####################
-        # GARBAGE - PASSIVE #
-        #####################
+    # vim-indent-guides
+    # indentLine # archived and not pretty
+    # vim-sleuth # filename based auto-indent?
 
-        # vim-indent-guides
-        # indentLine # archived and not pretty
-        # vim-sleuth # filename based auto-indent?
+    # rainbow_parentheses # good but not updated in a decade
+    # syntastic # syntax check => deprecated for ale
+    # rainbow # more options. needs: let g:rainbow_active = 1
 
-        # rainbow_parentheses # good but not updated in a decade
-        # syntastic # syntax check => deprecated for ale
-        # rainbow # more options. needs: let g:rainbow_active = 1
+    # tabular # align with a filter. broken. not updated in five years
+    # minibufferexpl # not in nixpkgs
+    # auto-session # config how restore session. maybe useless
 
-        # tabular # align with a filter. broken. not updated in five years
-        # minibufferexpl # not in nixpkgs
-        # auto-session # config how restore session. maybe useless
+    # legendary-nvim # like which-key
 
-        # legendary-nvim # like which-key
+    # delimitMate # simple and sweet for pairs. avoids single " pitfall
+    # auto-pairs # good but has issue with single "
 
-        # delimitMate # simple and sweet for pairs. avoids single " pitfall
-        # auto-pairs # good but has issue with single "
+    # replaced by vim settings
+    # {
+    #   plugin = vim-better-whitespace;
+    #   config = ''
+    #     let g:better_whitespace_enabled=1
+    #     " let g:strip_whitespace_on_save=1 " try later
 
-        # replaced by vim settings
-        # {
-        #   plugin = vim-better-whitespace;
-        #   config = ''
-        #     let g:better_whitespace_enabled=1
-        #     " let g:strip_whitespace_on_save=1 " try later
+    #     " use this if dashboard or other needs it disabled
+    #     " let g:better_whitespace_filetypes_blacklist=
+    #     " \ ["dashboard", "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive"]
+    #   '';
+    # }
 
-        #     " use this if dashboard or other needs it disabled
-        #     " let g:better_whitespace_filetypes_blacklist=
-        #     " \ ["dashboard", "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive"]
-        #   '';
-        # }
-      ];
-    };
+    # # lisp repl. bring back if I stop using emacs for clj
+    # {
+    #   plugin = conjure;
+    #   type = "lua";
+    #   config = ''
+    #     -- Disable the documentation mapping
+    #     vim.g["conjure#mapping#doc_word"] = false
+
+    #     -- Rebind it from K to <prefix>gk
+    #     vim.g["conjure#mapping#doc_word"] = "gk"
+    
+    #     -- Reset it to the default unprefixed K (note the special table wrapped syntax)
+    #     -- vim.g["conjure#mapping#doc_word"] = {"K"}
+    #   '';
+    # }
+    
   };
 }
