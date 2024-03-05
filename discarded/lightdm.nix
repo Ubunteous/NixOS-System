@@ -50,7 +50,7 @@
     # extraLayouts.fr-colemak = {
     #   description = "Colemak variant of the FR layout";
     #   languages   = [ "fra" ];
-    #   symbolsFile = ../files/fr-colemak.xkb;
+    #   symbolsFile = ../files/keyboard/fr-colemak.xkb;
     # };
 
     ################################
@@ -64,7 +64,7 @@
     extraLayouts.fr-qwerty = {
       description = "Qwerty with french numrow and special characters";
       languages   = [ "us" ];
-      symbolsFile = ../../files/fr-qwerty.xkb;
+      symbolsFile = ../files/keyboard/fr-qwerty.xkb;
     };
 
     #######################
