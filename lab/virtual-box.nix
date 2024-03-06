@@ -3,13 +3,13 @@
 with lib;
 let
   cfg = config.lab.virtualbox;
-  corecfg = config.lab;
+  labcfg = config.lab;
   in {
     options.lab.virtualbox = {
       enable = mkEnableOption "Enables support for Virtualbox";
     };
 
-    config = mkIf (corecfg.enable && cfg.enable) {
+    config = mkIf (labcfg.enable && cfg.enable) {
     ##################
     #   VIRTUALBOX   #
     ##################

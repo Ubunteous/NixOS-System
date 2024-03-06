@@ -3,13 +3,13 @@
 with lib;
 let
   cfg = config.lab.podman;
-  corecfg = config.lab;
+  labcfg = config.lab;
   in {
     options.lab.podman = {
       enable = mkEnableOption "Enables support for Podman";
     };
 
-    config = mkIf (corecfg.enable && cfg.enable) {
+    config = mkIf (labcfg.enable && cfg.enable) {
     ##################
     #     PODMAN     #
     ##################
