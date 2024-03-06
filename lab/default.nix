@@ -23,6 +23,7 @@ with lib; {
     # ./self-hosted/bazarr.nix
     # ./self-hosted/prowlarr.nix
     # ./self-hosted/jackett.nix
+    # ./self-hosted/plex.nix
 
     # ./self-hosted/adguard.nix
     # ./self-hosted/shiori.nix
