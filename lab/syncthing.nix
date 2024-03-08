@@ -30,6 +30,7 @@ in {
   config = mkIf (labcfg.enable && cfg.enable) {
     services.syncthing = {
       enable = true;
+      systemService = false; # defaults to true
 
       user = "${user}";
       group = "users";
@@ -118,6 +119,24 @@ in {
           #   };
           # };
         };
+        notes = {
+          # RECEIVE ONLY
+          # needs the following stignore patterns:
+          # *.pdf
+
+          enable = true;
+          path = "~/Notes";
+          label = "Notes";
+          devices = [ "droid" ];
+        };
+        share = {
+          # SEND/RECEIVE (default)
+
+          enable = true;
+          path = "~/share";
+          label = "Share";
+          devices = [ "droid" ];
+        };
       };
 
       ###############
@@ -126,7 +145,7 @@ in {
 
       settings.devices."droid" = {
         name = "droid";
-        id = "[REDACTED]";
+        id = "[redacted]";
 
         # autoAcceptFolders = false;
       };
@@ -171,7 +190,6 @@ in {
       #   misc   #
       ############
 
-      # systemService = false; # defaults to true
       # guiAddress = "127.0.0.1:8384";
 
       # all_proxy = "socks5://address.com:1234";
