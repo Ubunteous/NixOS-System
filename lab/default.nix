@@ -4,12 +4,18 @@ with lib; {
   options.lab.enable = mkEnableOption "Homelab configuration";
   imports = [
     ./homepage.nix
-    ./cockpit.nix
+    ./syncthing.nix
 
-    ./grafana.nix
-    ./prometheus.nix
-    ./loki.nix
-    ./cadvisor.nix
+    ./k3s.nix
+    ./podman.nix
+    # ./virtual-box.nix
+
+    # ./monitoring/cockpit.nix
+    # ./monitoring/grafana.nix
+    # ./monitoring/prometheus.nix
+    # ./monitoring/loki.nix
+    # ./monitoring/cadvisor.nix
+    # ./monitoring/uptime-kuma.nix
 
     # ./server/caddy.nix
     # ./server/nginx.nix
@@ -25,13 +31,9 @@ with lib; {
     # ./self-hosted/jackett.nix
     # ./self-hosted/plex.nix
 
-    # ./self-hosted/adguard.nix
+    # ./self-hosted/wireguard.nix
+    # ./self-hosted/restic.nix
     # ./self-hosted/shiori.nix
-    # ./self-hosted/syncthing.nix
-    # ./self-hosted/uptime-kuma.nix
-
-    ./k3s.nix
-    ./podman.nix
-    ./virtual-box.nix
+    # ./self-hosted/adguard.nix
   ];
 }

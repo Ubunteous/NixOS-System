@@ -10,9 +10,9 @@ let
     };
 
     config = mkIf (labcfg.enable && cfg.enable) {
-    ##################
+    ###############
     #     PODMAN     #
-    ##################
+    ###############
 
     virtualisation.podman = {
       enable = true;
@@ -34,7 +34,7 @@ let
       # create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
 
-      # extraPackages = with pkgs; [ buildah skopeo ]; # gvisor for security
+      # extraPackages = with pkgs; [ gvisor ];
     };
   };
 }

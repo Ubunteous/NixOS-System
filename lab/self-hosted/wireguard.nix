@@ -17,7 +17,7 @@ in {
       interfaces."name" = {
         table = "main";
         # socketNamespace = "container";
-        # privateKeyFile = "/path/to/file";
+        privateKeyFile = "/path/to/file";
         # privateKey = "secret";
         # preSetup = "${pkgs.iproute2}/bin/ip netns add foo";
         # postShutdown = "${pkgs.openresolv}/bin/resolvconf -d wg0";
@@ -32,19 +32,17 @@ in {
         # fwMark = "0x6e6978";
         # allowedIPsAsRoutes = false;
 
-        peers = [
-          {
-            # publicKey = "xTIBA5rboUvnH4htodjb6e697QjLERt1NAB4mZqp8Dg=";
-            # presharedKeyFile = "/private/wireguard_psk";
-            # presharedKey = "rVXs/Ni9tu3oDBLS4hOyAUAa1qTWVA3loR8eL20os3I=";
-            # persistentKeepalive = 25;
-            # name = "bernd";
-            # endpoint = "demo.wireguard.io:12913";
-            # dynamicEndpointRefreshSeconds = 5;
-            # dynamicEndpointRefreshRestartSeconds = 5;
-            # allowedIPs = [ "10.192.122.3/32" ];
-          }
-        ];
+        peers = [{
+          publicKey = "xTIBA5rboUvnH4htodjb6e697QjLERt1NAB4mZqp8Dg=";
+          # presharedKeyFile = "/private/wireguard_psk";
+          # presharedKey = "rVXs/Ni9tu3oDBLS4hOyAUAa1qTWVA3loR8eL20os3I=";
+          # persistentKeepalive = 25;
+          # name = "bernd";
+          # endpoint = "demo.wireguard.io:12913";
+          # dynamicEndpointRefreshSeconds = 5;
+          # dynamicEndpointRefreshRestartSeconds = 5;
+          allowedIPs = [ "10.192.122.3/32" ];
+        }];
       };
     };
   };
