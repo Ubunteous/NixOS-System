@@ -1,73 +1,75 @@
-{ config, pkgs, user, ... }:
+{ config, lib, pkgs, user, ... }:
 
-{
-  users.users.${user} = {
-    #############
-    #   LaTeX   #
-    #############
+with lib;
+let
+  cfg = config.languages.latex;
+  langcfg = config.languages;
+in {
+  options.languages.latex = {
+    enable =
+      mkEnableOption "Enables support for the LaTeX programming languages";
+  };
 
-    packages = with pkgs; [
-      # ghostscript # for latex images/equations with preview-region
-      
-      (texlive.combine {
-        inherit (texlive)
-          # scheme-basic # base (but not minimal)
-          scheme-small # for missing mf command
-          comment
-          
-          # fullpage missing => maybe in bigger scheme like
-          # [T1]fontenc => old font. don't use it. lmodern is better
+  config = mkIf (langcfg.enable && cfg.enable) {
+    users.users.${user} = {
+      packages = with pkgs;
+        [
+          # ghostscript # for latex images/equations with preview-region
+          # texlab # lsp
 
-          # oad
-          pdfpages
-          ulem
-          fp
-          changepage
-          xcolor
-          pdflscape
+          (texlive.combine {
+            inherit (texlive)
+            # scheme-basic # base (but not minimal)
+              scheme-small # for missing mf command
+              comment
 
-          # cv
-          fontawesome
-          # hyperref
+              # fullpage missing => maybe in bigger scheme like
+              # [T1]fontenc => old font. don't use it. lmodern is better
 
-          # org
-          dvipng # essential
-          # wrapfig
-          # capt-of
-          # kpathsea
-          # metafont
-          parskip
-          listings
+              # oad
+              pdfpages ulem fp changepage xcolor pdflscape
 
-          # presentations
-          beamer
-          beamertheme-metropolis
-          pgfopts # metropolis dependency
-          # lmodern # already available. metropolis dependency
+              # cv
+              fontawesome
+              # hyperref
 
-          # background
-          wallpaper
-          # background
-          # everypage
-          # xkeyval # background dependency
+              # org
+              dvipng # essential
+              # wrapfig
+              # capt-of
+              # kpathsea
+              # metafont
+              parskip listings
 
-          # csv
-          csvsimple
-          siunitx
-          datatool
-          
-          # misc
-          enumitem
-          forest
-          ragged2e
-          preprint # corresponds to fullpage package
-	        extsizes
-	        caption
-          pgfgantt
-          multirow
-          biblatex
-          biber
-        ;})
-    ];
+              # presentations
+              # beamer
+              # beamertheme-metropolis
+              # pgfopts # metropolis dependency
+              # lmodern # already available as a metropolis dependency
+
+              # wallpaper
+              # everypage
+              # background
+              # xkeyval # background dependency
+
+              # csv
+              # csvsimple
+              # siunitx
+              # datatool
+
+              # misc
+              enumitem
+              # forest
+              ragged2e preprint # corresponds to fullpage package
+              # caption
+              # pgfgantt
+              # extsizes
+              # multirow
+              # biblatex
+              # biber
+            ;
+          })
+        ];
+    };
   };
 }
