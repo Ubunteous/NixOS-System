@@ -1,1 +1,0 @@
-/home/ubunteous/qmk_firmware/keyboards/kbdfans/kbd67/mkiirgb/keymaps/colemak-dh/keymap.c
