@@ -1,5 +1,5 @@
 # { config, pkgs, ... }: {
-  
+
 # See this for more details
 # https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos
 
@@ -44,7 +44,6 @@
 #   # to not collide with the nixpkgs version.
 #   { programs.nix-ld.dev.enable = true; }
 
-
 # Not used to enable nix ld => programs.nix-ld.enable = true;
 
 # Sets up all the libraries to load (option available from 23.05)
@@ -75,17 +74,14 @@
 # Also, don't forget that ACE, Bazille and maybe also Filterscape and Uhbik
 # need a change in dialog: /bin/bash => /usr/bin/env bash
 
-with import <nixpkgs> {};
+###############
+# CREDENTIALS #
+###############
+
+# In case of error, can be manually placed in ~/.u-he/<PLUGIN>/Support/com.u-he.<PLUGIN>.user.txt
+
+with import <nixpkgs> { };
 mkShell {
-  NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
-    # gtk3
-    glib
-    gtk3.out
-    
-    # gvfs
-    
-    # SDL
-    # SDL2
-  ];
+  NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [ gtk3 glib ];
   NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
 }
