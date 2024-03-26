@@ -1,12 +1,23 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
-  cfg = config.home.neovim;
   homecfg = config.home;
-in
-{
-  options.home.neovim.enable = mkEnableOption "Neovim configuration";
+  nvimcfg = config.home.neovim;
+  in {
+    options = {
+      home.neovim = {
+	enable = mkEnableOption "Neovim configuration";
+
+	distro = mkOption {
+        default = "nix";
+        type = types.enum [ "nix" "Lazy" "lazy" ];
+        description = lib.mdDoc ''
+          Choose the neovim configuration to use
+        '';
+      };
+    };
+  };
 
   # import ordered reversed as which-key needs to be at config top
   imports = [
@@ -21,25 +32,26 @@ in
     ./languages.nix
     ./appearance.nix
     ./which-key.nix
+
+    ./Lazy.nix
+    ./lazy.nix
   ];
 
-  config = mkIf (homecfg.enable && cfg.enable) {
+  config = mkIf (homecfg.enable && nvimcfg.enable) {
     ##############
     #   NEOVIM   #
     ##############
 
     # For help, use helptags (:help tag/telescope) or :h index
-    
+
     programs.neovim = {
       enable = true;
 
       viAlias = true;
       vimAlias = true;
 
-      # extraLuaConfig = '' '';
-      
-      # extraConfig = lib.fileContents ../path/to/your/init.vim;
-      extraConfig = lib.fileContents ./vimrc;
+      extraLuaConfig = lib.fileContents ./Lua/settings.lua;
+      # extraConfig = lib.fileContents ./vimrc;
     };
   };
-}  
+}

@@ -7,15 +7,22 @@
 " e: move to end of word / E: end  of token => m
 " i: insert mode / I: at beginning line => l
 
-noremap m h
-noremap n j
-noremap e k
-noremap i l
+" note: nnoremap only remaps single keys
+" (e.g.: ciw behaves as default but i does not)
+" use noremap with a single n for a full remap
+nnoremap m h
+nnoremap n j
+nnoremap e k
+nnoremap i l
 
-noremap h e
-noremap j m
-noremap k n
-noremap l i
+nnoremap h i
+nnoremap j m
+nnoremap k n
+nnoremap l e
+
+" leave insert mode quickly
+inoremap jj <ESC>
+inoremap hh <ESC>
 
 " #############
 " # WHICH-KEY #
@@ -32,10 +39,6 @@ let g:maplocalleader = ','
 " ########
 
 " set number relativenumber
-
-" leave insert mode quickly
-inoremap jj <ESC>
-inoremap kk <ESC>
 
 " arrow keys and backspace don't get stuck on bol/eol
 " do not use this config with hjkl or plugs will break

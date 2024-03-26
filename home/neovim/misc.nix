@@ -1,16 +1,13 @@
 { config, lib, pkgs, user, ... }:
 
 with lib;
-let
-  cfg = config.home.neovim.misc;
-  homecfg = config.home;
-in
-{
+let cfg = config.home.neovim;
+in {
   options.home.neovim.misc = {
     enable = mkEnableOption "Configure misc plugins for vim";
   };
 
-  config = mkIf (homecfg.enable && cfg.enable) {
+  config = mkIf (cfg.distro == "nix" && cfg.misc.enable) {
     programs.neovim.plugins = with pkgs.vimPlugins; [
       ##############
       # COMPLETION #
@@ -21,82 +18,85 @@ in
 
       {
         plugin = deoplete-nvim; # extra langs on nixpkg
+        type = "lua";
         config = ''
-            let g:deoplete#enable_at_startup = 1
-          '';
+          -- let g:deoplete#enable_at_startup = 1
+          -- nvim.call(:vim_command, "deoplete#enable()")
+          vim.g['deoplete#enable_at_startup'] = true
+        '';
       }
-      
+
       ############
       # SNIPPETS #
       ############
-      
+
       {
         plugin = luasnip;
         type = "lua";
         config = ''
-            local ls = require("luasnip")
+          local ls = require("luasnip")
 
-            -- for "all" filetypes create snippet for "def"
-            ls.add_snippets("all", { -- "all"
-              ls.parser.parse_snippet(
-                'def',
-                'def ''${1}(''${2})\n{\n\t''${3}\n}'),
-                                   })
-          
-            -- Map "Ctrl + p" (in insert mode)
-            -- to expand snippet and jump through fields.
-            vim.keymap.set(
-            'i',
-            '<c-p>',
-            function()
-              if ls.expand_or_jumpable() then
-                ls.expand_or_jump()
-              end
+          -- for "all" filetypes create snippet for "def"
+          ls.add_snippets("all", { -- "all"
+            ls.parser.parse_snippet(
+              'def',
+              'def ''${1}(''${2})\n{\n\t''${3}\n}'),
+                                 })
+
+          -- Map "Ctrl + p" (in insert mode)
+          -- to expand snippet and jump through fields.
+          vim.keymap.set(
+          'i',
+          '<c-p>',
+          function()
+            if ls.expand_or_jumpable() then
+              ls.expand_or_jump()
             end
-            )
-          '';
+          end
+          )
+        '';
       }
-      
+
       {
         plugin = friendly-snippets;
         type = "lua";
         config = ''
-            require("luasnip.loaders.from_vscode").lazy_load()
-          '';
+          require("luasnip.loaders.from_vscode").lazy_load()
+        '';
       }
-      
+
       cmp_luasnip
       {
         plugin = nvim-cmp;
         type = "lua";
         config = ''
-              local cmp = require('cmp')
-        
-               cmp.setup({
-                 snippet = {
-                   expand = function(args)
-                     require('luasnip').lsp_expand(args.body)
-                   end,
-                 },
+          local cmp = require('cmp')
 
-              -- window = {
-                -- completion = cmp.config.window.bordered(),
-                -- documentation = cmp.config.window.bordered(),
-              -- },
-                mapping = cmp.mapping.preset.insert({
-                  ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                    ['<C-Space>'] = cmp.mapping.complete(),
-                    ['<C-e>'] = cmp.mapping.abort(),
-                    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                }),
-                sources = cmp.config.sources({
-                  { name = 'luasnip' }, -- For luasnip users.
-                })
-               })
-            '';
+           cmp.setup({
+             snippet = {
+               expand = function(args)
+                 require('luasnip').lsp_expand(args.body)
+               end,
+             },
+
+          -- window = {
+            -- completion = cmp.config.window.bordered(),
+            -- documentation = cmp.config.window.bordered(),
+          -- },
+            mapping = cmp.mapping.preset.insert({
+              ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<C-e>'] = cmp.mapping.abort(),
+                ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+            }),
+            sources = cmp.config.sources({
+              { name = 'luasnip' }, -- For luasnip users.
+            })
+           })
+        '';
       }
-      
+
       ##########
       # FORMAT #
       ##########
@@ -105,28 +105,28 @@ in
         plugin = conform-nvim;
         type = "lua";
         config = ''
-            require("conform").setup({
-              formatters_by_ft = {
-                -- lua = { "stylua" },
-                python = { "black" },
-              },
+          require("conform").setup({
+            formatters_by_ft = {
+              -- lua = { "stylua" },
+              python = { "black" },
+            },
 
-              format_on_save = {
-                -- These options will be passed to conform.format()
-                timeout_ms = 500,
-                lsp_fallback = true,
-              },
-              
-              -- If this is set, Conform will run the formatter asynchronously after save.
-              -- It will pass the table to conform.format().
-              -- This can also be a function that returns the table.
-              format_after_save = {
-                lsp_fallback = true,
-                                 },
-            })
-          '';
+            format_on_save = {
+              -- These options will be passed to conform.format()
+              timeout_ms = 500,
+              lsp_fallback = true,
+            },
+
+            -- If this is set, Conform will run the formatter asynchronously after save.
+            -- It will pass the table to conform.format().
+            -- This can also be a function that returns the table.
+            format_after_save = {
+              lsp_fallback = true,
+                               },
+          })
+        '';
       }
-      
+
       #########
       # TESTS #
       #########
@@ -136,19 +136,20 @@ in
         plugin = neotest;
         type = "lua";
         config = ''
-            require("neotest").setup({
-              adapters = {
-                require("neotest-python")({
-                  dap = { justMyCode = false },
-                }),
-              },
-            })
-          '';
+          require("neotest").setup({
+            adapters = {
+              require("neotest-python")({
+                dap = { justMyCode = false },
+              }),
+            },
+          })
+        '';
       }
       neotest-python
-      
-      # for async commands (like starting a repl)
-      vim-dispatch
+
+      # DO NOT USE IT
+      # # for async commands (like starting a repl)
+      # vim-dispatch => m key (left) becomes super slow with it
 
       #########
       # LATER #
@@ -203,7 +204,7 @@ in
       # scss-syntax-vim
       # vim-javascript
       # orgmode
-      
+
       # MISC #
       # hydra-nvim
       # distant-nvim # remote editing
@@ -223,7 +224,7 @@ in
       ######################
       # GARBAGE - SNIPPETS #
       ######################
-      
+
       # # made in vimscript
       # vim-snipmate
       # utilsnips
@@ -247,7 +248,7 @@ in
       ##################
 
       # not necessary right now as I use wezterm
-      
+
       # vim-tmux-navigator
       # vimux # tmux interaction
       # tmuxline-vim # tmux status line
@@ -256,9 +257,9 @@ in
       ###################
       # GARBAGE - TESTS #
       ###################
-      
+
       # those two are in vimscript
       # neomake
-      ];
+    ];
   };
 }

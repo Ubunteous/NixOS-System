@@ -1,17 +1,14 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
-let
-  cfg = config.home.neovim.languages;
-  homecfg = config.home;
-in
-{
-  options.home.neovim.languages = {
-    enable = mkEnableOption "Configure languages plugins for vim";
-  };
+let cfg = config.home.neovim;
+  in {
+    options.home.neovim.languages = {
+      enable = mkEnableOption "Configure languages plugins for vim";
+    };
 
-  config = mkIf (homecfg.enable && cfg.enable) {
-    programs.neovim.plugins = with pkgs.vimPlugins; [
+    config = mkIf (cfg.distro == "nix" && cfg.languages.enable) {
+      programs.neovim.plugins = with pkgs.vimPlugins; [
       ##########
       # SYNTAX #
       ##########
@@ -20,18 +17,23 @@ in
       # needs pylama for linting
       {
         plugin = python-mode;
+        type = "lua";
         config = ''
-            let g:pymode_lint = 0
+          vim.g.pymode_lint = 0
 
-            " open splits vertically
-            autocmd BufEnter __run__,__doc__ :wincmd L
+          -- open splits vertically
+          -- autocmd BufEnter __run__,__doc__ :wincmd L
 
-            " remove ugly vertical bar
-            " let g:pymode_options_colorcolumn = 0
-            let g:pymode_options_colorcolumn = 0
+          vim.api.nvim_create_autocmd("BufEnter", { pattern = { "__run__", "__doc__" }, command = "wincmd L" })
 
-            let g:pymode_run_bind = '<leader>p' " default is r
-          '';
+          -- remove ugly vertical bar
+          vim.g.pymode_options_colorcolumn = 0
+
+          vim.g.pymode_run_bind = "<leader>p" -- default is r
+
+          -- -- if you want to use overlay feature
+          -- vim.g.choosewin_overlay_enable = 1
+        '';
       }
 
       # nix

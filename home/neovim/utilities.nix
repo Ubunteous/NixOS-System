@@ -1,23 +1,20 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
-let
-  cfg = config.home.neovim.utilities;
-  homecfg = config.home;
-in
-{
+let cfg = config.home.neovim;
+in {
   options.home.neovim.utilities = {
     enable = mkEnableOption "Configure utilities for vim";
   };
 
-  config = mkIf (homecfg.enable && cfg.enable) {
+  config = mkIf (cfg.distro == "nix" && cfg.utilities.enable) {
     programs.neovim.plugins = with pkgs.vimPlugins; [
       #############
       # UTILITIES #
       #############
 
       undotree # worth configuring more
-      
+
       nerdcommenter # works well
 
       # much more configurable than vim-commentary. needs lua setup
@@ -25,35 +22,36 @@ in
         plugin = comment-nvim;
         type = "lua";
         config = ''
-            -- comment-nvim
-            require('Comment').setup()
-          '';
+          -- comment-nvim
+          require('Comment').setup()
+        '';
       }
-      
-      vim-visual-multi # great        
+
+      vim-visual-multi # great
 
       # like ace-window        
       {
         plugin = vim-choosewin;
+        type = "lua";
         config = ''
-             " if you want to use overlay feature
-             let g:choosewin_overlay_enable = 1
-           '';
+          -- if you want to use overlay feature
+          vim.g.choosewin_overlay_enable = 1
+        '';
       }
 
       {
         plugin = nvim-tree-lua;
         type = "lua";
         config = ''
-            require("nvim-tree").setup({
-              sync_root_with_cwd = true,
-              respect_buf_cwd = true,
-              update_focused_file = {
-                enable = true,
-                update_root = true
-              },
-            })
-          '';
+          require("nvim-tree").setup({
+            sync_root_with_cwd = true,
+            respect_buf_cwd = true,
+            update_focused_file = {
+              enable = true,
+              update_root = true
+            },
+          })
+        '';
       }
 
       # requires nvim-tree-lua
@@ -61,28 +59,28 @@ in
         plugin = project-nvim;
         type = "lua";
         config = ''
-            require("project_nvim").setup()
-            require('telescope').load_extension('projects')
-          '';
+          require("project_nvim").setup()
+          require('telescope').load_extension('projects')
+        '';
       }
 
       {
         plugin = harpoon;
         type = "lua";
         config = ''
-            require("harpoon").setup()
-            require("telescope").load_extension('harpoon')
+          require("harpoon").setup()
+          require("telescope").load_extension('harpoon')
 
-            wk.register({
-              ["<leader>g"] = {
-                  name = "harpoon",
-                  f = { function() require("harpoon.mark").add_file() end, "Harpoon Add File" },
-                  u = { function() require("harpoon.ui").toggle_quick_menu() end, "Harpoon Visit File" },
-              },
-            })
-          '';
+          wk.register({
+            ["<leader>g"] = {
+                name = "harpoon",
+                f = { function() require("harpoon.mark").add_file() end, "Harpoon Add File" },
+                u = { function() require("harpoon.ui").toggle_quick_menu() end, "Harpoon Visit File" },
+            },
+          })
+        '';
       }
-      
+
       #######################
       # GARBAGE - UTILITIES #
       #######################
@@ -131,7 +129,7 @@ in
       #       -- Whether a repl should be discarded or not
       #       scratch_repl = true,
       #       -- Your repl definitions come here
-      
+
       #       repl_definition = {
       #         python = {
       #           -- Can be a table or a function that
@@ -139,12 +137,12 @@ in
       #           command = { "python" },
       #         },
       #       },
-      
+
       #       -- How the repl window will be displayed
       #       -- See below for more information
       #       repl_open_cmd = require("iron.view").right(30),
       #     },
-      
+
       #     -- Iron doesn't set keymaps by default anymore.
       #     -- You can set them here or manually add keymaps to the functions in iron.core
       #     keymaps = {
@@ -161,7 +159,7 @@ in
       #       exit = "<leader>iq",
       #       clear = "<leader>ix",
       #                                                                          },
-      
+
       #     -- If the highlight is on, you can change how it looks
       #     -- For the available options, check nvim_set_hl
       #     highlight = { italic = true, },
@@ -192,6 +190,6 @@ in
 
       # needs vim to be compiled with python. last updated 3y
       # gundo-vim
-      ];
+    ];
   };
 }
