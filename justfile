@@ -53,6 +53,10 @@ delta:
 	previous=$(ls -Art /nix/var/nix/profiles/ | tail -n 3 | head -n 1)
 	nix store diff-closures /nix/var/nix/profiles/$previous /nix/var/nix/profiles/system | grep "+"
 
+archive:
+	# retrieve missing flake inputs
+	nix flake archive
+
 
 show-gens:
     @echo -e "Systems currently in store:\n"
