@@ -4,12 +4,13 @@ with lib;
 let
   cfg = config.languages.c;
   langcfg = config.languages;
-  in {
-    options.languages.c = {
-      enable = mkEnableOption "Enables support for the C programming languages";
-    };
+in {
+  options.languages.c = {
+    enable =
+      mkEnableOption "Enables support for the C/C++ programming languages";
+  };
 
-    config = mkIf (langcfg.enable && cfg.enable) {
+  config = mkIf (langcfg.enable && cfg.enable) {
     users.users.${user} = {
       packages = with pkgs; [
         clang # better than gcc
