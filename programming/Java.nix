@@ -4,10 +4,9 @@ with lib;
 let
   cfg = config.languages.java;
   langcfg = config.languages;
-  in {
-    options.languages.java = {
-      enable =
-      mkEnableOption "Enables support for the Java programming languages";
+in {
+  options.languages.java = {
+    enable = mkEnableOption "Enables support for the Java programming language";
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {
