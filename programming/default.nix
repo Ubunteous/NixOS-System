@@ -14,13 +14,20 @@ with lib;
     ./Lua.nix
     ./Haskell.nix
 
-    ./Shell.nix
     ./Java.nix
     ./Javascript.nix
+
+    ./Shell.nix
+    ./LaTeX.nix
     ./PostgreSQL.nix
 
+    ./Go.nix
     ./Rust.nix
+
+    ./Guile.nix
     ./Clojure.nix
+    ./Common-Lisp.nix
+    ./Elixir.nix
   ];
 
   # options.languages = {
