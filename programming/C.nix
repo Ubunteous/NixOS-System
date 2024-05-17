@@ -13,12 +13,14 @@ in {
   config = mkIf (langcfg.enable && cfg.enable) {
     users.users.${user} = {
       packages = with pkgs; [
-        clang # better than gcc
-        clang-tools # clang-format and clang-tidy
+        # clang # better than gcc but less common
+        # clang-tools # clang-format and clang-tidy
 
         ccls # lsp
-        # gcc # use gcc with C and g++ with C++
-
+        gcc # use gcc with C and g++ with C++
+	glibc
+	
+        cmake
         # build essentials bundles: gcc/g++,libc6-dev,make,dpkg-dev
       ];
     };
