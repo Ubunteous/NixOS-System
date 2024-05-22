@@ -7,7 +7,7 @@ let
 in {
   options.languages.latex = {
     enable =
-      mkEnableOption "Enables support for the LaTeX programming languages";
+      mkEnableOption "Enables support for the LaTeX programming language";
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {

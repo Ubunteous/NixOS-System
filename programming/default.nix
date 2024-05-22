@@ -1,12 +1,10 @@
 { config, lib, ... }:
 
-with lib;
-{
+with lib; {
   options.languages.enable = mkEnableOption "Programming Languages";
-    
+
   imports = [
     ./Python.nix
-    ./LaTeX.nix
     ./Godot.nix
 
     ./C.nix

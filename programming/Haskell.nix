@@ -22,6 +22,7 @@ in {
         hlint
         ormolu
         # stylish-haskell
+        # haskellPackages.intero # repl
         # haskellPackages.fourmolu # configurable branch of ormolu
 
         # haskellPackages.kmonad # currently broken in 22.11

@@ -7,7 +7,7 @@ let
 in {
   options.languages.python = {
     enable =
-      mkEnableOption "Enables support for the Python programming languages";
+      mkEnableOption "Enables support for the Python programming language";
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {
@@ -35,9 +35,11 @@ in {
               # python-lsp-server
               # isort
               # tools
-              pytest
+              # pytest
               debugpy
+              # pylama # neovim
 
+              django
               # requests
               # gdtoolkit
 
@@ -89,7 +91,7 @@ in {
               # youtube-dl # alternative: yt-dlp
             ];
           python-with-my-packages = python3.withPackages my-python-packages;
-          in python-with-my-packages)
+        in python-with-my-packages)
       ];
     };
   };

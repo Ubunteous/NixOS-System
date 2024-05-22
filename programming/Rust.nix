@@ -6,8 +6,7 @@ let
   langcfg = config.languages;
 in {
   options.languages.rust = {
-    enable =
-      mkEnableOption "Enables support for the rust programming languages";
+    enable = mkEnableOption "Enables support for the rust programming language";
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {

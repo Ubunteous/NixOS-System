@@ -8,7 +8,7 @@ let
 in {
   options.languages.postgresql = {
     enable =
-      mkEnableOption "Enables support for the PostgreSQL programming languages";
+      mkEnableOption "Enables support for the PostgreSQL programming language";
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {
