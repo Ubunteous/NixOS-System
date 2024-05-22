@@ -1,23 +1,18 @@
 default:
 	just --list
 
+
+
 build type="build" host="work":
 	nix run . -- {{type}} --flake ./#{{host}}
 
 rebuild type="test" host="nixos":
 	sudo nixos-rebuild {{type}} --flake ./#{{host}}
 
-# test host="nixos":
-# sudo nixos-rebuild test --flake ./#{{host}}
-
-# switch host="nixos":
-# sudo nixos-rebuild switch --flake ./#{{host}}
-
-# build host="nixos":
-# sudo nixos-rebuild build --flake ./#{{host}}
-
 nixmin:
 	sudo nixos-rebuild test --flake ./#minimal
+
+
 
 flake-show:
 	nix flake show
@@ -32,6 +27,8 @@ flake-update $full="false":
 		nix flake update
 	fi	
 
+
+
 clean $full="false":
 	#!/usr/bin/env sh
 	if [ ! $full = "true" ]; then
@@ -41,6 +38,15 @@ clean $full="false":
 	    echo "full clean (full=true)"
 		sudo nix-collect-garbage -d
 	fi
+
+clean-profiles:
+	#!/usr/bin/env sh
+	# nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)" | awk '{ print $1 }' | grep -vE 'home-manager|flake-registry\.json' | xargs -L1 unlink
+	nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"
+	
+clean-home:
+	#!/usr/bin/env sh
+	home-manager expire-generations "$(date)"
 
 delta:
 	#!/usr/bin/env sh
@@ -56,7 +62,6 @@ delta:
 archive:
 	# retrieve missing flake inputs
 	nix flake archive
-
 
 show-gens:
     @echo -e "Systems currently in store:\n"
