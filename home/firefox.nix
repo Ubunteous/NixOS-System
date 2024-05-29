@@ -1,23 +1,33 @@
-{ config, lib, pkgs, home-manager, user, ... }:
+{ osConfig, config, lib, pkgs, user, ... }:
 
 with lib;
 let
   cfg = config.home.firefox;
-in
-{
+  cfgext = config.home.firefox.on-nixos;
+  homecfg = config.home;
+
+  mkIfElse = p: yes: no: mkMerge [ (mkIf p yes) (mkIf (!p) no) ];
+in {
   options.home.firefox = {
     enable = mkEnableOption "Enable support for Firefox";
+    on-nixos = mkEnableOption
+      "Whether the configuration is hosted on nixos (for plugin support)";
+    # extsystem = mkOption {
+    #   description = "Platform on which firefox extensions will be installed";
+    #   default = null; # null, "nix" or "nixos"
+    #   type = types.enum [ "nixos" "home-manager" ];
+    # };
   };
 
-  config = mkIf cfg.enable {
-    home-manager.users.${user} = {
+  # config = mkIf (homecfg.enable && (cfg.enable || cfghm.enable))
+  config = mkIf (homecfg.enable && cfg.enable) (mkMerge [
+    {
       ###############
       #   FIREFOX   #
       ###############
 
       # HANDLE MANUALLY:
       # + Firefox theme: dark theme by унечтожитель or Noctourniquet
-      # + I still don't care about cookies
       # + Enable extensions
       # + In about:preferences set 120%-133% zoom by default
       # + about:config may contain interesting parameters
@@ -38,35 +48,76 @@ in
           # default = "DuckDuckGo";
           search.default = "CustomDuckDuckGo";
 
-          extensions = with pkgs; [
-            config.nur.repos.rycee.firefox-addons.darkreader
-            config.nur.repos.rycee.firefox-addons.tridactyl
-            config.nur.repos.rycee.firefox-addons.ublock-origin
-            # config.nur.repos.rycee.firefox-addons.violentmonkey
-          ];
-
           # systematically delete search.json.mozlz4 to prevent home manager conflict with files in the way
           search.force = true;
 
           search.engines = {
             # Url with DuckDuckGo preferences
             # Sometimes conflicts with .mozilla/firefox/default/search.json.mozlz4
-            "CustomDuckDuckGo".urls = [{ template = "https://duckduckgo.com/?ks=s&k7=24273a&kae=d&kj=24273a&k9=8bd5ca&kaa=f5a97f&k21=363a4f&k1=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&q={searchTerms}"; }];
-            
-            # Direct acces to nix packages with prefix @np
+            "CustomDuckDuckGo".urls = [{
+              template =
+                "https://duckduckgo.com/?ks=s&k7=24273a&kae=d&kj=24273a&k9=8bd5ca&kaa=f5a97f&k21=363a4f&k1=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&q={searchTerms}";
+            }];
+
+            # Direct access to nix options with prefix @np
             "Nix Packages" = {
               urls = [{
                 template = "https://search.nixos.org/packages";
                 params = [
-                  { name = "type"; value = "packages"; }
-                  { name = "query"; value = "{searchTerms}"; }
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "channel";
+                    value = "unstable";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
                 ];
               }];
-              
+
               definedAliases = [ "@np" ];
+            };
+
+            # Direct access to nix options with prefix @no
+            "Nix Options" = {
+              urls = [{
+                template = "https://search.nixos.org/options";
+                params = [
+                  # I expected the value to be options. weird but that's how the site is
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "channel";
+                    value = "unstable";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }];
+
+              definedAliases = [ "@no" ];
+            };
+
+            # Direct access to home manager options with prefix @hm
+            "Home Manager" = {
+              urls = [{
+                template =
+                  "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}";
+              }];
+
+              definedAliases = [ "@hm" ];
             };
           };
 
+          # note: browser.startup.homepage can point to a local html file
           # settings stored in prefs.js (like extraconfig = ...)
           settings = {
             "browser.urlbar.placeholderName" = "This is were the fun begins";
