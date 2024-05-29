@@ -26,10 +26,10 @@ in
       # rewrite search.json.mozlz4 even if firefox messes with it
       # xdg.configFile."search.json.mozlz4".force = true;
       # home.file."foo/search.json.mozlz4".force = true;
-      
+
       programs.firefox = {
         enable = true;
-        
+
         profiles.default = {
           id = 0; # each profile have a unique number (n > 0)
           name = "Default";
@@ -75,12 +75,19 @@ in
             "browser.startup.page" = 3; # session restore
             "browser.ctrlTab.sortByRecentlyUsed" = true;
             # optional: appearance dark
-            "font.size.variable.x-western" = 24; # font size
+            "font.size.variable.x-western" =
+              24; # font size. breaks some websites
             # default zoom => in external database. change manually
+            "browser.fullscreen.autohide" =
+              false; # do not hide tabs when fullscreen
+            "layout.css.devPixelsPerPx" = "1.25"; # zoom tabs/search bar
 
             # HOME
             # "browser.startup.homepage" = "https://nixos.org";
             "browser.newtabpage.activity-stream.feeds.topsites" = false;
+
+            # DEVTOOLS
+            "devtools.dom.enabled" = true;
 
             # PRIVACY AND SECURITY
             "privacy.donottrackheader.enabled" = true;
@@ -90,7 +97,7 @@ in
             "app.shield.optoutstudies.enabled" = false;
             "datareporting.healthreport.uploadEnabled" = false;
             "pdfjs.enableScripting" = false; # pdf security
-            
+
             # MISC (about:config)
             "browser.aboutConfig.showWarning" = false;
             "browser.tabs.closeWindowWithLastTab" = false;
