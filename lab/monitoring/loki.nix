@@ -1,4 +1,4 @@
-{ config, user, lib, ... }:
+{ config, lib, ... }:
 
 # see https://xeiaso.net/blog/prometheus-grafana-loki-nixos-2020-11-20/
 
@@ -89,23 +89,26 @@ in {
 
       # configFile = ./loki-local-config.yaml;
     };
-
-    # hosts/chrysalis/configuration.nix
-    # systemd.services.promtail = {
-    #   description = "Promtail service for Loki";
-    #   wantedBy = [ "multi-user.target" ];
-
-    #   serviceConfig = {
-    #     ExecStart = ''
-    #       ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtail.yaml}
-    #     '';
-    #   };
-    # };
   };
+
+  ############
+  # PROMTAIL #
+  ############
 
   # services.promtail = {
   #   enable = true;
   #   # services.promtail.configuration
   #   # services.promtail.extraFlags
+  # };
+
+  # systemd.services.promtail = {
+  #   description = "Promtail service for Loki";
+  #   wantedBy = [ "multi-user.target" ];
+
+  #   serviceConfig = {
+  #     ExecStart = ''
+  #       ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtail.yaml}
+  #     '';
+  #   };
   # };
 }

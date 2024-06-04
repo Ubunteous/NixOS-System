@@ -3,37 +3,39 @@
 with lib; {
   options.lab.enable = mkEnableOption "Homelab configuration";
   imports = [
-    ./homepage.nix
-    ./syncthing.nix
+    # ./sysadmin/ssh.nix
+    ./sysadmin/k3s.nix
+    ./sysadmin/podman.nix
+    # ./sysadmin/virtual-box.nix
 
-    ./k3s.nix
-    ./podman.nix
-    # ./virtual-box.nix
-
-    # ./monitoring/cockpit.nix
     # ./monitoring/grafana.nix
     # ./monitoring/prometheus.nix
     # ./monitoring/loki.nix
-    # ./monitoring/cadvisor.nix
-    # ./monitoring/uptime-kuma.nix
 
     # ./server/caddy.nix
     # ./server/nginx.nix
     # ./server/traefik.nix
 
-    # ./self-hosted/jellyfin.nix
-    # ./self-hosted/sonarr.nix
-    # ./self-hosted/radarr.nix
-    # ./self-hosted/readarr.nix
-    # ./self-hosted/lidarr.nix
-    # ./self-hosted/bazarr.nix
-    # ./self-hosted/prowlarr.nix
-    # ./self-hosted/jackett.nix
-    # ./self-hosted/plex.nix
+    # ./multimedia/kodi.nix
+    # ./multimedia/jellyfin.nix
+    # ./multimedia/sonarr.nix
+    # ./multimedia/radarr.nix
+    # ./multimedia/readarr.nix
+    # ./multimedia/lidarr.nix
+    # ./multimedia/bazarr.nix
+    # ./multimedia/prowlarr.nix
+    # ./multimedia/jackett.nix
+    # ./multimedia/plex.nix
 
-    # ./self-hosted/wireguard.nix
+    ./homepage.nix
+    ./syncthing.nix
+    ./self-hosted/shiori.nix
     # ./self-hosted/restic.nix
-    # ./self-hosted/shiori.nix
     # ./self-hosted/adguard.nix
+    # ./self-hosted/wireguard.nix
+
+    # ./monitoring/cockpit.nix
+    # ./monitoring/cadvisor.nix
+    # ./monitoring/uptime-kuma.nix
   ];
 }

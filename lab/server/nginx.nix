@@ -15,17 +15,22 @@ in {
     #########
 
     # nginx reverse proxy
-    # services.nginx.enable = true;
-    services.nginx.virtualHosts."localhost" = {
-      # virtualHosts.${config.services.grafana.settings.server.domain}
+    services.nginx = {
+      enable = true;
 
-      # addSSL = true;
-      # enableACME = true;
+      recommendedProxySettings = true;
+      recommendedTlsSettings = true;
 
-      locations."/" = {
-        # proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
-        proxyWebsockets = true;
-        recommendedProxySettings = true;
+      # ${config.services.grafana.settings.server.domain}
+      virtualHosts."localhost" = {
+        locations."/var/html" = {
+          # ${toString grafana...server.http_addr}
+          # :${toString grafana...server.http_port}";
+
+          proxyPass = "http://127.0.0.1:3002/";
+          # proxyWebsockets = true;
+          # recommendedProxySettings = true;
+        };
       };
     };
   };

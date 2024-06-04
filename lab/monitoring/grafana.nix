@@ -6,10 +6,10 @@ with lib;
 let
   cfg = config.lab.grafana;
   labcfg = config.lab;
-  in {
-    options.lab.grafana = { enable = mkEnableOption "Enables support Grafana"; };
+in {
+  options.lab.grafana = { enable = mkEnableOption "Enables support Grafana"; };
 
-    config = mkIf (labcfg.enable && cfg.enable) {
+  config = mkIf (labcfg.enable && cfg.enable) {
     ###########
     # GRAFANA #
     ###########
@@ -17,13 +17,12 @@ let
     # go to http://localhost:3000/ and log with admin / admin
     services.grafana = {
       enable = true;
-      settings.server = {
-        # http://localhost:3000/
-        http_port = 3002; # default is 3000
-        # http_addr = "127.0.0.1";
 
-        domain = "localhost";
+      settings.server = {
         protocol = "http";
+        domain = "localhost";
+        http_addr = "127.0.0.1";
+        http_port = 3002; # default is 3000
       };
 
       dataDir = "/var/lib/grafana";

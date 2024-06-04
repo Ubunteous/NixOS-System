@@ -6,12 +6,12 @@ with lib;
 let
   cfg = config.lab.prometheus;
   labcfg = config.lab;
-  in {
-    options.lab.prometheus = {
-      enable = mkEnableOption "Enables support for Prometheus";
-    };
+in {
+  options.lab.prometheus = {
+    enable = mkEnableOption "Enables support for Prometheus";
+  };
 
-    config = mkIf (labcfg.enable && cfg.enable) {
+  config = mkIf (labcfg.enable && cfg.enable) {
 
     ##############
     # PROMETHEUS #
@@ -19,8 +19,8 @@ let
 
     services.prometheus = {
       enable = true;
-      # http://localhost:9090/
-      # port = 9090; # default is 9090
+
+      port = 9090; # default is 9090
 
       exporters = {
         node = {
@@ -30,16 +30,15 @@ let
         };
       };
 
-      # scrapeConfigs = [{
-      #   job_name = "chrysalis";
-      #   static_configs = [{
-      #     targets = [
-      #       "127.0.0.1:${
-      #         toString config.services.prometheus.exporters.node.port
-      #       }"
-      #     ];
-      #   }];
-      # }];
+      scrapeConfigs = [{
+        job_name = "chrysalis";
+        static_configs = [{
+          targets = [
+            # should match exporters.node.port
+            "127.0.0.1:9091"
+          ];
+        }];
+      }];
     };
   };
 }

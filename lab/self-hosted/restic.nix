@@ -1,4 +1,6 @@
-{ config, lib, ... }:
+{ config, lib, user, ... }:
+
+# ALTERNATIVES: BORG+BORGMATIC or KOPIA (not yet in nix)
 
 with lib;
 let
@@ -15,25 +17,59 @@ in {
       server = {
         enable = true;
 
-        # prometheus = true;
-        # privateRepos = true;
-        # listenAddress = 8000; # defaults to 8000
         extraFlags = [ "--no-auth" ];
-        # dataDir = "/var/lib/restic";
-        # appendOnly = true;
       };
 
       backups."name" = {
-        # user = "root";
+        user = "${user}"; # defaults to root
 
+        # use either to provide repository to backup to
+        # repositoryFile = null;
+        # repository = "sftp:backup@192.168.1.100:/backups/name";
+
+        # # paths and dynamicFilesFrom specify what should be backed up
+        # # if empty, does not backup. only prunes
+        # paths = [ "/var/lib/postgresql" "/home/user/backup" ];
+        # dynamicFilesFrom = "find /home/${user}/git -type d -name .git"; # bash
+
+        passwordFile = "/path/to/file";
+
+        # # create the repo if does not exist
+        # initialize = true;
+
+        # # patterns to exclude during backup
+        # exclude = [ "/var/cache" "/home/*/.cache" ".git" ];
+
+        # environmentFile = "/path/to/file";
+        # createWrapper = true;
+        # backupPrepareCommand = "make command here";
+        # backupCleanupCommand = "make command here";
+
+        ###############
+        #   options   #
+        ###############
+
+        # # if not specified, backups must be done manually
         # timerConfig = {
         #   OnCalendar = "daily";
         #   Persistent = true;
         # };
 
-        # use either
-        repositoryFile = "/path/to/file";
-        # repository = "sftp:backup@192.168.1.100:/backups/name";
+        # note: forget command is run after backup command
+        # pruneOpts = [
+        #   "--keep-daily 7"
+        #   "--keep-weekly 5"
+        #   "--keep-monthly 12"
+        #   "--keep-yearly 75"
+        # ];
+
+        # extraOptions = [];
+        # extraBackupArgs = [];
+        # checkOpts = [ "--with-cache" ];
+
+        ##############
+        #   rclone   #
+        ##############
 
         # rcloneOptions = {
         #   bwlimit = "10M";
@@ -42,20 +78,17 @@ in {
         # rcloneConfigFile = "/path/to/file"
         # rcloneConfig = {};
 
-        # pruneOpts = [];
-        # paths = [];
-        passwordFile = "/path/to/file";
+        ############
+        #   misc   #
+        ############
 
-        # initialize = true;
-        # extraOptions = [];
-        # extraBackupArgs = [];
-        # exclude = [];
-        # environmentFile = "/path/to/file";
-        # dynamicFilesFrom = "make a script here";
-        # createWrapper = true;
-        # checkOpts = [ "--with-cache" ];
-        # backupPrepareCommand = "make command here";
-        # backupCleanupCommand = "make command here";
+        # prometheus = true;
+        # privateRepos = true;
+        # listenAddress = 8000; # defaults to 8000
+
+        # dataDir = "/var/lib/restic";
+        # appendOnly = true;
+
       };
     };
   };

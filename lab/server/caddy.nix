@@ -4,13 +4,18 @@ with lib;
 let
   cfg = config.lab.caddy;
   labcfg = config.lab;
-  in {
+in {
 
-    options.lab.caddy = { enable = mkEnableOption "Enables support for caddy"; };
+  options.lab.caddy = { enable = mkEnableOption "Enables support for caddy"; };
 
   config = mkIf (labcfg.enable && cfg.enable) {
     services.caddy = {
       enable = true;
+
+      # virtualHosts."template.url.to.computer:80".extraConfig = ''
+      #   redir /syncthing /syncthing/
+      #   reverse_proxy /radarr/* { to localhost:8384 }
+      # '';
 
       # logDir = "/var/log/caddy"; # see option logFormat
 

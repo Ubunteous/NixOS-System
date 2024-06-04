@@ -20,10 +20,10 @@ in {
       # openFirewall = true;
       # mutableSettings = false;
 
-      # settings = {
-      #   bind_port = 3002; # defaults to 3000
-      #   bind_host = "127.0.0.1"; # defaults to "0.0.0.0";
-      # };
+      settings = {
+        bind_port = 3090; # defaults to 3000
+        #   bind_host = "127.0.0.1"; # defaults to "0.0.0.0";
+      };
     };
   };
 }
