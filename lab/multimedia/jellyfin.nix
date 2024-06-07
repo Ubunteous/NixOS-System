@@ -11,22 +11,22 @@ in {
   };
 
   config = mkIf (labcfg.enable && cfg.enable) {
-    # services.jellyseerr.enable = true; # request manager
 
     services.jellyfin = {
       enable = true;
 
+      # for lan access and more
+      openFirewall = true;
+
+      # grant access to media with chown or create /home/jellyfin
       # group = "jellyfin";
-      # servicesuser = "jellyfin";
+      # user = "jellyfin";
 
       # logDir = "\${cfg.dataDir}/log";
       # cacheDir = "/var/cache/jellyfin";
-
-      # openFirewall = true;
 
       # dataDir = "/var/lib/jellyfin";
       # configDir = "\${cfg.dataDir}/config";
     };
   };
-
 }
