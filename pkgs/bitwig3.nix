@@ -1,18 +1,17 @@
-{ stdenv, fetchurl, alsa-lib, cairo, dpkg, freetype
-, gdk-pixbuf, glib, gtk3, lib, xorg
-, libglvnd, libjack2, ffmpeg
-, libxkbcommon, xdg-utils, zlib, pulseaudio
+{ stdenv, fetchurl, alsa-lib, cairo, dpkg, freetype, gdk-pixbuf, glib, gtk3, lib
+, xorg, libglvnd, libjack2, ffmpeg, libxkbcommon, xdg-utils, zlib, pulseaudio
 , wrapGAppsHook, makeWrapper }:
 
-# error: libxkbcommon_7 has been removed because it is impacted by security issues and not used in nixpkgs, move to 'libxkbcommon'
+# error: libxkbcommon_7 has been removed because it has security issues and not used in nixpkgs, move to 'libxkbcommon'
 
 stdenv.mkDerivation rec {
   pname = "bitwig-studio";
-  version = "3.1.3";
+  version = "3.1.3"; # mouse cursor icon broken since 23.11
   # version = "3.2.8"; # audio engine broken in this version
-  
+
   src = fetchurl {
-    url = "https://downloads.bitwig.com/stable/${version}/${pname}-${version}.deb";
+    url =
+      "https://downloads.bitwig.com/stable/${version}/${pname}-${version}.deb";
     sha256 = "11z5flmp55ywgxyccj3pzhijhaggi42i2pvacg88kcpj0cin57vl"; # 3.1.3
     # sha256 = "18ldgmnv7bigb4mch888kjpf4abalpiwmlhwd7rjb9qf6p72fhpj"; # 3.2.8
   };
@@ -28,9 +27,26 @@ stdenv.mkDerivation rec {
   dontWrapGApps = true; # we only want $gappsWrapperArgs here
 
   buildInputs = with xorg; [
-    alsa-lib cairo freetype gdk-pixbuf glib gtk3 libxcb xcbutil xcbutilwm zlib libXtst libxkbcommon pulseaudio libjack2 libX11 libglvnd libXcursor stdenv.cc.cc.lib
+    alsa-lib
+    cairo
+    freetype
+    gdk-pixbuf
+    glib
+    gtk3
+    libxcb
+    xcbutil
+    xcbutilwm
+    zlib
+    libXtst
+    libxkbcommon
+    pulseaudio
+    libjack2
+    libX11
+    libglvnd
+    libXcursor
+    stdenv.cc.cc.lib
   ];
-  
+
   # binPath = lib.makeBinPath [
   #   xdg-utils ffmpeg
   # ];

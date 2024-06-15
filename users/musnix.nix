@@ -1,21 +1,32 @@
-{ musnix, ... }:
+{ config, lib, musnix, ... }:
 
+with lib;
+let
+  cfg = config.user.musnix;
+  usercfg = config.user;
+in
 {
-  musnix.enable = true;
-  # musnix.alsaSeq.enable = true;
-  # musnix.ffado.enable = true;
-  # musnix.soundcardPciId = "string";
+  options.user.musnix = {
+    enable = mkEnableOption "Enables support for Musnix";
+  };
 
-  # the following can be used without musnix.enable true
-  # musnix.kernel.realtime = true;
+  config = mkIf (usercfg.enable && cfg.enable) {
+    musnix.enable = true;
+    # musnix.alsaSeq.enable = true;
+    # musnix.ffado.enable = true;
+    # musnix.soundcardPciId = "string";
 
-  # Don't. It's completely buggy and loops forever 
-  # musnix.kernel.packages = pkgs.linuxPackages_5_4_rt;
+    # the following can be used without musnix.enable true
+    # musnix.kernel.realtime = true;
 
-  # OPTIONS for kernel package:
-  # pkgs.linuxPackages_5_4_rt
-  # pkgs.linuxPackages_5_15_rt
-  # pkgs.linuxPackages_6_0_rt
-  # pkgs.linuxPackages_rt
-  # pkgs.linuxPackages_latest_rt
+    # Don't. It's completely buggy and loops forever 
+    # musnix.kernel.packages = pkgs.linuxPackages_5_4_rt;
+
+    # OPTIONS for kernel package:
+    # pkgs.linuxPackages_5_4_rt
+    # pkgs.linuxPackages_5_15_rt
+    # pkgs.linuxPackages_6_0_rt
+    # pkgs.linuxPackages_rt
+    # pkgs.linuxPackages_latest_rt
+  };
 }
