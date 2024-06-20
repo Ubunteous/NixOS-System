@@ -3,6 +3,12 @@
 
 @import "parameters.scss";
 
+.wifi_icon {
+    font-size: $font_size_wifi_icon;
+    margin-left: $margin_left_wifi_icon;
+    margin-right: $margin_right_wifi_icon;
+}
+
 .wifi {
     background-color: $wifi;
     color: $text;

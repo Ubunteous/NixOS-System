@@ -19,8 +19,9 @@
 }
 
 .date_icon {
-    font-size: $dateicon_font;
+    font-size: $dateicon_size;
     margin-left: $paddl;
+    margin-right: $dateicon_margin_right;
 }
 
 // configuration when date is an event box with a calendar

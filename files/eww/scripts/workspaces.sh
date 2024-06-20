@@ -23,8 +23,8 @@ for (( i=0; i<${#busy_ws}; i++ )); do
     output=$(sed s/.//"$id_real" <<< "$output")
 done
 
-# current workspace must be replaced by  (dot-circle-o)
+# current workspace must be replaced by  (dot-circle-o) or  (paw faicon)
 curr_ws=$(( (curr_ws / 3)*8 + (curr_ws % 3)*2 + 1))
-output=$(sed s/.//"$curr_ws" <<< "$output")
-
+# output=$(sed s/.//"$curr_ws" <<< "$output")
+output=$(sed s/.//"$curr_ws" <<< "$output")
 echo "$output"

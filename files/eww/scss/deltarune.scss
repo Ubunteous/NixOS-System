@@ -4,7 +4,8 @@
 @import "parameters.scss";
 
 .deltarune {
-    background-image: url("/home/ubunteous/Pictures/deltarune (blue).png");
+    // relative link not supported
+    background-image: url("/home/ubunteous/.config/eww/assets/deltarune.png");    
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: center;
