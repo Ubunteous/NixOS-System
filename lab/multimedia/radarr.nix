@@ -17,7 +17,7 @@ in {
       # user = "radarr";
       # group = "radarr";
 
-      # openFirewall = true;
+      openFirewall = true;
       # dataDir = "/var/lib/radarr/.config/Radarr";
     };
   };

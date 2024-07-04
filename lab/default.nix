@@ -12,30 +12,29 @@ with lib; {
     # ./monitoring/prometheus.nix
     # ./monitoring/loki.nix
 
-    # ./server/caddy.nix
-    # ./server/nginx.nix
-    # ./server/traefik.nix
+    # ./proxy/caddy.nix
+    # ./proxy/nginx.nix
+    # ./proxy/traefik.nix
 
     # ./multimedia/kodi.nix
-    # ./multimedia/jellyfin.nix
-    # ./multimedia/sonarr.nix
-    # ./multimedia/radarr.nix
-    # ./multimedia/readarr.nix
-    # ./multimedia/lidarr.nix
-    # ./multimedia/bazarr.nix
-    # ./multimedia/prowlarr.nix
-    # ./multimedia/jackett.nix
-    # ./multimedia/plex.nix
+    ./multimedia/jellyfin.nix
+    # ./multimedia/jellyseer.nix
+    # ./multimedia/kavita.nix
 
-    ./homepage.nix
-    ./syncthing.nix
-    ./self-hosted/shiori.nix
-    # ./self-hosted/restic.nix
-    # ./self-hosted/adguard.nix
-    # ./self-hosted/wireguard.nix
+    ./multimedia/sonarr.nix
+    ./multimedia/radarr.nix
+    ./multimedia/readarr.nix
+    ./multimedia/lidarr.nix
+    ./multimedia/bazarr.nix
+    ./multimedia/prowlarr.nix
 
-    # ./monitoring/cockpit.nix
-    # ./monitoring/cadvisor.nix
-    # ./monitoring/uptime-kuma.nix
+    # ./backup/restic.nix
+    ./backup/syncthing.nix
+
+    ./self-hosted/homepage.nix
+    ./self-hosted/adguard.nix
+    ./self-hosted/wireguard.nix
+
+    # ./self-hosted/shiori.nix
   ];
 }
