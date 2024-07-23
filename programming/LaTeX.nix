@@ -17,6 +17,11 @@ in {
           # ghostscript # for latex images/equations with preview-region
           # texlab # lsp
 
+          # texpresso # live editing
+
+          # autoconf # for auctex build with elpaca
+          # auctex
+
           (texlive.combine {
             inherit (texlive)
             # scheme-basic # base (but not minimal)
@@ -25,6 +30,9 @@ in {
 
               # fullpage missing => maybe in bigger scheme like
               # [T1]fontenc => old font. don't use it. lmodern is better
+
+              # improved appearance
+              # microtype
 
               # oad
               pdfpages ulem fp changepage xcolor pdflscape
