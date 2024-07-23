@@ -31,6 +31,8 @@ in {
             with python-packages; [
               pynvim # for deoplete-nvim
 
+              # pillow # PIL for embuary
+
               pip # necessary for emacs anaconda mode
               # python-lsp-server
               # isort
@@ -44,10 +46,10 @@ in {
               # gdtoolkit
 
               # Data Science
-              # numpy
-              # matplotlib           
-              # pandas
-              # scipy
+              numpy
+              matplotlib
+              pandas
+              scipy
               # scikit-learn
 
               # AMLS
