@@ -65,7 +65,7 @@ in {
           # stignore = "\n";
 
           enable = true;
-          path = "~/org/Latex/Oeuvres à Découvrir/output";
+          path = "~/org/Fictions/Latex/Oeuvres à Découvrir/output";
           label = "Oeuvres à Découvrir";
           type = "sendonly";
           paused = true;
