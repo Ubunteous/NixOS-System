@@ -12,72 +12,75 @@ in {
 
   config = mkIf (langcfg.enable && cfg.enable) {
     users.users.${user} = {
-      packages = with pkgs;
-        [
-          # ghostscript # for latex images/equations with preview-region
-          # texlab # lsp
+      packages = with pkgs; [
+        # ghostscript # for latex images/equations with preview-region
+        # texlab # lsp
 
-          # texpresso # live editing
+        # texpresso # live editing
 
-          # autoconf # for auctex build with elpaca
-          # auctex
+        # autoconf # for auctex build with elpaca
+        # auctex
 
-          (texlive.combine {
-            inherit (texlive)
-            # scheme-basic # base (but not minimal)
-              scheme-small # for missing mf command
-              comment
+        # music
+        # lilypond-with-fonts # try version with fonts
+        lilypond-unstable-with-fonts
 
-              # fullpage missing => maybe in bigger scheme like
-              # [T1]fontenc => old font. don't use it. lmodern is better
+        (texlive.combine {
+          inherit (texlive)
+          # scheme-basic # base (but not minimal)
+            scheme-small # for missing mf command
+            comment
 
-              # improved appearance
-              # microtype
+            # fullpage missing => maybe in bigger scheme like
+            # [T1]fontenc => old font. don't use it. lmodern is better
 
-              # oad
-              pdfpages ulem fp changepage xcolor pdflscape
+            # improved appearance
+            # microtype
 
-              # cv
-              fontawesome
-              # hyperref
+            # oad
+            pdfpages ulem fp changepage xcolor pdflscape
 
-              # org
-              dvipng # essential
-              # wrapfig
-              # capt-of
-              # kpathsea
-              # metafont
-              parskip listings
+            # cv
+            fontawesome
+            # hyperref
 
-              # presentations
-              # beamer
-              # beamertheme-metropolis
-              # pgfopts # metropolis dependency
-              # lmodern # already available as a metropolis dependency
+            # org
+            dvipng # essential
+            # wrapfig
+            # capt-of
+            # kpathsea
+            # metafont
+            parskip listings
 
-              # wallpaper
-              # everypage
-              # background
-              # xkeyval # background dependency
+            # presentations
+            # beamer
+            # beamertheme-metropolis
+            # pgfopts # metropolis dependency
+            # lmodern # already available as a metropolis dependency
 
-              # csv
-              # csvsimple
-              # siunitx
-              # datatool
+            # wallpaper
+            # everypage
+            # background
+            # xkeyval # background dependency
 
-              # misc
-              enumitem
-              # forest
-              ragged2e preprint # corresponds to fullpage package
-              # caption
-              # pgfgantt
-              # extsizes
-              # multirow
-              # biblatex
-              # biber
-            ;
-          })
-        ];
+            # csv
+            # csvsimple
+            # siunitx
+            # datatool
+
+            # misc
+            enumitem
+            # forest
+            ragged2e preprint # corresponds to fullpage package
+            # caption
+            # pgfgantt
+            # extsizes
+            # multirow
+            # biblatex
+            # biber
+          ;
+        })
+      ];
     };
   };
 }
