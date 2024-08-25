@@ -57,6 +57,7 @@ let
         "text/x-python" = "xed.desktop";
         "text/plain" = "xed.desktop";
         "application/vnd.ms-publisher" = "xed.desktop";
+        "application/xml" = "xed.desktop";
 
         # archives
         "application/zip" = "org.gnome.FileRoller.desktop";
