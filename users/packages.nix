@@ -38,9 +38,9 @@ in {
       # thunderbird
       # yacreader # cbr/cbz reader
 
-      #########
+      ###########
       #   KBD   #
-      #########
+      ###########
 
       # mechanical keyboard configuration
       qmk # A program to help users work with QMK Firmware
@@ -154,12 +154,16 @@ in {
       ########################
 
       bat # cat
-      bottom # top
+      # bottom # top
+      # broot # directory tree nav
+      cheat # tldr/man
       # choose # cut/awk
       # croc # send files
+      # curlie # curl
       # delta # git diff
       # difftastic # diff
       # direnv # environment variables # replaced by nix-direnv
+      # dogdns # dig
       du-dust # disk usage
       # duf # disk analysis
       # exa # unmaintained 9-2023 ls replacement
@@ -167,8 +171,15 @@ in {
       fd # find
       fzf # alternative: peco
       gdu # disk usage
+      # glances # top
+      # gping # ping
+      # gtop # top
       hstr # history
+      # httpie # http client
+      # hyperfine # benchmark
+      # jq # json sed
       just # make
+      # lsd # ls superset
       # mcfly # history search. requires setup
       # mosh # stable ssh
       # most # more than less
@@ -176,16 +187,17 @@ in {
       # procs # ps
       # ranger # alternative: nnn
       ripgrep # grep. combine it with fzf later
-      ### ripgrep-all # broken in unstable (September 2023)
-      sd # sed/awk
+      ripgrep-all # broken in unstable (September 2023)
+      # sd # sed/awk
       # thefuck # corrector
       tldr # man
       tlp # battery life
+      # uutils-coreutils # rust coreutils
       # wtf # terminal dashboard
-      # xh # curl
+      # xh # http
       # xsv # manipulate csv
       # zellij # multiplexer+
-      zoxide # cd
+      # zoxide # cd
 
       ################
       #   HOME MANAGER   #
