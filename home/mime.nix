@@ -40,6 +40,7 @@ let
         "inode/directory" = "nemo.desktop";
         # images
         "image/png" = "pix.desktop";
+	"image/avif" = "pix.desktop";
         "image/jpg" = "pix.desktop";
         "image/jpeg" = "pix.desktop";
         "image/svg+xml" = "pix.desktop";
