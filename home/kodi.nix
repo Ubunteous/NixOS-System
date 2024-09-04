@@ -15,6 +15,9 @@ in {
     programs.kodi = {
       enable = true;
 
+      # Skin: Arctic Zephyr
+      # Settings>Interface>Startup>Startup window
+      # Settings>Interface>Skin>Configure>Main menu items | Colors>Teal
       sources = {
         video = {
           default = "Videos";
