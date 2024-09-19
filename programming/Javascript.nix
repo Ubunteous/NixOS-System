@@ -16,12 +16,12 @@ let
     # "@jest" # unit tests
     # mocha # unit testing framework
   ];
-  in {
-    options.languages.javascript = {
-      enable =
-	mkEnableOption "Enables support for the Javascript programming language";
+in {
+  options.languages.javascript = {
+    enable =
+      mkEnableOption "Enables support for the Javascript programming language";
 
-      addTypescript = mkOption {
+    addTypescript = mkOption {
       type = types.bool;
       default = false;
       description =
@@ -36,8 +36,12 @@ let
           [
             nodejs
 
+            # package managers:
             # node2nix
             # yarn2nix
+            # yarn-berry # next-gen yarn
+            # pnpm # link deps to avoid dupplicates
+
             # create-react-app
             # biome # lint/format => does not send to stdout
           ] ++ nodepkgs;
