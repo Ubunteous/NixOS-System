@@ -82,6 +82,30 @@
 
 with import <nixpkgs> { };
 mkShell {
-  NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [ gtk3 glib ];
+  NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
+    # missing for dialog.64
+    gtk3
+    glib
+
+    # missing for September 2024 update
+    cairo # libcairo.so.2 => not found
+    freetype # libfreetype.so.6 => not found
+    xorg.xcbutilkeysyms # libxcb-keysyms.so.1 => not found
+    xorg.libxcb # libxcb-shm.so.0 => not found
+    xorg.xcbutil # libxcb-util.so.1 => not found
+    # xorg.libxcb # libxcb.so.1 => not found
+
+    # use either
+    zlib # libz.so.1 => not found
+    libz # libz.so.1 => not found
+
+    # cairo.out
+    # freetype.out
+    # glib.out
+    # libz.out
+    # xorg.libxcb.out
+    # xorg.xcbutil.out
+    # xorg.xcbutilkeysyms.out
+  ];
   NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
 }
