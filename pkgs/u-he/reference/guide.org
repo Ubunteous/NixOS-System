@@ -1,0 +1,51 @@
+#+title: guide
+
+To play games:
+
+* Install the gog game with setup.sh
+
+Running the file will result with this error:
+
+#+begin_src
+./startmojo.sh: line 55: /tmp/selfgz2109529507/bin/linux/x86_64/mojosetup: No such file or directory
+Error: Couldn't run mojosetup
+#+end_src
+
+You will need this command to run the file with steam-run:
+
+#+begin_src
+export NIXPKGS_ALLOW_UNFREE=1 && nix-shell -p steam-run
+#+end_src
+
+* Missing libraries
+
+Move to the game file in GOG Games and use:
+
+#+begin_src
+ldd game
+patchelf --print-interpreter *executable-file*
+#+end_src
+
+This will show missing libraries required to run the game
+
+* Known Libraries
+
++ libstdc++.so.6 => libstdcxx5 ?
++ libGL.so.1 => glib
+  
+* shell.nix
+
+Place this file in the game's directory
+
+#+begin_src nix
+with import <nixpkgs> {};
+mkShell {
+  NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
+    # lib1
+    # lib2
+  ];
+  NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
+}
+#+end_src
+
+Finally, run
