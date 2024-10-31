@@ -1,0 +1,134 @@
+
+
+* Main Objects
+** Get Info
+
+#+begin_src python
+from libqtile.log_utils import logger
+
+methods = [method for method in dir(window) if callable(getattr(window, method)) and method[0]!="_"]
+
+properties = [property for property in dir(window) if not callable(getattr(window, property)) and property[0]!="_"]
+
+logger.warning(f"METHODS\n\n {str(methods)}\n\n")
+logger.warning(f"PROPERTIES\n\n {str(properties)}\n\n")
+
+object.methods()
+#+end_src
+
+** Layout
+*** Methods
+
+#+begin_src python
+['add_client', 'add_defaults', 'blur', 'clone', 'command', 'commands', 'configure', 'doc', 'down', 'eval', 'finalize', 'flip', 'focus', 'focus_first', 'focus_last', 'focus_next', 'focus_previous', 'function', 'get_shrink_margin', 'get_windows', 'grow', 'grow_down_shared', 'grow_main', 'grow_up_shared', 'hide', 'info', 'items', 'layout', 'left', 'maximize', 'next', 'normalize', 'previous', 'remove', 'reset', 'right', 'select', 'set_ratio', 'show', 'shrink', 'shrink_down', 'shrink_down_shared', 'shrink_main', 'shrink_up', 'shrink_up_shared', 'shuffle_down', 'shuffle_left', 'shuffle_right', 'shuffle_up', 'swap', 'swap_left', 'swap_main', 'swap_right', 'up']
+#+end_src
+
+*** Properties
+
+#+begin_src python
+['align', 'border_focus', 'border_normal', 'border_width', 'clients', 'default_ratio', 'defaults', 'do_normalize', 'focused', 'global_defaults', 'group', 'margin', 'new_client_position', 'ratio', 'relative_sizes', 'screen_rect', 'single_border_width', 'single_margin']
+#+end_src
+
+*** Real commands
+
+#+begin_src python
+['commands', 'doc', 'down', 'eval', 'flip', 'function', 'grow', 'grow_main', 'info', 'items', 'left', 'maximize', 'next', 'normalize', 'previous', 'reset', 'right', 'set_ratio', 'shrink', 'shrink_main', 'shuffle_down', 'shuffle_left', 'shuffle_right', 'shuffle_up', 'swap', 'swap_left', 'swap_main', 'swap_right', 'up']
+#+end_src
+
+** Windows
+*** METHODS
+
+ #+begin_src python
+ ['bring_to_front', 'center', 'change_layer', 'command', 'commands', 'disable_floating', 'disable_fullscreen', 'disable_mask', 'doc', 'down_opacity', 'enable_floating', 'enable_fullscreen', 'eval', 'focus', 'function', 'get_hints', 'get_layering_information', 'get_pid', 'get_position', 'get_size', 'get_wm_class', 'get_wm_role', 'get_wm_type', 'handle_ButtonPress', 'handle_ClientMessage', 'handle_ConfigureRequest', 'handle_EnterNotify', 'handle_PropertyNotify', 'has_fixed_ratio', 'has_fixed_size', 'has_user_set_position', 'hide', 'info', 'inspect', 'is_transient_for', 'is_visible', 'items', 'keep_above', 'keep_below', 'kill', 'match', 'move_down', 'move_floating', 'move_to_bottom', 'move_to_top', 'move_up', 'paint_borders', 'place', 'raise_children', 'resize_floating', 'select', 'send_configure_notify', 'set_group', 'set_opacity', 'set_position', 'set_position_floating', 'set_size_floating', 'set_wm_state', 'static', 'toggle_floating', 'toggle_fullscreen', 'toggle_maximize', 'toggle_minimize', 'togroup', 'toscreen', 'tweak_float', 'unhide', 'up_opacity', 'update_fullscreen_wm_state', 'update_hints', 'update_name', 'update_state', 'update_wm_class', 'update_wm_net_icon']
+ #+end_src
+
+*** PROPERTIES
+
+ #+begin_src python
+ ['base_height', 'base_width', 'base_x', 'base_y', 'bordercolor', 'borderwidth', 'can_steal_focus', 'defunct', 'depth', 'edges', 'float_x', 'float_y', 'floating', 'fullscreen', 'group', 'has_focus', 'height', 'hidden', 'hints', 'icons', 'kept_above', 'kept_below', 'maximized', 'minimized', 'name', 'opacity', 'previous_layer', 'qtile', 'reserved_space', 'state', 'urgent', 'wants_to_fullscreen', 'wid', 'width', 'window', 'x', 'y']
+ #+end_src
+
+*** Real methods
+
+#+begin_src python
+['bring_to_front', 'center', 'commands', 'disable_floating', 'disable_fullscreen', 'doc', 'down_opacity', 'enable_floating', 'enable_fullscreen', 'eval', 'focus', 'function', 'get_hints', 'get_position', 'get_size', 'info', 'inspect', 'is_visible', 'items', 'keep_above', 'keep_below', 'kill', 'match', 'move_down', 'move_floating', 'move_to_bottom', 'move_to_top', 'move_up', 'place', 'resize_floating', 'set_opacity', 'set_position', 'set_position_floating', 'set_size_floating', 'static', 'toggle_floating', 'toggle_fullscreen', 'toggle_maximize', 'toggle_minimize', 'togroup', 'toscreen', 'up_opacity']
+#+end_src
+
+** Groups
+*** Methods
+
+#+begin_src python
+['add', 'command', 'commands', 'doc', 'eval', 'focus', 'focus_back', 'focus_by_index', 'focus_by_name', 'function', 'get_next_group', 'get_previous_group', 'hide', 'info', 'info_by_name', 'items', 'layout_all', 'mark_floating', 'next_window', 'prev_window', 'remove', 'select', 'set_label', 'set_screen', 'setlayout', 'swap_window_order', 'switch_groups', 'toscreen', 'unminimize_all', 'use_layout', 'use_next_layout', 'use_previous_layout']
+#+end_src
+
+*** Properties
+
+#+begin_src python
+['current_layout', 'current_window', 'custom_layout', 'floating_layout', 'focus_history', 'label', 'last_focused', 'layout', 'layouts', 'name', 'qtile', 'screen', 'screen_affinity', 'tiled_windows', 'windows']
+#+end_src
+
+*** Real methods
+
+#+begin_src python
+['commands', 'doc', 'eval', 'focus_back', 'focus_by_index', 'focus_by_name', 'function', 'info', 'info_by_name', 'items', 'next_window', 'prev_window', 'set_label', 'setlayout', 'swap_window_order', 'switch_groups', 'toscreen', 'unminimize_all']
+#+end_src
+
+* Notifications and logs
+
+#+begin_src python
+from libqtile.utils import send_notification
+send_notification("qtile", "Hello")
+
+# see in file ~/.local/share/qtile/qtile.log
+from libqtile.log_utils import logger
+logger.warning(f"Hello")
+
+subprocess.run(["dunstify", f"{window.info()['wm_class'][0]}"])
+#+end_src
+
+* Snippet: swap with last
+
+#+begin_src python
+last_focus_index = -1
+
+def swap_focus_main(_):
+    """
+    Swaps focused window to main area. If the current focus is main, then swap
+    with the last swapped window (via this function). Focus remains on main.
+    
+    Behaves like quick Ctrl+Tab in VS Code.
+    """
+
+    layout = qtile.current_layout
+
+    if layout.name == "monadtall":
+        global last_focus_index
+        current_index = layout.clients.current_index
+        # 0 is main window
+        if current_index == 0:
+            if last_focus_index < 0:
+                # nothing to swap with
+                return
+            # swap with last
+            target_index = last_focus_index
+        else:
+            # swap subordinates with main
+            target_index = current_index
+            last_focus_index = current_index
+
+        main_window = layout.clients[0]
+        target_window = layout.clients[target_index]
+        # swaps windows and keeps focus on main
+        layout.cmd_swap(target_window, main_window)
+
+def focus_main(_):
+    layout = qtile.current_layout
+
+    if layout.name == "monadtall":
+        # aligned to right
+        if layout.align == 1:
+            layout.cmd_right()
+            return
+
+        layout.cmd_left()
+#+end_src
