@@ -13,7 +13,10 @@ from decorators import (
     window_to_next_group,
     groups,
     keybindings,
+    rotslaves_up,
+    rotslaves_down,
     swap_main,
+    smart_change_layout,
     next_trio,
     prev_trio,
     next_within_trio,
@@ -22,10 +25,7 @@ from decorators import (
 )
 
 command = Path(__file__).parent.absolute() / "commands.sh"
-
 mod = "mod4"
-# from libqtile.utils import guess_terminal
-# terminal = guess_terminal()
 
 ############
 # BINDINGS #
@@ -37,14 +37,16 @@ keys = [
     #########
     Key("M-y", lazy.spawn("rofi -show drun")),
     Key("M-e", lazy.spawn("nemo")),
-    Key("M-S-<Return>", lazy.spawn(f"{command} randTerm")),
+    Key("M-S-<Return>", lazy.spawn("wezterm")), # f"{command} randTerm"
     Key("M-S-l", lazy.spawn(f"{command} lock")),
     Key("M-<dollar>", lazy.spawn(f"{command.parent.parent}/rofi/powermenu.sh")),
     ###########
     # LAYOUTS #
     ###########
-    Key("M-<space>", lazy.window.toggle_fullscreen()),
-    Key("M-m", lazy.layout.maximize()),
+    Key("M-<space>", smart_change_layout),
+    # Key("M-<space>", lazy.next_layout()),
+    # Key("M-<space>", lazy.window.toggle_fullscreen()),
+    Key("M-C-m", lazy.layout.maximize()),
     Key("M-n", lazy.layout.reset()),
     ###########
     # MONITOR #
@@ -55,12 +57,11 @@ keys = [
     # WINDOWS #
     ###########
     Key("M-<Return>", swap_main),
-    # Key("M-<Return>", lazy.layout.swap_main()),
-    # Key("M-<Return>", lazy.layout.next()), # change focus
-    # Key("M-<Return>", lazy.group.focus_back()), # change focus
     Key("M-x", kill_unless_emacs),
     Key("M-f", lazy.window.toggle_floating()),
     Key("M-u", lazy.layout.shuffle_up()),
+    Key("M-r", rotslaves_down),
+    Key("M-C-r", rotslaves_up),
     #############
     # WORKSPACE #
     #############
@@ -70,6 +71,8 @@ keys = [
     Key("M-C-<right>", window_to_next_group, lazy.screen.next_group()),
     Key("M-<Left>", prev_within_trio),
     Key("M-<Right>", next_within_trio),
+    Key("M-m", prev_within_trio),
+    Key("M-i", next_within_trio),
     ############
     # FUNCTION #
     ############
@@ -97,4 +100,3 @@ keys = [
 
 for index, group in enumerate(keybindings):
     keys.append(Key(f"M-<{group}>", lazy.group[f"{index+1}"].toscreen()))
-    # keys.append(Key(f"M-{group}", lazy.group[f"{index+1}"].toscreen()))
