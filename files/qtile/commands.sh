@@ -82,11 +82,11 @@ randTerm() {
 
 toggleBar()
 {
-    if [ $(eww windows) = 'bar' ]
+    if [[ -n $(eww active-windows) ]]
     then
-	eww open bar
-    else
 	eww close bar
+    else
+	eww open bar
     fi
 }
 
