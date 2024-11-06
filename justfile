@@ -9,6 +9,9 @@ build type="build" host="work":
 rebuild type="test" host="nixos":
 	sudo nixos-rebuild {{type}} --flake ./#{{host}}
 
+rebuild-debug host="nixos":
+	sudo nixos-rebuild --show-trace test --flake ./#{{host}}
+
 nixmin:
 	sudo nixos-rebuild test --flake ./#minimal
 
