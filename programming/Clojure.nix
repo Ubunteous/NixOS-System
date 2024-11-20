@@ -15,6 +15,9 @@ in {
       packages = with pkgs; [
         clojure
 
+        # boot
+        # leiningen
+
         clojure-lsp
         cljfmt
         clj-kondo # => linter (included in clojure-lsp)
