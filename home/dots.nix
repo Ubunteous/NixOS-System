@@ -4,8 +4,7 @@ with lib;
 let
   cfg = config.home.dots;
   homecfg = config.home;
-in
-{
+in {
   options.home.dots = {
     enable = mkEnableOption "Put dot files in .config and ~/";
   };
@@ -28,11 +27,12 @@ in
     # xdg.configFile."hyprland/".source = ../files/dots/hyprland;
     # xdg.configFile."qtile/config.py".source = ../files/dots/qtile.py;
     # xdg.configFile."kmonad/kmonad.kbd".source = ../files/dots/kmonad.kbd;
-    
-    # files in ~/
-    home.file.".tridactylrc".source = ../files/tridactylrc;
 
+    # files in ~/ . Note: home.file does not always work
+    # load with :source and check errors with C-S-j
+    home.file.".tridactylrc".source = ../files/tridactylrc;
+    home.file."./.background-image/sky.jpg".source = ../files/sky.jpg;
     # Note: the wallpaper should be placed in ~/background-image
     # Too big for dots.nix: Reaper, XMonad, Emacs
-    };
+  };
 }
