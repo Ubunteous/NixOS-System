@@ -3,6 +3,7 @@
 (import cmd)
 (import sh)
 
+# Get libraries with jpm deps in the dir with project.janet
 # taken from hey which is itself inspired by Guix CLI
 # I can improve my own commands later
 
@@ -101,8 +102,8 @@
 	      (sh/$ echo -e "\nSystems currently in store:")
 	      (sh/$ ls /nix/var/nix/profiles/ | grep system-))
 
-	    # "clean-profiles" # error due to a characters. probably ^
-	    # (sh/$ nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)")
+	    "clean-profiles"
+	    (sh/$ nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\\w+-system|\\{memory|/proc)")
 
 	    "clean-simple"
 	    (sh/$ sudo nix-collect-garbage)
@@ -110,7 +111,7 @@
 	    "clean-full"
 	    (sh/$ sudo nix-collect-garbage -d)
 	    
-	    (print "Nix command" command "unknown. Try show or previous.")))
+	    (print "Nix command " command " unknown. Try show, previous or clean-profiles/simple/full.")))
 
 
 (cmd/main
