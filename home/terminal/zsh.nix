@@ -32,6 +32,10 @@ in {
         powermenu = "${config.home.homeDirectory}/.config/rofi/powermenu.sh";
         gem-lock =
           "brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r";
+
+        ls = ''ls --hide="*~"'';
+
+        it = "janet ~/.nix.d/bin/it.janet";
       };
 
       initExtra = ''
