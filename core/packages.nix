@@ -18,21 +18,36 @@ in {
     nixpkgs.config = {
       # allowUnfree = true; # vscode
 
+      permittedInsecurePackages = [
+        "dotnet-core-combined"
+        "dotnet-sdk-6.0.428"
+        "dotnet-sdk-wrapped-6.0.428"
+        "dotnet-sdk-7.0.410"
+      ];
+
       allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
           "aseprite"
           "bitwig-studio"
           # "obsidian"
           "opera"
+          # "plexmediaserver"
           "reaper"
+          # "rider"
 
           # steam-run
           "steam-run"
           "unrar"
-          "steam-original"
+          # "steam-original"
+          "steam-unwrapped"
+          # "teams"
+
+          "code"
+          "vscode-extension-ms-dotnettools-csdevkit"
 
           # "unfree"
-
+          "vital"
+          "vscode"
           # "plexmediaserver"
           # "gitkraken"
           # "Oracle_VM_VirtualBox_Extension_Pack"
@@ -71,7 +86,6 @@ in {
             # does not provide the package itself but the binary
             epkgs.vterm
             epkgs.jinx
-            epkgs.auctex
             epkgs.auctex
 
             # mu does not install mu4e automatically anymore
@@ -116,11 +130,10 @@ in {
       #############
 
       arandr # hdmi
-      cinnamon.nemo
-      cinnamon.pix
+      nemo
+      pix
       evince # already installed
-      gimp
-      gnome.gnome-system-monitor
+      gnome-system-monitor
       libgnomekbd # display a given keyboard layout
       vlc
 
@@ -132,6 +145,8 @@ in {
       # networkmanager-dmenu # requires dmenu 
       # xorg.xkbcomp # to generate a custom xkb layout
 
+      # wlr-randr # for qtile until a fix is found
+
       ######################
       #   NixOS-COMMANDS   #
       ######################
@@ -142,8 +157,6 @@ in {
       #   TERMINALS   #
       #################
 
-      # vim
-      # neovim
       # gnome.gnome-terminal
       # xterm
 
@@ -161,9 +174,11 @@ in {
       # aspellDicts.fr # aspell french dictionary
       (aspellWithDicts (dicts: with dicts; [ fr en ])) # for jinx
 
+      # mg # emacs like small editor
       # neovim
       # vim
       xed-editor
+      # lem # inspired by emacs but written in CL. only available as flake
       # nano # already installed
     ];
 
@@ -205,5 +220,23 @@ in {
         # jetbrains-mono-nerd-font-complete
       ];
     };
+
+    # for emacs cape-dict
+    environment.wordlist = {
+      # $WORDLIST
+      enable = true;
+
+      lists = {
+        WORDLIST = [ "${pkgs.scowl}/share/dict/words.txt" ]; # default
+        #   AUGMENTED_WORDLIST = [
+        #     "${pkgs.scowl}/share/dict/words.txt"
+        #     "${pkgs.scowl}/share/dict/words.variants.txt"
+        #     (builtins.toFile "extra-words" ''
+        #       desynchonization
+        #       oobleck'')
+        #   ];
+      };
+    };
+
   };
 }

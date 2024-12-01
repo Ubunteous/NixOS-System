@@ -4,24 +4,40 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/d2ec06a2-462a-41ac-904b-fd39760a40d1";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "zpool/root";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/2C91-B7F1";
-      fsType = "vfat";
-    };
+  fileSystems."/nix" = {
+    device = "zpool/nix";
+    fsType = "zfs";
+    # options = [ "noatime" ];
+  };
+
+  fileSystems."/home" = {
+    device = "zpool/home";
+    fsType = "zfs";
+  };
+
+  # fileSystems."/home" =
+  #  { device = "/nix";
+  #    fsType = "none";
+  #    options = [ "bind" ];
+  #  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/849D-27A7";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 
@@ -30,7 +46,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp3s0f4u2.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp3s0f4u1.useDHCP = lib.mkDefault true;
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
