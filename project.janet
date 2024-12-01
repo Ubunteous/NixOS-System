@@ -9,5 +9,5 @@
 
 (declare-executable
  :name "it"
- :entry "bin/it.janet"
+ :entry "bin/ni.janet"
  :install true)
