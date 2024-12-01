@@ -1,43 +1,48 @@
-{ user, ... }:
+{ lib, ... }:
 
-{
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
+with lib; {
+  options.home = { enable = mkEnableOption "Home manager configuration"; };
 
-  home-manager.users.${user}.home = {
+  # Unstable: "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  # Troubleshoot: systemctl status "home-manager-$USER.service"
+  # Hint: Home manager hates when a config file already exists
+  # For unsupported apps: home.file."path/to/file".source = ./a/dotfile/repo/file;
+
+  config.home = {
     stateVersion = "23.11";
     sessionVariables = {
       EDITOR = "emacs";
       BROWSER = "firefox";
-      TERMINAL = "alacritty";
+      TERMINAL = "wezterm";
     };
   };
 
   imports = [
-    ./dunst.nix
-    ./flameshot.nix
     # conflict with .mozilla/firefox/default/search.json.mozlz4
     ./firefox.nix
+    ./flameshot.nix
+    ./dunst.nix
     ./git.nix
     ./mime.nix # another app is creating mimes => fixed with force
     ./picom.nix
+    ./redshift.nix
     ./themes.nix
     ./u-he.nix
+    ./vscode.nix
     ./xautolock.nix # replace it with a service
-    
-    ./terminal/alacritty.nix
-    ./terminal/bash.nix      
-    ./terminal/fish.nix
-    ./terminal/kitty.nix
-    ./terminal/neovim.nix
-    ./terminal/zsh.nix
 
+    # ./kodi.nix
+
+    ./mail
+    ./neovim
+    ./terminal
     ./emacs.nix
+    ./nix-direnv.nix
     ./xdg-user-dir.nix # for OB-xD synth
-    
-    # Unstable: "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-    # Troubleshoot: systemctl status "home-manager-$USER.service"
-    # Hint: Home manager hates when a config file already exists
-    # For unsupported apps: home.file."path/to/file".source = ./a/dotfile/repo/file;
+
+    # ./eww.nix
+    ./dots.nix
+
+    ./qbittorrent.nix
   ];
 }

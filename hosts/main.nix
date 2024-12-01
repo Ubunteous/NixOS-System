@@ -1,4 +1,4 @@
-{ user, ... }:
+{ pkgs, user, ... }:
 
 # Options: config, pkgs, lib, modulesPath, inputs, ... 
 # Help: man configuration.nix(5) or nixos-help’
@@ -11,6 +11,7 @@
   programs.dconf.enable = true; # for themes and more
 
   # removes error messages related to wifi command
+  # may conflict with power-daemon in zfs config
   services.tlp.enable = true;
 
   ################
@@ -59,13 +60,18 @@
 
     boot.enable = true;
     networking.enable = true;
-    sound.enable = true;
+    zfs.enable = true;
 
-    xserver.enable = true;
+    xserver = {
+      enable = true;
+      displayManager = "sddm"; # sddm, gdm, lightdm
+    };
+
+    sound.enable = true;
     system-packages.enable = true;
 
     kanata.enable = true;
-    nix-ld.enable = true;
+    nix-ld.enable = false;
   };
 
   #--------------------#
@@ -83,41 +89,55 @@
     podman.enable = true;
     # virtualbox.enable = false;
 
-    # grafana.enable = true; # 3000 => 3002
-    # prometheus.enable = true; # 9090
-    # loki.enable = false;
-
     wireguard.enable = false;
-    technitium.enable = true;
-    adguard.enable = true; # 3000
+    # navidrome.enable = false;
+    # unbound.enable = false;
+    # bind.enable = false;
+    adguard.enable = false; # 3000
     # restic.enable = true; # 8000
+    # immich.enable = true; # 3001
     syncthing.enable = true; # 8384
+
+    # fail2ban.enable = true;
+    # authelia.enable = true;
 
     ##################
     #   multimedia   #
     ##################
 
     # kodi.enable = false; # also defined with home-manager
-    jellyfin.enable = true; # 8096
+    # jellyfin.enable = false; # 8096
+    # plex.enable = true; # 8096 # localhost:32400/web
     # jellyseer.enable = false; # 5055
-    # shiori.enable = false; # 8080 => 2525
+    # shiori.enable = false; # 8080 => 2525 bookmarks
+    # tautulli.enable = true; # 8181 plex manager
+    # kavita.enable = false; # 5000 reading server (library)
 
     ###############
     #   servarr   #
     ###############
 
-    radarr.enable = true; # 7878 movies
-    bazarr.enable = true; # 6767 subtitles
-    sonarr.enable = true; # 8989 tv
-    readarr.enable = true; # 8787 books
-    lidarr.enable = true; # 8686 music
-    prowlarr.enable = true; # 9696 indexer
+    radarr.enable = false; # 7878 movies
+    bazarr.enable = false; # 6767 subtitles
+    sonarr.enable = false; # 8989 tv series
+    prowlarr.enable = false; # 9696 indexer
+
+    readarr.enable = false; # 8787 books
+    lidarr.enable = false; # 8686 music
+
+    ##################
+    #   monitoring   #
+    ##################
+
+    # grafana.enable = true; # 3000 => 3002
+    # prometheus.enable = true; # 9090
+    # loki.enable = false;
 
     #############
     #   proxy   #
     #############
 
-    # caddy.enable = true; # 2019 (default admin port)
+    caddy.enable = false; # 2019 (default admin port)
     # traefik.enable = false;
     # nginx.enable = true; # proxyPass set to 3002 like grafana
   };
@@ -131,7 +151,11 @@
 
     laptop.enable = true;
     packages.enable = true;
-    musnix.enable = true;
+
+    music.enable = true;
+
+    visual_art.enable = true;
+    visual_art.wacom_kernel = true;
   };
 
   #--------------------#
@@ -152,22 +176,28 @@
       config.home = {
         enable = true;
 
-        kodi.enable = true;
+        # packages = with pkgs; [ reaper ];
 
         firefox.enable = true; # nur missing without osConfig
         firefox.on-nixos = true;
 
+        # needs nix-ld
+        # not necessary now that plugins are packages
+        u-he.enable = false;
+
         git.enable = true;
         mime.enable = true;
-        u-he.enable = true; # needs nix-ld
         dunst.enable = true;
         picom.enable = true;
         themes.enable = true;
         flameshot.enable = true;
         xautolock.enable = true;
         redshift.enable = false; # see config for activation
+        # kodi.enable = false;
 
         emacs.enable = false;
+        vscode.enable = true;
+
         nix-direnv.enable = true;
         xdg-user-dir.enable = false;
 
@@ -181,7 +211,7 @@
           alacritty.enable = false;
 
           fish.enable = false;
-          kitty.enable = false;
+          kitty.enable = true;
         };
 
         neovim = {
@@ -208,6 +238,7 @@
           thunderbird.enable = true;
         };
 
+        qbittorrent.enable = true;
         dots.enable = true;
       };
     };
@@ -222,11 +253,12 @@
 
     python.enable = true;
     godot.enable = false;
+    csharp.enable = true;
 
     nix.enable = true;
     lua.enable = false;
 
-    c.enable = true;
+    c.enable = false;
     # typst.enable = false;
     latex.enable = true;
     haskell.enable = false;
@@ -234,16 +266,17 @@
     go.enable = false;
     rust.enable = false;
     java.enable = false;
-    postgresql.enable = false;
+    postgresql.enable = true;
 
     javascript = {
-      enable = false;
+      enable = true;
       addTypescript = false;
     };
 
     guile.enable = false;
+    janet.enable = true;
+    clojure.enable = true;
     elixir.enable = false;
-    clojure.enable = false;
     common-lisp.enable = false;
 
     # only adds lsp/fmt/lint
@@ -256,14 +289,18 @@
 
   wm = {
     enable = true;
+
+    # none+xmonad/qtile or cinnmon/hyprland
+    main = "none+xmonad";
+    display_backend = "x11"; # x11 or wayland
+
     xmonad.enable = true;
-
     qtile.enable = false;
-    cinnamon.enable = false;
 
-    leftwm.enable = false; # => must use polybar
-    sway.enable = false; # => has a built-in bar
-    hyprland.enable = false; # => must uses waybar
+    cinnamon.enable = false;
+    leftwm.enable = false;
+    sway.enable = false;
+    hyprland.enable = false;
   };
 
   ############

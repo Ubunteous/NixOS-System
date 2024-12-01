@@ -18,7 +18,7 @@
     enable = true;
     
     firefox.enable = true; # osConfig on nur breaks build
-    firefox.extsystem = "home-manager";
+    firefox.on-nixos = false;
     
     flameshot.enable = true;
     dunst.enable = true;
@@ -29,7 +29,7 @@
     u-he.enable = true;
     xautolock.enable = true;
     
-    emacs.enable = false;
+    emacs.enable = true;
     nix-direnv.enable = false;
     xdg-user-dir.enable = false;
 

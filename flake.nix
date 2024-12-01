@@ -1,87 +1,53 @@
 {
+  # update a specific input in the flake lock
+  # nix flake lock --update-input nixpkgs --update-input nix
+
   description = "A flake for building my NixOS configuration";
-  
+
+  # To avoid rebuilding inputs on nixos-rebuild test/switch, use
+  # sudo nixos-rebuild build --flake '.nix.d/#' beforehand
+
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
     musnix.url = "github:musnix/musnix";
-    # nur.url = "github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+
+      # stable release, may not work
+      # url = "github:nix-community/home-manager/release-23.05";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # unstable.url = "nixpkgs/nixos-unstable";
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   # build with your own instance of nixpkgs
-    #   inputs.nixpkgs.follows = "unstable";
+    # nix-index-database = {
+    #   url = "github:Mic92/nix-index-database";
+    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
     # };
+
+    # divide flakes in modules
+    # flake-parts.url = "github:hercules-ci/flake-parts";
+
+    # seen in nix-direnv flake demo. Is it useful?
+    # flake-utils.url = "github:numtide/flake-utils";
+
+    # agenix = {
+    #   url = "github:ryantm/agenix";
+
+    #   # do not download darwin deps to save resources on Linux
+    #   inputs.darwin.follows = "";
+    #   inputs.home-manager.follows = "";
+    #   # inputs.nixpkgs.follows = "";
+    # };
+
+    # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
   };
-  
-  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, musnix }:
-    let
-      user = "ubunteous";
-    in
-      {
-        nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          
-          specialArgs = { inherit user; };
 
-          modules =
-            [
-              ############
-              #   HOST   #
-              ############
-              
-              ./hosts/main-host.nix
-              # ./hosts/wayland.nix # not operation yet
-              # ./hosts/minimal.nix
-              ./hardware/hardware-configuration.nix
-
-              # Fix touchpad issues and maybe also wifi
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen1
-
-              # musnix
-              inputs.musnix.nixosModules.musnix
-              
-              ##############
-              #   CONFIG   #
-              ##############
-              
-              inputs.home-manager.nixosModules.home-manager # make home manager available to configuration.nix
-              {
-                # use system-level nixpkgs => saves nixpkgs evaluation, adds consistency, removes NIX_PATH dependency
-                home-manager.useGlobalPkgs = true;
-              }
-
-
-              ################
-              #   HYPRLAND   #
-              ################
-
-              # inputs.hyprland.nixosModules.default
-              # { programs.hyprland.enable = true; }
-            ];
-        };
-
-        
-        # hyprland with home manager
-        # homeConfigurations.${user} = inputs.home-manager.lib.homeManagerConfiguration {
-        #   pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        #   modules = [
-        #     hyprland.homeManagerModules.default
-        #     {
-        #       wayland.windowManager.hyprland = {
-        #         enable = true;
-        #         # xwayland.enable = false;
-        #       };
-        #     }
-        #   ];
-        # };
-
-        
-      };
+  outputs = { ... }@args: import ./outputs.nix args;
+  # outputs = { self, nixpkgs-stable, nixpkgs-unstable, nixos-hardware, home-manager, nur, musnix }:
 }

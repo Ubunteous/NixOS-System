@@ -4,13 +4,12 @@ with lib;
 let
   cfg = config.home.themes;
   homecfg = config.home;
-in
-{
-  options.home.themes = {
-    enable = mkEnableOption "Enable support for themes";
-  };
+  in {
+    options.home.themes = {
+      enable = mkEnableOption "Enable support for themes";
+    };
 
-  config = mkIf (homecfg.enable && cfg.enable) {
+    config = mkIf (homecfg.enable && cfg.enable) {
     ##############
     #   THEMES   #
     ##############
@@ -23,7 +22,7 @@ in
 
     gtk = {
       enable = true;
-      
+
       theme = {
         name = "Arc-Dark";
         package = pkgs.arc-theme;
@@ -42,9 +41,7 @@ in
         package = pkgs.nordzy-cursor-theme;
       };
 
-      # gtk3.extraConfig = {        
-      #   gtk-application-prefer-dark-theme = true;
-      # };
+      gtk3.extraConfig = { gtk-application-prefer-dark-theme = true; };
     };
   };
 }

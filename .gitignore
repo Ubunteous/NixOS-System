@@ -1,8 +1,21 @@
-# emacs backups
+#################
+# emacs backups #
+#################
 *~
 *#
 
-# private
+###########
+# private #
+###########
 .*
-nm-isync.nix
-mu-imap.nix
+# maildata-home.nix
+
+###############
+# nix-results #
+###############
+result
+
+#########
+# latex #
+#########
+ltximg
