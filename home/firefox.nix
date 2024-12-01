@@ -110,7 +110,8 @@ in {
             "Home Manager" = {
               urls = [{
                 template =
-                  "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}";
+                  "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
+                # "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}";
               }];
 
               definedAliases = [ "@hm" ];
@@ -160,6 +161,10 @@ in {
             # "browser.display.background_color" = "#F9F9FA"; # also try ededf0, d7d7db
             "toolkit.zoomManager.zoomValues" =
               ".5,.75,1,1.25,1.5,1.75,2"; # default: .3,.5,.67,.8,.9,1,1.1,1.2,1.33,1.5,1.7,2,2.4,3,4,5
+
+            # no bell sound
+            "accessibility.typeaheadfind.enablesound" = false;
+            "accessibility.typeaheadfind.soundURL" = "";
 
             # MORE OPTIONS AT: https://github.com/arkenfox/user.js
 
@@ -438,7 +443,7 @@ in {
       };
     }
 
-    # find a way later to merge both list aroud a with osConfig/config condition
+    # find a way later to merge both list around a with osConfig/config condition
     (mkIfElse (cfgext) {
       programs.firefox.profiles.default.extensions =
         with osConfig.nur.repos.rycee.firefox-addons; [
@@ -458,5 +463,12 @@ in {
           istilldontcareaboutcookies
         ];
     })
+
+    # tridactyl main changes:
+    # bind m scrollpx -10
+    # bind i scrollpx 10
+    # bind n scrollline 10
+    # bind e scrollline -10
+    # unbind <C-f>
   ]);
 }
