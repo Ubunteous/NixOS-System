@@ -22,7 +22,6 @@ configuration.apply_to_config(config)
 bindings.apply_to_config(config)
 -- key_tables.apply_to_config(config)
 
-
 -- ###################
 -- ##     TESTS     ##
 -- ###################

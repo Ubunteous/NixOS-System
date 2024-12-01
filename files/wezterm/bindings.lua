@@ -36,7 +36,6 @@ function prev_pane(win, pane)
    -- wezterm.log_info('now in pane', pane:pane_id())
 end
 
-
 function next_pane(win, pane)
    curr_pane_index = active_pane_index_for_tab(win:active_tab():panes_with_info())
    nb_panes = #win:active_tab():panes_with_info()
@@ -86,8 +85,16 @@ function switch_master_stack(win, pane)
    end
 end
 
+-- get a list of all the bindings with this command:
+-- grep -P '  { key' ~/.nix.d/files/wezterm/bindings.lua | awk '{$1=$1};1'
+function module.apply_to_config(config)
+   -- ##########
+   -- # LEADER #
+   -- ##########
+   
+   -- timeout_milliseconds defaults to 1000 and can be omitted. leader is C-<space>
+   config.leader = { key = 'Space', mods = 'CTRL'} -- , timeout_milliseconds = 1000 }
 
-function module.apply_to_config(config)   
    config.keys = {
       { key = 'g', mods = 'ALT', action = wezterm.action_callback(switch_master_stack) },
       -- #########

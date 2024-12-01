@@ -6,13 +6,6 @@ local module = {}
 -- ###########################
 
 function module.apply_to_config(config)
-   -- ##########
-   -- # LEADER #
-   -- ##########
-   
-   -- timeout_milliseconds defaults to 1000 and can be omitted
-   config.leader = { key = 'Space', mods = 'CTRL'} -- , timeout_milliseconds = 1000 }
-
    -- ###################
    -- # COMMAND PALETTE #
    -- ###################
@@ -63,6 +56,10 @@ function module.apply_to_config(config)
    -- config.default_prog = { 'top' }
    -- config.launch_menu = { { args = { 'top' }, }, }
 
+   -- fix font rendering issue from nixos 24.11
+   config.front_end = "WebGpu"
+   config.enable_wayland = false
+   
    -- #########
    -- # DEBUG #
    -- #########
