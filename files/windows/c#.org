@@ -1,0 +1,738 @@
+#+title: c#
+
++ [[https://learn.microsoft.com/en-us/dotnet/csharp/][Official Documentation]]
+
+* Print
+
+Recent changes made scripts unable to use main which is implicitly called.
+
+#+begin_src csharp
+System.Console.WriteLine("Hello, World!");
+System.Console.WriteLine("{0} and {1}", "Hello", "World!")
+#+end_src
+
+#+RESULTS:
+| Hello, | World! |        |
+| Hello  | and    | World! |
+
+** Full syntax
+
+#+begin_src csharp
+using System; 
+
+// namespace Program {
+class Hello { 
+    // public static void Main(string[] args) {
+    public static void NotMain() {
+	Console.WriteLine("Hello World!"); 
+    }
+}
+// }
+
+Hello.NotMain()
+#+end_src
+
+#+RESULTS:
+: Hello World!
+
+* Data, modifiers and Structures
+** Types
+
+Values:
++ sbyte: [-128, 127]
++ byte: [0, 255]
++ short: [-32,768 32.767]
++ ushort: [0, 65.535]
++ int: [-2.147.483.648, 2.147.483.647]
++ uint: [0, 4.294.967.295]
++ long: [-9.223.372.036.854.775.808, 9.223.372.036.854.775.807]
++ ulong: [0, 18.446.744.073.709.551.615]
+
+Floating point numbers:  
++ double: 64 bits precision - 15-16 digits
++ float: 32 bits precision - 7 digits
+
+Scientific:  
++ decimal: 128-bits data type (for finance/millions)
+
+Words:  
++ char
++ string
+
+Misc:
++ bool
+
+** TODO Type conversion  
+** TODO Modifiers
+
++ static: belongs to a class. Cannot be instantiated
+
+** TODO Casting
+
+#+begin_src csharp
+int val = 1;
+System.Console.WriteLine(val.GetType());
+double val = (byte) val;
+System.Console.WriteLine(val.GetType());
+#+end_src
+
+#+RESULTS:
+
+** String
+
+Get char:
+#+begin_src csharp
+char c = "test"[1];
+System.Console.WriteLine(c);
+#+end_src
+
+#+RESULTS:
+: e
+
+Compare:
+#+begin_src csharp
+int strcmp = string.Compare("xa", "xa", StringComparison.CurrentCultureIgnoreCase);
+System.Console.WriteLine(strcmp); // 0 same, 1 different
+#+end_src
+
+#+RESULTS:
+: 0
+
+** List and Arrays
+
+Array:
+#+begin_src csharp
+int[] array = new int[10];
+int[] other_array = { 9000, 1000, 1337 };
+Console.WriteLine("Element at 0: " + other_array[0]);
+#+end_src
+
+#+RESULTS:
+: Element at 0: 9000
+
+List:
+#+begin_src csharp
+List<int> list = new List<int>();
+List<int> other_list = new List<int> { 9000, 1000, 1337 }; 
+
+list.Add(1);
+Console.WriteLine(list[0]);
+#+end_src
+
+#+RESULTS:
+: 1
+
+** Misc Data Structures
+
++ Stack/Queue
++ Dictionary (an implementation of a hash map)
++ HashSet
++ Read-only Collections
++ Tuple
+
+* Flow Control
+** Conditions
+
+#+begin_src csharp
+if (false) {
+    System.Console.WriteLine(1);
+}
+else if (false) {
+    System.Console.WriteLine(2);
+}
+else {
+    System.Console.WriteLine(3);
+}
+#+end_src
+
+#+RESULTS:
+: 3
+
+Ternary:
+#+begin_src csharp
+string isTrue = true ? "True" : "False";
+#+end_src
+
+#+RESULTS:
+
+Switch:
+#+begin_src csharp
+int month = 3;
+
+switch (month) {
+    case 1:
+	System.Console.WriteLine("January");
+	break;
+    default:
+	System.Console.WriteLine("Some other month");
+	break;
+}
+#+end_src
+
+#+RESULTS:
+: Some other month
+
+** Loops
+
+#+begin_src csharp
+while (false) { ... }
+do { ... } while (false);
+for (int i = 0; i < 10; i++) { ... }
+#+end_src
+
+#+RESULTS:
+
+#+begin_src csharp
+foreach (char character in "Hey".ToCharArray()) {
+    System.Console.WriteLine(character);
+}
+#+end_src
+
+#+RESULTS:
+| H |
+| e |
+| y |
+
+* Functions
+** Function
+
+
+#+begin_src csharp
+int add(int x, int y) {
+    return x + y;
+}
+
+System.Console.WriteLine(add(1, 2));
+#+end_src
+
+#+RESULTS:
+: 3
+
+** Lambda
+
+#+begin_src csharp
+Func<int, int> square = (x) => x * x;
+System.Console.WriteLine(square(3)); // 9
+#+end_src
+
+#+RESULTS:
+: 9
+
+* LINQ
+
+#+begin_src csharp
+class Student {
+    public string name;
+    public int GPA;
+
+    public Student(string name, int GPA) {
+	this.name = name;
+	this.GPA = GPA;
+    }
+}
+
+List<Student> Students = new List<Student> {
+    new Student("Alice", 2),
+    new Student("Bob", 4)
+};
+
+var honorRoll = from student in Students
+                where student.GPA > 3.5
+                select student;
+
+System.Console.WriteLine(honorRoll);
+		#+end_src
+
+#+RESULTS:
+
+* OOP
+** Class
+
+#+begin_src csharp
+class Person {
+    public string Name = "whoami";
+
+    public void say() {
+	System.Console.WriteLine("I am: " + this.Name);
+    }
+}
+
+Person bob = new Person();
+bob.Name = "Bob";
+bob.say();
+#+end_src
+
+#+RESULTS:
+: I am: Bob
+
+** Constructor
+
+#+begin_src csharp
+public class Person {
+    private string name;
+    
+    public Person(string fullname) {
+	this.name = fullname;
+    }
+
+    public void say() {
+	System.Console.WriteLine("I am: " + this.name);
+    }
+}
+
+Person bob = new Person("Bob");
+bob.say();
+#+end_src
+
+#+RESULTS:
+: I am: Bob
+
+** Method Overloading
+
+Method overloading is possible.
+
+#+begin_src csharp
+class Person {
+    public string Name = "whoami";
+
+    public void say() {
+	System.Console.WriteLine("I am: " + this.Name);
+    }
+
+    public void say(string word) {
+	System.Console.WriteLine("I am telling: " + word);
+    }
+}
+
+Person bob = new Person();
+bob.Name = "Bob";
+bob.say();
+bob.say("Hello");
+#+end_src
+
+#+RESULTS:
+| I | am: | Bob      |       |
+| I | am  | telling: | Hello |
+
+** Getters and setters
+
+A shorthand exists:
+#+begin_src csharp
+public class Genre {
+    public string Name { get; private set; }
+}
+
+Genre genre = new Genre();
+genre.Name = "Sci-fi";
+System.Console.WriteLine(genre.Name);
+#+end_src
+
+#+RESULTS:
+: Sci-fi
+
+#+begin_src csharp
+// public string Name { get; set; } is the same as:
+private string name;
+public string Name {
+    get { return this.name; }
+    set { this.name = value; }
+}
+#+end_src
+
+#+RESULTS:
+
+** Inheritance
+
+#+begin_src csharp
+public class Person {
+    private string name;
+    
+    public Person(string name) {
+	this.name = name;
+    }
+
+    public void say() {
+	System.Console.WriteLine("I am: " + this.name);
+    }
+}
+
+class Employee : Person {
+    public string job;
+
+    public Employee(string name, string job) : base(name) {
+	this.job = job;
+    }
+	
+    public void say_job() {
+	System.Console.WriteLine("I am an: " + this.job);
+    }
+}
+
+Employee bob = new Employee("Bob", "Engineer");
+bob.say();
+bob.say_job();
+#+end_src
+
+#+RESULTS:
+| I | am: | Bob |          |
+| I | am  | an: | Engineer |
+
+* -----
+* Namespace
+
+#+begin_src csharp
+namespace Program {
+    // public class...
+}
+#+end_src
+
+C#10 introduces file scoped namespaces without an extra indent.
+
+#+begin_src csharp
+namespace Program;
+#+end_src
+
+* Documentation
+
+#+begin_src csharp
+// using System;
+public class Movie() { public string Title; }
+var movie = new Movie() { Title = "John Wick", };
+
+Console.WriteLine(movie.GetType() + "\n" + movie.GetType().GetProperties());
+
+foreach (var propertyInfo in movie.GetType().GetProperties()) {
+    var propertyName = propertyInfo.Name;
+    var propertyValue = propertyInfo.GetValue(movie);
+    Console.WriteLine($"{propertyName}={propertyValue}");
+}
+#+end_src
+
+#+RESULTS:
+| Submission#0+Movie               |
+| System.Reflection.PropertyInfo[] |
+
+** Examples
+
+#+begin_src csharp
+PropertyInfo[] myPropertyInfo;
+
+myPropertyInfo = Type.GetType("System.Type").GetProperties();
+Console.WriteLine("Properties of System.Type are:");
+for (int i = 0; i < myPropertyInfo.Length; i++)
+{
+    Console.WriteLine(myPropertyInfo[i].ToString());
+}
+#+end_src
+
+#+RESULTS:
+
+#+begin_src csharp
+var properties = GetProperties(<object_name>);
+
+foreach (var p in properties)
+{
+    string name = p.Name;
+    var value = p.GetValue(<object_name>, null);
+}
+
+private static PropertyInfo[] GetProperties(object obj)
+{
+    return obj.GetType().Get Properties();
+}    
+#+end_src
+
+#+RESULTS:
+
+* C# ecosystem
+
++ .NET: is the standard library for C#
++ .NET Framework: old Windows-only implementation of .NET
++ .NET Core: new multi-platform implementation of .NET
++ .NET X: current version. Unifies .NET Framework/Core
++ ASP.NET: old web framework for .NET Framework
++ ASP.NET Core: new web framework for .NET Core/.NET X
++ MONO: old multi-platform implementation
+=> Use .NET vX
+
+* -----
+* TODO dotnet CLI
+
+Create a new solution (project):
+#+begin_src shell
+dotnet new sln -o dirname
+#+end_src
+
+Unit testing:
+#+begin_src csharp
+dotnet test
+#+end_src
+
+Commands:
++ run
++ build
++ format
+
+* TODO Unit Tests
+
+#+begin_src shell
+dotnet test
+#+end_src
+
+* TODO Standard Library
+
+There may be more libraries. Check later.
+
+#+begin_src csharp
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.IO;
+
+System.Console.WriteLine("Object needed");
+#+end_src
+
+#+RESULTS:
+| Hello | World! |
+
+* TODO Data Structures methods
+* TODO Check
+
++ interface, virtual and maybe abstract
++ default values
++ ToString as recommended way to print object
++ : (used in multiple places. Check them all)
+  
++ public record ARecord(string Csharp);
++ generics (setDefault and more)
++ iterators (yield)
++ ref / out in method signature
++ Optional parameters
++ Nullable types (int? nullable = null; // like Nullable<int>)
++ Coalescense: int notNullable = nullable ?? 0; // 0
++ null propagatation: nullable?.Print();
++ var implicit_type "test";
++ errors: try catch throw finally
++ delegate/event
++ public/private/protected/internal
++ chained constructors
++ partial class
++ $ and @ before string
++ void
++ override
++ method() : ()
++ using static
++ Deconstruct method
++ Pattern matching
++ ref (reference locals)
++ local functions
+
+#+begin_src csharp
+// Fields in tuples are by default named Item1, Item2...
+var names1 = ("Peter", "Parker");
+Console.WriteLine(names1.Item2);  // => Parker
+
+// Fields can instead be explicitly named
+// Type 1 Declaration
+(string FirstName, string LastName) names2 = ("Peter", "Parker");
+Console.WriteLine(names2.FirstName);
+
+// Type 2 Declaration
+var names3 = (First:"Peter", Last:"Parker");
+Console.WriteLine(names3.Last);
+
+// Tuples can be deconstructed
+(string firstName, string lastName) = ("Peter", "Parker");
+
+// Deconstruct and discard by using _
+var (_, last) = ("Peter", "Parker");
+#+end_src
+
+#+RESULTS:
+| Parker |
+| Peter  |
+| Parker |
+  
+Expression bodies property:
+#+begin_src csharp
+int Damage = 110;
+
+public bool Broken => Damage > 100;
+System.Console.WriteLine(Broken);
+
+// public override string ToString() => $"{Name}. Damage taken: {Damage}";
+
+// public string SummonGenie() => GenieName?.ToUpper();
+#+end_src
+
+#+RESULTS:
+: True
+
+Specified constructor:
+#+begin_src csharp
+public name(...)
+    : base() // calls base first
+{ ... };
+#+end_src
+
+Enum:
+#+begin_src csharp
+public enum Colors {
+    Red, Blue, Green=22
+}
+#+end_src
+
+Disposable resource management:
+#+begin_src csharp
+using (StreamWriter writer = new StreamWriter("log.txt"))
+{
+    writer.WriteLine("Nothing suspicious here");
+    // At the end of scope, resources will be released.
+    // Even if an exception is thrown.
+}
+#+end_src
+
+#+RESULTS:
+
+* -----
+* VSCode
+** Project setup
+
++ C-S p > .NET: Generate Assets for Build and Debug
++ Enable debugging on the left sidebar (debug button)
+
+** Settings
+
+Open settings: C-,
+
+Replace = by : and ; by , if needs be (Nix style)
+
+#+begin_src js
+{
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.cursorStyle": "block",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 18,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.renderWhitespace": "trailing",
+    
+    "explorer.excludeGitIgnore": true,
+    "explorer.sortOrder": "type",
+    
+    "files.autoSave": "afterDelay",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    
+    "workbench.sideBar.location": "right",
+    "workbench.colorTheme": "Monokai",
+    "workbench.editor.centeredLayoutAutoResize": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.externalBrowser": "firefox",
+    
+    "extensions.autoCheckUpdates": false,
+    "telemetry.telemetryLevel": "off",
+    "update.mode": "none",
+    "window.zoomLevel": 3
+}
+#+end_src
+
+Settings worth checking later:
++ Font family
++ Multi cursor generator
++ Auto closing <thing>
++ Workbench color custom to change pairs color
++ Definition link opens in peek
+** Default bindings
+*** Help
+
+C-k C-r > cheat sheet
+Command palette > open keyboard shortcuts
+
+*** General
+
+C-S p > command palette
+C-b: hide/unhide sidebar
+C-S ` > open/focus on terminal
+C-` > open/close terminal
+C-S f > find in files
+C-p > go to file
+C-, > open settings
+C-k/m > change language mode
+C-S -/+ > reset zoom
+
+*** Split mode
+
+C-\ > split mode
+C-1 > switch to editor group 1
+M-v/l/s > fold the split view
+
+*** Code
+
+C-<SPC/ESC> > IntelliSense
+C-lmb > go to code definition
+C-/ > comment line of code
+S-f/m > format code
+C-S [/]: fold/unfold region
+C-k/0: fold all regions
+C-k/j: unfold all regions
+M-z > text wrap
+F5 > initialize the debugger
+F8 > jump between errors
+F9 > set up a breakpoint
+C-f5 > run file in terminal
+
+*** Manipulating
+
+C-d > select the word your cursor is at
+C-F2/sl: select all instances of the word
+S-<ESC>: exit multi-cursor mode
+
+*** Navigating
+
+M-<up>/<down>: move line up/down
+C-M <up>/<down>: place a new cursor up/down the line
+M-<LMB>: place an extra cursor anywhere
+C-l > select the current line
+C-S-l > select all occurrences of current selection
+M-S-I > put the cursor at the end of all selected lines
+
+** Plugins
+
+Programming:
++ C# dev kit
++ C# snippets
++ .NET Install Tool
++ Powershell
++ Monokai Pro
++ [[https://github.com/VSCodeVim/Vim][Vim]]
++ [[https://github.com/whitphx/vscode-emacs-mcx][Emacs MCX (bindings)]]
++ Bracket pair color
++ Code spell checker
++ [[https://gitlens.amod.io/][Gitlens]]
+
+Git:
++ Git history (if gitlens does not suffice)
++ Github pull requests
++ Git graph
++ Github actions
+
+Others:    
++ EditorConfig
++ Live share (maybe built in)
++ Error lens (if not already available via lsp)
++ Path autocomplete (not necessarily needed)
++ Code runner (run snippets)
++ Indent rainbow
++ Better comments
++ Todo tree
++ SQL Tools
++ Git blame
++ Trailing spaces (perhaps built in)
++ SQL formatter
++ File utils
+

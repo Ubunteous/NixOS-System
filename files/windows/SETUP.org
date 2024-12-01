@@ -1,0 +1,205 @@
+* Komorebi
+** Settings needed for installation
+
+# Turn off all unnecessary system animations for better performances
+Control Panel > Ease of Access > Ease of Access Centre / Make the computer easier to see
+
+# allows long path support which is useful for komorebi
+Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
+
+** Theory
+
++ whkd/autohotkey --> komorebic cli <--> komorebi 
++ needs autohotkey or whkd for inputs
++ workspace -> containers -> windows
++ komorebi-bar
+
+Parameters:
+default_workspace_padding
+default_container_padding
+border true # very buggy
+layout bsp or vertical stack
+shell: powershell or cmd
+Themes: catpuccin available
+
+whkd searches for a whkdrc configuration file in the following locations:
+$Env:WHKD_CONFIG_HOME
+$Env:USERPROFILE/.config
+
+** Installation
+
+#+begin_src sh
+  # Get example config:
+  komorebic quickstart
+  komorebic start --bar --ahk # or --whkd
+
+  # komorebic fetch-asc # config for misbehaving apps
+  # "app_specific_configuration_path": "C:/Users/Faroneel/applications.json"
+#+end_src
+
+Config located in C:/Users<name>
+
+** CLI
+
+Note: indexes start from 0
+
+komorebic+
+#+begin_src sh
+# quickstart # initial setup
+start # or stop
+reload-configuration
+state # wm state for debugging
+autostart --ahk --bar
+
+retile
+toggle-maximize/tiling/float
+stack <direction> # left, right, up, down
+close/minimize # focused window
+
+promote # currently focused window becomes master
+promote-focus # focus master
+promote-window <direct.> # focus left right up down
+
+focus workspace(s) <target>
+focus-last-workspace
+cycle-workspace <direction> # previous next
+move/send-workspace <target>
+cycle-send-to-workspace <direction> # left right
+
+focus-stack-window <target>
+cycle-stack <direction> # previous next
+cycle-focus/move # next prev
+move/focus <dir.> # left, right, up, down
+  #+end_src
+
+** Unused params
+
++ manage_rules
++ resize_delta
++ stackbar > mode > "never"
++ "transparentcy": true,
++ "transparency_alpha": 2000,
++ transparency_ignore_rules
+
+* Config (wm, toolbar and keybindings)
+
++ Komorebi
++ Toolbar
++ WHKD / Autohotkey keybindings
+
+* Working
+** TODO Main
+
++ C#
++ LSP
++ Treesit
++ Formatter
++ Linter
++ Debugger
++ Mail
++ (Git/SSH handled by scoop)
+
+** Scoop install
+
+Replace winget by scoop which does not install as admin.
+
+Useful commands:
++ scoop help
++ scoop search <name>
++ scoop install <name>
++ scoop status
+
+# use this from a powershell term to get scoop (M-r powershell. not cmd)
+#+begin_src shell
+  # scoop
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+  Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+  # admin commands
+  scoop install sudo
+  sudo scoop install 7zip git openssh --global
+  # allows long path support which is useful for komorebi
+  sudo Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
+  # sudo scoop update git --global
+  
+  # buckets
+  scoop bucket add extras # emacs, wezterm, kanata and more
+  scoop bucket add nerd-fonts # fira code
+
+  # editor
+  scoop install emacs wezterm firacode # editors
+
+  # keyboard
+  scoop install autohotkey
+  # scoop install kanata
+  # scoop install powertoys
+
+  # windows management
+  scoop install komorebi # whkd
+#+end_src
+
+** Editor:
+
++ Emacs => config in appdata > roaming
+Missing ispell and aspell
+
+#+begin_src elisp
+  ;; init.el
+  Needs this before (import 'elpaca): (add-to-list 'load-path "c:/Users/Faroneel/AppData/Roaming/.emacs.d/files/elpaca/repos/elpaca/")
+
+  ;; Uncomment for systems which cannot create symlinks (like windows 10 but maybe not windows 11):
+  ;; (when (eq system-type 'windows-nt)
+  ;;  (elpaca-no-symlink-mode))
+  (elpaca-no-symlink-mode)
+
+  ;; hack to use find-file at c:/Users/<name>/
+  (setq default-directory "~/../../")
+
+  ;; general is in melpa but not in the others
+  (setq package-archives
+	'(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+	  ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+	  ("melpa" . "https://melpa.org/packages/")))
+#+end_src
+
++ NeoVim
++ VSCode
+
+** Terminal
+
++ Wezterm > config in User/<user/.config/wezterm/wezterm.lua
++ Powershell (installed by default)
++ GNU Coreutils (bash and sh installed by default)
+
+** Keyboard
+
++ Colemak DH with Autohotkey
++ Win11: Languages Settings > English Language > Options > Add keyboard
++ Auto start autohotkey script with: shell:startup path/to/shortcut/file
+
++ Kanata > config in C:/Users/<user>/AppData/Roaming/kanata/kanata.kbd
+> leave if with lctrl+space+escape
+
+** Web Browser:
+
++ Firefox
++ Dark viewer
++ I still don't care about cookeys
++ Ublock
++ Tridactyl
+
+** Windows Settings
+
+File explorer > View > Options > Open "This PC" rather than file explorer
+
+* Issues
+
++ git path not set for powershell
++ Add homerow mods > somehow does not work
++ Override windows key > somehow does not work
+  
+* TODO
+
++ Issues
++ Setup C#
++ Keybindings
