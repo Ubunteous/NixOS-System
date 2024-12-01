@@ -46,12 +46,13 @@ clean-profiles:
 	#!/usr/bin/env sh
 	# nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)" | awk '{ print $1 }' | grep -vE 'home-manager|flake-registry\.json' | xargs -L1 unlink
 	nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)"
-	
-clean-home:
-	#!/usr/bin/env sh
-	home-manager expire-generations "$(date)"
 
-delta:
+# command missing
+# clean-home:
+# 	#!/usr/bin/env sh
+# 	home-manager expire-generations "$(date)"
+
+delta: # broken
 	#!/usr/bin/env sh
 	if [ $(ls /nix/var/nix/profiles/ | wc -l) -eq 4 ]
 	then
@@ -69,3 +70,17 @@ archive:
 show-gens:
     @echo -e "Systems currently in store:\n"
     @ls /nix/var/nix/profiles/ | grep system-
+
+
+# nvim-clean:
+# 	rm -r ~/.config/nvim/*
+
+
+# nvim-test:
+# 	(cd ~/.config/nvim/; \
+# 	cp --preserve --remove-destination "$(readlink -f 'init.lua')" "init.lua"; \
+# 	mkdir lua-c; \
+# 	mv lua/plugins/* lua-c/; \
+# 	rm lua; \
+# 	mv lua-c lua; \
+# 	chmod +Rrw "init.lua")
