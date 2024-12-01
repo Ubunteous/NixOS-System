@@ -58,6 +58,7 @@ in {
         oad = {
           # needs the following stignore patterns:
           # !*.pdf
+          # !*.tex
           # *
 
           # # add later if I make an option for stignore
@@ -65,7 +66,7 @@ in {
           # stignore = "\n";
 
           enable = true;
-          path = "~/org/Fictions/Latex/Oeuvres à Découvrir/output";
+          path = "~/org/Wiki/Oeuvres à Découvrir";
           label = "Oeuvres à Découvrir";
           type = "sendonly";
           paused = true;
@@ -109,6 +110,7 @@ in {
           # needs the following stignore patterns:
           # Alter/*
           # !*.org
+          # !Fictions/Latex/Oeuvres à Découvrir/*.{tex,pdf}*
           # *
 
           enable = true;
