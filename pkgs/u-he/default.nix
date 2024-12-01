@@ -1,14 +1,13 @@
 { pkgs ? import <nixpkgs> { } }:
 
 # Future update:
-# + colourcopy, MFM, twangstrom
-# + repro, presswerk, zebra legacy
-# + zebra 3/zebralette 3, uhbik
+# + repro, presswerk
+# + zebra 3, uhbik
 
 {
-  ##########
-  # synths #
-  ##########
+  ############
+  #   SYNTHS   #
+  ############
 
   ace = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Ace";
@@ -40,15 +39,15 @@
     sha256 = "";
   };
 
-  zebra-legacy = pkgs.callPackage ./derivations/common-tar.nix {
+  zebra-legacy = pkgs.callPackage ./derivations/zebra-legacy.nix {
     name = "Zebra-Legacy";
-    url = "https://dl.u-he.com/releases/Zebra_Legacy_293_12092_Linux.zip";
-    sha256 = "sha256-MDsLzTTQ8VDfmmRxqaWvtK4K9aVN2SHIbBY2JJXIGps=";
+    url = "https://dl.u-he.com/releases/Zebra_Legacy_294_16765_Linux.zip";
+    sha256 = "sha256-DBOMVmj6OBAODbdCWoKhuhVq9h5wZyzeuyijG6LpBZQ=";
   };
 
-  ############
-  # freebies #
-  ############
+  #############
+  #   FREEBIES   #
+  #############
 
   podolski = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Podolski";
@@ -76,14 +75,14 @@
     sha256 = "";
   };
 
-  ###########
-  # effects #
-  ###########
+  ############
+  #   EFFECTS   #
+  ############
 
   colourcopy = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Colourcopy";
-    url = "https://dl.u-he.com/releases/ColourCopy_101_12092_Linux.tar.xz";
-    sha256 = "";
+    url = "https://dl.u-he.com/releases/ColourCopy_102_16742_Linux.tar.xz";
+    sha256 = "sha256-OqiDW7SG3K3QqbSND+d0BOR1x7OLcyMoCigUcMKeU4c=";
   };
 
   filterscape = pkgs.callPackage ./derivations/common-tar.nix {
@@ -94,8 +93,8 @@
 
   mfm2 = pkgs.callPackage ./derivations/common-tar.nix {
     name = "MFM2";
-    url = "https://dl.u-he.com/releases/MFM2_25_13385_Linux.tar.xz";
-    sha256 = "";
+    url = "https://dl.u-he.com/releases/MFM2_251_16742_Linux.tar.xz";
+    sha256 = "sha256-TwB/bwMiJr+fOeT6rV8jHWyJvr83YLVxoaBU7pt9YAA=";
   };
 
   presswerk = pkgs.callPackage ./derivations/common-tar.nix {
@@ -112,13 +111,13 @@
 
   twangstrom = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Twangstrom";
-    url = "https://dl.u-he.com/releases/Twangstrom_101_12092_Linux.tar.xz";
-    sha256 = "";
+    url = "https://dl.u-he.com/releases/Twangstrom_102_16742_Linux.tar.xz";
+    sha256 = "sha256-SFPY+R+gQstDXe+gLaoIuCUckBoYwWZygXSMwytcpnc=";
   };
 
   uhbik = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Uhbik";
     url = "https://dl.u-he.com/releases/Uhbik_131_8256_Linux.tar.xz";
-    sha256 = "";
+    sha256 = "sha256-kYL7pOGIJv1++p+PMNOy/g6L8dOQ/45yc+KgqpNSyrM=";
   };
 }

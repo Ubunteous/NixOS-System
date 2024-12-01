@@ -47,7 +47,7 @@ if [ ! -v plugins[$PLUGIN] ]; then
 	     "uhbik"
 	     "zebra-legacy"
 	     "zebralette3")
-    
+
     for plugin in "${options[@]}"; do
 	echo "=> $plugin"
     done
@@ -59,18 +59,21 @@ nix-build -A "$PLUGIN"
 cp -r result/ build
 chmod -R +w build
 
-# annoying to deal with. maybe do it later
-if [ $PLUGIN == "zebra-legacy" ]; then
-    mkdir -p ~/Downloads/zebra/
-    mv build/lib/* ~/Downloads/zebra/
-    rm -r result
-    rm -r build
+if [ $PLUGIN == "zebra-legacy" ]; then 
+    SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
-    echo "I have not finished configuring this plugin's installation. Files moved to ~/Downloads/zebra"
-    exit 0
+    (cd ./build/lib/*/01*/Zebra2-* && \
+	 nix-shell $SCRIPT_DIR/shell.nix --run "./install.sh --quiet")
+
+    (cd ./build/lib/*/02*/ZebraHZ-* && \
+	 nix-shell $SCRIPT_DIR/shell.nix --run "./install.sh --quiet")
+
+    mv -vn ./build/lib/*/03* ~/Downloads/
+    
+    echo "Zebra2 and ZebraHZ installed. Soundsets moved to ~/Downloads/"
+else
+    nix-shell ./shell.nix --run "./build/lib/install.sh --quiet"
 fi
 
-# nix-shell -p glib gtk3 --run ./build/lib/install.sh
-nix-shell ./shell.nix --run "./build/lib/install.sh --quiet"
 rm -r result
 rm -r build
