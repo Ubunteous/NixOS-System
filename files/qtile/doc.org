@@ -1,3 +1,16 @@
+* Fixes
+
+1) Does not seem to work on wayland right now
+
+2) Next update should make it possible to use a hook on window deletion (see bottom of decorators.py)
+
+3) Do not float some windows (try with reaper vst)
+#+begin_src python
+@hook.subscribe.client_managed
+def force_tile(window):
+    if "name" in window.get_wm_class():
+        window.floating = False
+#+end_src
 
 
 * Main Objects
