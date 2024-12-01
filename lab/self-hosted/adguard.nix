@@ -18,6 +18,8 @@ in {
       # allowDHCP = config.services.adguardhome.settings.dhcp.enabled or false
 
       # openFirewall = true;
+
+      # allow changes on the web interface to be saved
       # mutableSettings = false;
 
       # port = 3090; # defaults to 3000

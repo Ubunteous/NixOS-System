@@ -4,9 +4,9 @@ with lib;
 let
   cfg = config.lab.ssh;
   corecfg = config.lab;
-  in {
+in {
 
-    options.lab.ssh = { enable = mkEnableOption "Enables support for ssh"; };
+  options.lab.ssh = { enable = mkEnableOption "Enables support for ssh"; };
 
   config = mkIf (corecfg.enable && cfg.enable) {
     service.openssh = { # note: alias openssh=sshd
@@ -33,29 +33,29 @@ let
       #   }
       # ];
 
-      authorizedKeysFiles = [ "" ];
+      # authorizedKeysFiles = [ "" ];
 
       # moduliFile = "/etc/ssh/moduli";
       # extraConfig = '' '';
-      banner = "Nix banner shown before auth allowed";
+      # banner = "Nix banner shown before auth allowed";
 
       # authorizedKeysCommandUser = "nobody";
       # authorizedKeysCommand = "none";
 
-      listenAddresses."addr" = {
-        port = "";
-        addr = "";
-      };
+      # listenAddresses."addr" = {
+      #   port = "";
+      #   addr = "";
+      # };
 
-      knownHosts."test" = {
-        # publicKeyFile = "/path/to/file"
-        # publicKey = "ecdsa-sha2-nistp521 AAAAE2VjZHN...UEPg==";
+      # knownHosts."test" = {
+      #   # publicKeyFile = "/path/to/file"
+      #   # publicKey = "ecdsa-sha2-nistp521 AAAAE2VjZHN...UEPg==";
 
-        # hostNames = [ "‹name›" ] ++ config.services.openssh.knownHosts.<name>.extraHostNames;
-        # extraHostNames = []; list ignored if hostNames is set
+      #   # hostNames = [ "‹name›" ] ++ config.services.openssh.knownHosts.<name>.extraHostNames;
+      #   # extraHostNames = []; list ignored if hostNames is set
 
-        # certAuthority = false;
-      };
+      #   # certAuthority = false;
+      # };
 
       # # SFTP is a subsystem in SSH daemon
       # allowSFTP = true; # defaults to true
@@ -63,22 +63,21 @@ let
       # sftpFlags = [ "-f AUTHPRIV" "-l INFO" ];
 
       settings = {
+        PermitRootLogin = "no"; # safer
+        PasswordAuthentication = "true";
+        AllowUsers = [ "${user}" ];
+
         # X11Forwarding = false; # defaults to false
         # UseDns = false; # defaults to false
         # StrictModes = true; # defaults to true
-        PermitRootLogin = "no";
-        PasswordAuthentication = "false";
         # Macs = [ "hmac-sha2-512-etm@openssh.com" ];
 
         # KbdInteractiveAuthentication = true; # defaults to true
         # GatewayPorts = "no"; # defaults to "no"
         # DenyUsers / DenyGroups / Ciphers
 
-        # AuthorizedPrincipalsFile = "none"; # file for auth users
-
-        # # TRY THIS AT SOME POINT
-        AllowUsers = [ "${user}" ];
         # AllowGroups = [ "" ];
+        # AuthorizedPrincipalsFile = "none"; # file for auth users
 
         # alt: "QUIET", "FATAL", "ERROR", "INFO", "VERBOSE", "DEBUG", "DEBUG1", "DEBUG2", "DEBUG3"
         # LogLevel = "INFO"; # defaults to info among

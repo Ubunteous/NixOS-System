@@ -19,7 +19,7 @@ let
       # package = pkgs.kavita;
 
       # generate with: head -c 64 /dev/urandom | base64 --wrap=0
-      # tokenKeyFile = "/path/to/file";
+      tokenKeyFile = ../../files/kavita-token;
 
       # settings = {
       #   # see appsettings.json

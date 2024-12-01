@@ -4,12 +4,12 @@ with lib;
 let
   cfg = config.lab.podman;
   labcfg = config.lab;
-  in {
-    options.lab.podman = {
-      enable = mkEnableOption "Enables support for Podman";
-    };
+in {
+  options.lab.podman = {
+    enable = mkEnableOption "Enables support for Podman";
+  };
 
-    config = mkIf (labcfg.enable && cfg.enable) {
+  config = mkIf (labcfg.enable && cfg.enable) {
     ###############
     #     PODMAN     #
     ###############
@@ -34,7 +34,7 @@ let
       # create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
 
-      # extraPackages = with pkgs; [ gvisor ];
+      # extraPackages = with pkgs; [ podman-compose gvisor ];
     };
   };
 }
