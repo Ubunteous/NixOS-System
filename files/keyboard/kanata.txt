@@ -14,29 +14,72 @@
 ;;          KANATA : deflayer         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(deflayer colemak-tap-min
+  _    _    _    _    _    _    _    _    _    _    _
+  _    q    @m_w f    p    b    j    l    u    @m_y lmet
+  _    a    r    s    t    g    m    n    e    i    o
+  @ols @t_c @a_z x    @s_c @c_d v    @c_k @s_h _    _    @a_/ @ors
+  lctl lmet lalt                _              ralt rctl
+)
+
 (deflayer colemak
   _    _    _    _    _    _    _    _    _    _    _
   _    q    w    f    p    b    j    l    u    y    lmet
   _    a    r    s    t    g    m    n    e    i    o
-  @ols _    z    x    c    d    v    k    h    _    _    _    @lst
+  @ols @t_m z    x    c    d    v    k    h    _    _    _    @ors ;; @lst
   lctl lmet lalt                _              ralt rctl
 )
 
-(deflayer colemak-tap
-  _    _    _    _    _    _    _    _    _    _    _
-  _    q    w    f    p    b    j    l    u    y    lmet
-  _    @m_a @a_r @c_s @s_t g    m    @s_n @c_e @a_i @m_o
-  @lsa _    z    x    c    d    v    k    h    _    _    _    @lsc
-  @olc @olm @ola                _              @ora @orc
-)
+;; (deflayer colemak-tap-min
+;;   _    _    _    _    _    _    _    _    _    _    _
+;;   _    q    w    f    p    @m_b @m_j l    u    y    lmet
+;;   _    a    r    s    t    @c_g @c_m n    e    i    o
+;;   @ols _    z    x    c    @s_d v    @s_k h    _    _    _    @ors
+;;   lctl lmet lalt                _              ralt rctl
+;; )
 
-(deflayer azerty
-  _    _    _    _    _    _    _    _    _    _    _
-  _    a    z    e    r    t    y    u    i    o    p
-  _    q    s    d    f    g    h    j    k    l    m
-  @ols _    w    x    c    v    b    n    ,    ;    .    _    @lsc
-  @olc @olm @ola                _              @ora @orc
-)
+;; (deflayer colemak-tap
+;;   _    _    _    _    _    _    _    _    _    _    _
+;;   _    q    w    f    p    b    j    l    u    y    lmet
+;;   _    @a_a @m_r @c_s @s_t g    m    @s_n @c_e @m_i @a_o
+;;   @ols _    z    x    c    d    v    k    h    _    _    _    @ors
+;;   lctl lmet lalt                _              ralt rctl
+;; )
+
+;; (deflayer tap
+;;   _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _
+;;   _    @a_a @m_r @c_s @s_t g    m    @s_n @c_e @m_i @a_o
+;;   @ols _    _    _    _    _    _    _    _    _    _    _    @ors
+;;   @olc @olm @ola                _              @ora @orc
+;; )
+
+;; (deflayer normal
+;;   _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _    _    _    _    _    _    _    _    _
+;;   _    a    r    s    t    _    _    n    e    i    o
+;;   _    _    _    _    _    _    _    _    _    _    _    _    _
+;;   _    _    _                   _              _    _   
+;; )
+
+;; (deflayer azerty
+;;   _    _    _    _    _    _    _    _    _    _    _
+;;   _    a    z    e    r    t    y    u    i    o    p
+;;   _    q    s    d    f    g    h    j    k    l    m
+;;   @ols _    w    x    c    v    b    n    ,    ;    .    _    @lsc
+;;   @olc @olm @ola                _              @ora @orc
+;; )
+
+;;;;;;;;;;;;
+;; COMBOS ;;
+;;;;;;;;;;;;
+
+;; add this later when supported to get better modifiers
+;; (defcfg concurrent-tap-hold yes)
+;; (defchordsv2-experimental
+;;   (t n) c 200 all-released  (colemak) ;; either last-release or all-released
+;;   (s e) d 200 first-release (colemak)
+;; )
 
 ;;;;;;;;;;;;;;;
 ;; VARIABLES ;;
@@ -55,15 +98,39 @@
   ;; HOME ROW MODS ;;
   ;;;;;;;;;;;;;;;;;;;
 
-  m_a (tap-hold-press $tt $ht a lmet)
-  a_r (tap-hold-press $tt $ht r lalt)
+  a_a (tap-hold-press $tt $ht a lalt)
+  m_r (tap-hold-press $tt $ht r lmet)
   c_s (tap-hold-press $tt $ht s lctl)
   s_t (tap-hold-press $tt $ht t lsft)
                      
   s_n (tap-hold-press $tt $ht n rsft)
   c_e (tap-hold-press $tt $ht e rctl)
-  a_i (tap-hold-press $tt $ht i lalt)
-  m_o (tap-hold-press $tt $ht o rmet)
+  m_i (tap-hold-press $tt $ht i lmet)
+  a_o (tap-hold-press $tt $ht o ralt)
+
+  ;; middle keyboard / wy
+  c_g (tap-hold-press $tt $ht g lctl)
+  c_m (tap-hold-press $tt $ht m rctl)
+
+  m_b (tap-hold-press $tt $ht b lmet)
+  m_j (tap-hold-press $tt $ht j lmet)
+
+  m_w (tap-hold-press $tt $ht w lmet)
+  m_y (tap-hold-press $tt $ht y lmet)
+
+  ;; down one row
+  c_c (tap-hold-press $tt $ht c lctl)
+  s_c (tap-hold-press $tt $ht c lsft)
+  c_h (tap-hold-press $tt $ht h rctl)
+  s_h (tap-hold-press $tt $ht h rsft)
+
+  c_d (tap-hold-press $tt $ht d lctl)
+  s_d (tap-hold-press $tt $ht d lsft)
+  c_k (tap-hold-press $tt $ht k rctl)
+  s_k (tap-hold-press $tt $ht k rsft)
+
+  a_z (tap-hold-press $tt $ht z lalt)
+  a_/ (tap-hold-press $tt $ht / lalt)
 
   ;;;;;;;;;;;;
   ;; STICKY ;;
@@ -79,16 +146,18 @@
   orc (one-shot $st rctl)
 
   ols (one-shot $st lsft)
-  ors (one-shot 500 rsft)
+  ors (one-shot $st rsft)
 
   ;;;;;;;;;;;;
   ;; LAYERS ;;
   ;;;;;;;;;;;;
 
+  t_c (tap-dance 200 (lsgt (layer-switch colemak)))
+  t_m (tap-dance 200 (lsgt (layer-switch colemak-tap-min)))
   ;; ls (tap-dance 200 (z (layer-switch colemak) (layer-switch azerty)))
-  lsa (tap-hold-press 200 1000 @ors (layer-switch azerty))
-  lsc (tap-hold-press 200 1000 @ols (layer-switch colemak))
-  lst (tap-hold-press 200 1000 @ors (layer-switch colemak-tap))
+  ;; lsa (tap-hold-press 200 1000 @ors (layer-switch azerty))
+  ;; lsc (tap-hold-press 200 1000 @ols (layer-switch colemak))
+  ;; lst (tap-hold-press 200 1000 @ors (layer-switch tap))
 )
 
 ;;;;;;;;;;;;;;
