@@ -65,29 +65,91 @@ in {
         useEqualHeights = "true";
 
         layout = {
-          Hashicorp = { # group Name in services/bookmarks.yaml
-            style = "row";
-            columns = "3";
+          Monitoring = { # group Name in services/bookmarks.yaml
+            style = "column";
+            rows = "3";
             # initiallyCollapsed = "true";
+            # tab = "First"; # not giving a tab puts column on every tab
           };
+
           Server = {
             style = "column";
             rows = "3";
+            # tab = "Second";
           };
+
+          Multimedia = {
+            style = "column";
+            rows = "2";
+            columns = "3";
+          };
+
           Utilities = {
             style = "column";
             rows = "4";
           };
-          Monitoring = {
-            style = "column";
-            rows = "3";
+
+          arr = {
+            style = "row";
+            rows = "2";
+            columns = "3";
           };
         };
       };
 
       services = [
+
         {
-          "Hashicorp" = [
+          "Multimedia " = [
+            {
+              "Shiori" = {
+                icon = "shiori.png";
+                href = "http://localhost:2525/";
+              };
+            }
+            {
+              "Jellyfin" = {
+                icon = "jellyfin.png";
+                href = "http://localhost:8096/";
+              };
+            }
+            {
+              "Jellyseer" = {
+                icon = "jellyfin.png";
+                href = "http://localhost:5055/";
+              };
+            }
+            {
+              "Plex" = {
+                icon = "plex.png";
+                href = "http://localhost:32400/web/";
+              };
+            }
+
+            {
+              "Tautulli" = {
+                icon = "tautulli.png";
+                href = "http://localhost:8181/";
+              };
+            }
+
+            {
+              "qBitTorrent" = {
+                icon = "qbittorrent.png";
+                href = "http://localhost:8080/";
+              };
+            }
+            # {
+            #   "kavita" = {
+            #     icon = "kavita.png";
+            #     href = "http://localhost:5000/";
+            #   };
+            # }
+          ];
+        }
+
+        {
+          "Monitoring" = [
             {
               "Grafana" = {
                 icon = "grafana.png";
@@ -106,6 +168,29 @@ in {
                 href = "http://localhost:8082/"; # no link yet
                 # ping: sonarr.host # for http://sonarr.host/
                 # siteMonitor = "http://localhost:3002/"; # verify site exists
+              };
+            }
+          ];
+        }
+
+        {
+          "Server" = [
+            {
+              "Caddy" = {
+                icon = "caddy.png";
+                href = "http://localhost:2019/"; # admin port
+              };
+            }
+            {
+              "Traefik" = {
+                icon = "traefik.png";
+                href = "http://localhost/";
+              };
+            }
+            {
+              "Nginx" = {
+                icon = "nginx.png";
+                href = "http://localhost:80/"; # http port
               };
             }
           ];
@@ -149,49 +234,45 @@ in {
         }
 
         {
-          "Server" = [
+          "arr" = [
             {
-              "Caddy (admin)" = {
-                icon = "caddy.png";
-                href = "http://localhost:2019/"; # admin port
+              "Radarr (movies)" = {
+                icon = "radarr.png";
+                href = "http://localhost:7878/";
               };
             }
             {
-              "Traefik (placehold)" = {
-                icon = "traefik.png";
-                href = "http://localhost/";
+              "Bazaar (sub)" = {
+                icon = "https://www.bazarr.media/assets/img/logo.png";
+                href = "http://localhost:6767/"; # default: 9090
               };
             }
             {
-              "Nginx (placehold)" = {
-                icon = "nginx.png";
-                href = "http://localhost:80/"; # http port
+              "Sonarr (tv)" = {
+                icon = "sonarr.png";
+                href = "http://localhost:8989/";
+              };
+            }
+            {
+              "Readarr (books)" = {
+                icon = "readarr.png";
+                href = "http://localhost:8787/";
+              };
+            }
+            {
+              "Lidarr (music)" = {
+                icon = "lidarr.png";
+                href = "http://localhost:8686/";
+              };
+            }
+            {
+              "Prowlarr (indexer)" = {
+                icon = "prowlarr.png";
+                href = "http://localhost:9696/";
               };
             }
           ];
-        }
 
-        {
-          "Monitoring" = [
-            {
-              "Uptime-Kuma" = {
-                icon = "uptime-kuma.png";
-                href = "http://localhost:3001/";
-              };
-            }
-            {
-              "Cockpit" = {
-                icon = "cockpit.png";
-                href = "http://localhost:9099/"; # default: 9090
-              };
-            }
-            {
-              "Cadvisor" = {
-                icon = "cadvisor.png";
-                href = "http://localhost:8080/";
-              };
-            }
-          ];
         }
       ];
 
