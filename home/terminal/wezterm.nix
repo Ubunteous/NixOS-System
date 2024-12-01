@@ -4,8 +4,7 @@ with lib;
 let
   cfg = config.home.terminal.wezterm;
   homecfg = config.home;
-in
-{
+in {
   options.home.terminal.wezterm = {
     enable = mkEnableOption "Enable support for Wezterm";
   };
@@ -14,14 +13,16 @@ in
     ###############
     #   WEZTERM   #
     ###############
-    
+
     # prevent creation of ~/.config/wezterm/wezterm.lua
     # xdg.configFile."wezterm/wezterm.lua".enable = false;
     xdg.configFile."wezterm/".source = ../../files/wezterm;
 
     programs.wezterm = {
       enable = true;
-      
+
+      # package = pkgs.stable.wezterm;
+
       # colorSchemes = {
       #   default = {
       #     ansi = [ "#222222" "#D14949" "#48874F" "#AFA75A"    "#599797" "#8F6089" "#5C9FA8" "#8C8C8C" ];
@@ -36,7 +37,7 @@ in
       #     selection_fg = "#E9E9E9";
       #   };
       # };
-      
+
       # extraConfig = ''
       #   return {
       #     -- color_scheme = "Monokai Remastered",
@@ -51,7 +52,7 @@ in
       #     default_prog = { "/run/current-system/sw/bin/bash" },
       #   }
       # '';
-    };      
+    };
   };
 }
 

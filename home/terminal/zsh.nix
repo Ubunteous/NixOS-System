@@ -35,7 +35,7 @@ in {
 
         ls = ''ls --hide="*~"'';
 
-        it = "janet ~/.nix.d/bin/it.janet";
+        ni = "janet ~/.nix.d/bin/ni.janet";
       };
 
       initExtra = ''
