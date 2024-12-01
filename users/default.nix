@@ -1,12 +1,7 @@
-{ ... }:
+{ lib, ... }:
 
-{    
-  imports = [
-    ./user.nix
-    ./user-packages.nix
-    ./musnix.nix
+with lib; {
+  options.user.enable = mkEnableOption "User Options";
 
-    # ../nix-shell/u-he.nix
-    # ./kmonad.nix
-  ];
+  imports = [ ./user.nix ./packages.nix ./music.nix ./visual_art.nix ];
 }

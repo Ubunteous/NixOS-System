@@ -30,8 +30,8 @@ in {
       # bitwig-studio # latest
       # bitwig-studio3 # can be modified with overlay
 
-      # (callPackage ../pkgs/bitwig3.nix { })
-      bitwig-studio4
+      (callPackage ../pkgs/bitwig3.nix { })
+      # bitwig-studio4
 
       # (callPackage ../pkgs/reaper.nix {
       #   jackLibrary = null;
@@ -109,7 +109,8 @@ in {
       # stable.yabridgectl
 
       # wineWowPackages.staging # v9.9 in 09/2024
-      wineWowPackages.staging # v9.9 in 09/2024
+      # wineWowPackages.staging # v9.9 in 09/2024
+      wine
 
       winetricks
       yabridge

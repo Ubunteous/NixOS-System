@@ -7,37 +7,29 @@ let
   # use opentabledriver vs xsetwacom+wacom table finder
   cfgwacom = config.user.visual_art.wacom_kernel;
 
-  graphicpkgs = with pkgs; [ aseprite darktable krita ];
+  graphicpkgs = with pkgs; [ aseprite darktable krita gimp ];
 
   usercfg = config.user;
-  in {
-    options.user.visual_art = {
-      enable = mkEnableOption
-	"Add visual art tools (wacom and apps for drawing/pictures)";
-      wacom_kernel = mkEnableOption
-	"Support OSS driver rather than official wacom kernel module";
-    };
+in {
+  options.user.visual_art = {
+    enable = mkEnableOption
+      "Add visual art tools (wacom and apps for drawing/pictures)";
+    wacom_kernel = mkEnableOption
+      "Support OSS driver rather than official wacom kernel module";
+  };
 
-    config = mkIf (usercfg.enable && cfg.enable) (mkMerge [
+  config = mkIf (usercfg.enable && cfg.enable) (mkMerge [
     (mkIf (cfgwacom) {
-      # 
-      # {
-      #   programs.firefox.profiles.default.extensions =
-      #     with config.nur.repos.rycee.firefox-addons; [
-      #       darkreader
-      #       tridactyl
-      #       ublock-origin
-      #       istilldontcareaboutcookies
-      #     ];
-      # })
-      # ]);
-
       # provides xsetwacom command
       users.users.${user}.packages = with pkgs; [ wacomtablet ] ++ graphicpkgs;
 
       services = {
         xserver = {
           wacom.enable = true;
+          # Note: use these to improve this:
+          # - Change active area aspect ration to match monitor resolution 
+          # - Change pressure sensitivity to save nibs
+          # - Rotate the tablet to get the button on the correct side
 
           # inputClassSections = [
           #   ''
@@ -73,11 +65,11 @@ let
       };
     })
     (mkIf (!cfgwacom) {
+      users.users.${user}.packages = with pkgs; graphicpkgs;
+
       hardware.opentabletdriver = {
         enable = true;
         daemon.enable = true;
-
-        users.users.${user}.packages = with pkgs; graphicpkgs;
 
         # blacklistedKernelModules = [
         # 	"hid-uclogic"
