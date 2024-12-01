@@ -43,6 +43,7 @@ in {
             # cv
             fontawesome
             # hyperref
+            titlesec
 
             # org
             dvipng # essential

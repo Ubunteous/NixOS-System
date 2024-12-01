@@ -6,6 +6,7 @@ with lib; {
   imports = [
     ./Python.nix
     ./Godot.nix
+    ./Csharp.nix
 
     ./C.nix
     ./Nix.nix
@@ -16,6 +17,7 @@ with lib; {
     ./Javascript.nix
 
     ./Shell.nix
+    # ./Typst.nix
     ./LaTeX.nix
     ./PostgreSQL.nix
 
@@ -23,6 +25,7 @@ with lib; {
     ./Rust.nix
 
     ./Guile.nix
+    ./Janet.nix
     ./Clojure.nix
     ./Common-Lisp.nix
     ./Elixir.nix

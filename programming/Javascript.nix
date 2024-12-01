@@ -13,6 +13,8 @@ let
     # jupyter. setup with ijsinstall command
     ijavascript
 
+    # jshint
+
     # "@jest" # unit tests
     # mocha # unit testing framework
   ];
@@ -34,7 +36,11 @@ in {
       users.users.${user} = {
         packages = with pkgs;
           [
-            nodejs
+
+            # runtime (bun is the fastest)
+            # nodejs
+            bun # also a bundler, transpiler and package manager
+            # deno
 
             # package managers:
             # node2nix
@@ -43,7 +49,10 @@ in {
             # pnpm # link deps to avoid dupplicates
 
             # create-react-app
-            # biome # lint/format => does not send to stdout
+
+            # biome # lint/format => does not send to stdout. try later
+            # stylelint # css linter
+            # validator-nu # html/css checker
           ] ++ nodepkgs;
       };
     })

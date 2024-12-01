@@ -4,7 +4,6 @@ with lib;
 let
   cfg = config.languages.postgresql;
   langcfg = config.languages;
-  # main_db = "mydb";
 in {
   options.languages.postgresql = {
     enable =
@@ -12,6 +11,79 @@ in {
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {
+    users.users.${user} = {
+      packages = with pkgs; [
+        postgresql
+        # pgadmin4 # pony broken as of 3/2024
+        # pgadmin4-desktopmode
+
+        ############
+        # terminal #
+        ############
+
+        # pgcenter # observe and troubleshoot
+        # pgcli # use psql in a term
+
+        # add this to .psqlrc for more informative prompts
+        # \set PROMPT1 '(%n@%M:%>) %`date +%H:%M:%S` [%/] \n%x%\n'
+        # \set PROMPT2 ''
+
+        #############
+        # formatter #
+        #############
+
+        pgformatter
+        # sql-formatter
+
+        #######
+        # lsp #
+        #######
+
+        postgres-lsp
+        # sqls
+
+        ############
+        # analyser #
+        ############
+
+        sqlfluff # linter and formatter
+        # sqlcheck
+
+        ############
+        # advanced #
+        ############
+
+        # GUI/TUI
+        # dbgate # js
+        # jailer # java
+        # pgweb # go
+        # termdbms # go
+
+        # Terminal Utilities
+        # pgactivity # like top
+        # USQL # universal sql cli (go)
+        # pgcenter # already in use (go)
+
+        # Schema
+        # sqldef # schema management
+        # skeema # for declarative schema changes
+
+        # Diagram
+        # schema spy
+        # erd
+
+        # postgrest # rest api
+
+        # Data analysis
+        # telegraf
+        # pghero
+      ];
+    };
+
+    ######################
+    #   DATABASE SETUP   #
+    ######################
+
     # Create db: initdb -D .data
     # Start PostgreSQL server: pg_ctl -D .data -l logfile start # maybe requires /run/postgresql/ ?
     # Verification: pg_ctl -D .data status
@@ -34,10 +106,10 @@ in {
       authentication = ''
         #type database DBuser address      auth-method
         local all      all                 trust
-        #local all      postgres            peer map=eroot
+        #local all     postgres            peer map=eroot
 
-        #host  all      all    127.0.0.1/32 trust
-        #host  all      all    ::1/128      trust
+        #host  all     all    127.0.0.1/32 trust
+        #host  all     all    ::1/128      trust
       '';
 
       #   identMap = ''
@@ -71,16 +143,5 @@ in {
       # ];
     };
 
-    users.users.${user} = {
-      packages = with pkgs; [
-        # postgresql
-        # pgadmin4 # pony broken as of 3/2024
-        # pgadmin4-desktopmode
-
-        postgres-lsp
-        pgformatter
-        sqlfluff # linter and formatter
-      ];
-    };
   };
 }
