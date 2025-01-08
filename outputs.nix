@@ -39,8 +39,9 @@ in {
         ./hardware/hardware-configuration.nix
         ./hosts/main.nix
 
-        nur.nixosModules.nur
+        nur.modules.nixos.default
         musnix.nixosModules.musnix
+        # stylix.nixosModules.stylix
         # agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         # nix-index-database.nixosModules.nix-index
