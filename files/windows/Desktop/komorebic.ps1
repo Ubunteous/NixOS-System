@@ -1,1 +1,0 @@
-komorebic start --ahk --bar
