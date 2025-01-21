@@ -1,0 +1,3 @@
+[submodule "windows"]
+	path = files/windows
+	url = https://github.com/Ubunteous/Windots.git
