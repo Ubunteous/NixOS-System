@@ -7,6 +7,7 @@
 # taken from hey which is itself inspired by Guix CLI
 # I can improve my own commands later
 
+# Taken from hlissner. I will eventually have the same options
 # SYNOPSIS:
 #   hey [-?|-??|-???|-!] [-h|--help] COMMAND [ARGS...]
 #
@@ -74,7 +75,7 @@
 
 (cmd/defn flake
 	  "Utilities related to nix flakes"
-	  [command (required ["command" :string])
+	  [command (required ["command (show, archive, update (with --input) or update-all)" :string])
 	   [--input -i] (optional ["Flake input to manage (default: nixpkgs-unstable)" :string] "nixpkgs-unstable")
 	  ]
 
@@ -114,11 +115,52 @@
 	    (print "Nix command " command " unknown. Try show, previous or clean-profiles/simple/full.")))
 
 
+(cmd/defn sofle
+	  "Compile and flash sofle with QMK"
+	  [command (optional ["command (compile, flash, compile-flash or default)" :string])
+	  ]
+	  
+	  (let [sofle-path "splitkb/aurora/sofle_v2/rev1"
+		layout "colemak"]
+
+	    (case command
+	      "compile"
+	      (sh/$ qmk compile -kb ,sofle-path -km ,layout)
+
+	      "flash"
+	      (sh/$ qmk flash -kb ,sofle-path -km ,layout)
+
+	      # needs sudo access
+	      # "mount"
+	      # (let [device (sh/$< lsblk -o "NAME,LABEL"|
+	      # 			  grep RPI-RP2 |
+	      # 			  awk "{print $1;}" |
+	      # 			  tr -cd "[:alnum:]|\n")]
+
+	      # 	(if-not (nil? device)
+	      # 	  (sh/$ mount (string "/dev/" device) "/run/media/usb/")
+	      # 	  (print "Device not found")))
+
+	      "compile-flash"
+	      (do
+		(sh/$ qmk compile -kb ,sofle-path -km ,layout)
+		(sh/$ qmk flash -kb ,sofle-path -km ,layout))
+
+	      "default"
+	      (sh/$ qmk compile -kb ,sofle-path -km "default")
+	      
+	      nil
+	      (print "Choose either compile, flash compile-flash or default"))))
+
+
 (cmd/main
  (cmd/group
   "Group of commands use to administrate my nix system."
   rebuild nixos-rebuild
   r nixos-rebuild
+
+  sofle sofle
+  kb sofle
 
   flake flake
   nix nix))
