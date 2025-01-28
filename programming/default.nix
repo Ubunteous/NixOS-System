@@ -16,6 +16,7 @@ with lib; {
     ./Java.nix
     ./Javascript.nix
 
+    ./SCSS.nix
     ./Shell.nix
     # ./Typst.nix
     ./LaTeX.nix

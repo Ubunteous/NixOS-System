@@ -91,7 +91,7 @@ in {
             # mu does not install mu4e automatically anymore
             # pkgs.mu
             # epkgs.mu4e
-            pkgs.emacs-lsp-booster
+            # pkgs.emacs-lsp-booster
 
             # tree-sitter-langs # maybe deprecated
             epkgs.treesit-grammars.with-all-grammars
@@ -206,11 +206,14 @@ in {
 
       packages = with pkgs; [
         emacs-all-the-icons-fonts
+
+        # note: nerdfonts have been split in subpackages like nerd-fonts.ubuntu
         # nerdfonts # nerd icons take 6gb
+        # (nerdfonts.override { fonts = [ "" "" ]; })
+
         # roboto-mono
         fira-code
         cascadia-code
-        # (nerdfonts.override { fonts = [ "" "" ]; })
         meslo-lgs-nf
 
         # # rofi fonts:

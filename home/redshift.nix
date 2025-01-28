@@ -19,16 +19,19 @@ in {
     services.redshift = {
       enable = true;
 
-      latitude = "50"; # "-90.0" to "90.0"
+      latitude = "0"; # "-90.0" to "90.0"
       longitude = "0"; # "-180.0" to "180.0"
 
-      dawnTime = "07:00";
-      duskTime = "19:00";
+      dawnTime = "05:00";
+      duskTime = "05:00";
 
       temperature = {
+        # Default values:
+        # Daytime temperature: 6500K
+        # Night temperature: 4500K
         # values from 1000 to 25000
-        day = 5500; # 5500
-        night = 3700; # 3700
+        day = 6000; # 5500
+        night = 6000; # 3700
       };
 
       # settings = {

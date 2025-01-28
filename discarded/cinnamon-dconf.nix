@@ -1,9 +1,9 @@
-{...}:
+{ ... }:
 
 # requires home manager and cinnamon desktop environment
 {
   # programs.dconf.enable = true;
-  
+
   dconf.settings = {
     "org/cinnamon/sounds" = {
       login-enabled = false;
@@ -19,12 +19,8 @@
       unplug-enabled = false;
       notification-enabled = false;
     };
-    "org/cinnamon/desktop/sounds" = {
-      volume-sound-enabled = false;
-    };
-    "nemo/window-state" = {
-      start-with-sidebar = false;
-    };
+    "org/cinnamon/desktop/sounds" = { volume-sound-enabled = false; };
+    "nemo/window-state" = { start-with-sidebar = false; };
     "org/cinnamon/settings-daemon/plugins/power" = {
       sleep-display-ac = 300;
       sleep-display-battery = 300;
@@ -52,7 +48,7 @@
       enable-vfade = false;
       desktop-effects-workspace = false;
     };
-    
+
     "org/cinnamon/muffin".desktop-effects = false;
     "org/cinnamon/desktop/interface".font-name = "'Ubuntu 12'";
     "org/cinnamon/desktop/wm/preferences".theme = "'Nordic'";
@@ -61,7 +57,7 @@
       icon-theme = "'Papirus-Dark'";
       gtk-theme = "'Arc-Dark'";
     };
-    
+
     "org/cinnamon/theme".name = "'Arc-Dark'";
 
     "org/nemo/desktop" = {
@@ -70,7 +66,7 @@
       home-icon-visible = false;
       volumes-visible = false;
     };
-    
+
     "org/cinnamon/desktop/privacy".remember-recent-files = false;
   };
 }

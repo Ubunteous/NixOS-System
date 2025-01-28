@@ -4,12 +4,12 @@ with lib;
 let
   cfg = config.home.themes;
   homecfg = config.home;
-  in {
-    options.home.themes = {
-      enable = mkEnableOption "Enable support for themes";
-    };
+in {
+  options.home.themes = {
+    enable = mkEnableOption "Enable support for themes";
+  };
 
-    config = mkIf (homecfg.enable && cfg.enable) {
+  config = mkIf (homecfg.enable && cfg.enable) {
     ##############
     #   THEMES   #
     ##############

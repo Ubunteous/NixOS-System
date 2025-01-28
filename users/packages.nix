@@ -166,7 +166,7 @@ in {
       # delta # git diff
       # difftastic # diff
       # direnv # environment variables # replaced by nix-direnv
-      # dogdns # dig
+      # dogdns # doggo # dig
       du-dust # disk usage
       # duf # disk analysis
       # exa # unmaintained 9-2023 ls replacement
@@ -190,7 +190,7 @@ in {
       # navi # help
       # plocate # locate
       # procs # ps
-      # ranger # alternative: nnn
+      # ranger # alternatives: nnn, joshuto
       ripgrep # grep. combine it with fzf later
       ripgrep-all # broken in unstable (September 2023)
       # sd # sed/awk

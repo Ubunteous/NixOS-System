@@ -4,17 +4,17 @@ with lib;
 let
   cfg = config.core.sound;
   corecfg = config.core;
-  in {
-    options.core.sound = {
-      enable = mkEnableOption "Enables support for sound (alsa/pulse)";
-    };
+in {
+  options.core.sound = {
+    enable = mkEnableOption "Enables support for sound (alsa/pulse)";
+  };
 
-    config = mkIf (corecfg.enable && cfg.enable) {
+  config = mkIf (corecfg.enable && cfg.enable) {
     #############
     #   Sound   #
     #############
 
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
     services.pipewire = {

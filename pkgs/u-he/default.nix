@@ -1,13 +1,15 @@
 { pkgs ? import <nixpkgs> { } }:
 
 # Future update:
-# + repro, presswerk
-# + zebra 3, uhbik
+# + presswerk
+# + uhbik
+# + zebra 3
+# + tyrell
 
 {
-  ############
+  ##############
   #   SYNTHS   #
-  ############
+  ##############
 
   ace = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Ace";
@@ -35,8 +37,8 @@
 
   repro = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Repro";
-    url = "https://dl.u-he.com/releases/Repro_112_12092_Linux.tar.xz";
-    sha256 = "";
+    url = "https://dl.u-he.com/releases/Repro_113_16797_Linux.tar.xz";
+    sha256 = "sha256-SP69GXRfyVeJkxo8OWmjcla0yn67Cht8sS7MeTiwGBk=";
   };
 
   zebra-legacy = pkgs.callPackage ./derivations/zebra-legacy.nix {
@@ -45,9 +47,9 @@
     sha256 = "sha256-DBOMVmj6OBAODbdCWoKhuhVq9h5wZyzeuyijG6LpBZQ=";
   };
 
-  #############
+  ################
   #   FREEBIES   #
-  #############
+  ################
 
   podolski = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Podolski";
@@ -75,9 +77,9 @@
     sha256 = "";
   };
 
-  ############
+  ###############
   #   EFFECTS   #
-  ############
+  ###############
 
   colourcopy = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Colourcopy";
