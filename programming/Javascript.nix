@@ -5,19 +5,20 @@ let
   cfg = config.languages.javascript;
   langcfg = config.languages;
 
-  nodepkgs = with pkgs.nodePackages; [
-    typescript-language-server
-    prettier
-    eslint
+  nodepkgs = with pkgs.nodePackages;
+    [
+      typescript-language-server
+      prettier
+      eslint
 
-    # jupyter. setup with ijsinstall command
-    ijavascript
+      # jupyter. setup with ijsinstall command
+      # ijavascript # 1/2025. broken
 
-    # jshint
+      # jshint
 
-    # "@jest" # unit tests
-    # mocha # unit testing framework
-  ];
+      # "@jest" # unit tests
+      # mocha # unit testing framework
+    ] ++ [ pkgs.stable.nodePackages.ijavascript ];
 in {
   options.languages.javascript = {
     enable =

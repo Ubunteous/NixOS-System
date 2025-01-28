@@ -20,7 +20,8 @@ in {
         # sphinx # documentation
         ruff # fast linter
         # ruff-lsp # ruff for lsp server
-        pyright
+        basedpyright # oss pyright
+        # uv # better package manager
 
         # cannot build from source with current ram
         # python3Packages.tensorflow

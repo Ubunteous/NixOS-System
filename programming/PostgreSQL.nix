@@ -13,7 +13,7 @@ in {
   config = mkIf (langcfg.enable && cfg.enable) {
     users.users.${user} = {
       packages = with pkgs; [
-        postgresql
+        # postgresql
         # pgadmin4 # pony broken as of 3/2024
         # pgadmin4-desktopmode
 
@@ -53,23 +53,17 @@ in {
         # advanced #
         ############
 
-        # GUI/TUI
-        # dbgate # js
-        # jailer # java
-        # pgweb # go
-        # termdbms # go
-
-        # Terminal Utilities
-        # pgactivity # like top
-        # USQL # universal sql cli (go)
-        # pgcenter # already in use (go)
+        # GUI
+        pgweb # go. runs on port 8081
 
         # Schema
         # sqldef # schema management
-        # skeema # for declarative schema changes
 
         # Diagram
-        # schema spy
+        # dbeaver-bin # generate UML
+        # schemaspy
+        # postgresql_jdbc
+        # jailer # ugly but seems useful
         # erd
 
         # postgrest # rest api
@@ -100,6 +94,8 @@ in {
     # psql -U postgres -c "drop role mydb" # delete role
     services.postgresql = {
       enable = true;
+      package = pkgs.postgresql; # 1/25. somehow fixes postgres
+
       # superUser = "${user}"; # "postgres";
 
       # authentication = pkgs.lib.mkOverride 10 ''
