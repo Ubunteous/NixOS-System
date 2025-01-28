@@ -154,6 +154,8 @@
 
     music.enable = true;
 
+    # stylix.enable = false;
+
     visual_art.enable = true;
     visual_art.wacom_kernel = true;
   };
@@ -190,13 +192,13 @@
         dunst.enable = true;
         picom.enable = true;
         themes.enable = true;
-        flameshot.enable = true;
+        flameshot.enable = false; # 1/2025. service broken
         xautolock.enable = true;
-        redshift.enable = false; # see config for activation
+        redshift.enable = true; # see config for activation
         # kodi.enable = false;
 
         emacs.enable = false;
-        vscode.enable = true;
+        vscode.enable = false;
 
         nix-direnv.enable = true;
         xdg-user-dir.enable = false;
@@ -207,11 +209,15 @@
           zsh.enable = true;
           wezterm.enable = true;
 
+          ghostty.enable = true;
+
           bash.enable = false;
           alacritty.enable = false;
 
           fish.enable = false;
           kitty.enable = true;
+
+          ssh.enable = false;
         };
 
         neovim = {
@@ -281,6 +287,7 @@
 
     # only adds lsp/fmt/lint
     shell.enable = false;
+    scss.enable = true;
   };
 
   #--------------------#
