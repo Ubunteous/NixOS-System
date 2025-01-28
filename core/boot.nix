@@ -72,9 +72,11 @@ in {
 
     # Mount external drives (NTFS support)
     fileSystems."/mnt/windows" = {
-      label = "Windows Partition";
-      # device = "/dev/nvme0n1p4";
+      # 1/2025. label and device are mutually exclusive. pick one
+      # label = "Windows Partition";
       device = "/dev/disk/by-uuid/08B6449AB6448A60";
+
+      # device = "/dev/nvme0n1p4";
       fsType = "ntfs"; # "ntfs3";
       options = [ "rw" "uid=1000" "gid=1000" "dmask=007" "fmask=117" "nofail" ];
     };
