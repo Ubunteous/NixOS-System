@@ -59,6 +59,7 @@
     enable = true;
 
     boot.enable = true;
+    boot-laptop.enable = true;
     networking.enable = true;
     zfs.enable = true;
 

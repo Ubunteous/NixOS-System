@@ -1,4 +1,4 @@
-{ user, ... }:
+{ pkgs, user, ... }:
 
 # Options: config, pkgs, lib, modulesPath, inputs, ... 
 # Help: man configuration.nix(5) or nixos-help’
@@ -11,6 +11,7 @@
   programs.dconf.enable = true; # for themes and more
 
   # removes error messages related to wifi command
+  # may conflict with power-daemon in zfs config
   services.tlp.enable = true;
 
   ################
@@ -33,10 +34,10 @@
 
   imports = [
     ../core
-    # ../lab
+    ../lab
     ../users
     ../wm
-    #../programming
+    ../programming
 
     ############
     #   MAIL   #
@@ -59,72 +60,85 @@
 
     boot.enable = true;
     networking.enable = true;
-    sound.enable = true;
 
-    xserver.enable = true;
+    xserver = {
+      enable = true;
+      displayManager = "sddm"; # sddm, gdm, lightdm
+    };
+
+    sound.enable = true;
     system-packages.enable = true;
 
-    kanata.enable = false;
-    nix-ld.enable = false;
+    kanata.enable = true;
   };
 
-  #----------------#
+  #--------------------#
   #        LAB         #
-  #----------------#
+  #--------------------#
 
-  #  lab = {
-  #    enable = false;
-  #    # ssh.enable = true;
+  lab = {
+    enable = false;
+    # ssh.enable = true;
 
-  #    # overview. add widgets once enable other services
-  #   homepage.enable = true; # 8082
+    # overview. add widgets once enable other services
+    homepage.enable = true; # 8082
 
-  #  k3s.enable = false;
-  #   podman.enable = true;
-  # virtualbox.enable = false;
+    k3s.enable = false;
+    podman.enable = true;
+    # virtualbox.enable = false;
 
-  #   wireguard.enable = false;
-  #   adguard.enable = false; # 3000
-  # restic.enable = true; # 8000
-  #  syncthing.enable = true; # 8384
+    wireguard.enable = false;
+    # navidrome.enable = false;
+    # unbound.enable = false;
+    # bind.enable = false;
+    adguard.enable = false; # 3000
+    # restic.enable = true; # 8000
+    # immich.enable = true; # 3001
+    syncthing.enable = true; # 8384
 
-  ###############
-  #   multimedia   #
-  ###############
+    # fail2ban.enable = true;
+    # authelia.enable = true;
 
-  # kodi.enable = false; # also defined with home-manager
-  #jellyfin.enable = false; # 8096
-  # jellyseer.enable = false; # 5055
-  # shiori.enable = false; # 8080 => 2525
-  # kavita.enable = false; # 5000
+    ##################
+    #   multimedia   #
+    ##################
 
-  #############
-  #   servarr   #
-  #############
+    # kodi.enable = false; # also defined with home-manager
+    # jellyfin.enable = false; # 8096
+    # plex.enable = true; # 8096 # localhost:32400/web
+    # jellyseer.enable = false; # 5055
+    # shiori.enable = false; # 8080 => 2525 bookmarks
+    # tautulli.enable = true; # 8181 plex manager
+    # kavita.enable = false; # 5000 reading server (library)
 
-  #    radarr.enable = false; # 7878 movies
-  #    bazarr.enable = false; # 6767 subtitles
-  #    sonarr.enable = false; # 8989 tv
-  #   readarr.enable = false; # 8787 books
-  #   lidarr.enable = false; # 8686 music
-  #  prowlarr.enable = false; # 9696 indexer
+    ###############
+    #   servarr   #
+    ###############
 
-  ##################
-  #   monitoring   #
-  ##################
+    radarr.enable = false; # 7878 movies
+    bazarr.enable = false; # 6767 subtitles
+    sonarr.enable = false; # 8989 tv series
+    prowlarr.enable = false; # 9696 indexer
 
-  # grafana.enable = true; # 3000 => 3002
-  # prometheus.enable = true; # 9090
-  # loki.enable = false;
+    readarr.enable = false; # 8787 books
+    lidarr.enable = false; # 8686 music
 
-  #############
-  #   proxy   #
-  #############
+    ##################
+    #   monitoring   #
+    ##################
 
-  # caddy.enable = true; # 2019 (default admin port)
-  # traefik.enable = false;
-  # nginx.enable = true; # proxyPass set to 3002 like grafana
-  #  };
+    # grafana.enable = true; # 3000 => 3002
+    # prometheus.enable = true; # 9090
+    # loki.enable = false;
+
+    #############
+    #   proxy   #
+    #############
+
+    caddy.enable = false; # 2019 (default admin port)
+    # traefik.enable = false;
+    # nginx.enable = true; # proxyPass set to 3002 like grafana
+  };
 
   #--------------------#
   #        USER        #
@@ -132,128 +146,60 @@
 
   user = {
     enable = true;
-
     server.enable = true;
-    laptop.enable = false;
-    packages.enable = false;
-    musnix.enable = false;
   };
 
   #--------------------#
   #        HOME        #
   #--------------------#
 
-  #  home-manager = {
-  #    extraSpecialArgs.user = "${user}";#
+  home-manager = {
+    extraSpecialArgs.user = "${user}";
 
-  #    useUserPackages = true;
-  #   useGlobalPkgs = true;
-  #   backupFileExtension = "backup";
-  # sharedModules = [ nur.hmModules.nur ];
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    backupFileExtension = "backup";
 
-  #  users.${user} = {
-  #    imports = [ ../home ];
-  #
-  #      config.home = {
-  #       enable = false;
+    users.${user} = {
+      imports = [ ../home ];
 
-  #        kodi.enable = true;
-  #
-  #       firefox.enable = true; # nur missing without osConfig
-  #      firefox.on-nixos = true;
-  #
-  #       git.enable = true;
-  #      mime.enable = true;
-  #     u-he.enable = true; # needs nix-ld
-  #    dunst.enable = true;
-  #   picom.enable = true;
-  #   themes.enable = true;
-  #   flameshot.enable = true;
-  #   xautolock.enable = true;
-  #   redshift.enable = false; # see config for activation#
-  #
-  #       emacs.enable = false;
-  #      nix-direnv.enable = true;
-  #     xdg-user-dir.enable = false;
+      config.home = {
+        enable = true;
 
-  #        terminal = {
-  #         enable = true;
+        firefox.enable = true; # nur missing without osConfig
+        firefox.on-nixos = true;
 
-  #        zsh.enable = true;
-  #        wezterm.enable = true;
+        git.enable = true;
+        mime.enable = true;
+        dunst.enable = true;
+        themes.enable = true;
+        flameshot.enable = false; # 1/2025. service broken
+        xautolock.enable = true;
+        redshift.enable = true; # see config for activation
+        # kodi.enable = false;
 
-  #       bash.enable = false;
-  #       alacritty.enable = false;
+        terminal = {
+          enable = true;
 
-  #       fish.enable = false;
-  #      kitty.enable = false;
-  #   };
+          zsh.enable = true;
+          wezterm.enable = true;
+        };
 
-  #        neovim = {
-  #         enable = true;
-  #        distro = "lazy"; # "nix", "lazy" or "Lazy"
-
-  #          which-key.enable = true;
-  #         appearance.enable = true;
-  #        languages.enable = true;
-  #
-  #          search.enable = true;
-  #         utilities.enable = true;
-  #        passive.enable = true;
-  #
-  #         git.enable = true;
-  #        lsp.enable = true;
-  #
-  #         # completion, format, test, snippet
-  #        misc.enable = true;
-  #     };
-  #
-  #        mail = {
-  #         enable = true;
-  #        thunderbird.enable = true;
-  #     };
-  #
-  #       dots.enable = true;
-  #    };
-  # };
-  # };
+        qbittorrent.enable = true;
+        dots.enable = true;
+      };
+    };
+  };
 
   #------------------------#
   #        LANGUAGES       #
   #------------------------#
 
-  #  languages = {
-  #    enable = false;
-
-  #    python.enable = true;
-  #    godot.enable = false;#
-
-  #    nix.enable = true;
-  #   lua.enable = false;
-
-  #    c.enable = false;
-  # typst.enable = false;
-  #   latex.enable = true;
-  #   haskell.enable = false;
-
-  #   go.enable = false;
-  #  rust.enable = false;
-  #  java.enable = false;
-  #  postgresql.enable = false;
-
-  #  javascript = {
-  #    enable = false;
-  #    addTypescript = false;
-  #  };
-
-  #  guile.enable = false;
-  #  elixir.enable = false;
-  #  clojure.enable = true;
-  #   common-lisp.enable = false;
-  #
-  # only adds lsp/fmt/lint
-  #  shell.enable = false;
-  # };
+  languages = {
+    enable = true;
+    nix.enable = true;
+    janet.enable = true;
+  };
 
   #--------------------#
   #         WM         #
@@ -261,29 +207,19 @@
 
   wm = {
     enable = true;
+
+    # none+xmonad/qtile or cinnmon/hyprland
+    main = "none+xmonad";
+    display_backend = "x11"; # x11 or wayland
+
     xmonad.enable = true;
-
-    qtile.enable = false;
-    cinnamon.enable = false;
-
-    leftwm.enable = false; # => must use polybar
-    sway.enable = false; # => has a built-in bar
-    hyprland.enable = false; # => must uses waybar
   };
 
   ############
   #   Misc   #
   ############
 
-  ## NOT useful for the time being => gnupg.agent useful with mail
-  # Some programs need SUID wrappers, can be configured further or are started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # Documentation: man configuration.nix
   # Documentation (web): https://nixos.org/nixos/options.html
-  system.stateVersion = "22.05"; # Do not change this value
+  system.stateVersion = "24.05"; # Do not change this value
 }

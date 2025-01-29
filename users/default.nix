@@ -5,6 +5,7 @@ with lib; {
 
   imports = [
     ./user.nix
+    ./server.nix
     ./packages.nix
     ./music.nix
     ./visual_art.nix
