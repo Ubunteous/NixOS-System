@@ -86,22 +86,6 @@
     # overview. add widgets once enable other services
     homepage.enable = true; # 8082
 
-    k3s.enable = false;
-    podman.enable = true;
-    # virtualbox.enable = false;
-
-    wireguard.enable = false;
-    # navidrome.enable = false;
-    # unbound.enable = false;
-    # bind.enable = false;
-    adguard.enable = false; # 3000
-    # restic.enable = true; # 8000
-    # immich.enable = true; # 3001
-    syncthing.enable = true; # 8384
-
-    # fail2ban.enable = true;
-    # authelia.enable = true;
-
     ##################
     #   multimedia   #
     ##################
@@ -110,9 +94,11 @@
     # jellyfin.enable = false; # 8096
     # plex.enable = true; # 8096 # localhost:32400/web
     # jellyseer.enable = false; # 5055
-    # shiori.enable = false; # 8080 => 2525 bookmarks
     # tautulli.enable = true; # 8181 plex manager
+
+    # shiori.enable = false; # 8080 => 2525 bookmarks
     # kavita.enable = false; # 5000 reading server (library)
+    # navidrome.enable = false;
 
     ###############
     #   servarr   #
@@ -126,6 +112,14 @@
     readarr.enable = false; # 8787 books
     lidarr.enable = false; # 8686 music
 
+    ##############
+    #   backup   #
+    ##############
+
+    # restic.enable = true; # 8000
+    # immich.enable = true; # 3001
+    syncthing.enable = true; # 8384
+
     ##################
     #   monitoring   #
     ##################
@@ -133,6 +127,26 @@
     # grafana.enable = true; # 3000 => 3002
     # prometheus.enable = true; # 9090
     # loki.enable = false;
+
+    ##################
+    #   containers   #
+    ##################
+
+    k3s.enable = false;
+    podman.enable = true;
+    # virtualbox.enable = false;
+
+    ###############
+    #   DNS/VPN   #
+    ###############
+
+    wireguard.enable = false;
+    # unbound.enable = false;
+    # bind.enable = false;
+    adguard.enable = false; # 3000
+
+    # fail2ban.enable = true;
+    # authelia.enable = true;
 
     #############
     #   proxy   #

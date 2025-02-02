@@ -80,20 +80,7 @@
     enable = true;
     # ssh.enable = true;
 
-    # overview. add widgets once enable other services
     homepage.enable = true; # 8082
-
-    k3s.enable = false;
-    podman.enable = false;
-
-    unbound.enable = false;
-    bind.enable = true;
-    wireguard.enable = false;
-    adguard.enable = true; # 3000
-
-    restic.enable = false; # 8000
-    immich.enable = false; # 3001
-    syncthing.enable = true; # 8384
 
     ##################
     #   multimedia   #
@@ -116,6 +103,14 @@
     readarr.enable = true; # 8787 books
     lidarr.enable = true; # 8686 music
 
+    ##############
+    #   backup   #
+    ##############
+
+    restic.enable = false; # 8000
+    immich.enable = false; # 3001
+    syncthing.enable = true; # 8384
+
     ##################
     #   monitoring   #
     ##################
@@ -123,6 +118,22 @@
     # grafana.enable = true; # 3000 => 3002
     # prometheus.enable = true; # 9090
     # loki.enable = false;
+
+    ###############
+    #   DNS/VPN   #
+    ###############
+
+    unbound.enable = false;
+    bind.enable = true;
+    wireguard.enable = false;
+    adguard.enable = true; # 3000
+
+    ##################
+    #   containers   #
+    ##################
+
+    k3s.enable = false;
+    podman.enable = false;
 
     #############
     #   proxy   #
