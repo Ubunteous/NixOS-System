@@ -6,7 +6,7 @@ let
   corecfg = config.lab;
 in {
 
-  options.lab.unbound = {
+  options.lab.navidrome = {
     enable = mkEnableOption "Enables support for Navidrome";
   };
 

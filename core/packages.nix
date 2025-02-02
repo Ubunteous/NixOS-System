@@ -19,6 +19,7 @@ in {
       # allowUnfree = true; # vscode
 
       permittedInsecurePackages = [
+        "aspnetcore-runtime-6.0.36"
         "dotnet-core-combined"
         "dotnet-sdk-6.0.428"
         "dotnet-sdk-wrapped-6.0.428"
@@ -31,7 +32,7 @@ in {
           "bitwig-studio"
           # "obsidian"
           "opera"
-          # "plexmediaserver"
+          "plexmediaserver"
           "reaper"
           # "rider"
 

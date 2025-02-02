@@ -6,7 +6,9 @@ let
   corecfg = config.lab;
 in {
 
-  options.lab.ssh = { enable = mkEnableOption "Enables support for Bind DNS"; };
+  options.lab.bind = {
+    enable = mkEnableOption "Enables support for Bind DNS";
+  };
 
   config = mkIf (corecfg.enable && cfg.enable) {
     services.bind = {

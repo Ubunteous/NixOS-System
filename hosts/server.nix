@@ -77,51 +77,44 @@
   #--------------------#
 
   lab = {
-    enable = false;
+    enable = true;
     # ssh.enable = true;
 
     # overview. add widgets once enable other services
     homepage.enable = true; # 8082
 
     k3s.enable = false;
-    podman.enable = true;
-    # virtualbox.enable = false;
+    podman.enable = false;
 
+    unbound.enable = false;
+    bind.enable = true;
     wireguard.enable = false;
-    # navidrome.enable = false;
-    # unbound.enable = false;
-    # bind.enable = false;
-    adguard.enable = false; # 3000
-    # restic.enable = true; # 8000
-    # immich.enable = true; # 3001
-    syncthing.enable = true; # 8384
+    adguard.enable = true; # 3000
 
-    # fail2ban.enable = true;
-    # authelia.enable = true;
+    restic.enable = false; # 8000
+    immich.enable = false; # 3001
+    syncthing.enable = true; # 8384
 
     ##################
     #   multimedia   #
     ##################
 
-    # kodi.enable = false; # also defined with home-manager
-    # jellyfin.enable = false; # 8096
-    # plex.enable = true; # 8096 # localhost:32400/web
-    # jellyseer.enable = false; # 5055
-    # shiori.enable = false; # 8080 => 2525 bookmarks
-    # tautulli.enable = true; # 8181 plex manager
-    # kavita.enable = false; # 5000 reading server (library)
+    plex.enable = true; # 8096 # localhost:32400/web
+    tautulli.enable = true; # 8181 plex manager
+
+    navidrome.enable = true;
 
     ###############
     #   servarr   #
     ###############
 
-    radarr.enable = false; # 7878 movies
-    bazarr.enable = false; # 6767 subtitles
-    sonarr.enable = false; # 8989 tv series
-    prowlarr.enable = false; # 9696 indexer
+    radarr.enable = true; # 7878 movies
+    bazarr.enable = true; # 6767 subtitles
+    sonarr.enable = true; # 8989 tv series
+    prowlarr.enable = true; # 9696 indexer
 
-    readarr.enable = false; # 8787 books
-    lidarr.enable = false; # 8686 music
+    readarr.enable = true; # 8787 books
+    lidarr.enable = true; # 8686 music
 
     ##################
     #   monitoring   #
@@ -135,9 +128,7 @@
     #   proxy   #
     #############
 
-    caddy.enable = false; # 2019 (default admin port)
-    # traefik.enable = false;
-    # nginx.enable = true; # proxyPass set to 3002 like grafana
+    caddy.enable = true; # 2019 (default admin port)
   };
 
   #--------------------#
