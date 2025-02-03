@@ -4,9 +4,9 @@ with lib;
 let
   cfg = config.lab.plex;
   labcfg = config.lab;
-  in {
+in {
 
-    options.lab.plex = { enable = mkEnableOption "Enables support for plex"; };
+  options.lab.plex = { enable = mkEnableOption "Enables support for plex"; };
 
   config = mkIf (labcfg.enable && cfg.enable) {
     services.plex = {
@@ -18,7 +18,7 @@ let
       # user = "plex";
       # group = "plex";
 
-      # openFirewall = true;
+      openFirewall = true;
       # dataDir = "/var/lib/plex";
 
       accelerationDevices = [ "*" ]; # [ "/dev/dri/renderD128" ];

@@ -90,15 +90,19 @@
     #   multimedia   #
     ##################
 
+    # shiori.enable = false; # 8080 => 2525 bookmarks
+    # kavita.enable = false; # 5000 reading server (library)
+    # navidrome.enable = false;
+
+    #################
+    #   streaming   #
+    #################
+
     # kodi.enable = false; # also defined with home-manager
     # jellyfin.enable = false; # 8096
     # plex.enable = true; # 8096 # localhost:32400/web
     # jellyseer.enable = false; # 5055
     # tautulli.enable = true; # 8181 plex manager
-
-    # shiori.enable = false; # 8080 => 2525 bookmarks
-    # kavita.enable = false; # 5000 reading server (library)
-    # navidrome.enable = false;
 
     ###############
     #   servarr   #

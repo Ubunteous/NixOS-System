@@ -16,33 +16,34 @@ with lib; {
     # ./proxy/nginx.nix
     # ./proxy/traefik.nix
 
-    # ./multimedia/kodi.nix
-    ./multimedia/plex.nix
-    # ./multimedia/jellyfin.nix
-    # ./multimedia/jellyseer.nix
-    # ./multimedia/kavita.nix
+    ./streaming/kodi.nix
+    ./streaming/plex.nix
+    ./streaming/jellyfin.nix
+    ./streaming/jellyseer.nix
+    ./streaming/tautulli.nix
 
-    ./multimedia/sonarr.nix
-    ./multimedia/radarr.nix
-    ./multimedia/readarr.nix
-    ./multimedia/lidarr.nix
-    ./multimedia/bazarr.nix
-    ./multimedia/prowlarr.nix
-    ./multimedia/tautulli.nix
+    ./servarr/sonarr.nix
+    ./servarr/radarr.nix
+    ./servarr/readarr.nix
+    ./servarr/lidarr.nix
+    ./servarr/bazarr.nix
+    ./servarr/prowlarr.nix
 
     ./backup/immich.nix
     ./backup/restic.nix
     ./backup/syncthing.nix
 
     ./self-hosted/homepage.nix
-    ./self-hosted/adguard.nix
-    ./self-hosted/wireguard.nix
+    # ./self-hosted/kavita.nix
     ./self-hosted/navidrome.nix
-    ./self-hosted/unbound.nix
-    ./self-hosted/bind.nix
-
-    # ./self-hosted/authelia.nix
-    # ./self-hosted/fail2ban.nix
     # ./self-hosted/shiori.nix
+
+    ./dns/adguard.nix
+    ./dns/unbound.nix
+    ./dns/bind.nix
+
+    ./vpn/wireguard.nix
+    ./vpn/authelia.nix
+    ./vpn/fail2ban.nix
   ];
 }

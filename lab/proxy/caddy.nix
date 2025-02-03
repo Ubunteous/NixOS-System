@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, user, ... }:
 
 with lib;
 let
@@ -10,20 +10,48 @@ in {
 
   config = mkIf (labcfg.enable && cfg.enable) {
     # open port needed by caddy
-    # networking.firewall.allowedTCPPorts= [ ];
+    networking.firewall.allowedTCPPorts = [ 2015 2016 ];
 
     services.caddy = {
       enable = true;
 
       # test caddy with: curl localhost:2019/config/
       # test redirects with: curl localhost -i -L -k
-      virtualHosts."localhost" = {
-        extraConfig = ''
-          respond "Hello, world!"
-          redir /redir /
-        '';
+      virtualHosts = {
+        # ":2015" = { # port 2015 response
+        #   extraConfig = ''
+        #     encode gzip
+        #     respond "Hello, world!"
+        #     redir /redir /
+        #   '';
 
-        serverAliases = [ "127.0.0.1" "localhost" ];
+        # serverAliases = [ "127.0.0.1" "localhost" "test" ];
+        # };
+        ":2016" = {
+          # port 2016 file server
+          # can't access /home/user without authorization
+          # use instead root * /var/www/ after creating it
+          extraConfig = ''
+            root * /var/servarr/
+            file_server browse
+          '';
+        };
+        ":80" = { # redir/rewrite do not seem to work to add /
+          extraConfig = ''
+            reverse_proxy radarr/ :7878
+            reverse_proxy /radarr/ :7878
+            reverse_proxy radarr/* :7878
+            reverse_proxy /radarr/* :7878
+            reverse_proxy /radarr* :7878
+
+            reverse_proxy immich/* :2283
+
+            reverse_proxy navidrome/* 4533
+            reverse_proxy /navidrome/* 4533
+            reverse_proxy navidrome* 4533
+            reverse_proxy /navidrome* 4533
+          '';
+        };
       };
 
       # # recommended over caddy.settings

@@ -82,14 +82,14 @@
 
     homepage.enable = true; # 8082
 
-    ##################
-    #   multimedia   #
-    ##################
+    #################
+    #   streaming   #
+    #################
 
     plex.enable = true; # 8096 # localhost:32400/web
     tautulli.enable = true; # 8181 plex manager
 
-    navidrome.enable = true;
+    navidrome.enable = true; # 4533
 
     ###############
     #   servarr   #
@@ -108,15 +108,15 @@
     ##############
 
     restic.enable = false; # 8000
-    immich.enable = false; # 3001
+    immich.enable = true; # 2283
     syncthing.enable = true; # 8384
 
     ##################
     #   monitoring   #
     ##################
 
-    # grafana.enable = true; # 3000 => 3002
-    # prometheus.enable = true; # 9090
+    # grafana.enable = false; # 3000 => 3002
+    # prometheus.enable = false; # 9090
     # loki.enable = false;
 
     ###############
@@ -124,9 +124,9 @@
     ###############
 
     unbound.enable = false;
-    bind.enable = true;
+    bind.enable = false;
     wireguard.enable = false;
-    adguard.enable = true; # 3000
+    adguard.enable = false; # 3000
 
     ##################
     #   containers   #
@@ -139,7 +139,7 @@
     #   proxy   #
     #############
 
-    caddy.enable = true; # 2019 (default admin port)
+    caddy.enable = true; # 2019 (default admin port) + 2015/2016 (test)
   };
 
   #--------------------#

@@ -17,7 +17,7 @@ in {
       # user = "bazarr";
       # group = "bazarr";
 
-      # openFirewall = true;
+      openFirewall = true;
       # listenPort = 6767; # defaults to 6767
     };
   };

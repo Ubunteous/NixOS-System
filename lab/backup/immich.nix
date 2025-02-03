@@ -11,7 +11,7 @@ in {
   };
 
   config = mkIf (labcfg.enable && cfg.enable) {
-    # users.users.immich.extraGroups = [ "video" "render" ]; # for transcoding
+    users.users.immich.extraGroups = [ "video" "render" ]; # for transcoding
 
     services.immich = {
       enable = true;
@@ -23,15 +23,15 @@ in {
       ###########
 
       # database = {
-      # 	enable = true;
-      # 	name = "immich";
-      # 	user = "immich";
-      # 	createDB = true;
-      # 	port = 5432;
-      # 	host = "/run/postgresql"; # ex: "127.0.0.1"
+      #   enable = true;
+      #   name = "immich";
+      #   user = "immich";
+      #   createDB = true;
+      #   port = 5432;
+      #   host = "/run/postgresql"; # ex: "127.0.0.1"
       # };
 
-      # ports = 3001;
+      # ports = 2283;
       # host = "localhost";
       # user = "immich";
       # group = "immich";

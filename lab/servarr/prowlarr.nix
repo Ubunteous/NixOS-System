@@ -13,7 +13,7 @@ in {
   config = mkIf (labcfg.enable && cfg.enable) {
     services.prowlarr = {
       enable = true;
-      # openFirewall = true;
+      openFirewall = true;
     };
   };
 }

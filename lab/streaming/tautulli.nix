@@ -14,7 +14,7 @@ in {
     services.tautulli = {
       enable = true;
 
-      # openFirewall = false;
+      openFirewall = true;
       # configFile = "/var/lib/plexpy/config.ini";
       # port = 8181;
       # group = "nogroup";

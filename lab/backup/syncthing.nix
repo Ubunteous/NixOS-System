@@ -27,6 +27,9 @@ in {
   };
 
   config = mkIf (labcfg.enable && cfg.enable) {
+    # open port needed by syncthing
+    networking.firewall.allowedTCPPorts = [ 8384 ];
+
     services.syncthing = {
       enable = true;
 

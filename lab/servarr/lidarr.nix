@@ -18,7 +18,7 @@ in {
       # group = "lidarr";
 
       # dataDir = "/var/lib/lidarr/.config/Lidarr";
-      # openFirewall = true;
+      openFirewall = true;
     };
   };
 }

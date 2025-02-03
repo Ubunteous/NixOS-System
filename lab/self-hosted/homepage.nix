@@ -102,6 +102,24 @@ in {
         {
           "Multimedia " = [
             {
+              "Caddy share" = {
+                icon = "caddy.png";
+                href = "http://localhost:2016/";
+              };
+            }
+            {
+              "qBittorrent Web" = {
+                icon = "qbittorrent.png";
+                href = "http://localhost:8080/";
+              };
+            }
+            {
+              "Navidrome" = {
+                icon = "navidrome.png";
+                href = "http://localhost:4533/";
+              };
+            }
+            {
               "Shiori" = {
                 icon = "shiori.png";
                 href = "http://localhost:2525/";
@@ -130,13 +148,6 @@ in {
               "Tautulli" = {
                 icon = "tautulli.png";
                 href = "http://localhost:8181/";
-              };
-            }
-
-            {
-              "qBitTorrent" = {
-                icon = "qbittorrent.png";
-                href = "http://localhost:8080/";
               };
             }
             # {
@@ -353,9 +364,9 @@ in {
       # http://localhost:8082/
       # listenPort = 8082; # default is 8082
 
-      # Open ports in the firewall for Homepage
-      # 22000 (transfers) and 21027 (discovery)
-      # openFirewall = true;
+      # Open listen port in the firewall for Homepage
+      # note these: 22000 (transfers) and 21027 (discovery)
+      openFirewall = true;
     };
   };
 }

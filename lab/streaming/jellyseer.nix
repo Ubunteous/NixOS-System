@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.lab.jellyfin;
+  cfg = config.lab.jellyseer;
   labcfg = config.lab;
 in {
 
-  options.lab.jellyfin = {
+  options.lab.jellyseer = {
     enable = mkEnableOption "Enables support for jellyfin";
   };
 

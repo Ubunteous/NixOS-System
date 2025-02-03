@@ -18,7 +18,7 @@ in {
       # group = "readarr";
 
       # dataDir = "/var/lib/readarr/";
-      # openFirewall = true;
+      openFirewall = true;
     };
   };
 }
