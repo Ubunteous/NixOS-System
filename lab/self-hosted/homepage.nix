@@ -4,6 +4,7 @@ with lib;
 let
   cfg = config.lab.homepage;
   labcfg = config.lab;
+  address = "server"; # server or localhost
 in {
   options.lab.homepage = {
     enable = mkEnableOption "Enables support for Homepage";
@@ -11,7 +12,7 @@ in {
 
   config = mkIf (labcfg.enable && cfg.enable) {
     ####################
-    #     HOMEPAGE     #
+    #       HOMEPAGE       #
     ####################
 
     services.homepage-dashboard = {
@@ -65,154 +66,127 @@ in {
         useEqualHeights = "true";
 
         layout = {
-          Monitoring = { # group Name in services/bookmarks.yaml
+          Backup = {
             style = "column";
             rows = "3";
+          };
+
+          Proxy = {
+            style = "column";
+            columns = "3";
+            # tab = "Second";
+          };
+
+          Monitoring = { # group Name in services/bookmarks.yaml
+            style = "column";
+            columns = "3";
             # initiallyCollapsed = "true";
             # tab = "First"; # not giving a tab puts column on every tab
           };
 
-          Server = {
-            style = "column";
-            rows = "3";
-            # tab = "Second";
-          };
-
-          Multimedia = {
-            style = "column";
-            rows = "2";
-            columns = "3";
-          };
-
-          Utilities = {
-            style = "column";
-            rows = "4";
-          };
-
-          arr = {
+          Arr = {
             style = "row";
             rows = "2";
             columns = "3";
           };
+
+          Streaming = {
+            style = "row";
+            rows = "2";
+            columns = "3";
+          };
+
+          dns-vpn = {
+            style = "row";
+            columns = "2";
+          };
+
+          Downloader = {
+            style = "row";
+            columns = "2";
+            rows = "2";
+          };
+
         };
       };
 
       services = [
-
         {
-          "Multimedia " = [
+          "Downloader " = [
             {
-              "Caddy share" = {
-                icon = "caddy.png";
-                href = "http://localhost:2016/";
-              };
-            }
-            {
-              "qBittorrent Web" = {
+              "qBittorrent" = {
                 icon = "qbittorrent.png";
-                href = "http://localhost:8080/";
+                href = "http://${address}:8080/";
               };
             }
             {
-              "Navidrome" = {
-                icon = "navidrome.png";
-                href = "http://localhost:4533/";
+              "Deluge" = {
+                icon = "deluge.png";
+                href = "http://${address}:8112/";
               };
             }
             {
-              "Shiori" = {
-                icon = "shiori.png";
-                href = "http://localhost:2525/";
+              "transmission" = {
+                icon = "transmission.png";
+                href = "http://${address}:9191/";
               };
             }
             {
-              "Jellyfin" = {
-                icon = "jellyfin.png";
-                href = "http://localhost:8096/";
+              "rutorrent/rtorrent" = {
+                icon = "rtorrent.png";
+                href = "http://${address}:50000/";
               };
             }
             {
-              "Jellyseer" = {
-                icon = "jellyfin.png";
-                href = "http://localhost:5055/";
-              };
-            }
-            {
-              "Plex" = {
-                icon = "plex.png";
-                href = "http://localhost:32400/web/";
-              };
-            }
-
-            {
-              "Tautulli" = {
-                icon = "tautulli.png";
-                href = "http://localhost:8181/";
+              "nzbget" = {
+                icon = "qbittorrent.png";
+                href = "http://${address}:6789/";
               };
             }
             # {
+            #   "Shiori" = {
+            #     icon = "shiori.png";
+            #     href = "http://${address}:2525/";
+            #   };
+            # }
+            # {
             #   "kavita" = {
             #     icon = "kavita.png";
-            #     href = "http://localhost:5000/";
+            #     href = "http://${address}:5000/";
             #   };
             # }
           ];
         }
 
         {
-          "Monitoring" = [
-            {
-              "Grafana" = {
-                icon = "grafana.png";
-                href = "http://localhost:3002/"; # default: 3000
-              };
-            }
-            {
-              "Prometheus" = {
-                icon = "prometheus.png";
-                href = "http://localhost:9090/";
-              };
-            }
-            {
-              "Loki" = {
-                icon = "loki.png";
-                href = "http://localhost:8082/"; # no link yet
-                # ping: sonarr.host # for http://sonarr.host/
-                # siteMonitor = "http://localhost:3002/"; # verify site exists
-              };
-            }
-          ];
-        }
-
-        {
-          "Server" = [
+          "Proxy" = [
             {
               "Caddy" = {
                 icon = "caddy.png";
-                href = "http://localhost:2019/"; # admin port
+                href = "http://${address}:2019/"; # admin port
               };
             }
             {
               "Traefik" = {
                 icon = "traefik.png";
-                href = "http://localhost/";
+                href = "http://${address}:8082";
               };
             }
             {
               "Nginx" = {
                 icon = "nginx.png";
-                href = "http://localhost:80/"; # http port
+                href = "http://${address}:80/"; # http port
               };
             }
           ];
         }
 
         {
-          "Utilities" = [
+          "Backup" = [
             {
               "Syncthing" = {
                 icon = "syncthing.png";
-                href = "http://localhost:8384/";
+                href = "http://${address}:8384/";
 
                 # # requires syncthing relay
                 # widget = {
@@ -226,60 +200,137 @@ in {
                 # icon = "restic.png"; # unavailable
                 icon =
                   "https://forum.restic.net/uploads/default/original/1X/3773c7993ff25bf4c15aa18cdd336f94bccd96f5.png";
-                href = "http://localhost:8000/";
+                href = "http://${address}:8000/";
               };
             }
             {
-              "Adguard" = {
-                icon = "adguard-home.png";
-                href = "http://localhost:3090/";
-              };
-            }
-            {
-              "Wireguard" = {
-                icon = "wireguard.png";
-                href = "http://localhost:8082/"; # change port later
+              "Kopia" = {
+                icon = "kopia.png";
+                href = "http://${address}:8082/";
               };
             }
           ];
         }
 
         {
-          "arr" = [
+          "dns-vpn" = [
+            {
+              "Adguard" = {
+                icon = "adguard-home.png";
+                href = "http://${address}:3000/";
+              };
+            }
+            {
+              "Wireguard" = {
+                icon = "wireguard.png";
+                href = "http://${address}:8082/"; # change port later
+              };
+            }
+          ];
+        }
+
+        {
+          "Streaming" = [
+            {
+              "Plex" = {
+                icon = "plex.png";
+                href = "http://${address}:32400/web/";
+              };
+            }
+            {
+              "Navidrome" = {
+                icon = "navidrome.png";
+                href = "http://${address}:4533/";
+              };
+            }
+            {
+              "Caddy share" = {
+                icon = "caddy.png";
+                href = "http://${address}:2016/";
+              };
+            }
+            {
+              "Tautulli" = {
+                icon = "tautulli.png";
+                href = "http://${address}:8181/";
+              };
+            }
+            {
+              "Jellyfin" = {
+                icon = "jellyfin.png";
+                href = "http://${address}:8096/";
+              };
+            }
+            {
+              "Jellyseer" = {
+                icon = "jellyfin.png";
+                href = "http://${address}:5055/";
+              };
+            }
+          ];
+        }
+
+        {
+          "Monitoring" = [
+            {
+              "Grafana" = {
+                icon = "grafana.png";
+                href = "http://${address}:3002/"; # default: 3000
+              };
+            }
+            {
+              "Prometheus" = {
+                icon = "prometheus.png";
+                href = "http://${address}:9090/";
+              };
+            }
+            {
+              "Loki" = {
+                icon = "loki.png";
+                href = "http://${address}:8082/"; # no link yet
+                # ping: sonarr.host # for http://sonarr.host/
+                # siteMonitor = "http://${address}:3002/"; # verify site exists
+              };
+            }
+          ];
+        }
+
+        {
+          "Arr" = [
             {
               "Radarr (movies)" = {
                 icon = "radarr.png";
-                href = "http://localhost:7878/";
+                href = "http://${address}:7878/";
               };
             }
             {
               "Bazaar (sub)" = {
                 icon = "https://www.bazarr.media/assets/img/logo.png";
-                href = "http://localhost:6767/"; # default: 9090
+                href = "http://${address}:6767/"; # default: 9090
               };
             }
             {
               "Sonarr (tv)" = {
                 icon = "sonarr.png";
-                href = "http://localhost:8989/";
+                href = "http://${address}:8989/";
               };
             }
             {
               "Readarr (books)" = {
                 icon = "readarr.png";
-                href = "http://localhost:8787/";
+                href = "http://${address}:8787/";
               };
             }
             {
               "Lidarr (music)" = {
                 icon = "lidarr.png";
-                href = "http://localhost:8686/";
+                href = "http://${address}:8686/";
               };
             }
             {
               "Prowlarr (indexer)" = {
                 icon = "prowlarr.png";
-                href = "http://localhost:9696/";
+                href = "http://${address}:9696/";
               };
             }
           ];
@@ -293,13 +344,13 @@ in {
             {
               JS-App = [{
                 abbr = "JA";
-                href = "http://localhost:3000/";
+                href = "http://${address}:3000/";
               }];
             }
             {
               Django-App = [{
                 abbr = "DA";
-                href = "http://localhost:8000/";
+                href = "http://${address}:8000/";
               }];
             }
             {
@@ -361,7 +412,7 @@ in {
 
       # environmentFile = "";
 
-      # http://localhost:8082/
+      # http://${address}:8082/
       # listenPort = 8082; # default is 8082
 
       # Open listen port in the firewall for Homepage

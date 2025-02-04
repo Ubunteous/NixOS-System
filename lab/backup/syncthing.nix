@@ -210,7 +210,8 @@ in {
       #   misc   #
       ############
 
-      # guiAddress = "127.0.0.1:8384";
+      # "0.0.0.0:8384" => accessible locally but risky
+      guiAddress = "127.0.0.1:8384"; # pair with a password
 
       # all_proxy = "socks5://address.com:1234";
       # key = "/path/to/key.pem" # copied to configDir

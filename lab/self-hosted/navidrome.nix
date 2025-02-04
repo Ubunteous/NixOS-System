@@ -16,10 +16,15 @@ in {
 
       openFirewall = true;
 
-      # settings = {
-      # 	Port = 4533;
-      # 	Address = "127.0.0.1";	
-      # };
+      settings = {
+        Port = 4533;
+        Address = "0.0.0.0"; # 127.0.0.1";
+
+        MusicFolder = "/var/servarr/navidrome";
+        # DataFolder = "/var/servarr/navidrome/data"; # bad idea?
+        # BaseUrl = "music"; # for proxy: https://music.example.com
+        # Backup.Count = 3;
+      };
 
       # user = "navidrome";
       # group = "navidrome";
