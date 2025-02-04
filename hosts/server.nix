@@ -91,9 +91,9 @@
 
     navidrome.enable = true; # 4533
 
-    ###############
-    #   servarr   #
-    ###############
+    #################
+    #    servarr    #
+    #################
 
     radarr.enable = true; # 7878 movies
     bazarr.enable = true; # 6767 subtitles
@@ -103,48 +103,62 @@
     readarr.enable = true; # 8787 books
     lidarr.enable = true; # 8686 music
 
-    ##############
-    #   backup   #
-    ##############
+    ################
+    #    backup    #
+    ################
 
     restic.enable = false; # 8000
     immich.enable = true; # 2283
     syncthing.enable = true; # 8384
 
-    ##################
-    #   monitoring   #
-    ##################
+    ####################
+    #    monitoring    #
+    ####################
 
     # grafana.enable = false; # 3000 => 3002
     # prometheus.enable = false; # 9090
     # loki.enable = false;
 
-    ###############
-    #   DNS/VPN   #
-    ###############
+    #################
+    #    DNS/VPN    #
+    #################
 
-    unbound.enable = false;
+    unbound.enable = true; # 5335
     bind.enable = false;
     wireguard.enable = false;
-    adguard.enable = false; # 3000
+    adguard.enable = true; # 3000
 
-    ##################
-    #   containers   #
-    ##################
+    ####################
+    #    containers    #
+    ####################
 
     k3s.enable = false;
     podman.enable = false;
 
-    #############
-    #   proxy   #
-    #############
+    #####################
+    #    downloaders    #
+    #####################
+
+    deluge.enable = true; # 8112
+    transmission.enable = true; # 9091. webui 403 with flood
+    qbittorrent.enable = true; # 8080
+
+    rtorrent.enable = true; # 6789
+    rutorrent.enable = true; # 6789
+    flood.enable = true; # 3000 => 3001
+
+    nzbget.enable = true; # 6789. default: nzbget/tegbzn6789
+
+    ###############
+    #    proxy    #
+    ###############
 
     caddy.enable = true; # 2019 (default admin port) + 2015/2016 (test)
   };
 
-  #--------------------#
-  #        USER        #
-  #--------------------#
+  #------------------------#
+  #          USER          #
+  #------------------------#
 
   user = {
     enable = true;
