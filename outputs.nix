@@ -29,47 +29,45 @@ in {
     #   NIXOS   #
     #############
 
-    nixos = let
-      user = "ubunteous";
-    in
-      nixpkgs-unstable.lib.nixosSystem {
-	system = system;
-	specialArgs = { inherit user; };
-	
-	modules = [
-          # Fix touchpad/wifi
-          #<nixos-hardware/lenovo/thinkpad/t14s/amd/gen1>
-          ./hardware/hardware-configuration.nix
-          ./hosts/main.nix
+    nixos = let user = "ubunteous";
+    in nixpkgs-unstable.lib.nixosSystem {
+      system = system;
+      specialArgs = { inherit user; };
 
-          nur.modules.nixos.default
-          musnix.nixosModules.musnix
-          # stylix.nixosModules.stylix
-          # agenix.nixosModules.default
-          home-manager.nixosModules.home-manager
-          # nix-index-database.nixosModules.nix-index
+      modules = [
+        # Fix touchpad/wifi
+        #<nixos-hardware/lenovo/thinkpad/t14s/amd/gen1>
+        ./hardware/hardware-configuration.nix
+        ./hosts/main.nix
 
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+        nur.modules.nixos.default
+        musnix.nixosModules.musnix
+        # stylix.nixosModules.stylix
+        # agenix.nixosModules.default
+        home-manager.nixosModules.home-manager
+        # nix-index-database.nixosModules.nix-index
 
-          #################
-          #   NIX INDEX   #
-          #################
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
 
-          # nix-index-database.nixosModules.nix-index
-          # # optional to also wrap and install comma
-          # { programs.command-not-found.enable = false; }
-          # # { programs.nix-index-database.comma.enable = true; }
+        #################
+        #   NIX INDEX   #
+        #################
 
-          ###############
-          #   PROXMOX   #
-          ###############
+        # nix-index-database.nixosModules.nix-index
+        # # optional to also wrap and install comma
+        # { programs.command-not-found.enable = false; }
+        # # { programs.nix-index-database.comma.enable = true; }
 
-          # proxmox-nixos.nixosModules.proxmox-ve
+        ###############
+        #   PROXMOX   #
+        ###############
 
-          # ({ pkgs, lib, ... }: {
-          #   services.proxmox-ve.enable = true;
-          #   nixpkgs.overlays = [ proxmox-nixos.overlays.${system} ];
-          # })
+        # proxmox-nixos.nixosModules.proxmox-ve
+
+        # ({ pkgs, lib, ... }: {
+        #   services.proxmox-ve.enable = true;
+        #   nixpkgs.overlays = [ proxmox-nixos.overlays.${system} ];
+        # })
 
       ];
     };
@@ -78,31 +76,26 @@ in {
     #   SERVER   #
     ##############
 
-    server = let
-      user = "nix";
-    in
-      nixpkgs-unstable.lib.nixosSystem {
-	system = system;
-	specialArgs = { inherit user; };
+    server = let user = "nix";
+    in nixpkgs-unstable.lib.nixosSystem {
+      system = system;
+      specialArgs = { inherit user; };
+      modules = [
+        ./hosts/server.nix
+        ./hardware/server-hardware-configuration.nix
 
-	modules = [
-          ./hosts/server.nix
-          ./hardware/server-hardware-configuration.nix
-
-          nur.modules.nixos.default
-          musnix.nixosModules.musnix
-          home-manager.nixosModules.home-manager
+        nur.modules.nixos.default
+        musnix.nixosModules.musnix
+        home-manager.nixosModules.home-manager
       ];
     };
-    
+
     ###############
     #   MINIMAL   #
     ###############
 
-    minimal = let
-      user = "ubunteous";
-    in
-      nixpkgs-unstable.lib.nixosSystem {
+    minimal = let user = "ubunteous";
+    in nixpkgs-unstable.lib.nixosSystem {
       system = system;
       specialArgs = { inherit user; };
 
@@ -115,31 +108,29 @@ in {
       ];
     };
   };
-  
+
   ######################
   # HOME CONFIGURATION #
   ######################
 
   defaultPackage.${system} = home-manager.defaultPackage.${system};
 
-  homeConfigurations = let
-    user = "ubunteous";
-  in
-    {
-      # nix run . -- build --flake . # or switch
-      # Then restart your shell or run exec $SHELL -l
+  homeConfigurations = let user = "ubunteous";
+  in {
+    # nix run . -- build --flake . # or switch
+    # Then restart your shell or run exec $SHELL -l
 
-      work = home-manager.lib.homeManagerConfiguration {
-	extraSpecialArgs = { inherit user; };
-	pkgs = import nixpkgs-unstable { system = system; };
+    work = home-manager.lib.homeManagerConfiguration {
+      extraSpecialArgs = { inherit user; };
+      pkgs = import nixpkgs-unstable { system = system; };
 
-	modules = [
-          ./hosts/work.nix
+      modules = [
+        ./hosts/work.nix
 
-          nur.nixosModules.nur
-          # nur.hmModules.nur
-	];
-      };
+        nur.nixosModules.nur
+        # nur.hmModules.nur
+      ];
     };
+  };
 
 }
