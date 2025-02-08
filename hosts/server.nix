@@ -59,6 +59,8 @@
     enable = true;
 
     boot.enable = true;
+    boot-server.enable = true;
+
     networking.enable = true;
 
     xserver = {
@@ -78,9 +80,12 @@
 
   lab = {
     enable = true;
-    # ssh.enable = true;
+    ssh.enable = true;
 
-    homepage.enable = true; # 8082
+    homepage = {
+      enable = true; # 8082
+      address = "server"; # server or localhost
+    };
 
     #################
     #   streaming   #
@@ -117,16 +122,17 @@
 
     # grafana.enable = false; # 3000 => 3002
     # prometheus.enable = false; # 9090
-    # loki.enable = false;
+    # loki.enable = false; # 3100 # broken. 2/2025
 
     #################
     #    DNS/VPN    #
     #################
 
     unbound.enable = true; # 5335
+    adguard.enable = true; # 3000
+
     bind.enable = false;
     wireguard.enable = false;
-    adguard.enable = true; # 3000
 
     ####################
     #    containers    #
@@ -139,15 +145,20 @@
     #    downloaders    #
     #####################
 
-    deluge.enable = true; # 8112
+    deluge.enable = true; # 8112. default: deluge
     transmission.enable = true; # 9091. webui 403 with flood
-    qbittorrent.enable = true; # 8080
 
-    rtorrent.enable = true; # 6789
-    rutorrent.enable = true; # 6789
-    flood.enable = true; # 3000 => 3001
+    # give full access with 0.0.0.0/0 subnet
+    # default: admin and see systemctl status for password
+    qbittorrent-nox.enable = true; # 8080
 
-    nzbget.enable = true; # 6789. default: nzbget/tegbzn6789
+    # rtorrent.enable = true; # ?
+    # rutorrent.enable = true; # ?
+    # flood.enable = true; # 3000 => 3001
+
+    # repo archived
+    # nzbget.enable = true; # 6789. default: nzbget/tegbzn6789
+    # sabnzbd.enable = true; # 8080. port conflict with qbittorrent. config can't change port yet
 
     ###############
     #    proxy    #
@@ -201,7 +212,7 @@
           wezterm.enable = true;
         };
 
-        qbittorrent.enable = true;
+        qbittorrent.enable = false;
         dots.enable = true;
       };
     };

@@ -3,7 +3,7 @@
 with lib; {
   options.lab.enable = mkEnableOption "Homelab configuration";
   imports = [
-    # ./sysadmin/ssh.nix
+    ./sysadmin/ssh.nix
     ./sysadmin/k3s.nix
     ./sysadmin/podman.nix
     # ./sysadmin/virtual-box.nix
@@ -36,6 +36,7 @@ with lib; {
     ./downloaders/flood.nix
     ./downloaders/qbittorrent.nix
     ./downloaders/nzbget.nix
+    ./downloaders/sabnzbd.nix
 
     ./backup/immich.nix
     ./backup/restic.nix
