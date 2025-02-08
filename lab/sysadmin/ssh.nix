@@ -9,13 +9,13 @@ in {
   options.lab.ssh = { enable = mkEnableOption "Enables support for ssh"; };
 
   config = mkIf (corecfg.enable && cfg.enable) {
-    service.openssh = { # note: alias openssh=sshd
+    services.openssh = { # note: alias openssh=sshd
       enable = true;
 
       # startWhenNeeded = true;
 
       # ports = [ "22" ];
-      # openFirewall = true;
+      openFirewall = true;
 
       # hostKeys = [
       #   {
@@ -63,8 +63,9 @@ in {
       # sftpFlags = [ "-f AUTHPRIV" "-l INFO" ];
 
       settings = {
-        PermitRootLogin = "no"; # safer
-        PasswordAuthentication = "true";
+        # yes, no, without-password, prohibit-password, forced-commands-only
+        PermitRootLogin = "prohibit-password";
+        PasswordAuthentication = false;
         AllowUsers = [ "${user}" ];
 
         # X11Forwarding = false; # defaults to false
