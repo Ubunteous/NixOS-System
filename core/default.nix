@@ -8,6 +8,7 @@ with lib; {
   imports = [
     ./boot.nix
     ./boot-laptop.nix
+    ./boot-server.nix
 
     ./networking.nix
 
