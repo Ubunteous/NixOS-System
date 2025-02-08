@@ -3,139 +3,28 @@
 with lib;
 
 let
-  mycfg = config.lab.qbittorrent;
+  mycfg = config.lab.qbittorrent-nox;
   labcfg = config.lab;
-
-  cfg = config.services.qbittorrent;
-  UID = 888;
-  GID = 888;
 in {
-  options.lab.qbittorrent = {
-    enable = mkEnableOption "Enable support for qBittorrent";
+  imports = [ ../../modules/qbittorrent.nix ];
+
+  options.lab.qbittorrent-nox = {
+    enable = mkEnableOption "Enable support for qBittorrent-nox";
   };
 
-  options.services.qbittorrent = {
-    enable = mkEnableOption (lib.mdDoc "qBittorrent headless");
+  config = mkIf (labcfg.enable && mycfg.enable) {
+    services.qbittorrent-nox = {
+      enable = true;
+      openFirewall = true;
 
-    dataDir = mkOption {
-      type = types.path;
-      default = "/var/lib/qbittorrent";
-      description = lib.mdDoc ''
-        The directory where qBittorrent stores its data files.
-      '';
-    };
-    user = mkOption {
-      type = types.str;
-      default = "qbittorrent";
-      description = lib.mdDoc ''
-        User account under which qBittorrent runs.
-      '';
-    };
+      # port = 8080;
 
-    group = mkOption {
-      type = types.str;
-      default = "qbittorrent";
-      description = lib.mdDoc ''
-        Group under which qBittorrent runs.
-      '';
-    };
+      # package = pkgs.qbittorrent; # defaults to nox
+      # create webhome like transmission for vuetorrent
 
-    port = mkOption {
-      type = types.port;
-      default = 8080;
-      description = lib.mdDoc ''
-        qBittorrent web UI port.
-      '';
-    };
-
-    openFirewall = mkOption {
-      type = types.bool;
-      default = false;
-      description = lib.mdDoc ''
-        Open services.qBittorrent.port to the outside network.
-      '';
-    };
-
-    package = mkOption {
-      type = types.package;
-      default = pkgs.qbittorrent-nox;
-      defaultText = literalExpression "pkgs.qbittorrent-nox";
-      description = lib.mdDoc ''
-        The qbittorrent package to use.
-      '';
+      # dataDir = "/var/lib/qbittorrent";
+      # user = "qbittorrent";
+      # group = "qbittorrent";
     };
   };
-
-  config = mkMerge [
-    (mkIf cfg.enable {
-      networking.firewall =
-        mkIf cfg.openFirewall { allowedTCPPorts = [ cfg.port ]; };
-
-      systemd.services.qbittorrent = {
-        # based on the plex.nix service module and
-        # https://github.com/qbittorrent/qBittorrent/blob/master/dist/unix/systemd/qbittorrent-nox%40.service.in
-        description = "qBittorrent-nox service";
-        documentation = [ "man:qbittorrent-nox(1)" ];
-        # description = "qBittorrent service";
-        # documentation = [ "man:qbittorrent" ];
-        after = [ "network.target" ];
-        wantedBy = [ "multi-user.target" ];
-
-        serviceConfig = {
-          Type = "simple";
-          User = cfg.user;
-          Group = cfg.group;
-
-          # Run the pre-start script with full permissions (the "!" prefix) so it
-          # can create the data directory if necessary.
-          ExecStartPre = let
-            preStartScript = pkgs.writeScript "qbittorrent-run-prestart" ''
-              #!${pkgs.bash}/bin/bash
-
-              # Create data directory if it doesn't exist
-              if ! test -d "$QBT_PROFILE"; then
-                echo "Creating initial qBittorrent data directory in: $QBT_PROFILE"
-                install -d -m 0755 -o "${cfg.user}" -g "${cfg.group}" "$QBT_PROFILE"
-              fi
-            '';
-          in "!${preStartScript}";
-
-          ExecStart = "${cfg.package}/bin/qbittorrent-nox";
-          # ExecStart = "${cfg.package}/bin/qbittorrent";
-          # To prevent "Quit & shutdown daemon" from working; we want systemd to
-          # manage it!
-          #Restart = "on-success";
-          #UMask = "0002";
-          #LimitNOFILE = cfg.openFilesLimit;
-        };
-
-        environment = {
-          QBT_PROFILE = cfg.dataDir;
-          QBT_WEBUI_PORT = toString cfg.port;
-        };
-      };
-
-      users.users = mkIf (cfg.user == "qbittorrent") {
-        qbittorrent = {
-          group = cfg.group;
-          uid = UID;
-        };
-      };
-
-      users.groups =
-        mkIf (cfg.group == "qbittorrent") { qbittorrent = { gid = GID; }; };
-    })
-    (mkIf (labcfg.enable && mycfg.enable) {
-      services.qbittorrent = {
-        enable = true;
-        openFirewall = true;
-
-        # package = pkgs.qbittorrent; # defaults to nox
-
-        # dataDir = "/var/lib/qbittorrent";
-        # user = "qbittorrent";
-        # group = "qbittorrent";
-      };
-    })
-  ];
 }
