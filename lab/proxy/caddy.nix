@@ -10,7 +10,7 @@ in {
 
   config = mkIf (labcfg.enable && cfg.enable) {
     # open port needed by caddy
-    networking.firewall.allowedTCPPorts = [ 2015 2016 ];
+    networking.firewall.allowedTCPPorts = [ 2016 ];
 
     services.caddy = {
       enable = true;
@@ -27,6 +27,7 @@ in {
 
         # serverAliases = [ "127.0.0.1" "localhost" "test" ];
         # };
+
         ":2016" = {
           # port 2016 file server
           # can't access /home/user without authorization
@@ -36,20 +37,24 @@ in {
             file_server browse
           '';
         };
-        ":80" = { # redir/rewrite do not seem to work to add /
+
+        # ":80" = { # redir/rewrite do not seem to work to add /
+        #   extraConfig = ''
+        #     reverse_proxy radarr/ :7878
+        #   '';
+        # };
+
+        # access from self
+        "subdomain.localhost" = {
           extraConfig = ''
-            reverse_proxy radarr/ :7878
-            reverse_proxy /radarr/ :7878
-            reverse_proxy radarr/* :7878
-            reverse_proxy /radarr/* :7878
-            reverse_proxy /radarr* :7878
+            reverse_proxy localhost:8082
+          '';
+        };
 
-            reverse_proxy immich/* :2283
-
-            reverse_proxy navidrome/* 4533
-            reverse_proxy /navidrome/* 4533
-            reverse_proxy navidrome* 4533
-            reverse_proxy /navidrome* 4533
+        # access from lan
+        "192.168.1.99:80" = {
+          extraConfig = ''
+            reverse_proxy 192.168.1.99:8082
           '';
         };
       };
