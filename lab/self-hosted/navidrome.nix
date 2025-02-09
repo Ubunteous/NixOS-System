@@ -20,7 +20,7 @@ in {
         Port = 4533;
         Address = "0.0.0.0"; # 127.0.0.1";
 
-        MusicFolder = "/var/servarr/navidrome";
+        MusicFolder = "/var/data/media/musics";
         # DataFolder = "/var/servarr/navidrome/data"; # bad idea?
         # BaseUrl = "music"; # for proxy: https://music.example.com
         # Backup.Count = 3;
