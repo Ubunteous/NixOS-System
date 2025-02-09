@@ -30,7 +30,7 @@ in {
     environment.variables = {
       # needs mkdir -p ~/.local/share/janet or maybe hm to install with jpm deps
       JANET_PATH = "${janetTreeDir}/lib";
-      JANET_TREE = janetTreeDir;
+      JANET_TREE = janetTreeDir; # ~/.local/share/janet/jpm_tree/
     };
 
     users.users.${user} = {
