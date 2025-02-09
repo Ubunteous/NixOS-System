@@ -18,9 +18,9 @@ in {
   };
 
   config = mkIf (labcfg.enable && cfg.enable) {
-    ####################
+    ########################
     #       HOMEPAGE       #
-    ####################
+    ########################
 
     services.homepage-dashboard = {
       enable = true;
@@ -73,110 +73,74 @@ in {
         useEqualHeights = "true";
 
         layout = {
+          Arr = {
+            style = "column";
+            rows = "3";
+          };
           Backup = {
             style = "column";
             rows = "3";
           };
-
-          Proxy = {
+          Streaming = {
             style = "column";
-            columns = "3";
-            # tab = "Second";
+            rows = "3";
+          };
+          Torrent = {
+            style = "column";
+            rows = "3";
           };
 
-          Monitoring = { # group Name in services/bookmarks.yaml
+          arr = {
+            style = "column";
+            rows = "3";
+          };
+          torrent = {
+            style = "column";
+            columns = "2";
+            rows = "3";
+          };
+          monitoring = { # group Name in services/bookmarks.yaml
             style = "column";
             columns = "3";
             # initiallyCollapsed = "true";
             # tab = "First"; # not giving a tab puts column on every tab
           };
-
-          Arr = {
-            style = "row";
-            rows = "2";
-            columns = "3";
-          };
-
-          Streaming = {
-            style = "row";
-            rows = "2";
-            columns = "3";
-          };
-
-          dns-vpn = {
-            style = "row";
-            columns = "2";
-          };
-
-          Downloader = {
+          proxy = {
             style = "column";
             columns = "3";
-            rows = "2";
+            # tab = "Second";
           };
 
+          security = {
+            style = "column";
+            rows = "3";
+          };
+          streaming = {
+            style = "column";
+            rows = "3";
+          };
         };
       };
 
       services = [
         {
-          "Downloader " = [
+          "Arr" = [
             {
-              "qBittorrent" = {
-                icon = "qbittorrent.png";
-                href = "http://${cfg.address}:8080/";
+              "Radarr (films)" = {
+                icon = "radarr.png";
+                href = "http://${cfg.address}:7878/";
               };
             }
             {
-              "Deluge" = {
-                icon = "deluge.png";
-                href = "http://${cfg.address}:8112/";
+              "Bazaar (subs)" = {
+                icon = "bazarr.png";
+                href = "http://${cfg.address}:6767/"; # default: 9090
               };
             }
             {
-              "transmission" = {
-                icon = "transmission.png";
-                href = "http://${cfg.address}:9091/";
-              };
-            }
-            {
-              "rutorrent/rtorrent" = {
-                icon = "rutorrent.png";
-                href = "http://${cfg.address}:50000/";
-              };
-            }
-            {
-              "sabnzbd" = {
-                icon = "sabnzbd.png";
-                href = "http://${cfg.address}:8080";
-              };
-            }
-            {
-              "nzbget" = {
-                icon = "nzbget.png";
-                href = "http://${cfg.address}:6789/";
-              };
-            }
-          ];
-        }
-
-        {
-          "Proxy" = [
-            {
-              "Caddy" = {
-                icon = "caddy.png";
-                href = "http://${cfg.address}:2019/"; # admin port
-              };
-            }
-            {
-              "Traefik" = {
-                icon = "traefik.png";
-                href = "http://${cfg.address}:8082";
-              };
-            }
-            {
-              "Nginx" = {
-                icon = "nginx.png";
-                href = "http://${cfg.address}:80/"; # http port
+              "Sonarr (series)" = {
+                icon = "sonarr.png";
+                href = "http://${cfg.address}:8989/";
               };
             }
           ];
@@ -214,23 +178,6 @@ in {
         }
 
         {
-          "dns-vpn" = [
-            {
-              "Adguard" = {
-                icon = "adguard-home.png";
-                href = "http://${cfg.address}:3000/";
-              };
-            }
-            {
-              "Wireguard" = {
-                icon = "wireguard.png";
-                href = "http://${cfg.address}:8082/"; # change port later
-              };
-            }
-          ];
-        }
-
-        {
           "Streaming" = [
             {
               "Plex" = {
@@ -250,6 +197,109 @@ in {
                 href = "http://${cfg.address}:2016/";
               };
             }
+          ];
+        }
+
+        {
+          "Torrent" = [
+            {
+              "qBittorrent" = {
+                icon = "qbittorrent.png";
+                href = "http://${cfg.address}:8080/";
+              };
+            }
+            {
+              "sabnzbd" = {
+                icon = "sabnzbd.png";
+                href = "http://${cfg.address}:8080";
+              };
+            }
+            {
+              "soulseek" = {
+                icon = "soulseek.png";
+                href = "http://${cfg.address}:5030";
+              };
+            }
+          ];
+        }
+
+        {
+          "torrent" = [
+            {
+              "Deluge" = {
+                icon = "deluge.png";
+                href = "http://${cfg.address}:8112/";
+              };
+            }
+            {
+              "transmission" = {
+                icon = "transmission.png";
+                href = "http://${cfg.address}:9091/";
+              };
+            }
+            {
+              "rutorrent/rtorrent" = {
+                icon = "rutorrent.png";
+                href = "http://${cfg.address}:50000/";
+              };
+            }
+            {
+              "nzbget" = {
+                icon = "nzbget.png";
+                href = "http://${cfg.address}:6789/";
+              };
+            }
+          ];
+        }
+
+        {
+          "proxy" = [
+            {
+              "Caddy" = {
+                icon = "caddy.png";
+                href = "http://${cfg.address}:2019/"; # admin port
+              };
+            }
+            {
+              "Traefik" = {
+                icon = "traefik.png";
+                href = "http://${cfg.address}:8082";
+              };
+            }
+            {
+              "Nginx" = {
+                icon = "nginx.png";
+                href = "http://${cfg.address}:80/"; # http port
+              };
+            }
+          ];
+        }
+
+        {
+          "security" = [
+            {
+              "Adguard" = {
+                icon = "adguard-home.png";
+                href = "http://${cfg.address}:3000/";
+              };
+            }
+            {
+              "Wireguard" = {
+                icon = "wireguard.png";
+                href = "http://${cfg.address}:8082/"; # change port later
+              };
+            }
+            {
+              "flaresolverr" = {
+                icon = "flaresolverr.png";
+                href = "http://${cfg.address}:8191/";
+              };
+            }
+          ];
+        }
+
+        {
+          "streaming" = [
             {
               "Tautulli" = {
                 icon = "tautulli.png";
@@ -272,7 +322,7 @@ in {
         }
 
         {
-          "Monitoring" = [
+          "monitoring" = [
             {
               "Grafana" = {
                 icon = "grafana.png";
@@ -297,23 +347,11 @@ in {
         }
 
         {
-          "Arr" = [
+          "arr" = [
             {
-              "Radarr (movies)" = {
-                icon = "radarr.png";
-                href = "http://${cfg.address}:7878/";
-              };
-            }
-            {
-              "Bazaar (sub)" = {
-                icon = "bazarr.png";
-                href = "http://${cfg.address}:6767/"; # default: 9090
-              };
-            }
-            {
-              "Sonarr (tv)" = {
-                icon = "sonarr.png";
-                href = "http://${cfg.address}:8989/";
+              "Lidarr (music)" = {
+                icon = "lidarr.png";
+                href = "http://${cfg.address}:8686/";
               };
             }
             {
@@ -323,87 +361,80 @@ in {
               };
             }
             {
-              "Lidarr (music)" = {
-                icon = "lidarr.png";
-                href = "http://${cfg.address}:8686/";
-              };
-            }
-            {
-              "Prowlarr (indexer)" = {
+              "Prowlarr (index)" = {
                 icon = "prowlarr.png";
                 href = "http://${cfg.address}:9696/";
               };
             }
           ];
-
         }
       ];
 
-      bookmarks = [
-        {
-          Developer = [
-            {
-              JS-App = [{
-                abbr = "JA";
-                href = "http://${cfg.address}:3000/";
-              }];
-            }
-            {
-              Django-App = [{
-                abbr = "DA";
-                href = "http://${cfg.address}:8000/";
-              }];
-            }
-            {
-              Github = [{
-                abbr = "GH"; # abbr expected to be 2 letters long
-                # icon = "github-light.png";
-                href = "https://github.com/";
-              }];
-            }
-          ];
-        }
+      # bookmarks = [
+      #   {
+      #     Developer = [
+      #       {
+      #         JS-App = [{
+      #           abbr = "JA";
+      #           href = "http://${cfg.address}:3000/";
+      #         }];
+      #       }
+      #       {
+      #         Django-App = [{
+      #           abbr = "DA";
+      #           href = "http://${cfg.address}:8000/";
+      #         }];
+      #       }
+      #       {
+      #         Github = [{
+      #           abbr = "GH"; # abbr expected to be 2 letters long
+      #           # icon = "github-light.png";
+      #           href = "https://github.com/";
+      #         }];
+      #       }
+      #     ];
+      #   }
 
-        {
-          Javascript = [
-            {
-              React-Learn = [{
-                abbr = "RL";
-                href = "https://react.dev/learn";
-              }];
-            }
-            {
-              React-API = [{
-                abbr = "RA";
-                href = "https://react.dev/reference/react";
-              }];
-            }
-            {
-              Express = [{
-                abbr = "EX";
-                href = "http://expressjs.com/";
-              }];
-            }
-          ];
-        }
+      #   {
+      #     Javascript = [
+      #       {
+      #         React-Learn = [{
+      #           abbr = "RL";
+      #           href = "https://react.dev/learn";
+      #         }];
+      #       }
+      #       {
+      #         React-API = [{
+      #           abbr = "RA";
+      #           href = "https://react.dev/reference/react";
+      #         }];
+      #       }
+      #       {
+      #         Express = [{
+      #           abbr = "EX";
+      #           href = "http://expressjs.com/";
+      #         }];
+      #       }
+      #     ];
+      #   }
 
-        {
-          Documentation = [
-            {
-              Homepage = [{
-                abbr = "HP";
-                href = "https://gethomepage.dev/latest/";
-              }];
-            }
-            {
-              Mozilla = [{
-                abbr = "MZ";
-                href = "https://developer.mozilla.org/en-US/docs/Web";
-              }];
-            }
-          ];
-        }
-      ];
+      #   {
+      #     Documentation = [
+      #       {
+      #         Homepage = [{
+      #           abbr = "HP";
+      #           href = "https://gethomepage.dev/latest/";
+      #         }];
+      #       }
+      #       {
+      #         Mozilla = [{
+      #           abbr = "MZ";
+      #           href = "https://developer.mozilla.org/en-US/docs/Web";
+      #         }];
+      #       }
+      #     ];
+      #   }
+      # ];
 
       # customJS = '' '';
       # customCSS = '' '';
