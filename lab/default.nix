@@ -28,15 +28,17 @@ with lib; {
     ./servarr/lidarr.nix
     ./servarr/bazarr.nix
     ./servarr/prowlarr.nix
+    ./servarr/flaresolverr.nix
 
-    ./downloaders/deluge.nix
-    ./downloaders/transmission.nix
-    ./downloaders/rtorrent.nix
-    ./downloaders/rutorrent.nix
-    ./downloaders/flood.nix
     ./downloaders/qbittorrent.nix
-    ./downloaders/nzbget.nix
-    ./downloaders/sabnzbd.nix
+    # ./downloaders/deluge.nix
+    # ./downloaders/transmission.nix
+    # ./downloaders/rtorrent.nix
+    # ./downloaders/rutorrent.nix
+    # ./downloaders/flood.nix
+    # ./downloaders/nzbget.nix
+    # ./downloaders/sabnzbd.nix
+    ./downloaders/soulseek.nix
 
     ./backup/immich.nix
     ./backup/restic.nix

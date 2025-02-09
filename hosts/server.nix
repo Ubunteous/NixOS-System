@@ -103,10 +103,11 @@
     radarr.enable = true; # 7878 movies
     bazarr.enable = true; # 6767 subtitles
     sonarr.enable = true; # 8989 tv series
-    prowlarr.enable = true; # 9696 indexer
-
-    readarr.enable = true; # 8787 books
     lidarr.enable = true; # 8686 music
+
+    prowlarr.enable = true; # 9696 indexer
+    readarr.enable = true; # 8787 books
+    flaresolverr.enable = false; # 8191 bypass cloudflare
 
     ################
     #    backup    #
@@ -145,8 +146,8 @@
     #    downloaders    #
     #####################
 
-    deluge.enable = true; # 8112. default: deluge
-    transmission.enable = true; # 9091. webui 403 with flood
+    # deluge.enable = true; # 8112. default: deluge
+    # transmission.enable = true; # 9091. webui 403 with flood
 
     # give full access with 0.0.0.0/0 subnet
     # default: admin and see systemctl status for password
@@ -159,6 +160,9 @@
     # repo archived
     # nzbget.enable = true; # 6789. default: nzbget/tegbzn6789
     # sabnzbd.enable = true; # 8080. port conflict with qbittorrent. config can't change port yet
+
+    # try nicotine-plus instead
+    # slskd.enable = true; # 5030
 
     ###############
     #    proxy    #
