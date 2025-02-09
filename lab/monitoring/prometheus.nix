@@ -20,25 +20,27 @@ in {
     services.prometheus = {
       enable = true;
 
-      port = 9090; # default is 9090
+      # port = 9090; # default
 
       exporters = {
         node = {
           enable = true;
           enabledCollectors = [ "systemd" ];
-          port = 9091;
+          # port = 9100; # default
         };
       };
 
       scrapeConfigs = [{
-        job_name = "chrysalis";
+        job_name = "server";
         static_configs = [{
           targets = [
             # should match exporters.node.port
-            "127.0.0.1:9091"
+            "127.0.0.1:9100"
           ];
+          # targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
         }];
       }];
+
     };
   };
 }
