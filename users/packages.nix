@@ -19,6 +19,7 @@ in {
       gnome-disk-utility # gnome-disks
       keepassxc
       networkmanagerapplet
+      # nicotine-plus
       tdesktop
 
       # bookworm # ebook reader
@@ -179,6 +180,7 @@ in {
       # gtop # top
       # hexyl # hexa viewer
       hstr # history
+      # httm # zfs/restic time machine
       # httpie # http client
       # hyperfine # benchmark
       # jq # json sed
