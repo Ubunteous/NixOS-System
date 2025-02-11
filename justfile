@@ -1,25 +1,28 @@
 default:
 	just --list
 
-
-
+[group('Build')]
 build type="build" host="work":
 	nix run . -- {{type}} --flake ./#{{host}}
 
+[group('Build')]
 rebuild type="test" host="nixos":
 	sudo nixos-rebuild {{type}} --flake ./#{{host}}
 
+[group('Build')]
 rebuild-debug host="nixos":
 	sudo nixos-rebuild --show-trace test --flake ./#{{host}}
 
+[group('Build')]
 nixmin:
 	sudo nixos-rebuild test --flake ./#minimal
 
 
-
+[group('Flake')]
 flake-show:
 	nix flake show
 
+[group('Flake')]
 flake-update $full="false":
 	#!/usr/bin/env sh
 	if [ ! $full = "true" ]; then
@@ -30,8 +33,13 @@ flake-update $full="false":
 		nix flake update
 	fi	
 
+[group('Flake')]
+archive:
+	# retrieve missing flake inputs
+	nix flake archive
 
 
+[group('Clean')]
 clean $full="false":
 	#!/usr/bin/env sh
 	if [ ! $full = "true" ]; then
@@ -42,6 +50,7 @@ clean $full="false":
 		sudo nix-collect-garbage -d
 	fi
 
+[group('Clean')]
 clean-profiles:
 	#!/usr/bin/env sh
 	# nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\w+-system|\{memory|/proc)" | awk '{ print $1 }' | grep -vE 'home-manager|flake-registry\.json' | xargs -L1 unlink
@@ -52,6 +61,8 @@ clean-profiles:
 # 	#!/usr/bin/env sh
 # 	home-manager expire-generations "$(date)"
 
+
+[group('Misc')]
 delta: # broken
 	#!/usr/bin/env sh
 	if [ $(ls /nix/var/nix/profiles/ | wc -l) -eq 4 ]
@@ -63,14 +74,10 @@ delta: # broken
 	previous=$(ls -Art /nix/var/nix/profiles/ | tail -n 3 | head -n 1)
 	nix store diff-closures /nix/var/nix/profiles/$previous /nix/var/nix/profiles/system | grep "+"
 
-archive:
-	# retrieve missing flake inputs
-	nix flake archive
-
+[group('Misc')]
 show-gens:
     @echo -e "Systems currently in store:\n"
     @ls /nix/var/nix/profiles/ | grep system-
-
 
 # nvim-clean:
 # 	rm -r ~/.config/nvim/*
