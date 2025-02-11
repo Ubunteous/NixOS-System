@@ -117,7 +117,7 @@
 
 (cmd/defn sofle
 	  "Compile and flash sofle with QMK"
-	  [command (optional ["command (compile, flash, compile-flash or default)" :string])
+	  [command (optional ["command (compile, flash, config, compile-flash or default)" :string])
 	  ]
 	  
 	  (let [sofle-path "splitkb/aurora/sofle_v2/rev1"
@@ -146,6 +146,11 @@
 		(sh/$ qmk compile -kb ,sofle-path -km ,layout)
 		(sh/$ qmk flash -kb ,sofle-path -km ,layout))
 
+	      "config"
+	      (do
+		(sh/$ qmk config compile.keyboard=splitkb/aurora/sofle_v2/rev1 compile.keymap=colemak)
+		(sh/$ qmk config flash.keyboard=splitkb/aurora/sofle_v2/rev1 flash.keymap=colemak))
+	      
 	      "default"
 	      (sh/$ qmk compile -kb ,sofle-path -km "default")
 	      
