@@ -24,11 +24,11 @@ with lib; {
 
     ./servarr/sonarr.nix
     ./servarr/radarr.nix
-    ./servarr/readarr.nix
+    # ./servarr/readarr.nix
     ./servarr/lidarr.nix
     ./servarr/bazarr.nix
     ./servarr/prowlarr.nix
-    ./servarr/flaresolverr.nix
+    # ./servarr/flaresolverr.nix
 
     ./downloaders/qbittorrent.nix
     # ./downloaders/deluge.nix

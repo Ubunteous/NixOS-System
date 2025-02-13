@@ -106,8 +106,8 @@
     lidarr.enable = true; # 8686 music
 
     prowlarr.enable = true; # 9696 indexer
-    readarr.enable = true; # 8787 books
-    flaresolverr.enable = false; # 8191 bypass cloudflare
+    # readarr.enable = false; # 8787 books
+    # flaresolverr.enable = false; # 8191 bypass cloudflare
 
     ################
     #    backup    #
