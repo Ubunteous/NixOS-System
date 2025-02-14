@@ -9,6 +9,8 @@ in {
   options.lab.syncthing = {
     enable = mkEnableOption "Enables support for syncthing";
 
+    extraSyncDirs = mkEnableOption "Sync directories beyond Share";
+
     # NOTE: not necessary to define this options
     # devices = mkOption {
     #   type = types.attrsOf (types.submodule ({ name, ... }: {
@@ -57,7 +59,7 @@ in {
       #   folders   #
       ###############
 
-      settings.folders = {
+      settings.folders = mkIf cfg.extraSyncDirs {
         oad = {
           # needs the following stignore patterns:
           # !*.pdf
@@ -144,6 +146,7 @@ in {
             params.keep = "3";
           };
         };
+      } // {
         share = {
           enable = true;
           path = "~/share";
@@ -159,7 +162,7 @@ in {
       };
 
       ###############
-      #   devices   #
+      #     devices    #
       ###############
 
       settings.devices."droid" = {

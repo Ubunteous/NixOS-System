@@ -15,7 +15,7 @@
   services.tlp.enable = true;
 
   ################
-  #   HARDWARE   #
+  #     HARDWARE     #
   ################
 
   # temporary fix for unstable channel (March 2023)
@@ -29,7 +29,7 @@
   # hardware.enableRedistributableFirmware = true;
 
   ###############
-  #   IMPORTS   #
+  #     IMPORTS    #
   ###############
 
   imports = [
@@ -40,7 +40,7 @@
     ../programming
 
     ############
-    #   MAIL   #
+    #     MAIL    #
     ############
 
     # setup: http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html
@@ -52,7 +52,7 @@
   ];
 
   #--------------------#
-  #        CORE        #
+  #         CORE         #
   #--------------------#
 
   core = {
@@ -76,7 +76,7 @@
   };
 
   #--------------------#
-  #        LAB         #
+  #         LAB          #
   #--------------------#
 
   lab = {
@@ -87,7 +87,7 @@
     homepage.enable = true; # 8082
 
     ##################
-    #   multimedia   #
+    #     multimedia     #
     ##################
 
     # shiori.enable = false; # 8080 => 2525 bookmarks
@@ -95,7 +95,7 @@
     # navidrome.enable = false;
 
     #################
-    #   streaming   #
+    #     streaming     #
     #################
 
     # kodi.enable = false; # also defined with home-manager
@@ -105,7 +105,7 @@
     # tautulli.enable = true; # 8181 plex manager
 
     ###############
-    #   servarr   #
+    #     servarr    #
     ###############
 
     radarr.enable = false; # 7878 movies
@@ -117,15 +117,18 @@
     lidarr.enable = false; # 8686 music
 
     ##############
-    #   backup   #
+    #    backup     #
     ##############
 
     # restic.enable = true; # 8000
     # immich.enable = true; # 3001
-    syncthing.enable = true; # 8384
+    syncthing = {
+      enable = true; # 8384
+      extraSyncDirs = true;
+    };
 
     ##################
-    #   monitoring   #
+    #     monitoring     #
     ##################
 
     # grafana.enable = true; # 3000 => 3002
@@ -133,7 +136,7 @@
     # loki.enable = false;
 
     ##################
-    #   containers   #
+    #     containers     #
     ##################
 
     k3s.enable = false;
@@ -141,7 +144,7 @@
     # virtualbox.enable = false;
 
     ###############
-    #   DNS/VPN   #
+    #     DNS/VPN    #
     ###############
 
     wireguard.enable = false;
@@ -153,7 +156,7 @@
     # authelia.enable = true;
 
     #############
-    #   proxy   #
+    #    proxy     #
     #############
 
     caddy.enable = false; # 2019 (default admin port)
@@ -162,7 +165,7 @@
   };
 
   #--------------------#
-  #        USER        #
+  #         USER         #
   #--------------------#
 
   user = {
@@ -180,7 +183,7 @@
   };
 
   #--------------------#
-  #        HOME        #
+  #         HOME         #
   #--------------------#
 
   home-manager = {
@@ -270,7 +273,7 @@
   };
 
   #------------------------#
-  #        LANGUAGES       #
+  #          LANGUAGES        #
   #------------------------#
 
   languages = {
@@ -310,7 +313,7 @@
   };
 
   #--------------------#
-  #         WM         #
+  #          WM          #
   #--------------------#
 
   wm = {
@@ -330,7 +333,7 @@
   };
 
   ############
-  #   Misc   #
+  #    Misc    #
   ############
 
   ## NOT useful for the time being => gnupg.agent useful with mail

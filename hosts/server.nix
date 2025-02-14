@@ -106,8 +106,16 @@
     lidarr.enable = true; # 8686 music
 
     prowlarr.enable = true; # 9696 indexer
+<<<<<<< Updated upstream
     # readarr.enable = false; # 8787 books
-    # flaresolverr.enable = false; # 8191 bypass cloudflare
+    flaresolverr.enable = false; # 8191 bypass cloudflare. down since mid 2024
+||||||| Stash base
+    readarr.enable = true; # 8787 books
+    flaresolverr.enable = false; # 8191 bypass cloudflare
+=======
+    readarr.enable = true; # 8787 books
+    flaresolverr.enable = false; # 8191 bypass cloudflare. down since mid 2024
+>>>>>>> Stashed changes
 
     ################
     #    backup    #
@@ -115,7 +123,11 @@
 
     restic.enable = false; # 8000
     immich.enable = true; # 2283
-    syncthing.enable = true; # 8384
+
+    syncthing = {
+      enable = true; # 8384
+      extraSyncDirs = false;
+    };
 
     ####################
     #    monitoring    #
