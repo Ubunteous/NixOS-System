@@ -107,7 +107,7 @@
 
     prowlarr.enable = true; # 9696 indexer
     # readarr.enable = false; # 8787 books
-    flaresolverr.enable = false; # 8191 bypass cloudflare. down since mid 2024
+    # flaresolverr.enable = false; # 8191 bypass cloudflare. down since mid 2024
 
     ################
     #    backup    #

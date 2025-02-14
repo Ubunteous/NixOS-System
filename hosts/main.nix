@@ -113,7 +113,7 @@
     sonarr.enable = false; # 8989 tv series
     prowlarr.enable = false; # 9696 indexer
 
-    readarr.enable = false; # 8787 books
+    # readarr.enable = false; # 8787 books
     lidarr.enable = false; # 8686 music
 
     ##############
