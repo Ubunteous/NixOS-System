@@ -37,7 +37,7 @@ in {
       modules = [
         # Fix touchpad/wifi
         #<nixos-hardware/lenovo/thinkpad/t14s/amd/gen1>
-        ./hardware/hardware-configuration.nix
+        ./hardware/laptop
         ./hosts/main.nix
 
         nur.modules.nixos.default
@@ -82,7 +82,7 @@ in {
       specialArgs = { inherit user; };
       modules = [
         ./hosts/server.nix
-        ./hardware/server-hardware-configuration.nix
+        ./hardware/server
 
         nur.modules.nixos.default
         musnix.nixosModules.musnix

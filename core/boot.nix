@@ -20,6 +20,18 @@ in {
           configurationLimit = 2;
         };
 
+        # grub = {
+        #   enable = false;
+
+        #   zfsSupport = true;
+        #   efiSupport = true;
+        #   efiInstallAsRemovable = true;
+        #   mirroredBoots = [{
+        #     devices = [ "nodev" ];
+        #     path = "/boot";
+        #   }];
+        # };
+
         efi.canTouchEfiVariables = true;
         # efi.efiSysMountPoint = "/boot/efi"; # can fail sometimes?
 

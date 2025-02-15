@@ -3,56 +3,14 @@
 # Options: config, pkgs, lib, modulesPath, inputs, ... 
 # Help: man configuration.nix(5) or nixos-help’
 {
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
-  };
-
-  programs.dconf.enable = true; # for themes and more
-
-  # removes error messages related to wifi command
-  # may conflict with power-daemon in zfs config
-  services.tlp.enable = true;
-
-  ################
-  #     HARDWARE     #
-  ################
-
-  # temporary fix for unstable channel (March 2023)
-  # pkgs.rtw89-firmware is now part of linux-firmware
-  # therefore, override hardware.firmware to remove rtw89
-  # hardware.firmware = [ ];
-  hardware.enableRedistributableFirmware = true;
-  hardware.firmware = [ ];
-
-  # this may be useful for a future nix upgrade to unstable
-  # hardware.enableRedistributableFirmware = true;
-
-  ###############
+  ##################
   #     IMPORTS    #
-  ###############
+  ##################
 
-  imports = [
-    ../core
-    ../lab
-    ../users
-    ../wm
-    ../programming
-
-    ############
-    #     MAIL    #
-    ############
-
-    # setup: http://www.macs.hw.ac.uk/~rs46/posts/2014-01-13-mu4e-email-client.html
-    # ../home/mail/nm-isync.nix # isync with notmuch # isync bug eof in NixOS 22.11
-    # # ../home/mail/mu-imap.nix # offlineimap with mu
-    # ../home/mail/gnupg.nix
-    # ../home/mail/maildata.nix
-    # ../home/mail/maildata-home.nix
-  ];
+  imports = [ ../core ../lab ../users ../wm ../programming ];
 
   #--------------------#
-  #         CORE         #
+  #          CORE           #
   #--------------------#
 
   core = {

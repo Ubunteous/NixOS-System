@@ -39,7 +39,7 @@ in {
         eza
         just # make
         ripgrep # grep. combine it with fzf later
-        tlp # battery life
+        # tlp # battery life
         eww
         rofi # history sorted by frequency in ~/.cache/rofi3.(d)runcache
       ];

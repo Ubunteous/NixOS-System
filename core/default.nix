@@ -7,9 +7,6 @@ with lib; {
 
   imports = [
     ./boot.nix
-    ./boot-laptop.nix
-    ./boot-server.nix
-
     ./networking.nix
 
     ./zfs.nix
@@ -27,6 +24,17 @@ with lib; {
   ############
 
   config = {
+    nix.settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+
+    programs.dconf.enable = true; # for themes and more
+
+    # removes error messages related to wifi command
+    # may conflict with power-daemon in zfs config
+    services.tlp.enable = true;
+
     # adb for android interactions ("adbusers")
     # programs.adb.enable = true;
     services.gvfs.enable = true;

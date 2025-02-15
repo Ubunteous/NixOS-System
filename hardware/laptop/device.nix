@@ -10,23 +10,19 @@ in {
   };
 
   config = mkIf (corecfg.enable && cfg.enable) {
-    boot = {
-      loader = {
-        grub = {
-          enable = false;
-          zfsSupport = true;
-          efiSupport = true;
-          efiInstallAsRemovable = true;
-          mirroredBoots = [{
-            devices = [ "nodev" ];
-            path = "/boot";
-          }];
-        };
-      };
+    ####################
+    #     HARDWARE     #
+    ####################
 
-      # enable touchpad
-      blacklistedKernelModules = [ "elan_i2c" ]; # lenovo fix touchpad
-    };
+    # temporary fix for unstable channel (March 2023)
+    # pkgs.rtw89-firmware is now part of linux-firmware
+    # therefore, override hardware.firmware to remove rtw89
+    # hardware.firmware = [ ];
+    hardware.enableRedistributableFirmware = true;
+    hardware.firmware = [ ];
+
+    # this may be useful for a future nix upgrade to unstable
+    # hardware.enableRedistributableFirmware = true;
 
     ###################
     #   FILESYSTEMS   #
@@ -44,22 +40,13 @@ in {
       # device = "/dev/nvme0n1p4";
       fsType = "ntfs"; # "ntfs3";
       options = [ "rw" "uid=1000" "gid=1000" "dmask=007" "fmask=117" "nofail" ];
+
+      # depends
+      # mountPoint
+      # neededForBoot redundant if mounted at /nix/store
+
+      # encrypted.label
     };
-
-    # # required either command to be mounted during boot:
-    # # sudo chown -R $USER /mnt/zfs or chown -R :users /mnt/zfs
-    # fileSystems."/mnt/zfs" = {
-    #   label = "ZFS";
-    #   device = "/dev/nvme0n1p7";
-    #   fsType = "ext4";
-    #   options = [ "rw" "users" ];
-    # };
-
-    # depends
-    # mountPoint
-    # neededForBoot redundant if mounted at /nix/store
-
-    # encrypted.label
 
     ##################
     #   LID ACTION   #
@@ -72,6 +59,9 @@ in {
     #########################
     #   Lenovo Yoga 7 Fix   #
     #########################
+
+    # enable touchpad
+    boot.blacklistedKernelModules = [ "elan_i2c" ]; # lenovo fix touchpad
 
     ### Add <nixos-hardware/lenovo/thinkpad/t14s/amd/gen1> to imports = [];
     ### Or uncomment the following lines to fix wifi on the lenovo yoga 7	
