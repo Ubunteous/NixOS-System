@@ -15,13 +15,8 @@ in {
       #   APPS   #
       ############
 
-      file-roller # file-roller
-      gnome-disk-utility # gnome-disks
-      keepassxc
-      networkmanagerapplet
       # nicotine-plus
       tdesktop
-
       # bookworm # ebook reader
       # kazam # screen recording. maybe broken, try simplescreenrecorder
       # libsForQt5.kdenlive # video editing
@@ -151,7 +146,7 @@ in {
 
       # youtube-dl # may be needed later
       # youtube-dlp # fork
-      zip
+      # zip
 
       #############################
       #     IMPROVED COMMANDS     #
@@ -171,10 +166,10 @@ in {
       du-dust # disk usage
       # duf # disk analysis
       # exa # unmaintained 9-2023 ls replacement
-      eza
+      # eza # ls
       fd # find
       fzf # alternative: peco
-      gdu # disk usage
+      # gdu # disk usage
       # glances # top
       # gping # ping
       # gtop # top
@@ -184,7 +179,7 @@ in {
       # httpie # http client
       # hyperfine # benchmark
       # jq # json sed
-      just # make
+      # just # make
       # lsd # ls superset
       # mcfly # history search. requires setup
       # mosh # stable ssh
@@ -193,12 +188,12 @@ in {
       # plocate # locate
       # procs # ps
       # ranger # alternatives: nnn, joshuto
-      ripgrep # grep. combine it with fzf later
-      ripgrep-all # broken in unstable (September 2023)
+      # ripgrep # grep. combine it with fzf later
+      # ripgrep-all # broken in unstable (September 2023)
       # sd # sed/awk
       # thefuck # corrector
       tldr # man
-      tlp # battery life
+      # tlp # battery life
       # uutils-coreutils # rust coreutils
       # wtf # terminal dashboard
       # xh # http
@@ -218,10 +213,10 @@ in {
       #   RICING   #
       ##############
 
-      eww
+      # eww
       # eww-wayland # wayland variant
-      xdotool # job mode
-      rofi # history sorted by frequency in ~/.cache/rofi3.(d)runcache
+      # xdotool # job mode
+      # rofi # history sorted by frequency in ~/.cache/rofi3.(d)runcache
 
       # bars discarded in favour of eww
       # polybar

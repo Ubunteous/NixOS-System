@@ -37,12 +37,10 @@ in {
         networkmanagerapplet
         zip
         eza
-        gdu # disk usage
         just # make
         ripgrep # grep. combine it with fzf later
         tlp # battery life
         eww
-        # eww-wayland # wayland variant
         rofi # history sorted by frequency in ~/.cache/rofi3.(d)runcache
       ];
 
