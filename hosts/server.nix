@@ -176,12 +176,12 @@
   };
 
   #------------------------#
-  #          USER          #
+  #            USER             #
   #------------------------#
 
   user = {
     enable = true;
-    server.enable = true;
+    prince.enable = true;
   };
 
   #--------------------#

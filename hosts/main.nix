@@ -170,8 +170,8 @@
 
   user = {
     enable = true;
+    prince.enable = true;
 
-    laptop.enable = true;
     packages.enable = true;
 
     music.enable = true;
