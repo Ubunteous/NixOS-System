@@ -39,10 +39,10 @@
 
   lab = {
     enable = true;
-    # ssh.enable = true;
+    ssh.enable = false;
 
     # overview. add widgets once enable other services
-    homepage.enable = true; # 8082
+    homepage.enable = false; # 8082
 
     ##################
     #     multimedia     #
@@ -98,7 +98,7 @@
     ##################
 
     k3s.enable = false;
-    podman.enable = true;
+    podman.enable = false;
     # virtualbox.enable = false;
 
     ###############
@@ -112,6 +112,12 @@
 
     # fail2ban.enable = true;
     # authelia.enable = true;
+
+    #################
+    #   downloads   #
+    #################
+
+    qbittorrent-nox.enable = false;
 
     #############
     #    proxy     #

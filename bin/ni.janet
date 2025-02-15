@@ -95,67 +95,76 @@
 
 (cmd/defn nix
 	  "Utilities related to nix itself"
-	  [command (required ["command" :string])]
+	  [command (required [" command\n  => show, previous or clean-profiles/simple/full" :string])]
 
 	  (case command
-	    "show"
-	    (do
-	      (sh/$ echo -e "\nSystems currently in store:")
-	      (sh/$ ls /nix/var/nix/profiles/ | grep system-))
+		  "show"
+		  (do
+			(sh/$ echo -e "\nSystems currently in store:")
+			(sh/$ ls /nix/var/nix/profiles/ | grep system-))
 
-	    "clean-profiles"
-	    (sh/$ nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\\w+-system|\\{memory|/proc)")
+		  "clean-profiles"
+		  (sh/$ nix-store --gc --print-roots | egrep -v "^(/nix/var|/run/\\w+-system|\\{memory|/proc)")
 
-	    "clean-simple"
-	    (sh/$ sudo nix-collect-garbage)
+		  "clean-simple"
+		  (sh/$ sudo nix-collect-garbage)
 
-	    "clean-full"
-	    (sh/$ sudo nix-collect-garbage -d)
-	    
-	    (print "Nix command " command " unknown. Try show, previous or clean-profiles/simple/full.")))
+		  "clean-full"
+		  (sh/$ sudo nix-collect-garbage -d)
 
+		  (print "Nix command " command " unknown. Try show, previous, qbit or clean-profiles/simple/full.")))
+
+
+(cmd/defn set-impure
+		  "Install impure configurations on the system"
+		  [command (required [" command\n  => qbit" :string])]
+
+		  (let [qbit-config (string (os/getenv "HOME") "/.nix.d/files/qBittorrent.conf")]
+			(case command
+			  "qbit"
+			  (sh/$ sudo cp ,qbit-config "/var/lib/qbittorrent/qBittorrent/config/"))))
 
 (cmd/defn sofle
-	  "Compile and flash sofle with QMK"
-	  [command (optional ["command (compile, flash, config, compile-flash or default)" :string])
-	  ]
-	  
-	  (let [sofle-path "splitkb/aurora/sofle_v2/rev1"
-		layout "colemak"]
+		  "Compile and flash sofle with QMK"
+		  [command (optional ["command (compile, flash, config, compile-flash or default)" :string])
+		  ]
+		  
+		  (let [sofle-path "splitkb/aurora/sofle_v2/rev1"
+				layout "colemak"]
 
-	    (case command
-	      "compile"
-	      (sh/$ qmk compile -kb ,sofle-path -km ,layout)
+			(case command
+			  "compile"
+			  (sh/$ qmk compile -kb ,sofle-path -km ,layout)
 
-	      "flash"
-	      (sh/$ qmk flash -kb ,sofle-path -km ,layout)
+			  "flash"
+			  (sh/$ qmk flash -kb ,sofle-path -km ,layout)
 
-	      # needs sudo access
-	      # "mount"
-	      # (let [device (sh/$< lsblk -o "NAME,LABEL"|
-	      # 			  grep RPI-RP2 |
-	      # 			  awk "{print $1;}" |
-	      # 			  tr -cd "[:alnum:]|\n")]
+			  # needs sudo access
+			  # "mount"
+			  # (let [device (sh/$< lsblk -o "NAME,LABEL"|
+			  # 			  grep RPI-RP2 |
+			  # 			  awk "{print $1;}" |
+			  # 			  tr -cd "[:alnum:]|\n")]
 
-	      # 	(if-not (nil? device)
-	      # 	  (sh/$ mount (string "/dev/" device) "/run/media/usb/")
-	      # 	  (print "Device not found")))
+			  # 	(if-not (nil? device)
+			  # 	  (sh/$ mount (string "/dev/" device) "/run/media/usb/")
+			  # 	  (print "Device not found")))
 
-	      "compile-flash"
-	      (do
-		(sh/$ qmk compile -kb ,sofle-path -km ,layout)
-		(sh/$ qmk flash -kb ,sofle-path -km ,layout))
+			  "compile-flash"
+			  (do
+				(sh/$ qmk compile -kb ,sofle-path -km ,layout)
+				(sh/$ qmk flash -kb ,sofle-path -km ,layout))
 
-	      "config"
-	      (do
-		(sh/$ qmk config compile.keyboard=splitkb/aurora/sofle_v2/rev1 compile.keymap=colemak)
-		(sh/$ qmk config flash.keyboard=splitkb/aurora/sofle_v2/rev1 flash.keymap=colemak))
-	      
-	      "default"
-	      (sh/$ qmk compile -kb ,sofle-path -km "default")
-	      
-	      nil
-	      (print "Choose either compile, flash compile-flash or default"))))
+			  "config"
+			  (do
+				(sh/$ qmk config compile.keyboard=splitkb/aurora/sofle_v2/rev1 compile.keymap=colemak)
+				(sh/$ qmk config flash.keyboard=splitkb/aurora/sofle_v2/rev1 flash.keymap=colemak))
+			  
+			  "default"
+			  (sh/$ qmk compile -kb ,sofle-path -km "default")
+			  
+			  nil
+			  (print "Choose either compile, flash compile-flash or default"))))
 
 
 (cmd/main
@@ -167,5 +176,6 @@
   sofle sofle
   kb sofle
 
+  set-impure set-impure
   flake flake
   nix nix))

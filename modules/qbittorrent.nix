@@ -2,10 +2,7 @@
 
 with lib;
 
-let
-  cfg = config.services.qbittorrent-nox;
-  UID = 888;
-  GID = 888;
+let cfg = config.services.qbittorrent-nox;
 in {
   options.services.qbittorrent-nox = {
     enable = mkEnableOption (lib.mdDoc "qBittorrent-nox headless");
@@ -17,6 +14,47 @@ in {
         The directory where qBittorrent stores its data files.
       '';
     };
+
+    # configFile = lib.mkOption {
+    #   type = lib.types.path;
+    #   default = pkgs.writeTextFile {
+    #     name = "qbittorrent.conf";
+    #     text = ''
+    #       [BitTorrent]
+    #       Session\Port=1132
+    #       Session\QueueingSystemEnabled=false
+    #       Session\SSL\Port=23466
+
+    #       [Meta]
+    #       MigrationVersion=8
+
+    #       [Network]
+    #       Cookies=@Invalid()
+
+    #       [Preferences]
+    #       WebUI\Port=8888
+    #       WebUI\Username=admin
+    #     '' + lib.concatStringsSep "\n" [ cfg.config ];
+    #   };
+    #   defaultText = "A config file generated for qBittorrent.";
+    #   description = "qBittorrent configuration";
+    # };
+
+    # config = mkOption {
+    #   type = types.lines;
+    #   description = lib.mdDoc ''
+    #     Additional configuration to add.
+    #   '';
+    #   example = ''
+    #     [LegalNotice]
+    #     Accepted=true
+    #   '';
+    #   default = ''
+    #     [LegalNotice]
+    #     Accepted=true
+    #   '';
+    # };
+
     user = mkOption {
       type = types.str;
       default = "qbittorrent";
@@ -87,18 +125,12 @@ in {
             # Create data directory if it doesn't exist
             if ! test -d "$QBT_PROFILE"; then
               echo "Creating initial qBittorrent data directory in: $QBT_PROFILE"
-              install -d -m 0755 -o "${cfg.user}" -g "${cfg.group}" "$QBT_PROFILE"
+              install -d -m 0755 -o "${cfg.user}" -g "${cfg.group}" "$QBT_PROFILE"			  
             fi
           '';
         in "!${preStartScript}";
 
         ExecStart = "${cfg.package}/bin/qbittorrent-nox";
-        # ExecStart = "${cfg.package}/bin/qbittorrent";
-        # To prevent "Quit & shutdown daemon" from working; we want systemd to
-        # manage it!
-        #Restart = "on-success";
-        #UMask = "0002";
-        #LimitNOFILE = cfg.openFilesLimit;
       };
 
       environment = {
@@ -110,11 +142,11 @@ in {
     users.users = mkIf (cfg.user == "qbittorrent") {
       qbittorrent = {
         group = cfg.group;
-        uid = UID;
+        uid = 888;
       };
     };
 
     users.groups =
-      mkIf (cfg.group == "qbittorrent") { qbittorrent = { gid = GID; }; };
+      mkIf (cfg.group == "qbittorrent") { qbittorrent = { gid = 888; }; };
   };
 }
