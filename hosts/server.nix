@@ -71,7 +71,7 @@
     #    backup    #
     ################
 
-    borg.enable = false;
+    borg.enable = true;
     restic.enable = false; # 8000
     # rsyncd.enable = true;
 
