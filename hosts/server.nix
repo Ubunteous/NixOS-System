@@ -71,7 +71,10 @@
     #    backup    #
     ################
 
+    borg.enable = false;
     restic.enable = false; # 8000
+    # rsyncd.enable = true;
+
     immich.enable = true; # 2283
 
     syncthing = {

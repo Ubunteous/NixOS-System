@@ -78,8 +78,12 @@
     #    backup     #
     ##############
 
-    # restic.enable = true; # 8000
+    borg.enable = false;
+    restic.enable = false; # 8000
+    # rsyncd.enable = true;
+
     # immich.enable = true; # 3001
+
     syncthing = {
       enable = true; # 8384
       extraSyncDirs = true;

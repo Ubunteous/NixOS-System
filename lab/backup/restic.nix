@@ -1,7 +1,5 @@
 { config, lib, user, ... }:
 
-# ALTERNATIVES: BORG+BORGMATIC or KOPIA (not yet in nix)
-
 with lib;
 let
   cfg = config.lab.restic;
@@ -16,8 +14,13 @@ in {
     services.restic = {
       server = {
         enable = true;
-
         extraFlags = [ "--no-auth" ];
+
+        # prometheus = false;
+        # privateRepos = false;
+        # listenAddress = 8000; # defaults to 8000
+        # dataDir = "/var/lib/restic";
+        # appendOnly = false;
       };
 
       backups."name" = {
@@ -26,13 +29,16 @@ in {
         # use either to provide repository to backup to
         # repositoryFile = null;
         # repository = "sftp:backup@192.168.1.100:/backups/name";
+        # repository = "/home/${user}/Videos/remote";
+        repository = "var/lib/restic/";
 
-        # # paths and dynamicFilesFrom specify what should be backed up
-        # # if empty, does not backup. only prunes
-        # paths = [ "/var/lib/postgresql" "/home/user/backup" ];
+        # paths and dynamicFilesFrom specify what should be backed up
+        # if empty, does not backup. only prunes
+        paths = [ "/home/${user}/Videos/local" ];
         # dynamicFilesFrom = "find /home/${user}/git -type d -name .git"; # bash
 
-        passwordFile = "/path/to/file";
+        # passwordFile = "/path/to/file";
+        passwordFile = "";
 
         # # create the repo if does not exist
         # initialize = true;
@@ -46,14 +52,16 @@ in {
         # backupCleanupCommand = "make command here";
 
         ###############
-        #   options   #
+        #     options    #
         ###############
 
         # # if not specified, backups must be done manually
-        # timerConfig = {
-        #   OnCalendar = "daily";
-        #   Persistent = true;
-        # };
+        timerConfig = {
+          OnCalendar = "minutely";
+          # OnCalendar = "daily";
+          # OnCalendar = "00:05";
+          Persistent = true;
+        };
 
         # note: forget command is run after backup command
         # pruneOpts = [
@@ -64,11 +72,11 @@ in {
         # ];
 
         # extraOptions = [];
-        # extraBackupArgs = [];
         # checkOpts = [ "--with-cache" ];
+        # extraBackupArgs = []; # [ "--exclude-file=/etc/nixos/restic-ignore" ];
 
         ##############
-        #   rclone   #
+        #    rclone     #
         ##############
 
         # rcloneOptions = {
@@ -77,18 +85,6 @@ in {
         # };
         # rcloneConfigFile = "/path/to/file"
         # rcloneConfig = {};
-
-        ############
-        #   misc   #
-        ############
-
-        # prometheus = true;
-        # privateRepos = true;
-        # listenAddress = 8000; # defaults to 8000
-
-        # dataDir = "/var/lib/restic";
-        # appendOnly = true;
-
       };
     };
   };
