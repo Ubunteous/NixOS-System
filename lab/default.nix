@@ -40,8 +40,10 @@ with lib; {
     # ./downloaders/sabnzbd.nix
     ./downloaders/soulseek.nix
 
+    ./backup/borg.nix
     ./backup/immich.nix
     ./backup/restic.nix
+    ./backup/rsyncd.nix
     ./backup/syncthing.nix
 
     ./self-hosted/homepage.nix

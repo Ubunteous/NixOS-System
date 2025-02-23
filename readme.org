@@ -6,8 +6,9 @@ A few highlights:
 + Modular configuration with flakes and home manager support
 + Multiple Windows Managers available (pick one in main-host.nix) including XMonad, LeftWM and QTile or hyprland and sway for Wayland. Cinnamon is also available if you prefer a more standard Desktop Environment
 + Custom Colemak layout which leaves Azerty special characters in place
-
-The configuration is loaded in the following order: flake.nix > hosts/main-host.nix > everything else
++ ni and just command runners to easily interact with the nix cli
+  
+The configuration is loaded in the following order: flake.nix > output.nix > host > everything else
 
 * Porting Nix to non-NixOS systems
 ** Install Nix
