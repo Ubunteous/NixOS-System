@@ -115,6 +115,32 @@
 		  (print "Nix command " command " unknown. Try show, previous, qbit or clean-profiles/simple/full.")))
 
 
+(cmd/defn borg
+		  "Utilities for borg backups"
+		  [command (required [" command\n  => server-chmod/verify/init or client-backup/list " :string])]
+
+		  (let [bkp-name (apply string
+								(array/concat
+								 (map (os/date) [:month :year]) "-backup"))]
+			(case command
+			  "server-chmod"
+			  (sh/$ sudo chmod 777 /var/lib/borgbackup) # risky
+			  
+			  "server-verify"
+			  (do
+				(sh/$ cat /etc/ssh/authorized_keys.d/borg)
+				(sh/$ ls /var/lib/borgbackup))
+
+			  "client-init"
+			  (sh/$ borg init --encryption=none nix@server:/var/lib/borgbackup)
+
+			  "client-backup"
+			  (sh/$ borg create --stats nix@server:/var/lib/borgbackup::backup ~/org)
+
+			  "client-list"
+			  (sh/$ borg list "nix@server:/var/lib/borgbackup"))))
+
+
 (cmd/defn set-impure
 		  "Install impure configurations on the system"
 		  [command (required [" command\n  => qbit" :string])]
@@ -124,10 +150,10 @@
 			  "qbit"
 			  (sh/$ sudo cp ,qbit-config "/var/lib/qbittorrent/qBittorrent/config/"))))
 
+
 (cmd/defn sofle
 		  "Compile and flash sofle with QMK"
-		  [command (optional ["command (compile, flash, config, compile-flash or default)" :string])
-		  ]
+		  [command (optional ["command (compile, flash, config, compile-flash or default)" :string])]
 		  
 		  (let [sofle-path "splitkb/aurora/sofle_v2/rev1"
 				layout "colemak"]
@@ -176,6 +202,7 @@
   sofle sofle
   kb sofle
 
+  borg borg
   set-impure set-impure
   flake flake
   nix nix))
