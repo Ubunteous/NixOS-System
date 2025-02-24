@@ -5,10 +5,19 @@ let
   cfg = config.lab.restic;
   labcfg = config.lab;
 in {
-
   options.lab.restic = {
     enable = mkEnableOption "Enables support for restic";
   };
+
+  # manually create repo on server
+  # mkdir /var/lib/restic/
+  # chmod 777 /var/lib/restic
+  # chmod 777 ~/path/to/password/file # on client for password
+
+  # # init repo from client
+  # => not necessary. nix does it if /var/lib/restic exists
+  # nix-shell -p restic
+  # restic -r sftp:nix@server:/var/lib/restic init
 
   config = mkIf (labcfg.enable && cfg.enable) {
     services.restic = {
@@ -24,24 +33,25 @@ in {
       };
 
       backups."name" = {
+        # important: the following user's ssh key is used
         user = "${user}"; # defaults to root
 
         # use either to provide repository to backup to
         # repositoryFile = null;
-        # repository = "sftp:backup@192.168.1.100:/backups/name";
-        # repository = "/home/${user}/Videos/remote";
-        repository = "var/lib/restic/";
+        # setup with restic -r sftp:nix@server:/var/lib/restic init
+        repository = "sftp:nix@server:/var/lib/restic/"; # ssh
+        # repository = "local:/var/lib/restic/"; # on same device
 
         # paths and dynamicFilesFrom specify what should be backed up
         # if empty, does not backup. only prunes
-        paths = [ "/home/${user}/Videos/local" ];
+        paths = [ "/home/${user}/Videos/" ];
         # dynamicFilesFrom = "find /home/${user}/git -type d -name .git"; # bash
 
-        # passwordFile = "/path/to/file";
-        passwordFile = "";
+        passwordFile = "/home/${user}/.nix.d/files/restic";
+        # passwordFile = "/etc/nixos/restic"; # restic
 
-        # # create the repo if does not exist
-        # initialize = true;
+        # create the repo if does not exist
+        initialize = true;
 
         # # patterns to exclude during backup
         # exclude = [ "/var/cache" "/home/*/.cache" ".git" ];
@@ -57,19 +67,19 @@ in {
 
         # # if not specified, backups must be done manually
         timerConfig = {
-          OnCalendar = "minutely";
+          OnCalendar = "minutely"; # "saturday 23:00"
           # OnCalendar = "daily";
           # OnCalendar = "00:05";
           Persistent = true;
         };
 
         # note: forget command is run after backup command
-        # pruneOpts = [
-        #   "--keep-daily 7"
-        #   "--keep-weekly 5"
-        #   "--keep-monthly 12"
-        #   "--keep-yearly 75"
-        # ];
+        pruneOpts = [
+          # "--keep-daily 7"
+          # "--keep-weekly 5"
+          "--keep-monthly 10"
+          "--keep-yearly 50"
+        ];
 
         # extraOptions = [];
         # checkOpts = [ "--with-cache" ];
