@@ -8,6 +8,23 @@ in {
 
   options.lab.borg = { enable = mkEnableOption "Enables support for borg"; };
 
+  #########
+  # SETUP #
+  #########
+
+  # sudo mkdir /var/lib/borgbackup
+  # sudo chmod 777 /var/lib/borgbackup
+
+  # check ssh after activating nix config (with keys/paths)
+  # cat /etc/ssh/authorized_keys.d/borg
+
+  # check repository is ready
+  # ls /var/lib/borgbackup # should show repo with readme
+
+  ########
+  # MISC #
+  ########
+
   # monitor with:
   # journalctl -fu borgbackup-job-borgbase.service
 
