@@ -192,11 +192,17 @@ in {
               };
             }
             {
-              "Caddy share" = {
-                icon = "caddy.png";
-                href = "http://${cfg.address}:2016/";
+              "Komga" = {
+                icon = "komga.png";
+                href = "http://${cfg.address}:8069/";
               };
             }
+            # {
+            #   "Kavita" = {
+            #     icon = "kavita.png";
+            #     href = "http://${cfg.address}:5000/";
+            #   };
+            # }
           ];
         }
 
@@ -255,9 +261,10 @@ in {
         {
           "proxy" = [
             {
-              "Caddy" = {
+              "Caddy share" = {
                 icon = "caddy.png";
-                href = "http://${cfg.address}:2019/"; # admin port
+                href = "http://${cfg.address}:2016/";
+                # href = "http://${cfg.address}:2019/"; # admin port
               };
             }
             {
@@ -316,12 +323,6 @@ in {
               "Jellyseer" = {
                 icon = "jellyfin.png";
                 href = "http://${cfg.address}:5055/";
-              };
-            }
-            {
-              "Komga" = {
-                icon = "komga.png";
-                href = "http://${cfg.address}:8069/";
               };
             }
           ];
