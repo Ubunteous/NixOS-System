@@ -21,6 +21,9 @@ with lib; {
     ./streaming/jellyfin.nix
     ./streaming/jellyseer.nix
     ./streaming/tautulli.nix
+    # ./streaming/kavita.nix
+    ./streaming/navidrome.nix
+    ./streaming/komga.nix
 
     ./servarr/sonarr.nix
     ./servarr/radarr.nix
@@ -47,8 +50,6 @@ with lib; {
     ./backup/syncthing.nix
 
     ./self-hosted/homepage.nix
-    # ./self-hosted/kavita.nix
-    ./self-hosted/navidrome.nix
     # ./self-hosted/shiori.nix
 
     ./dns/adguard.nix

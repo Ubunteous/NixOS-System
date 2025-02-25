@@ -51,6 +51,8 @@
 
     plex.enable = true; # 8096 # localhost:32400/web
     tautulli.enable = true; # 8181 plex manager
+    # kavita.enable = false;
+    komga.enable = true; # 8080 => 8069
 
     navidrome.enable = true; # 4533
 
