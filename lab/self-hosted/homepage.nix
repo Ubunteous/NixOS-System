@@ -318,6 +318,12 @@ in {
                 href = "http://${cfg.address}:5055/";
               };
             }
+            {
+              "Komga" = {
+                icon = "komga.png";
+                href = "http://${cfg.address}:8069/";
+              };
+            }
           ];
         }
 
