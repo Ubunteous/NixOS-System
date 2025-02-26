@@ -21,46 +21,52 @@ in {
     ###########
 
     services.zfs = {
-      zed = {
-        # settings
-        # enableMail
-      };
+      # zed = {
+      #   settings
+      #   enableMail
+      # };
 
-      trim = {
-        # enable
-        # randomizedDelaySec
-        # interval
-      };
+      # trim = {
+      #   enable = true;
+      #   randomizedDelaySec = "6h";
+      #   interval = "weekly";
+      # };
 
-      # expandOnBoot
+      # expandOnBoot = "disabled"; # either "all" or [ "names" ]
 
-      autoSnapshot = {
-        # enable
-        # weekly
-        # monthly
-        # hourly
-        # frequent
-        # flags
-        # daily
-      };
+      # autoSnapshot = {
+      #   enable = false;
+
+      #   frequent = 4; # 15mn
+      #   hourly = 24;
+      #   daily = 7;
+      #   weekly = 4;
+      #   monthly = 12;
+
+      #   flags = "-k -p";
+      # };
+
       autoScrub = {
-        enable = true; # default: monthly
+        enable = true;
 
-        # randomizedDelaySec
-        # pools
+        # randomizedDelaySec = "6h";
+        # pools = []; # [ "names" ];
         # interval = "monthly";
       };
 
-      autoReplication = {
-        # username
-        # remoteFilesystem
-        # recursive
-        # identityFilePath
-        # localFilesystem
-        # host
-        # followDelete
-        # enable
-      };
+      # autoReplication = {
+      #   enable = false;
+
+      #   username
+      #   remoteFilesystem
+      #   identityFilePath
+      #   localFilesystem
+      #   host
+
+      #   recursive = true; # snapshot discovery
+      #   followDelete = true;
+      #   package = pkgs.zfs-replicate;
+      # };
     };
   };
 }
