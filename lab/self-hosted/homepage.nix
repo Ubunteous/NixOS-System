@@ -105,7 +105,7 @@ in {
             # initiallyCollapsed = "true";
             # tab = "First"; # not giving a tab puts column on every tab
           };
-          proxy = {
+          fileshare = {
             style = "column";
             columns = "3";
             # tab = "Second";
@@ -259,7 +259,7 @@ in {
         }
 
         {
-          "proxy" = [
+          "fileshare" = [
             {
               "Caddy share" = {
                 icon = "caddy.png";
@@ -268,17 +268,23 @@ in {
               };
             }
             {
+              "Filebrowser" = {
+                icon = "filebrowser.png";
+                href = "http://${cfg.address}:8888/";
+              };
+            }
+            {
               "Traefik" = {
                 icon = "traefik.png";
                 href = "http://${cfg.address}:8082";
               };
             }
-            {
-              "Nginx" = {
-                icon = "nginx.png";
-                href = "http://${cfg.address}:80/"; # http port
-              };
-            }
+            # {
+            #   "Nginx" = {
+            #     icon = "nginx.png";
+            #     href = "http://${cfg.address}:80/"; # http port
+            #   };
+            # }
           ];
         }
 

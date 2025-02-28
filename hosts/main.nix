@@ -81,7 +81,7 @@
     borg.enable = false;
     restic.enable = false; # 8000
     # rsyncd.enable = true;
-
+    # filebrowser.enable = false; # 8080 => 8888
     # immich.enable = true; # 3001
 
     syncthing = {

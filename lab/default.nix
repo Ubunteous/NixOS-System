@@ -48,6 +48,7 @@ with lib; {
     ./backup/restic.nix
     ./backup/rsyncd.nix
     ./backup/syncthing.nix
+    ./backup/filebrowser.nix
 
     ./self-hosted/homepage.nix
     # ./self-hosted/shiori.nix
