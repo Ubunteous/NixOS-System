@@ -1,7 +1,18 @@
 { lib, ... }:
 
 with lib; {
-  options.lab.enable = mkEnableOption "Homelab configuration";
+  options.lab = {
+    enable = mkEnableOption "Homelab configuration";
+
+    dataDir = mkOption {
+      type = types.path;
+      default = "/var/data/";
+      description = lib.mdDoc ''
+        The directory where media is stored
+      '';
+    };
+  };
+
   imports = [
     ./sysadmin/ssh.nix
     ./sysadmin/k3s.nix

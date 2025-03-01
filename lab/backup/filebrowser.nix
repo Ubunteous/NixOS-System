@@ -20,7 +20,7 @@ in {
       openFirewall = true;
 
       noauth = true;
-      rootDir = "/var/data/media";
+      rootDir = labcfg.dataDir + "media";
 
       # user = "filebrowser";
       # group = "filebrowser";

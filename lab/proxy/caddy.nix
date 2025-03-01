@@ -33,7 +33,7 @@ in {
           # can't access /home/user without authorization
           # use instead root * /var/www/ after creating it
           extraConfig = ''
-            root * /var/data/
+            root * ${labcfg.dataDir}
             file_server browse
           '';
         };

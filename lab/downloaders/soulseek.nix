@@ -36,7 +36,7 @@ in {
 
         # directories = {
         #   # incomplete = "/var/lib/slskd/incomplete";
-        #   downloads = "/var/data/media/musics/"; # "/var/lib/slskd/downloads";
+        #   downloads = labcfg.datadir + "media/musics/"; # "/var/lib/slskd/downloads";
         # };
 
         # web = {
@@ -51,7 +51,7 @@ in {
         # };
 
         shares = {
-          directories = [ "/var/data/media/musics" ];
+          directories = [ (labcfg.dataDir + "media/musics") ];
           # filters = [ "\.ini$" "Thumbs.db$" "\.DS_Store$" ];
         };
 

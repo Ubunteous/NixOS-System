@@ -38,6 +38,8 @@
 
   lab = {
     enable = true;
+    dataDir = "/var/data";
+
     ssh.enable = true;
 
     homepage = {
