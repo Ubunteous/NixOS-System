@@ -1,15 +1,15 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
-with lib; {
+with lib;
+let cfg = config.lab;
+in {
   options.lab = {
     enable = mkEnableOption "Homelab configuration";
 
     dataDir = mkOption {
       type = types.path;
       default = "/var/data/";
-      description = lib.mdDoc ''
-        The directory where media is stored
-      '';
+      description = lib.mdDoc "	The directory where media is stored\n  ";
     };
   };
 
@@ -72,4 +72,11 @@ with lib; {
     ./vpn/authelia.nix
     ./vpn/fail2ban.nix
   ];
+
+  config = let dirs = [ "films" "series" "musics" "books" "comics" ];
+  in {
+    systemd.tmpfiles.rules = [ "d /var/data 0755 root" ]
+      ++ map (dir: "d ${cfg.dataDir}media/${dir} 0755 root") dirs
+      ++ map (dir: "d ${cfg.dataDir}downloads/${dir} 0755 root") dirs;
+  };
 }
