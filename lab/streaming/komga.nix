@@ -12,7 +12,7 @@ in {
     services.komga = {
       enable = true;
       openFirewall = true;
-      port = 8069; # 8080
+      settings.server.port = 8069; # 8080
 
       # group = "komga";
       # user = "komga";

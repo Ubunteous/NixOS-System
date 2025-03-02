@@ -213,7 +213,7 @@ in {
       #   misc   #
       ############
 
-      # "0.0.0.0:8384" => accessible locally but risky
+      # "0.0.0.0:8384" => accessible locally but risky (also needs in app setup)
       guiAddress = "127.0.0.1:8384"; # pair with a password
 
       # all_proxy = "socks5://address.com:1234";

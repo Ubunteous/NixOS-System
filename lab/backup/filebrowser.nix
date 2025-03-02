@@ -20,8 +20,9 @@ in {
       openFirewall = true;
 
       noauth = true;
-      rootDir = labcfg.dataDir + "media";
-
+	  # dirs need to belong to root user
+	  rootDir = "/var/data/media/";
+	  
       # user = "filebrowser";
       # group = "filebrowser";
       # package = pkgs.filebrowser;.

@@ -168,12 +168,18 @@ in {
                 href = "http://${cfg.address}:8000/";
               };
             }
-            {
-              "Kopia" = {
-                icon = "kopia.png";
+			{
+              "Borg" = {
+                icon = "borg.png";
                 href = "http://${cfg.address}:8082/";
               };
             }
+            # {
+            #   "Kopia" = {
+            #     icon = "kopia.png";
+            #     href = "http://${cfg.address}:8082/";
+            #   };
+            # }
           ];
         }
 

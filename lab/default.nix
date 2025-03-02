@@ -9,7 +9,7 @@ in {
     dataDir = mkOption {
       type = types.path;
       default = "/var/data/";
-      description = lib.mdDoc "	The directory where media is stored\n  ";
+      description = lib.mdDoc "The directory where media is stored";
     };
   };
 
@@ -74,9 +74,9 @@ in {
   ];
 
   config = let dirs = [ "films" "series" "musics" "books" "comics" ];
-  in {
-    systemd.tmpfiles.rules = [ "d /var/data 0755 root" ]
-      ++ map (dir: "d ${cfg.dataDir}media/${dir} 0755 root") dirs
-      ++ map (dir: "d ${cfg.dataDir}downloads/${dir} 0755 root") dirs;
+  in mkIf cfg.enable {
+    systemd.tmpfiles.rules = [ "d /var/data 0777 root" ]
+      ++ map (dir: "d ${cfg.dataDir}/media/${dir} 0777 root") dirs
+      ++ map (dir: "d ${cfg.dataDir}/downloads/${dir} 0777 root") dirs;
   };
 }
