@@ -81,7 +81,7 @@ in {
       startWithGraphical = true;
 
       package = with pkgs;
-        ((emacsPackagesFor emacs29).emacsWithPackages
+        ((emacsPackagesFor emacs30).emacsWithPackages
           # (epkgs: with epkgs; [ # adds epkgs prefix to all
           (epkgs: [
             # does not provide the package itself but the binary
