@@ -142,11 +142,11 @@ in {
     users.users = mkIf (cfg.user == "qbittorrent") {
       qbittorrent = {
         group = cfg.group;
-        uid = 888;
+        uid = 808;
       };
     };
 
     users.groups =
-      mkIf (cfg.group == "qbittorrent") { qbittorrent = { gid = 888; }; };
+      mkIf (cfg.group == "qbittorrent") { qbittorrent = { gid = 808; }; };
   };
 }

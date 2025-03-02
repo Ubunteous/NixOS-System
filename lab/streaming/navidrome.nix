@@ -3,14 +3,14 @@
 with lib;
 let
   cfg = config.lab.navidrome;
-  corecfg = config.lab;
+  labcfg = config.lab;
 in {
 
   options.lab.navidrome = {
     enable = mkEnableOption "Enables support for Navidrome";
   };
 
-  config = mkIf (corecfg.enable && cfg.enable) {
+  config = mkIf (labcfg.enable && cfg.enable) {
     services.navidrome = {
       enable = true;
 
