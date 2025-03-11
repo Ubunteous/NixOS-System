@@ -1,9 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 
 # Future update:
-# + presswerk
 # + uhbik
-# + zebra 3
+# + zebra(lette) 3
 # + tyrell
 
 {
@@ -74,7 +73,7 @@
     name = "Zebralette-3";
     url =
       "https://dl.u-he.com/betas/public/zebralette3/Zebralette3_001_public_beta_15573_Linux.tar.xz";
-    sha256 = "";
+    sha256 = "sha256-9Bo1FyIym47SahaJzhbRq2Fm0/wM8kVyJtz7fuHo3HM=";
   };
 
   ###############
@@ -101,8 +100,8 @@
 
   presswerk = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Presswerk";
-    url = "https://dl.u-he.com/releases/Presswerk_115_12092_Linux.tar.xz";
-    sha256 = "";
+    url = "https://dl.u-he.com/releases/Presswerk_116_16960_Linux.tar.xz";
+    sha256 = "sha256-cjg9uVCTmRH22QnLclY/5Aayjp4Z/3a2n90xLrKSoO4=";
   };
 
   satin = pkgs.callPackage ./derivations/common-tar.nix {

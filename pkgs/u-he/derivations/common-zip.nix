@@ -1,4 +1,4 @@
-{ pkgs, autoPatchelfHook, stdenv, gtk3, xorg, name, url, sha256 }:
+{ pkgs, autoPatchelfHook, stdenv, name, url, sha256 }:
 
 stdenv.mkDerivation {
   inherit name;
