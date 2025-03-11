@@ -1,4 +1,4 @@
-{ config, lib, user, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
@@ -94,6 +94,10 @@ in {
             style = "column";
             rows = "3";
           };
+          git = {
+            style = "column";
+            rows = "3";
+          };
           torrent = {
             style = "column";
             columns = "2";
@@ -168,7 +172,7 @@ in {
                 href = "http://${cfg.address}:8000/";
               };
             }
-			{
+            {
               "Borg" = {
                 icon = "borg.png";
                 href = "http://${cfg.address}:8082/";
@@ -291,6 +295,29 @@ in {
             #     href = "http://${cfg.address}:80/"; # http port
             #   };
             # }
+          ];
+        }
+
+        {
+          "git" = [
+            {
+              "Github" = {
+                icon = "github.png";
+                href = "https://github.com/Ubunteous/";
+              };
+            }
+            {
+              "Gitweb" = {
+                icon = "gitweb.png";
+                href = "http://localhost/gitweb";
+              };
+            }
+            {
+              "cgit" = {
+                icon = "cgit.png";
+                href = "http://localhost/cgit";
+              };
+            }
           ];
         }
 
