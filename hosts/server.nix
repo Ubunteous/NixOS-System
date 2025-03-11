@@ -81,6 +81,11 @@
     filebrowser.enable = true; # 8080 => 8888
     immich.enable = true; # 2283
 
+    # use either but not both together
+    cgit.enable = false; # http://localhost/cgit
+    gitweb.enable = false; # http://localhost/gitweb
+    gitdaemon.enable = false; # 9418
+
     syncthing = {
       enable = true; # 8384
       extraSyncDirs = false;

@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ user, ... }:
 
 # Options: config, pkgs, lib, modulesPath, inputs, ... 
 # Help: man configuration.nix(5) or nixos-help’
@@ -83,6 +83,11 @@
     # rsyncd.enable = true;
     # filebrowser.enable = false; # 8080 => 8888
     # immich.enable = true; # 3001
+
+    # use either but not both together
+    cgit.enable = false; # http://localhost/cgit
+    gitweb.enable = false; # http://localhost/gitweb
+    gitdaemon.enable = false; # 9418
 
     syncthing = {
       enable = true; # 8384

@@ -146,7 +146,6 @@ in {
             params.keep = "3";
           };
         };
-      } // {
         share = {
           enable = true;
           path = "~/share";
@@ -161,9 +160,9 @@ in {
         };
       };
 
-      ###############
+      ##################
       #     devices    #
-      ###############
+      ##################
 
       settings.devices."droid" = {
         name = "droid";

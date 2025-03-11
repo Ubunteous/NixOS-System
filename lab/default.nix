@@ -54,6 +54,9 @@ in {
     # ./downloaders/sabnzbd.nix
     ./downloaders/soulseek.nix
 
+    ./backup/cgit.nix
+    ./backup/gitweb.nix
+    ./backup/gitdaemon.nix
     ./backup/borg.nix
     ./backup/immich.nix
     ./backup/restic.nix
