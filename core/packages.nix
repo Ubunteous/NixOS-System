@@ -30,6 +30,7 @@ in {
         builtins.elem (lib.getName pkg) [
           "aseprite"
           "bitwig-studio"
+          "minecraft-server"
           # "obsidian"
           "opera"
           "plexmediaserver"

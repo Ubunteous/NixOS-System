@@ -47,6 +47,8 @@
       address = "server"; # server or localhost
     };
 
+    # minecraft.enable = false;
+
     #################
     #   streaming   #
     #################

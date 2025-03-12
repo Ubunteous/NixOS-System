@@ -1,4 +1,4 @@
-{ config, lib, user, ... }:
+{ lib, ... }:
 
 with lib; {
   options.home.terminal.enable =
