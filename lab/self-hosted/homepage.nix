@@ -301,21 +301,21 @@ in {
         {
           "git" = [
             {
-              "Github" = {
-                icon = "github.png";
-                href = "https://github.com/Ubunteous/";
+              "Gitea" = {
+                icon = "gitea.png";
+                href = "http://${cfg.address}:3000";
               };
             }
             {
               "Gitweb" = {
-                icon = "gitweb.png";
-                href = "http://localhost/gitweb";
+                icon = "git.png";
+                href = "http://${cfg.address}/gitweb";
               };
             }
             {
               "cgit" = {
-                icon = "cgit.png";
-                href = "http://localhost/cgit";
+                icon = "git.png";
+                href = "http://${cfg.address}/cgit";
               };
             }
           ];

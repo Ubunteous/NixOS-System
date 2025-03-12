@@ -6,6 +6,22 @@ in {
   options.lab = {
     enable = mkEnableOption "Homelab configuration";
 
+    git = {
+      enable = mkEnableOption "Git utilities";
+
+      webUI = mkOption {
+        type = types.enum [ "gitea" "gitweb" "cgit" ];
+        default = null;
+        description = "Git web UI used (gitea, gitweb or cgit)";
+      };
+
+      repoDir = mkOption {
+        type = types.path;
+        default = "/var/www/git";
+        description = lib.mdDoc "The directory where media is stored";
+      };
+    };
+
     dataDir = mkOption {
       type = types.path;
       default = "/var/data/";
@@ -54,6 +70,7 @@ in {
     # ./downloaders/sabnzbd.nix
     ./downloaders/soulseek.nix
 
+    ./backup/gitea.nix
     ./backup/cgit.nix
     ./backup/gitweb.nix
     ./backup/gitdaemon.nix
@@ -66,6 +83,7 @@ in {
 
     ./self-hosted/homepage.nix
     # ./self-hosted/shiori.nix
+    # ./self-hosted/minecraft.nix
 
     ./dns/adguard.nix
     ./dns/unbound.nix

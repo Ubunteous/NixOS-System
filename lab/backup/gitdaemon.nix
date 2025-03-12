@@ -2,26 +2,27 @@
 
 with lib;
 let
-  cfg = config.lab.gitdaemon;
+  cfg = config.lab.git.daemon;
+  gitcfg = config.lab.git;
   labcfg = config.lab;
 in {
 
-  options.lab.gitdaemon = {
+  options.lab.git.daemon = {
     enable = mkEnableOption "Enables support for gitdaemon";
   };
 
-  config = mkIf (labcfg.enable && cfg.enable) {
+  config = mkIf (labcfg.enable && gitcfg.enable && cfg.enable) {
     services.gitDaemon = {
       enable = true;
 
-      repositories = [ "/var/www/git" ];
+      repositories = [ gitcfg.repoDir ];
 
       port = 9418;
       listenAddress = "0.0.0.0";
 
       # Remap all path requests as relative to the given path
       # Ex: with /srv/git, pull git://example.com/hello.git = git://example.com/srv/git/hello.git
-      basePath = "/var/www/git";
+      basePath = gitcfg.repoDir;
 
       # options = "";
 

@@ -2,32 +2,32 @@
 
 with lib;
 let
-  cfg = config.lab.cgit;
+  cfg = config.lab.git;
   labcfg = config.lab;
 in {
 
-  options.lab.cgit = { enable = mkEnableOption "Enables support for cgit"; };
+  # options.lab.cgit = { enable = mkEnableOption "Enables support for cgit"; };
 
-  config = mkIf (labcfg.enable && cfg.enable) {
+  config = mkIf (labcfg.enable && cfg.enable && cfg.webUI == "cgit") {
     services.nginx.enable = true;
 
     # services.lighttpd.cgit = {
     #   enable = true;
     #   subdir = "cgit";
     #   configText = ''
-    # 	scan-path=/var/www/git
+    # 	scan-path=cfg.repoDir;
     #   '';
     # };
 
     services.cgit.localhost = {
       enable = true;
 
-      scanPath = "/var/www/git/";
+      scanPath = cfg.repoDir;
 
       # repos = {
       #   mischief = {
       #     desc = "What are you plotting?";
-      #     path = "/var/www/git/Mischief.git";
+      #     path = "${cfg.repoDir}/Mischief.git";
       #   };
       # };
 

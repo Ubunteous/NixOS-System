@@ -2,15 +2,10 @@
 
 with lib;
 let
-  cfg = config.lab.gitweb;
+  cfg = config.lab.git;
   labcfg = config.lab;
 in {
-
-  options.lab.gitweb = {
-    enable = mkEnableOption "Enables support for gitweb";
-  };
-
-  config = mkIf (labcfg.enable && cfg.enable) {
+  config = mkIf (labcfg.enable && cfg.enable && cfg.webUI == "gitweb") {
     services.nginx = {
       enable = true;
 
@@ -21,7 +16,7 @@ in {
     };
 
     services.gitweb = {
-      projectroot = "/var/www/git";
+      projectroot = cfg.repoDir;
 
       # gitwebTheme = false;
       # extraConfig = ''

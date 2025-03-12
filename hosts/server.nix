@@ -81,10 +81,14 @@
     filebrowser.enable = true; # 8080 => 8888
     immich.enable = true; # 2283
 
-    # use either but not both together
-    cgit.enable = false; # http://localhost/cgit
-    gitweb.enable = false; # http://localhost/gitweb
-    gitdaemon.enable = false; # 9418
+    git = {
+      enable = true;
+
+      # "gitweb" (/gitweb), "cgit" (/cgit), "gitea" (:3000), null
+      webUI = "gitea";
+      daemon.enable = false; # 9418
+      # repoDir = "/var/www/git";
+    };
 
     syncthing = {
       enable = true; # 8384
