@@ -96,7 +96,7 @@ in {
 
   config = let dirs = [ "films" "series" "musics" "books" "comics" ];
   in mkIf cfg.enable {
-    systemd.tmpfiles.rules = [ "d /var/data 0777 root" ]
+    systemd.tmpfiles.rules = [ "d ${cfg.dataDir} 0777 root" ]
       ++ map (dir: "d ${cfg.dataDir}/media/${dir} 0777 root") dirs
       ++ map (dir: "d ${cfg.dataDir}/downloads/${dir} 0777 root") dirs;
   };

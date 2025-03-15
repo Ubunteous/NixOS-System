@@ -20,9 +20,9 @@ in {
       openFirewall = true;
 
       noauth = true;
-	  # dirs need to belong to root user
-	  rootDir = "/var/data/media/";
-	  
+      # dirs need to belong to root user
+      rootDir = "${cfg.dataDir}/media/";
+
       # user = "filebrowser";
       # group = "filebrowser";
       # package = pkgs.filebrowser;.
