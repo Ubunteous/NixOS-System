@@ -15,6 +15,14 @@ let
   auburn = import ../pkgs/Auburn-Sounds/plugins.nix;
   callAuburn = plug_name:
     (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
+
+  bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
+    version = "7.34";
+    src = pkgs.fetchurl {
+      url = "https://www.reaper.fm/files/7.x/reaper734_linux_x86_64.tar.xz";
+      hash = "sha256-R6nFi6OPBTIJhg752o9r0lGb24VYobiaWgp5bfvFykg=";
+    };
+  });
 in {
   options.user.music = {
     enable = mkEnableOption "Enables support for Music related software";
@@ -82,7 +90,8 @@ in {
       (callAuburn auburn.panagement)
       (callAuburn auburn.couture)
 
-      reaper # Hack with reapack, sws
+      bleedingEdgeReaper
+      # reaper # see pkgs/ for reaimgui
 
       ############
       #   WINE   #

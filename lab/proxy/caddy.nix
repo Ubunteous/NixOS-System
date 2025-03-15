@@ -38,7 +38,6 @@ in {
         Server domain in local network.
       '';
     };
-
   };
 
   config = mkIf (labcfg.enable && cfg.enable) {
