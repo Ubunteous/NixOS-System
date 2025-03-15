@@ -148,7 +148,10 @@
     #    proxy    #
     ###############
 
-    caddy.enable = true; # 2019 (default admin port) + 2015/2016 (test)
+    caddy = {
+      enable = true; # 2019 (default admin port)
+      # domain = "server.local";
+    };
   };
 
   #------------------------#

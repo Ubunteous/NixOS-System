@@ -141,7 +141,11 @@
     #    proxy     #
     #############
 
-    caddy.enable = false; # 2019 (default admin port)
+    caddy = {
+      enable = true; # 2019 (default admin port)
+      # domain = "server.local";
+    };
+
     # traefik.enable = false;
     # nginx.enable = true; # proxyPass set to 3002 like grafana
   };
