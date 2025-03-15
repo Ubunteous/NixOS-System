@@ -326,7 +326,7 @@ in {
             {
               "Adguard" = {
                 icon = "adguard-home.png";
-                href = "http://${cfg.address}:3000/";
+                href = "http://${cfg.address}:3090/";
               };
             }
             {

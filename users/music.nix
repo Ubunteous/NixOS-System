@@ -1,4 +1,4 @@
-{ config, lib, user, pkgs, musnix, ... }:
+{ config, lib, user, pkgs, ... }:
 
 with lib;
 let

@@ -72,7 +72,7 @@ in {
       # allow changes on the web interface to be saved
       mutableSettings = true;
 
-      # port = 3090; # defaults to 3000
+      port = 3090; # defaults to 3000
       # host = "127.0.0.1"; # defaults to "0.0.0.0";
       host = "0.0.0.0";
     };

@@ -21,7 +21,7 @@ in {
 
       noauth = true;
       # dirs need to belong to root user
-      rootDir = "${cfg.dataDir}/media/";
+      rootDir = "${labcfg.dataDir}/media/";
 
       # user = "filebrowser";
       # group = "filebrowser";
