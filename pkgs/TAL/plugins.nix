@@ -32,7 +32,7 @@
   drum = {
     name = "TAL-Drum";
     url = "https://tal-software.com/downloads/plugins/TAL-Drum_64_linux.zip";
-    sha256 = "sha256-Wp9Uc0C95QothuYd5ZhLjfLOzOYlf4nym8WjEhfHKmU=";
+    sha256 = "sha256-IxLt6LpVR0y7QMCB9ynt1sZ/XcESFG1jXli8FNrTjks=";
   };
 
   sampler = {
