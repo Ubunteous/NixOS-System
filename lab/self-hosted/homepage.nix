@@ -283,12 +283,18 @@ in {
                 href = "http://${cfg.address}:8888/";
               };
             }
-            {
-              "Traefik" = {
-                icon = "traefik.png";
-                href = "http://${cfg.address}:8082";
+			{
+              "Immich" = {
+                icon = "immich.png";
+                href = "http://${cfg.address}:2283";
               };
             }
+            # {
+            #   "Traefik" = {
+            #     icon = "traefik.png";
+            #     href = "http://${cfg.address}:8082";
+            #   };
+            # }
             # {
             #   "Nginx" = {
             #     icon = "nginx.png";

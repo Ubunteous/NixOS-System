@@ -12,8 +12,9 @@ in {
     services.komga = {
       enable = true;
       openFirewall = true;
-      settings.server.port = 8069; # 8080
+      port = 8069; # 8080
 
+	  # settings = ""; # yaml
       # group = "komga";
       # user = "komga";
       # stateDir = "/var/lib/komga";

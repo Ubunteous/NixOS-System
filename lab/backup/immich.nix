@@ -16,7 +16,9 @@ in {
     services.immich = {
       enable = true;
 
-      environment = { IMMICH_LOG_LEVEL = "verbose"; };
+      host = "0.0.0.0";
+	  openFirewall = true; # default: false
+      # environment = { IMMICH_LOG_LEVEL = "verbose"; };
 
       ###########
       # DEFAULT #
@@ -32,10 +34,8 @@ in {
       # };
 
       # ports = 2283;
-      # host = "localhost";
       # user = "immich";
       # group = "immich";
-      openFirewall = true; # default: false
 
       # mediaLocation = "/var/lib/immich";
       # secretsFile = null; # example: "/run/secrets/immich"
