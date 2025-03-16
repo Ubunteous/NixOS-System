@@ -17,6 +17,7 @@ with lib; {
     ./Javascript.nix
 
     ./SCSS.nix
+    # ./Yaml.nix
     ./Shell.nix
     # ./Typst.nix
     ./LaTeX.nix

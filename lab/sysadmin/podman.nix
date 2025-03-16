@@ -34,7 +34,8 @@ in {
       # create a `docker` alias for podman, to use it as a drop-in replacement
       dockerCompat = true;
 
-      # extraPackages = with pkgs; [ podman-compose gvisor ];
+      # also try buildah, gvisor
+      # extraPackages = with pkgs; [ podman-compose hadolint ];
     };
   };
 }

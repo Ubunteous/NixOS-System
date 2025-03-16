@@ -90,7 +90,7 @@
     # immich.enable = true; # 3001
 
     git = {
-      enable = true;
+      enable = false;
 
       # "gitweb" (/gitweb), "cgit" (/cgit), "gitea" (:3000), null
       webUI = "gitea";
@@ -142,7 +142,7 @@
     #############
 
     caddy = {
-      enable = true; # 2019 (default admin port)
+      enable = false; # 2019 (default admin port)
       # domain = "server.local";
     };
 
@@ -296,6 +296,7 @@
     # only adds lsp/fmt/lint
     shell.enable = false;
     scss.enable = true;
+    # yaml.enable = true;
   };
 
   #--------------------#
