@@ -44,7 +44,7 @@
 
     homepage = {
       enable = true; # 8082
-      # address = "server.local"; # server.local or localhost
+      address = "server.local"; # server.local or localhost
     };
 
     # minecraft.enable = false;
@@ -109,8 +109,8 @@
     #    DNS/VPN    #
     #################
 
-    unbound.enable = true; # 5335
-    adguard.enable = true; # 3000
+    unbound.enable = false; # 5335
+    adguard.enable = false; # 3000
 
     bind.enable = false;
     wireguard.enable = false;
