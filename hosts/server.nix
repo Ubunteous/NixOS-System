@@ -84,7 +84,7 @@
     immich.enable = true; # 2283
 
     git = {
-      enable = false;
+      enable = true;
 
       # "gitweb" (/gitweb), "cgit" (/cgit), "gitea" (:3000), null
       webUI = "gitea";

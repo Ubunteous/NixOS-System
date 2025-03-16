@@ -13,8 +13,14 @@ in {
 
 	networking.firewall.allowedTCPPorts = [ 3000 ];
 
+    # temporary replacement until gitea is fixed
+    services.forgejo = {
+	  enable = true;
+      repositoryRoot = "/var/lib/gitea";
+	};
+
     services.gitea = {
-      enable = true;
+      enable = false;
 
       repositoryRoot = cfg.repoDir;
       # repositoryRoot = "${config.services.gitea.stateDir}/repositories";
