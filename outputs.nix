@@ -87,6 +87,8 @@ in {
         nur.modules.nixos.default
         musnix.nixosModules.musnix
         home-manager.nixosModules.home-manager
+
+        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
       ];
     };
 

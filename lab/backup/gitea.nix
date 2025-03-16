@@ -11,10 +11,12 @@ in {
   config = mkIf (labcfg.enable && cfg.enable && cfg.webUI == "gitea") {
     users.users.${user}.packages = [ pkgs.tea ];
 
+	networking.firewall.allowedTCPPorts = [ 3000 ];
+
     services.gitea = {
       enable = true;
 
-      repositoryRoot = "/var/www/git/";
+      repositoryRoot = cfg.repoDir;
       # repositoryRoot = "${config.services.gitea.stateDir}/repositories";
       # stateDir = "/var/lib/gitea";
       # customDir = "${config.services.gitea.stateDir}/custom";

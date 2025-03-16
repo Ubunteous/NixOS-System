@@ -54,7 +54,7 @@
     #################
 
     plex.enable = true; # 8096 # localhost:32400/web
-    tautulli.enable = true; # 8181 plex manager
+    tautulli.enable = false; # 8181 plex manager
     # kavita.enable = false;
     komga.enable = true; # 8080 => 8069
 
@@ -84,7 +84,7 @@
     immich.enable = true; # 2283
 
     git = {
-      enable = true;
+      enable = false;
 
       # "gitweb" (/gitweb), "cgit" (/cgit), "gitea" (:3000), null
       webUI = "gitea";
@@ -93,7 +93,7 @@
     };
 
     syncthing = {
-      enable = true; # 8384
+      enable = false; # 8384
       extraSyncDirs = false;
     };
 
@@ -109,8 +109,8 @@
     #    DNS/VPN    #
     #################
 
-    unbound.enable = false; # 5335
-    adguard.enable = false; # 3000
+    unbound.enable = true; # 5335
+    adguard.enable = true; # 3000
 
     bind.enable = false;
     wireguard.enable = false;
