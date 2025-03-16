@@ -44,7 +44,7 @@
     # overview. add widgets once enable other services
     homepage = {
       enable = false; # 8082
-      address = "server"; # server or localhost
+      # address = "server.local"; # server.local or localhost
     };
 
     # minecraft.enable = false;

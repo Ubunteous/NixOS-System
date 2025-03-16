@@ -7,24 +7,24 @@ let
 
   servicesPort = {
     # servarr
-    "radarr".port = config.services.radarr.settings.server.port;
-    "bazarr".port = config.services.bazarr.settings.server.port;
-    "sonarr".port = config.services.sonarr.settings.server.port;
-    "lidarr".port = config.services.lidarr.settings.server.port;
+    # "radarr".port = config.services.radarr.settings.server.port;
+	# "bazarr".port = config.services.bazarr.settings.server.port;
+    # "sonarr".port = config.services.sonarr.settings.server.port;
+    # "lidarr".port = config.services.lidarr.settings.server.port;
     # "readarr".port = config.services.readarr.settings.server.port;
-    "prowlarr".port = config.services.prowlarr.settings.server.port;
+    # "prowlarr".port = config.services.prowlarr.settings.server.port;
 
     # streaming
-    "plex".port = "32400/web";
-    "navidrome".port = config.services.navidrome.settings.Port;
-    "komga".port = config.services.komga.settings.server.port;
+    # "plex".port = "32400/web";
+    # "navidrome".port = config.services.navidrome.settings.Port;
+    # "komga".port = config.services.komga.settings.server.port;
 
     # backups
-    "filebrowser".port = config.services.filebrowser.port;
+    # "filebrowser".port = config.services.filebrowser.port;
 
     # misc
-    "adguard".port = config.services.services.adguardhome.port;
-    "qbittorrent-nox".port = config.services.qbittorrent-nox.port;
+    # "adguard".port = config.services.services.adguardhome.port;
+    # "qbittorrent-nox".port = config.services.qbittorrent-nox.port;
   };
 in {
 
