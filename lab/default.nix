@@ -22,6 +22,8 @@ in {
       };
     };
 
+    mkDataDir = mkEnableOption "Create directory for media";
+
     dataDir = mkOption {
       type = types.path;
       default = "/var/data/";
@@ -95,7 +97,7 @@ in {
   ];
 
   config = let dirs = [ "films" "series" "musics" "books" "comics" ];
-  in mkIf cfg.enable {
+  in mkIf (cfg.enable && cfg.mkDataDir) {
     systemd.tmpfiles.rules = [ "d ${cfg.dataDir} 0777 root" ]
       ++ map (dir: "d ${cfg.dataDir}/media/${dir} 0777 root") dirs
       ++ map (dir: "d ${cfg.dataDir}/downloads/${dir} 0777 root") dirs;

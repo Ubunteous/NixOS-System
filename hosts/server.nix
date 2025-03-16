@@ -38,6 +38,7 @@
 
   lab = {
     enable = true;
+    mkDataDir = true;
     dataDir = "/var/data";
 
     ssh.enable = true;
