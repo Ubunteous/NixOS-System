@@ -15,6 +15,8 @@ in {
       #   APPS   #
       ############
 
+      # minecraft # broken
+      # prismlauncher # minecraft
       # nicotine-plus
       tdesktop
       # bookworm # ebook reader

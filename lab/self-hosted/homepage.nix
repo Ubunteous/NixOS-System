@@ -115,7 +115,7 @@ in {
             # tab = "Second";
           };
 
-          security = {
+          connect = {
             style = "column";
             rows = "3";
           };
@@ -283,7 +283,7 @@ in {
                 href = "http://${cfg.address}:8888/";
               };
             }
-			{
+            {
               "Immich" = {
                 icon = "immich.png";
                 href = "http://${cfg.address}:2283";
@@ -328,7 +328,7 @@ in {
         }
 
         {
-          "security" = [
+          "connect" = [
             {
               "Adguard" = {
                 icon = "adguard-home.png";
@@ -342,9 +342,9 @@ in {
               };
             }
             {
-              "flaresolverr" = {
-                icon = "flaresolverr.png";
-                href = "http://${cfg.address}:8191/";
+              "Minecraft" = {
+                icon = "minecraft.png";
+                href = "http://${cfg.address}:25565/";
               };
             }
           ];
