@@ -80,6 +80,8 @@ in {
     ./backup/immich.nix
     ./backup/restic.nix
     ./backup/rsyncd.nix
+    # ./backup/sanoid.nix
+    # ./backup/syncoid.nix
     ./backup/syncthing.nix
     ./backup/filebrowser.nix
 

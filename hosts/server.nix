@@ -80,6 +80,8 @@
 
     borg.enable = true;
     restic.enable = false; # 8000
+    # syncoid.enable = true;
+    # sanoid.enable = true;
     # rsyncd.enable = true;
     filebrowser.enable = true; # 8080 => 8888
     immich.enable = true; # 2283
