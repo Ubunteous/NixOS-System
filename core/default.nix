@@ -39,9 +39,9 @@ with lib; {
     # programs.adb.enable = true;
     services.gvfs.enable = true;
 
-    # auto mount usb device at /run/media/usb
+    # auto mount usb device at /run/media/data
     services.udev.extraRules = ''
-      ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /run/media/usb"       
+      ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /run/media/data"
     '';
 
     # Configure tty

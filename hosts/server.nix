@@ -39,7 +39,7 @@
   lab = {
     enable = true;
     mkDataDir = true;
-    dataDir = "/var/data";
+    dataDir = "/run/media/data";
 
     ssh.enable = true;
 
