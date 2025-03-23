@@ -164,6 +164,7 @@
 
     music.enable = true;
 
+    input-remapper.enable = true;
     # stylix.enable = false;
 
     visual_art.enable = true;

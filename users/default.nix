@@ -8,6 +8,7 @@ with lib; {
     ./packages.nix
     ./music.nix
     ./visual_art.nix
+    ./input-remapper.nix
     # ./stylix.nix
   ];
 }
