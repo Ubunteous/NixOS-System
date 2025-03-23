@@ -17,7 +17,7 @@ in {
   # # init repo from client
   # => not necessary. nix does it if /var/lib/restic exists
   # nix-shell -p restic
-  # restic -r sftp:nix@server:/var/lib/restic init
+  # restic -r sftp:nix@server.local:/var/lib/restic init
 
   config = mkIf (labcfg.enable && cfg.enable) {
     services.restic = {
@@ -38,8 +38,8 @@ in {
 
         # use either to provide repository to backup to
         # repositoryFile = null;
-        # setup with restic -r sftp:nix@server:/var/lib/restic init
-        repository = "sftp:nix@server:/var/lib/restic/"; # ssh
+        # setup with restic -r sftp:nix@server.local:/var/lib/restic init
+        repository = "sftp:nix@server.local:/var/lib/restic/"; # ssh
         # repository = "local:/var/lib/restic/"; # on same device
 
         # paths and dynamicFilesFrom specify what should be backed up
