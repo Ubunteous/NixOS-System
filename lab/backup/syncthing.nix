@@ -114,6 +114,7 @@ in {
         org = {
           # needs the following stignore patterns:
           # Alter/*
+          # Wiki/Notes/*
           # !*.org
           # !Fictions/Latex/Oeuvres à Découvrir/*.{tex,pdf}*
           # *
@@ -135,7 +136,8 @@ in {
           # *.pdf
 
           enable = true;
-          path = "~/Notes";
+          # path = "~/Notes";
+          path = "~/org/Wiki/Notes";
           label = "Notes";
           type = "receiveonly";
           paused = true;
