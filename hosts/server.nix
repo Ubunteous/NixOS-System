@@ -202,7 +202,6 @@
           wezterm.enable = true;
         };
 
-        qbittorrent.enable = false;
         dots.enable = true;
       };
     };

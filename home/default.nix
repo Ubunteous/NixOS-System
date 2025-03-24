@@ -42,7 +42,5 @@ with lib; {
 
     # ./eww.nix
     ./dots.nix
-
-    ./qbittorrent.nix
   ];
 }
