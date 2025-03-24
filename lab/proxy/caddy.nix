@@ -27,7 +27,6 @@ let
   #   "qbittorrent-nox".port = config.services.qbittorrent-nox.port;
   # };
 in {
-
   options.lab.caddy = {
     enable = mkEnableOption "Enables support for caddy";
 
@@ -41,13 +40,23 @@ in {
   };
 
   config = mkIf (labcfg.enable && cfg.enable) {
+    environment.etc = {
+      "ssl/self-signed.crt" = {
+        source = ../../files/ssl/self-signed.crt;
+        mode = "0777";
+      };
+      "ssl/self-signed.key" = {
+        source = ../../files/ssl/self-signed.key;
+        mode = "0777";
+      };
+    };
 
     # networking.hosts = {
     #   "127.0.0.1" = map (x: "${x}.${cfg.domain}") (attrNames servicesPort)
     #     ++ [ "${cfg.domain}" "gitea.${cfg.domain}" "caddy.${cfg.domain}" ];
     # };
-	
-	networking.hosts."127.0.0.1" = [ "${cfg.domain}" ];
+
+    networking.hosts."127.0.0.1" = [ "${cfg.domain}" ];
 
     # open port needed by caddy file server
     networking.firewall.allowedTCPPorts = [ 2016 ];
@@ -63,20 +72,24 @@ in {
         #     extraConfig = "reverse_proxy localhost:3000";
         #   };
 
-        "http://${cfg.domain}" = mkIf labcfg.homepage.enable {
-          extraConfig = "reverse_proxy localhost:8082";
+        # use "http://${cfg.domain}" if no certs available
+        ${cfg.domain} = mkIf labcfg.homepage.enable {
+          extraConfig = ''
+            reverse_proxy localhost:8082
+            tls /etc/ssl/self-signed.crt /etc/ssl/self-signed.key
+          '';
         };
-
-        # "http://caddy.${cfg.domain}".extraConfig =
-        #   "reverse_proxy localhost:2016";
 
         # port 2016 file server
         # can't access /home/user without authorization
         # use instead root * /var/www/ after creating it
         ":2016".extraConfig = ''
           root * ${labcfg.dataDir}
-          file_server browse
+                    file_server browse
+
+                    tls /etc/ssl/self-signed.crt /etc/ssl/self-signed.key
         '';
+
         # ":2015" = { # port 2015 response
         #   extraConfig = ''
         #     encode gzip
@@ -87,7 +100,7 @@ in {
         # serverAliases = [ "127.0.0.1" "localhost" "test" ];
         # };
       };
-	  # // mapAttrs (service: port:
+      # // mapAttrs (service: port:
       #   mkIf labcfg.${service}.enable {
       #     "http://${service}.${cfg.domain}".extraConfig =
       #       "reverse_proxy localhost:${port}";
