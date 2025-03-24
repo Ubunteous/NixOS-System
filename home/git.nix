@@ -21,40 +21,107 @@ in {
       # See all options with man git-config
       # also check https://jvns.ca/blog/2024/02/16/popular-git-config-options/
       extraConfig = {
-        push.autosetupremote = "true";
-        merge.conflictstyle = "diff3"; # alt: zdiff3
+        ############
+        # COMMANDS #
+        ############
 
-        # data corruption detection
+        init.defaultBranch = "master";
+
+        diff = {
+          renames = true;
+          mnemonicPrefix = true;
+          colorMoved = "plain";
+          algorithm = "histogram";
+
+          # context = 10;
+          # colorMoved = "default";
+          # tool = "difftastic"; # external package
+        };
+
+        push = {
+          followTags = true;
+          default = "simple";
+          autoSetupRemote = true;
+        };
+
+        pull = {
+          # use either
+          ff = "only";
+          # rebase = true;
+        };
+
+        fetch = {
+          all = true;
+
+          # removes local copies if not on remote. risky
+          # pruneTags = true;
+          # prune = true;
+        };
+
+        rebase = {
+          updateRefs = true;
+          autoSquash = true;
+          # autoStash = true; # risky. potential merge
+
+          # prevents commit deletion in rebase
+          missingCommitsCheck = "error";
+        };
+
+        merge = {
+          conflictstyle = "zdiff3";
+          # tool = "meld"; # external package
+        };
+
+        ########
+        # MISC #
+        ########
+
+        help.autocorrect = "prompt"; # or 10 to change next second
+        commit.verbose = true;
+
+        rerere = {
+          enabled = true;
+          autoupdate = true;
+        };
+
+        core = {
+          editor = "emacs";
+          # excludesfile = "~/.gitignore";
+          # pager = "delta"; # external package
+        };
+
+        column.ui = "auto";
+
+        ########
+        # SORT #
+        ########		
+
+        branch.sort = "-committerdate";
+        tag.sort = "version:refname"; # or "taggerdate"
+
+        ##############
+        # SUBMODULES #
+        ##############
+
+        diff.submodule = "log";
+        submodule.recurse = true;
+        status.submoduleSummary = true;
+
+        ########################
+        # CORRUPTION DETECTION #
+        ########################
+
         transfer.fsckobjects = "true";
         fetch.fsckobjects = "true";
         receive.fsckObjects = "true";
 
-        ###############
-        #   OPTIONS   #
-        ###############
+        ############
+        # COMMENTS #
+        ############
 
-        # init.defaultBranch master
-        # Either pull.rebase true or pull.ff only
-
-        # push.default current
-
-        # rebase.autosquash true
-        # rebase.autostash true # risky
-
-        # commit.verbose true
-        # help.autocorrect 10
-        # rerere.enabled true
-        # url."git@github.com:".insteadOf 'https://github.com/'
-
-        # diff.tool difftastic
-        # diff.algorithm histogram
-
-        # sort branch/tag by date rather than name
-        # branch.sort -committerdate
-        # tag.sort taggerdate
-
-        # core.pager delta
-        # core.editor emacs # to edit commit messages
+        # useful to have a different config at work (with different mail for instance)
+        # [includeIf "gitdir:~/code/<work>/"]
+        # path = "~/code/<work>/.gitconfig"
       };
 
       # hooks = { };
