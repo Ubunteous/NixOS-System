@@ -53,6 +53,7 @@ in {
     # ./streaming/kavita.nix
     ./streaming/navidrome.nix
     ./streaming/komga.nix
+    ./streaming/immich.nix
 
     ./servarr/sonarr.nix
     ./servarr/radarr.nix
@@ -77,7 +78,6 @@ in {
     ./backup/gitweb.nix
     ./backup/gitdaemon.nix
     ./backup/borg.nix
-    ./backup/immich.nix
     ./backup/restic.nix
     ./backup/rsyncd.nix
     # ./backup/sanoid.nix
