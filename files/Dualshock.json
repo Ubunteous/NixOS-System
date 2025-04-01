@@ -172,24 +172,6 @@
         "input_combination": [
             {
                 "type": 3,
-                "code": 2,
-                "origin_hash": "289f631f3b06b9d914161d06e8617de9",
-                "analog_threshold": -1
-            },
-            {
-                "type": 1,
-                "code": 312,
-                "origin_hash": "289f631f3b06b9d914161d06e8617de9"
-            }
-        ],
-        "target_uinput": "mouse",
-        "output_symbol": "hold_keys(BTN_RIGHT)",
-        "mapping_type": "key_macro"
-    },
-    {
-        "input_combination": [
-            {
-                "type": 3,
                 "code": 5,
                 "origin_hash": "289f631f3b06b9d914161d06e8617de9",
                 "analog_threshold": 10
@@ -202,7 +184,8 @@
         ],
         "target_uinput": "mouse",
         "output_symbol": "hold_keys(BTN_LEFT)",
-        "mapping_type": "key_macro"
+        "mapping_type": "key_macro",
+        "release_combination_keys": false
     },
     {
         "input_combination": [
@@ -227,5 +210,24 @@
         "target_uinput": "mouse",
         "output_symbol": "wheel(up, 20)",
         "mapping_type": "key_macro"
+    },
+    {
+        "input_combination": [
+            {
+                "type": 3,
+                "code": 2,
+                "origin_hash": "289f631f3b06b9d914161d06e8617de9",
+                "analog_threshold": 10
+            },
+            {
+                "type": 1,
+                "code": 312,
+                "origin_hash": "289f631f3b06b9d914161d06e8617de9"
+            }
+        ],
+        "target_uinput": "mouse",
+        "output_symbol": "hold_keys(BTN_RIGHT)",
+        "mapping_type": "key_macro",
+        "release_combination_keys": false
     }
 ]

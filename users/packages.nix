@@ -16,7 +16,8 @@ in {
       ############
 
       # minecraft # broken
-      prismlauncher # minecraft
+      prismlauncher # minecraft + lambdynamic mod
+      # optifine # minecraft
       # nicotine-plus
       tdesktop
       # bookworm # ebook reader

@@ -32,6 +32,7 @@ in {
           "bitwig-studio"
           # "minecraft-launcher"
           "minecraft-server"
+          # "optifine" # minecraft
           # "obsidian"
           "opera"
           "plexmediaserver"
