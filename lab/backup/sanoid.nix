@@ -16,13 +16,13 @@ in {
 
       templates."name" = {
         # how many snapshots should be made
-        yearly = 20;
+        daily = 6;
         monthly = 4;
+        yearly = 20;
         # hourly = null;
-        # daily = null;
 
-        # autosnap = null; # boolean
-        # autoprune = null; # boolean
+        autosnap = true; # null (default) or boolean
+        autoprune = true; # null (default) or boolean
       };
 
       # package = pkgs.sanoid;

@@ -35,13 +35,21 @@ in {
         gnome-disk-utility # gnome-disks
         keepassxc
         networkmanagerapplet
-        zip
-        eza
-        just # make
-        ripgrep # grep. combine it with fzf later
         # tlp # battery life
         eww
         rofi # history sorted by frequency in ~/.cache/rofi3.(d)runcache
+
+        zip
+        eza # ls
+        bat # cat
+        fd # find
+        just # make
+        fzf # alternative: peco
+        hstr # history. see also mcfly
+        tldr # man. see also navi, cheat
+        ripgrep # grep. combine it with fzf later
+        # httm # zfs/restic time machine
+        # uutils-coreutils # rust coreutils
       ];
 
       # openssh = {

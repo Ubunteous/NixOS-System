@@ -155,54 +155,31 @@ in {
       #     IMPROVED COMMANDS     #
       #############################
 
-      bat # cat
-      # bottom # top
-      # broot # directory tree nav
-      cheat # tldr/man
+      # cd: zoxide
+      # ls: eza, exa, lsd
+      # dns: dogdns, doggo, dig
+      # http: httpie, xh, curlie (curl)
+      # ping: gping
+      # hexa: hexyl
       # choose # cut/awk
-      # croc # send files
-      # curlie # curl
-      # delta # git diff
-      # difftastic # diff
-      # direnv # environment variables # replaced by nix-direnv
-      # dogdns # doggo # dig
-      du-dust # disk usage
-      # duf # disk analysis
-      # exa # unmaintained 9-2023 ls replacement
-      # eza # ls
-      fd # find
-      fzf # alternative: peco
-      # gdu # disk usage
-      # glances # top
-      # gping # ping
-      # gtop # top
-      # hexyl # hexa viewer
-      hstr # history
-      # httm # zfs/restic time machine
-      # httpie # http client
-      # hyperfine # benchmark
-      # jq # json sed
-      # just # make
-      # lsd # ls superset
-      # mcfly # history search. requires setup
-      # mosh # stable ssh
-      # most # more than less
-      # navi # help
+      # disk analysis: gdu/du-dust/duf
+      # top/ps: procs, glances, gtop, bottom
+      # browser: ranger, nnn, joshuto
+      # data editor: sd (stream), jq (json), xsv (csv)
+      # grep: ripgrep, ripgrep-all # broken in unstable (September 2023)
+      # diff: difftastic, delta
+
+      # misc:
       # plocate # locate
-      # procs # ps
-      # ranger # alternatives: nnn, joshuto
-      # ripgrep # grep. combine it with fzf later
-      # ripgrep-all # broken in unstable (September 2023)
-      # sd # sed/awk
+      # mosh # stable ssh
+      # croc # send files
       # thefuck # corrector
-      tldr # man
-      # tlp # battery life
-      # uutils-coreutils # rust coreutils
-      # wtf # terminal dashboard
-      # xh # http
-      # xsv # manipulate csv
+      # most # more than less
       # zellij # multiplexer+
-      # zoxide # cd
+      # hyperfine # benchmark
+      # wtf # terminal dashboard
+      # broot # directory tree nav
+      # direnv # environment variables # replaced by nix-direnv
 
       ####################
       #   HOME MANAGER   #

@@ -42,7 +42,7 @@ in {
 
         # ls = ''eza --hide="*~"'';
         ls = ''eza --ignore-glob="*~"'';
-
+        cat = "bat";
         ni = "janet ~/.nix.d/bin/ni.janet";
 
         # safety.
