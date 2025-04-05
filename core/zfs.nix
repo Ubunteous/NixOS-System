@@ -8,10 +8,13 @@ in {
   options.core.zfs = { enable = mkEnableOption "ZFS options"; };
 
   config = mkIf (corecfg.enable && cfg.enable) {
-
     # deactivate hibernation to prevent corruption
     # Note: a non zfs swap partition can also be used
-    boot.kernelParams = [ "nohibernate" ];
+    boot = {
+		 zfs.forceImportRoot = false;
+		 kernelParams = [ "nohibernate" ]; # see zfs.allowHibernation
+		 supportedFilesystems = [ "zfs" ]; # unneccesary but explicit
+	};
 
     # get it with the hostid command
     networking.hostId = "8425e349";
@@ -20,7 +23,7 @@ in {
     #   ZFS   #
     ###########
 
-    services.zfs = {
+	services.zfs = {
       # zed = {
       #   settings
       #   enableMail

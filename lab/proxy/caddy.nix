@@ -86,7 +86,6 @@ in {
         ":2016".extraConfig = ''
           root * ${labcfg.dataDir}
                     file_server browse
-
                     tls /etc/ssl/self-signed.crt /etc/ssl/self-signed.key
         '';
 

@@ -10,7 +10,7 @@
   imports = [ ../core ../lab ../users ../wm ../programming ];
 
   #--------------------#
-  #          CORE           #
+  #        CORE        #
   #--------------------#
 
   core = {
@@ -19,7 +19,7 @@
     boot.enable = true;
     boot-laptop.enable = true;
     networking.enable = true;
-    zfs.enable = true;
+	zfs.enable = true;
 
     xserver = {
       enable = true;

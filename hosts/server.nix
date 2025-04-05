@@ -10,7 +10,7 @@
   imports = [ ../core ../lab ../users ../wm ../programming ];
 
   #--------------------#
-  #          CORE          #
+  #        CORE        #
   #--------------------#
 
   core = {
@@ -18,15 +18,15 @@
 
     boot.enable = true;
     boot-server.enable = true;
-
     networking.enable = true;
+	zfs.enable = true;
 
     xserver = {
       enable = true;
       displayManager = "sddm"; # sddm, gdm, lightdm
     };
 
-    sound.enable = true;
+	sound.enable = true;
     system-packages.enable = true;
 
     kanata.enable = true;
@@ -38,7 +38,7 @@
 
   lab = {
     enable = true;
-    mkDataDir = true;
+    # mkDataDir = true; # zfs datasets
     dataDir = "/run/media/data";
 
     ssh.enable = true;
@@ -59,7 +59,8 @@
     # kavita.enable = false;
     komga.enable = true; # 8080 => 8069
 
-    navidrome.enable = true; # 4533
+	# auto deactivated if music dir missing
+	navidrome.enable = true; # 4533
 
     #################
     #    servarr    #
@@ -78,7 +79,7 @@
     #    backup    #
     ################
 
-    borg.enable = true;
+    borg.enable = false;
     restic.enable = false; # 8000
     # syncoid.enable = true;
     # sanoid.enable = true;

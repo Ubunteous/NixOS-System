@@ -4,6 +4,7 @@ with lib;
 let
   cfg = config.lab.immich;
   labcfg = config.lab;
+  # thumbnailsDir = labcfg.dataDir + "/data/photos/immich";
 in {
 
   options.lab.immich = {
@@ -12,7 +13,8 @@ in {
 
   config = mkIf (labcfg.enable && cfg.enable) {
     users.users.immich.extraGroups = [ "video" "render" ]; # for transcoding
-
+	# setup with immich cli, app or just drag and drop dir to webui
+    # immich upload --ignore **/Raw/** --recursive <directory/>
     services.immich = {
       enable = true;
 
