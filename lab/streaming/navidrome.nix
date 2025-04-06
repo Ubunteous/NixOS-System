@@ -10,6 +10,8 @@ in {
     enable = mkEnableOption "Enables support for Navidrome";
   };
 
+  # debug with journalctl -u navidrome.service
+
   config = mkIf (labcfg.enable && cfg.enable) {
     services.navidrome = {
       enable = true;

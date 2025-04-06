@@ -34,6 +34,8 @@ in {
       #   MUSIC   #
       #############
 
+	  puddletag
+
       # config.nur.repos.dukzcry.bitwig-studio3 # version 3.1 # deleted and replaced by bitwig 5
       # bitwig-studio # latest
       # bitwig-studio3 # can be modified with overlay
