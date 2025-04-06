@@ -14,7 +14,7 @@ in {
       enable = true;
 
       # user = "radarr";
-      # group = "radarr";
+      group = "multimedia";
 
       openFirewall = true;
       # dataDir = "/var/lib/radarr/.config/Radarr";

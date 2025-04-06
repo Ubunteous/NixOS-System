@@ -34,7 +34,8 @@ in {
       #   MUSIC   #
       #############
 
-	  puddletag
+	  puddletag # music metadata
+	  nicotine-plus
 
       # config.nur.repos.dukzcry.bitwig-studio3 # version 3.1 # deleted and replaced by bitwig 5
       # bitwig-studio # latest

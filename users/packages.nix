@@ -18,7 +18,6 @@ in {
       # minecraft # broken
       prismlauncher # minecraft + lambdynamic mod
       # optifine # minecraft
-      # nicotine-plus
       tdesktop
       # bookworm # ebook reader
       # kazam # screen recording. maybe broken, try simplescreenrecorder

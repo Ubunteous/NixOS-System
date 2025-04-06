@@ -14,9 +14,10 @@ in {
     # potential fix starting from update to 23.05
     programs.zsh.enable = true;
 
-    # users.groups = { uinput = { }; }; # for KMonad
+    # users.groups.uinput = { };; # for KMonad
+	users.groups.multimedia = { }; # for servarr
 
-    # Define a user account
+	# Define a user account
     # Do not forget to set a password with ‘passwd’
     users.users.${user} = {
       isNormalUser = true;

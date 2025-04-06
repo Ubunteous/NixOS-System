@@ -15,7 +15,7 @@ in {
       enable = true;
 
       # user = "sonarr";
-      # group = "sonarr";
+      group = "multimedia";
 
       openFirewall = true;
       # dataDir = "/var/lib/sonarr/.config/NzbDrone";

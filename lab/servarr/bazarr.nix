@@ -15,7 +15,7 @@ in {
       enable = true;
 
       # user = "bazarr";
-      # group = "bazarr";
+      group = "multimedia";
 
       openFirewall = true;
       # listenPort = 6767; # defaults to 6767
