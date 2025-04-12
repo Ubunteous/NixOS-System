@@ -72,8 +72,8 @@
   zebralette3 = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Zebralette-3";
     url =
-      "https://dl.u-he.com/betas/public/zebralette3/Zebralette3_001_public_beta_15573_Linux.tar.xz";
-    sha256 = "sha256-9Bo1FyIym47SahaJzhbRq2Fm0/wM8kVyJtz7fuHo3HM=";
+      "https://dl.u-he.com/betas/public/zebralette3/Zebralette3_001_public_beta_17567_Linux.tar.xz";
+    sha256 = "sha256-vlxk2a9ceaYs4Kjazln4nCkvwn+3zEDK219m0OmSdF4=";
   };
 
   ###############

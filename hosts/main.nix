@@ -19,7 +19,7 @@
     boot.enable = true;
     boot-laptop.enable = true;
     networking.enable = true;
-	zfs.enable = true;
+    zfs.enable = true;
 
     xserver = {
       enable = true;
@@ -40,6 +40,7 @@
   lab = {
     enable = true;
     ssh.enable = false;
+    # dataDir = "/run/media/data/";
 
     # overview. add widgets once enable other services
     homepage = {
@@ -55,7 +56,7 @@
 
     # shiori.enable = false; # 8080 => 2525 bookmarks
     # kavita.enable = false; # 5000 reading server (library)
-    # navidrome.enable = false;
+    # navidrome.enable = false; # 4533
 
     #################
     #     streaming     #

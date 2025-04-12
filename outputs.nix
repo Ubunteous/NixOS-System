@@ -24,6 +24,9 @@ let
     };
   };
 in {
+  # also see alejandra, and nixpkgs-fmt
+  # formatter.x86_64-linux = nixpkgs-unstable.legacyPackages.x86_64-linux.nixfmt;
+
   nixosConfigurations = {
     #############
     #   NIXOS   #
