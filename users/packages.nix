@@ -15,20 +15,21 @@ in {
       #   APPS   #
       ############
 
-      # minecraft # broken
-      prismlauncher # minecraft + lambdynamic mod
-      # optifine # minecraft
-      tdesktop
+      # (opera.override { proprietaryCodecs = true; }) # fix videos
       # bookworm # ebook reader
       # kazam # screen recording. maybe broken, try simplescreenrecorder
-      # libsForQt5.kdenlive # video editing
       # kmag # magnifier. alt: xzoom, xmag
       # libreoffice
+      # libsForQt5.kdenlive # video editing
       # logseq
+      # minecraft # broken
       # miniflux # rss
-      # (opera.override { proprietaryCodecs = true; }) # fix videos
+      # nyxt ;; deps notify broken. 4/2025
+      # optifine # minecraft
+      prismlauncher # minecraft + lambdynamic mod
       # qbittorrent
       # screenkey # show keys pressed on screen
+      tdesktop
       # teams # unmaintained as of 29-9-2023
       # yacreader # cbr/cbz reader
 

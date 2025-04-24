@@ -1,4 +1,4 @@
-{ osConfig, config, lib, pkgs, user, ... }:
+{ osConfig, config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -456,59 +456,60 @@ in {
     };
   }
 
-    # more recent version further improved with if/else
-    # (mkIfElse (cfgext) {
-    #   programs.firefox.profiles.default.extensions = with osConfig; fox-addons;
-    # } {
-    #   programs.firefox.profiles.default.extensions = with config; fox-addons;
-    # })
+	# more recent version further improved with if/else
+	# (mkIfElse (cfgext) {
+	#   programs.firefox.profiles.default.extensions = with osConfig; fox-addons;
+	# } {
+	#   programs.firefox.profiles.default.extensions = with config; fox-addons;
+	# })
 
-    # # find a way later to merge both list around a with osConfig/config condition
-    # (mkIfElse (cfgext) {
-    #   programs.firefox.profiles.default.extensions =
-    #     with osConfig.nur.repos.rycee.firefox-addons; [
-    #       darkreader
-    #       tridactyl
-    #       ublock-origin
-    #       istilldontcareaboutcookies
-    #       tab-stash
-    #       # multi-account-containers
-    #     ];
-    # } {
-    #   programs.firefox.profiles.default.extensions =
-    #     with config.nur.repos.rycee.firefox-addons; [
-    #       darkreader
-    #       tridactyl
-    #       ublock-origin
-    #       istilldontcareaboutcookies
-    #     ];
-    # })
-    # # find a way later to merge both list around a with osConfig/config condition
-    # (mkIfElse (cfgext) {
-    #   programs.firefox.profiles.default.extensions =
-    #     with osConfig.nur.repos.rycee.firefox-addons; [
-    #       darkreader
-    #       tridactyl
-    #       ublock-origin
-    #       istilldontcareaboutcookies
-    #       tab-stash
-    #       # multi-account-containers
-    #     ];
-    # } {
-    #   programs.firefox.profiles.default.extensions =
-    #     with config.nur.repos.rycee.firefox-addons; [
-    #       darkreader
-    #       tridactyl
-    #       ublock-origin
-    #       istilldontcareaboutcookies
-    #     ];
-    # })
+	# # find a way later to merge both list around a with osConfig/config condition
+	# (mkIfElse (cfgext) {
+	#   programs.firefox.profiles.default.extensions =
+	#     with osConfig.nur.repos.rycee.firefox-addons; [
+	#       darkreader
+	#       tridactyl
+	#       ublock-origin
+	#       istilldontcareaboutcookies
+	#       tab-stash
+	#       # multi-account-containers
+	#     ];
+	# } {
+	#   programs.firefox.profiles.default.extensions =
+	#     with config.nur.repos.rycee.firefox-addons; [
+	#       darkreader
+	#       tridactyl
+	#       ublock-origin
+	#       istilldontcareaboutcookies
+	#     ];
+	# })
+	# # find a way later to merge both list around a with osConfig/config condition
+	# (mkIfElse (cfgext) {
+	#   programs.firefox.profiles.default.extensions =
+	#     with osConfig.nur.repos.rycee.firefox-addons; [
+	#       darkreader
+	#       tridactyl
+	#       ublock-origin
+	#       istilldontcareaboutcookies
+	#       tab-stash
+	#       # multi-account-containers
+	#     ];
+	# } {
+	#   programs.firefox.profiles.default.extensions =
+	#     with config.nur.repos.rycee.firefox-addons; [
+	#       darkreader
+	#       tridactyl
+	#       ublock-origin
+	#       istilldontcareaboutcookies
+	#     ];
+	# })
 
-    # tridactyl main changes:
-    # bind m scrollpx -10
-    # bind i scrollpx 10
-    # bind n scrollline 10
-    # bind e scrollline -10
-    # unbind <C-f>
+	# tridactyl main changes:
+	# bind m scrollpx -10
+	# bind i scrollpx 10
+	# bind n scrollline 10
+	# bind e scrollline -10
+	# bind h back
+	# unbind <C-f>
   ]);
 }
