@@ -42,7 +42,7 @@ bind j scrollline 10
 bind <C-e> scrollline 10
 bind k scrollline -10
 bind <C-y> scrollline -10
-bind h scrollpx -50
+bind h back
 bind l scrollpx 50
 bind G scrollto 100
 bind gg scrollto 0
