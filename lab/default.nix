@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
 with lib;
-let cfg = config.lab;
-in {
+# let cfg = config.lab; in # add to inputs if uncomment
+{
   options.lab = {
     enable = mkEnableOption "Homelab configuration";
 
@@ -98,10 +98,10 @@ in {
     ./vpn/fail2ban.nix
   ];
 
-  config = let dirs = [ "films" "series" "musics" "books" "comics" ];
-  in mkIf (cfg.enable && cfg.mkDataDir && builtins.pathExists cfg.dataDir) {
-    systemd.tmpfiles.rules = [ "d ${cfg.dataDir} 0777 root" ]
-      ++ map (dir: "d ${cfg.dataDir}/media/${dir} 0777 root") dirs
-      ++ map (dir: "d ${cfg.dataDir}/downloads/${dir} 0777 root") dirs;
-  };
+  # config = let dirs = [ "films" "series" "musics" "books" "comics" ];
+  # in mkIf (cfg.enable && cfg.mkDataDir && builtins.pathExists cfg.dataDir) {
+  #   systemd.tmpfiles.rules = [ "d ${cfg.dataDir} 0777 root" ]
+  #     ++ map (dir: "d ${cfg.dataDir}/media/${dir} 0777 root") dirs
+  #     ++ map (dir: "d ${cfg.dataDir}/downloads/${dir} 0777 root") dirs;
+  # };
 }
