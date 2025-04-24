@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -46,55 +46,61 @@ in {
         ni = "janet ~/.nix.d/bin/ni.janet";
 
         # safety.
-        # rm = "rm -I"; # or -i
+        rm = "rm -I"; # or -i
       };
 
       initExtra = ''
         # export necessary for yabridgectl
-                # export WINEFSYNC=1
-                # export PATH=$PATH:/etc/profiles/per-user/ubunteous/lib
+        # export WINEFSYNC=1
+        # export PATH=$PATH:/etc/profiles/per-user/ubunteous/lib
 
-                # case insensitive completion
+        # case insensitive completion
         autoload -Uz compinit && compinit
-          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
         	
-            # dircolrs.ansi-dark unavailable. maybe add later with nix
-            # zstyle ':completion:*' list-colors ${config.home.homeDirectory}/dircolors.ansi-dark
+        # dircolrs.ansi-dark unavailable. maybe add later with nix
+        # zstyle ':completion:*' list-colors ${config.home.homeDirectory}/dircolors.ansi-dark
 
-            bindkey '^r' history-substring-search-up
-              bindkey '^s' history-substring-search-down
-              bindkey '^ ' autosuggest-accept # ctrl+space
+        bindkey '^r' history-substring-search-up
+        bindkey '^s' history-substring-search-down
+        bindkey '^ ' autosuggest-accept # ctrl+space
 
-              #########################
-              #  Options for fzf-tab  #
-              #########################
+        #########################
+        #  Options for fzf-tab  #
+        #########################
 
-              # set descriptions format to enable group support
-              zstyle ':completion:*:descriptions' format '[%d]'
+        # set descriptions format to enable group support
+        zstyle ':completion:*:descriptions' format '[%d]'
 
-              # make use of fzf-preview option
-              zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath' # remember to use single quote here!!!
+        # make use of fzf-preview option
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath' # remember to use single quote here!!!
 
-                # preview directory's content with exa when completing cd
-                zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+        # preview directory's content with exa when completing cd
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
-                  # switch group using `,` and `.`
-                  zstyle ':fzf-tab:*' switch-group ',' '.'
+        # switch group using `,` and `.`
+        zstyle ':fzf-tab:*' switch-group ',' '.'
 
-                # complete with :
-                zstyle ':fzf-tab:*' continuous-trigger ':'
+        # complete with :
+        zstyle ':fzf-tab:*' continuous-trigger ':'
 
-                  # accept and keep searching
-                  zstyle ':fzf-tab:*' fzf-bindings 'space:accept'
+        # accept and keep searching
+        zstyle ':fzf-tab:*' fzf-bindings 'space:accept'
 
-                  # accept and run
-                  zstyle ':fzf-tab:*' accept-line tab
+        # accept and run
+        zstyle ':fzf-tab:*' accept-line tab
 
-                  #######################
-                  #   POWER LEVEL 10K   #
-                  #######################
+        #######
+        # K3S #
+        #######
 
-                  source ~/.config/p10k/p10k.zsh
+        # source <(kubectl completion zsh)
+
+        #######################
+        #   POWER LEVEL 10K   #
+        #######################
+
+        source ~/.config/p10k/p10k.zsh
       '';
 
       plugins = [
