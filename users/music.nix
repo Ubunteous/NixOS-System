@@ -69,7 +69,7 @@ in {
       # zynaddsubfx # zynfusion - new gui
       # lsp-plugins
 
-      (callPackage ob-xd { name = "ob-xd"; })
+      (callPackage ob-xd { })
 
       (callTal tal.pha)
       (callTal tal.j-8)

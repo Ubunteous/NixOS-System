@@ -1,9 +1,11 @@
-{ stdenv, pkgs, name }: # url, sha256
+{ stdenv, pkgs }: # name, url, sha256
 
 stdenv.mkDerivation {
-  inherit name;
-
+  # inherit name;
   # src = pkgs.fetchurl { inherit url sha256; };
+
+  name = "ob-xd";
+
   src = pkgs.fetchurl {
     url = "https://demo.discodsp.com/Obxd37Linux.zip";
     sha256 = "sha256-X3jt/ZlbWF1Opv2E1BonmWRJPH5yuMQdu36ms5xKJP8=";
