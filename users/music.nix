@@ -9,6 +9,7 @@ let
     (plugin:
       (pkgs.callPackage plug_path { inherit (plugin) name url sha256; }));
 
+  ob-xd = import ../pkgs/ob-xd/ob-xd.nix;
   tal = import ../pkgs/TAL/plugins.nix;
   callTal = plug_name: (callPlugin ../pkgs/TAL/tal.nix plug_name);
 
@@ -34,8 +35,8 @@ in {
       #   MUSIC   #
       #############
 
-	  puddletag # music metadata
-	  nicotine-plus
+      puddletag # music metadata
+      nicotine-plus
 
       # config.nur.repos.dukzcry.bitwig-studio3 # version 3.1 # deleted and replaced by bitwig 5
       # bitwig-studio # latest
@@ -67,6 +68,8 @@ in {
       # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
       # zynaddsubfx # zynfusion - new gui
       # lsp-plugins
+
+      (callPackage ob-xd { name = "ob-xd"; })
 
       (callTal tal.pha)
       (callTal tal.j-8)

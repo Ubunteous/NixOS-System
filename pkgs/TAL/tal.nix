@@ -1,4 +1,4 @@
-{ stdenv, pkgs, lib, name, url, sha256 }:
+{ stdenv, pkgs, name, url, sha256 }:
 
 stdenv.mkDerivation {
   inherit name;
