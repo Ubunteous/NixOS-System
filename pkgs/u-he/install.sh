@@ -26,7 +26,6 @@ plugins=(
     "zebralette3"
 )
 
-echo "Received $PLUGIN"
 if [[ ! " ${plugins[@]} " =~ " $PLUGIN " ]]; then
 	echo "Plugin \"${PLUGIN}\" not recognised. Use one of these instead:"
 
