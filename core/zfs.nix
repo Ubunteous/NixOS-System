@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -18,6 +18,8 @@ in {
 
     # get it with the hostid command
     networking.hostId = "8425e349";
+
+    environment.systemPackages = with pkgs; [ httm ];
 
     ###########
     #   ZFS   #
