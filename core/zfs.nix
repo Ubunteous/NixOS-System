@@ -11,10 +11,10 @@ in {
     # deactivate hibernation to prevent corruption
     # Note: a non zfs swap partition can also be used
     boot = {
-		 zfs.forceImportRoot = false;
-		 kernelParams = [ "nohibernate" ]; # see zfs.allowHibernation
-		 supportedFilesystems = [ "zfs" ]; # unneccesary but explicit
-	};
+      zfs.forceImportRoot = false;
+      kernelParams = [ "nohibernate" ]; # see zfs.allowHibernation
+      supportedFilesystems = [ "zfs" ]; # unneccesary but explicit
+    };
 
     # get it with the hostid command
     networking.hostId = "8425e349";
@@ -23,38 +23,40 @@ in {
     #   ZFS   #
     ###########
 
-	services.zfs = {
+    services.zfs = {
       # zed = {
       #   settings
       #   enableMail
       # };
 
-      # trim = {
-      #   enable = true;
-      #   randomizedDelaySec = "6h";
-      #   interval = "weekly";
-      # };
+      trim = {
+        enable = true;
+        interval = "weekly";
+        # randomizedDelaySec = "6h";
+      };
 
       # expandOnBoot = "disabled"; # either "all" or [ "names" ]
 
-      # autoSnapshot = {
-      #   enable = false;
+      autoSnapshot = {
+        enable = true;
+        daily = 1;
+        flags = "--keep=10";
 
-      #   frequent = 4; # 15mn
-      #   hourly = 24;
-      #   daily = 7;
-      #   weekly = 4;
-      #   monthly = 12;
+        # frequent = 4; # 15mn
+        # hourly = 24;
+        # daily = 7;
+        # weekly = 4;
+        # monthly = 12;
 
-      #   flags = "-k -p";
-      # };
+        # flags = "-k -p"; # keep and make parent snapshots
+      };
 
       autoScrub = {
         enable = true;
 
         # randomizedDelaySec = "6h";
         # pools = []; # [ "names" ];
-        # interval = "monthly";
+        interval = "weekly"; # ideal is every 2 weeks
       };
 
       # autoReplication = {
