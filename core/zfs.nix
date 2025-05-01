@@ -56,7 +56,7 @@ in {
 
         # randomizedDelaySec = "6h";
         # pools = []; # [ "names" ];
-        interval = "weekly"; # ideal is every 2 weeks
+        interval = "monthly"; # ideal is every 2 weeks
       };
 
       # autoReplication = {
