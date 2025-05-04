@@ -16,7 +16,7 @@ in {
       # extraScanners = [];
 
       # user = "plex";
-      # group = "plex";
+      group = "multimedia";
 
       openFirewall = true;
       # dataDir = "/var/lib/plex";
