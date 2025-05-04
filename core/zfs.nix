@@ -39,19 +39,19 @@ in {
 
       # expandOnBoot = "disabled"; # either "all" or [ "names" ]
 
-      autoSnapshot = {
-        enable = true;
-        daily = 1;
-        flags = "--keep=10";
-
-        # frequent = 4; # 15mn
-        # hourly = 24;
-        # daily = 7;
-        # weekly = 4;
-        # monthly = 12;
-
-        # flags = "-k -p"; # keep and make parent snapshots
-      };
+      # autoSnapshot = {
+      #   enable = true;
+      #   daily = 1;
+      #   flags = "--keep=10";
+	  #
+      #   # frequent = 4; # 15mn
+      #   # hourly = 24;
+      #   # daily = 7;
+      #   # weekly = 4;
+      #   # monthly = 12;
+	  #
+      #   # flags = "-k -p"; # keep and make parent snapshots
+      # };
 
       autoScrub = {
         enable = true;
