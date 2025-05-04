@@ -45,7 +45,7 @@
 
     homepage = {
       enable = true; # 8082
-      address = "server.local"; # server.local or localhost
+      address = "192.168.1.99"; # server.local or localhost or 192.168.1.99
     };
 
     # minecraft.enable = false;
