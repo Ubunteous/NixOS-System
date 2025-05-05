@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ user, ... }:
 
 # Options: config, pkgs, lib, modulesPath, inputs, ... 
 # Help: man configuration.nix(5) or nixos-help’
@@ -8,6 +8,15 @@
   ###############
 
   imports = [ ../core ../lab ../users ../wm ../programming ];
+
+  ########
+  # CRON #
+  ########
+
+  services.cron.systemCronJobs = [
+    # shut down before midnight
+    "59 23 * * *  root shutdown -h now"
+  ];
 
   #--------------------#
   #        CORE        #
