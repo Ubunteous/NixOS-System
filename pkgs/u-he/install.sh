@@ -29,7 +29,7 @@ plugins=(
 if [[ ! " ${plugins[@]} " =~ " $PLUGIN " ]]; then
 	echo "Plugin \"${PLUGIN}\" not recognised. Use one of these instead:"
 
-	for plugin in " ${plugins[@]} "; do
+	for plugin in "${plugins[@]}"; do
 		echo "=> $plugin"
 	done
 

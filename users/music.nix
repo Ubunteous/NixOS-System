@@ -54,15 +54,15 @@ in {
       #   PLUGINS   #
       ###############
 
-      vital
+      # vital
       # helm
       # dexed
       # delayarchitect
       # chow-tape-model
-      dragonfly-reverb
-      odin2
-      surge-XT # surge with some extras
-      cardinal # vcv rack as vst
+      # dragonfly-reverb
+      # odin2
+      # surge-XT # surge with some extras
+      # cardinal # vcv rack as vst
 
       # small gui. needs to be compiled after tweaking these values:
       # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
@@ -77,24 +77,23 @@ in {
       (callTal tal.bassline-101)
       (callTal tal.drum)
       (callTal tal.sampler)
-      (callTal tal.mod)
 
+      # (callTal tal.mod)
       # (callTal tal.g-verb)
-      (callTal tal.dub-x)
-      (callTal tal.dac)
-
+      # (callTal tal.dub-x)
+      # (callTal tal.dac)
       # (callTal tal.filter-2)
       # (callTal tal.reverb-4)
       # (callTal tal.chorus-lx)
       # (callTal tal.noisemaker)
-      (callTal tal.vocoder)
+      # (callTal tal.vocoder)
 
-      (callAuburn auburn.graillon)
-      (callAuburn auburn.inner_pitch)
-      (callAuburn auburn.lens)
-      (callAuburn auburn.renegate)
-      (callAuburn auburn.panagement)
-      (callAuburn auburn.couture)
+      # (callAuburn auburn.graillon)
+      # (callAuburn auburn.inner_pitch)
+      # (callAuburn auburn.lens)
+      # (callAuburn auburn.renegate)
+      # (callAuburn auburn.panagement)
+      # (callAuburn auburn.couture)
 
       bleedingEdgeReaper
       # reaper # see pkgs/ for reaimgui
