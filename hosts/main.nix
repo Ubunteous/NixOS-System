@@ -192,8 +192,10 @@
 
         # packages = with pkgs; [ reaper ];
 
-        firefox.enable = true; # nur missing without osConfig
-        firefox.on-nixos = true;
+        firefox = {
+          enable = true; # nur missing without osConfig
+          on-nixos = true;
+        };
 
         # needs nix-ld
         # not necessary now that plugins are packages

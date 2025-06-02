@@ -28,14 +28,14 @@
     boot.enable = true;
     boot-server.enable = true;
     networking.enable = true;
-	zfs.enable = true;
+    zfs.enable = true;
 
     xserver = {
       enable = true;
       displayManager = "sddm"; # sddm, gdm, lightdm
     };
 
-	sound.enable = true;
+    sound.enable = true;
     system-packages.enable = true;
 
     kanata.enable = true;
@@ -68,8 +68,8 @@
     # kavita.enable = false;
     komga.enable = true; # 8080 => 8069
 
-	# auto deactivated if music dir missing
-	navidrome.enable = true; # 4533
+    # auto deactivated if music dir missing
+    navidrome.enable = true; # 4533
 
     #################
     #    servarr    #
@@ -193,8 +193,10 @@
       config.home = {
         enable = true;
 
-        firefox.enable = true; # nur missing without osConfig
-        firefox.on-nixos = true;
+        firefox = {
+          enable = true; # nur missing without osConfig
+          on-nixos = true;
+        };
 
         git.enable = true;
         mime.enable = true;
