@@ -1,6 +1,6 @@
 { pkgs ? import <nixpkgs> { } }:
 
-# Future update:
+# Future update (beta to release):
 # + uhbik
 # + zebra(lette) 3
 # + tyrell
@@ -118,7 +118,8 @@
 
   uhbik = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Uhbik";
-    url = "https://dl.u-he.com/releases/Uhbik_131_8256_Linux.tar.xz";
-    sha256 = "sha256-kYL7pOGIJv1++p+PMNOy/g6L8dOQ/45yc+KgqpNSyrM=";
+    url =
+      "https://dl.u-he.com/betas/public/uhbik/Uhbik_200_public_beta_18148_Linux.tar.xz";
+    sha256 = "sha256-n36u3GR4qg2479BhDUFH2FKeBGBwFHigJ3N+PEtLGzE=";
   };
 }
