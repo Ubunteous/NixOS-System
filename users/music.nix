@@ -63,6 +63,7 @@ in {
       # odin2
       # surge-XT # surge with some extras
       cardinal # vcv rack as vst
+      # vcv-rack # needs manual installation of plugins
 
       # small gui. needs to be compiled after tweaking these values:
       # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
