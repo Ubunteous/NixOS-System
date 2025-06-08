@@ -51,6 +51,7 @@ in {
 
           # "unfree"
           "vital"
+          "vcv-rack"
           "vscode"
           # "plexmediaserver"
           # "gitkraken"
