@@ -8,7 +8,7 @@
   # sudo nixos-rebuild build --flake '.nix.d/#' beforehand
 
   inputs = {
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     musnix.url = "github:musnix/musnix";

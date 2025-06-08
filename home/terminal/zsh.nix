@@ -49,7 +49,7 @@ in {
         rm = "rm -I"; # or -i
       };
 
-      initExtra = ''
+      initContent = ''
         # export necessary for yabridgectl
         # export WINEFSYNC=1
         # export PATH=$PATH:/etc/profiles/per-user/ubunteous/lib

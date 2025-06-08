@@ -5,7 +5,7 @@ let
   cfg = config.lab.filebrowser;
   labcfg = config.lab;
 in {
-  imports = [ ../../modules/filebrowser.nix ];
+  # imports = [ ../../modules/filebrowser.nix ]; # now officially in nix
 
   options.lab.filebrowser = {
     enable = mkEnableOption "Enables support for filebrowser";
@@ -14,14 +14,18 @@ in {
   config = mkIf (labcfg.enable && cfg.enable) {
     services.filebrowser = {
       enable = true;
-
-      port = 8888;
-      address = "0.0.0.0";
       openFirewall = true;
 
-      noauth = true;
+      # noauth = true;
       # dirs need to belong to root user
-      rootDir = "${labcfg.dataDir}/";
+      # rootDir = "${labcfg.dataDir}/";
+
+      settings = {
+        port = 8888;
+        noauth = true;
+        address = "0.0.0.0";
+        root = "${labcfg.dataDir}";
+      };
 
       # user = "filebrowser";
       # group = "filebrowser";

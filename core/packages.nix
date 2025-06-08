@@ -115,7 +115,7 @@ in {
       gh # github
       git
       gnumake
-      i3lock # brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r
+      # i3lock # brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r
       # inxi
       killall
       ntfs3g # mount ssd with read/write permission

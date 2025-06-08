@@ -17,6 +17,8 @@ in {
   };
 
   config = mkIf (corecfg.enable && cfg.enable) {
+    programs.i3lock.enable = true;
+
     services = {
       displayManager = {
         # none+xmonad/qtile or cinnamon
@@ -29,10 +31,19 @@ in {
         autoLogin.enable = true;
         autoLogin.user = "${user}";
 
+        # Enable sticky keys at startup:
+        # sleep 3 && xkbset bell sticky -twokey -latchlock feedback led stickybeep &
+
         sddm = {
           enable = if cfg.displayManager == "sddm" then true else false;
           wayland.enable =
             if config.wm.display_backend == "wayland" then true else false;
+        };
+
+        gdm = {
+          enable = if cfg.displayManager == "gdm" then true else false;
+          wayland = true;
+          # debug; settings; autoSuspend; autoLogin.delay;
         };
       };
 
@@ -82,12 +93,6 @@ in {
         #######################
 
         displayManager = {
-          gdm = {
-            enable = if cfg.displayManager == "gdm" then true else false;
-            wayland = true;
-            # debug; settings; autoSuspend; autoLogin.delay;
-          };
-
           lightdm = {
             enable = if cfg.displayManager == "lightdm" then true else false;
             # enable = if config.wm.display_backend == "x11" then true else false;
@@ -118,8 +123,6 @@ in {
             };
           };
 
-          # Enable sticky keys at startup:
-          # sleep 3 && xkbset bell sticky -twokey -latchlock feedback led stickybeep &
           sessionCommands = ''
             ~/.locker/start-xautolock &
           '';

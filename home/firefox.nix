@@ -50,7 +50,7 @@ in {
       enable = true;
 
       profiles.default = {
-        extensions = if cfgext then
+        extensions.packages = if cfgext then
           with osConfig; firefox-addons
         else
           with config; firefox-addons;

@@ -206,7 +206,7 @@
         dunst.enable = true;
         picom.enable = true;
         themes.enable = true;
-        flameshot.enable = false; # 1/2025. service broken
+        flameshot.enable = true;
         xautolock.enable = true;
         redshift.enable = true; # see config for activation
         # kodi.enable = false;
