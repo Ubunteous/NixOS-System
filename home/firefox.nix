@@ -154,17 +154,9 @@ in {
           # DEVTOOLS
           "devtools.dom.enabled" = true;
 
-          # PRIVACY AND SECURITY
-          "privacy.donottrackheader.enabled" = true;
-          "signon.rememberSignons" = false;
-          "extensions.formautofill.creditCards.enabled" = false;
-          "permissions.default.geo" = 2;
-          "app.shield.optoutstudies.enabled" = false;
-          "datareporting.healthreport.uploadEnabled" = false;
-          "pdfjs.enableScripting" = false; # pdf security
-
           # MISC (about:config)
           "browser.aboutConfig.showWarning" = false;
+          "browser.aboutwelcome.enabled" = false;
           "browser.tabs.closeWindowWithLastTab" = false;
           # "toolkit.cosmeticAnimations.enabled" = false; # disable website animations
           # "browser.search.openintab" = true;
@@ -179,14 +171,95 @@ in {
           "accessibility.typeaheadfind.enablesound" = false;
           "accessibility.typeaheadfind.soundURL" = "";
 
-          # MORE OPTIONS AT: https://github.com/arkenfox/user.js
+          # Security
+          "browser.contentblocking.category" = "strict";
+          "urlclassifier.trackingSkipURLs" =
+            "*.reddit.com = *.twitter.com = *.twimg.com = *.tiktok.com";
+          "urlclassifier.features.socialtracking.skipURLs" =
+            "*.instagram.com = *.twitter.com = *.twimg.com";
+          "browser.uitour.enabled" = false;
+          "security.OCSP.enabled" = 0;
+          "security.pki.crlite_mode" = 2;
+          "privacy.donottrackheader.enabled" = true;
+          "signon.rememberSignons" = false;
+          "extensions.formautofill.creditCards.enabled" = false;
+          "permissions.default.geo" = 2;
+          "app.shield.optoutstudies.enabled" = false;
+          "pdfjs.enableScripting" = false; # pdf security
+
+          # COOKIE BANNER HANDLING
+          "cookiebanners.service.mode" = 1;
+          "cookiebanners.service.mode.privateBrowsing" = 1;
+
+          # TELEMETRY
+          "datareporting.policy.dataSubmissionEnabled" = false;
+          "datareporting.healthreport.uploadEnabled" = false;
+          "toolkit.telemetry.unified" = false;
+          "toolkit.telemetry.enabled" = false;
+          "toolkit.telemetry.server" = "data:,";
+          "toolkit.telemetry.archive.enabled" = false;
+          "toolkit.telemetry.newProfilePing.enabled" = false;
+          "toolkit.telemetry.shutdownPingSender.enabled" = false;
+          "toolkit.telemetry.updatePing.enabled" = false;
+          "toolkit.telemetry.bhrPing.enabled" = false;
+          "toolkit.telemetry.firstShutdownPing.enabled" = false;
+          "toolkit.telemetry.coverage.opt-out" = true;
+          "toolkit.coverage.opt-out" = true;
+          "toolkit.coverage.endpoint.base" = "";
+          "browser.ping-centre.telemetry" = false;
+          "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+          "browser.newtabpage.activity-stream.telemetry" = false;
+
+          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+          "browser.urlbar.suggest.quicksuggest.nonsponsored" = false;
+
+          #####################
+          # SECTION: ARKENFOX #
+          #####################
+
+          "browser.startup.homepage" = "about:blank";
+          "browser.newtabpage.enabled" = false;
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          "geo.provider.use_geoclue" = false;
+          "browser.safebrowsing.downloads.remote.enabled" = false;
+
+          "browser.urlbar.trending.featureGate" = false;
+          "browser.urlbar.addons.featureGate" = false;
+          "browser.urlbar.fakespot.featureGate" = false;
+          "browser.urlbar.mdn.featureGate" = false;
+          "browser.urlbar.pocket.featureGate" = false;
+          "browser.urlbar.weather.featureGate" = false;
+          "browser.urlbar.yelp.featureGate" = false;
+          "browser.sessionstore.privacy_level" = 2;
+
+          "privacy.clearOnShutdown_v2.cache" = true;
+          "privacy.clearOnShutdown_v2.historyFormDataAndDownloads" = true;
+          "privacy.clearOnShutdown_v2.siteSettings" = false;
+          "privacy.clearOnShutdown_v2.browsingHistoryAndDownloads" = true;
+          "privacy.clearOnShutdown_v2.downloads" = true;
+          "privacy.clearOnShutdown_v2.formdata" = true;
+          "privacy.clearOnShutdown_v2.cookiesAndStorage" = true;
+
+          "privacy.clearSiteData.cache" = true;
+          "privacy.clearSiteData.cookiesAndStorage" = false;
+          "privacy.clearSiteData.historyFormDataAndDownloads" = true;
+          "privacy.clearSiteData.browsingHistoryAndDownloads" = true;
+          "privacy.clearSiteData.formdata" = true;
+
+          "privacy.clearHistory.cache" = true;
+          "privacy.clearHistory.cookiesAndStorage" = false;
+          "privacy.clearHistory.historyFormDataAndDownloads" = true;
+          "privacy.clearHistory.browsingHistoryAndDownloads" = true;
+          "privacy.clearHistory.formdata" = true;
+          "privacy.spoof_english" = 1;
 
           ########################
           #   SECTION: FASTFOX   #
           ########################
 
           # # GENERAL
-          # "content.notify.interval" = 100000;
+          # "content.notify.interval" = 100000; # defaults to 120000
 
           # # GFX
           # "gfx.canvas.accelerated.cache-items" = 4096;
@@ -240,8 +313,8 @@ in {
 
           # # OCSP & CERTS / HPKP
           # "security.OCSP.enabled" = 0;
-          # "security.remote_settings.crlite_filters.enabled" = true;
           # "security.pki.crlite_mode" = 2;
+          # "security.remote_settings.crlite_filters.enabled" = true;
 
           # # SSL / TLS
           # "security.ssl.treat_unsafe_negotiation_as_broken" = true;
@@ -456,60 +529,60 @@ in {
     };
   }
 
-	# more recent version further improved with if/else
-	# (mkIfElse (cfgext) {
-	#   programs.firefox.profiles.default.extensions = with osConfig; fox-addons;
-	# } {
-	#   programs.firefox.profiles.default.extensions = with config; fox-addons;
-	# })
+  # more recent version further improved with if/else
+  # (mkIfElse (cfgext) {
+  #   programs.firefox.profiles.default.extensions = with osConfig; fox-addons;
+  # } {
+  #   programs.firefox.profiles.default.extensions = with config; fox-addons;
+  # })
 
-	# # find a way later to merge both list around a with osConfig/config condition
-	# (mkIfElse (cfgext) {
-	#   programs.firefox.profiles.default.extensions =
-	#     with osConfig.nur.repos.rycee.firefox-addons; [
-	#       darkreader
-	#       tridactyl
-	#       ublock-origin
-	#       istilldontcareaboutcookies
-	#       tab-stash
-	#       # multi-account-containers
-	#     ];
-	# } {
-	#   programs.firefox.profiles.default.extensions =
-	#     with config.nur.repos.rycee.firefox-addons; [
-	#       darkreader
-	#       tridactyl
-	#       ublock-origin
-	#       istilldontcareaboutcookies
-	#     ];
-	# })
-	# # find a way later to merge both list around a with osConfig/config condition
-	# (mkIfElse (cfgext) {
-	#   programs.firefox.profiles.default.extensions =
-	#     with osConfig.nur.repos.rycee.firefox-addons; [
-	#       darkreader
-	#       tridactyl
-	#       ublock-origin
-	#       istilldontcareaboutcookies
-	#       tab-stash
-	#       # multi-account-containers
-	#     ];
-	# } {
-	#   programs.firefox.profiles.default.extensions =
-	#     with config.nur.repos.rycee.firefox-addons; [
-	#       darkreader
-	#       tridactyl
-	#       ublock-origin
-	#       istilldontcareaboutcookies
-	#     ];
-	# })
+  # # find a way later to merge both list around a with osConfig/config condition
+  # (mkIfElse (cfgext) {
+  #   programs.firefox.profiles.default.extensions =
+  #     with osConfig.nur.repos.rycee.firefox-addons; [
+  #       darkreader
+  #       tridactyl
+  #       ublock-origin
+  #       istilldontcareaboutcookies
+  #       tab-stash
+  #       # multi-account-containers
+  #     ];
+  # } {
+  #   programs.firefox.profiles.default.extensions =
+  #     with config.nur.repos.rycee.firefox-addons; [
+  #       darkreader
+  #       tridactyl
+  #       ublock-origin
+  #       istilldontcareaboutcookies
+  #     ];
+  # })
+  # # find a way later to merge both list around a with osConfig/config condition
+  # (mkIfElse (cfgext) {
+  #   programs.firefox.profiles.default.extensions =
+  #     with osConfig.nur.repos.rycee.firefox-addons; [
+  #       darkreader
+  #       tridactyl
+  #       ublock-origin
+  #       istilldontcareaboutcookies
+  #       tab-stash
+  #       # multi-account-containers
+  #     ];
+  # } {
+  #   programs.firefox.profiles.default.extensions =
+  #     with config.nur.repos.rycee.firefox-addons; [
+  #       darkreader
+  #       tridactyl
+  #       ublock-origin
+  #       istilldontcareaboutcookies
+  #     ];
+  # })
 
-	# tridactyl main changes:
-	# bind m scrollpx -10
-	# bind i scrollpx 10
-	# bind n scrollline 10
-	# bind e scrollline -10
-	# bind h back
-	# unbind <C-f>
-  ]);
+  # tridactyl main changes:
+  # bind m scrollpx -10
+  # bind i scrollpx 10
+  # bind n scrollline 10
+  # bind e scrollline -10
+  # bind h back
+  # unbind <C-f>
+    ]);
 }
