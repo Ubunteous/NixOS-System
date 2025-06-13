@@ -13,13 +13,14 @@ in {
     users.users.${user} = {
       packages = with pkgs; [
         rustc
+        rust-script # used by ob-rust. modify it to accept rustc
 
-        # cargo # packet manager
         # rustup # toolchain installer
 
-        rust-analyzer # lsp
-        rustfmt
+        cargo # packet manager
         clippy # lint
+        rustfmt # format
+        rust-analyzer # lsp
       ];
     };
   };
