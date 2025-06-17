@@ -116,6 +116,7 @@ in {
           # Alter/*
           # Wiki/Notes/*
           # !*.org
+          # !*.py
           # !Fictions/Latex/Oeuvres à Découvrir/*.{tex,pdf}*
           # *
 

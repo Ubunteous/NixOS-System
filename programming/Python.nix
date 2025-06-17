@@ -29,7 +29,7 @@ in {
         (let
           my-python-packages = python-packages:
             with python-packages; [
-              pynvim # for deoplete-nvim
+              # pynvim # for deoplete-nvim
 
               # pillow # PIL for embuary
 
@@ -38,18 +38,19 @@ in {
               # isort
               # tools
               # pytest
-              debugpy
+              # debugpy
               # pylama # neovim
 
-              django
+              # django
               # requests
               # gdtoolkit
+              beautifulsoup4
 
               # Data Science
-              numpy
-              matplotlib
-              pandas
-              scipy
+              # numpy
+              # matplotlib
+              # pandas
+              # scipy
               # scikit-learn
 
               # AMLS
