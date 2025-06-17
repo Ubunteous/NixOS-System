@@ -7,7 +7,8 @@ let
   # use opentabledriver vs xsetwacom+wacom table finder
   cfgwacom = config.user.visual_art.wacom_kernel;
 
-  graphicpkgs = with pkgs; [ aseprite darktable krita gimp ];
+  # also see gimp3-with-plugins
+  graphicpkgs = with pkgs; [ aseprite darktable krita gimp3 ];
 
   usercfg = config.user;
 in {

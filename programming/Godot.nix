@@ -11,6 +11,6 @@ in {
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {
-    users.users.${user} = { packages = with pkgs; [ godot_4 gdtoolkit ]; };
+    users.users.${user} = { packages = with pkgs; [ godot_4 gdtoolkit_4 ]; };
   };
 }

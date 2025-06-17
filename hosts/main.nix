@@ -271,7 +271,7 @@
     enable = true;
 
     python.enable = true;
-    godot.enable = false;
+    godot.enable = true;
     csharp.enable = true;
 
     nix.enable = true;
@@ -305,7 +305,7 @@
   };
 
   #--------------------#
-  #          WM          #
+  #          WM        #
   #--------------------#
 
   wm = {
