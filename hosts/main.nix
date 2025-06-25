@@ -200,6 +200,7 @@
         # needs nix-ld
         # not necessary now that plugins are packages
         u-he.enable = false;
+        godot.enable = true;
 
         git.enable = true;
         mime.enable = true;
