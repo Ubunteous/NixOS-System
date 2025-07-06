@@ -24,6 +24,8 @@ let
       hash = "sha256-R6nFi6OPBTIJhg752o9r0lGb24VYobiaWgp5bfvFykg=";
     };
   });
+
+  midihub = import ../pkgs/Midihub/default.nix;
 in {
   options.user.music = {
     enable = mkEnableOption "Enables support for Music related software";
@@ -98,6 +100,8 @@ in {
 
       bleedingEdgeReaper
       # reaper # see pkgs/ for reaimgui
+
+      (callPackage midihub { }) # run as sudo
 
       ############
       #   WINE   #
