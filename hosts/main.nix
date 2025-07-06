@@ -314,6 +314,8 @@
 
     # none+xmonad/qtile or cinnmon/hyprland
     main = "none+xmonad";
+    # main = "cinnamon";
+
     display_backend = "x11"; # x11 or wayland
 
     xmonad.enable = true;
