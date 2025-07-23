@@ -119,7 +119,7 @@
   uhbik = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Uhbik";
     url =
-      "https://dl.u-he.com/betas/public/uhbik/Uhbik_200_public_beta_18148_Linux.tar.xz";
-    sha256 = "sha256-n36u3GR4qg2479BhDUFH2FKeBGBwFHigJ3N+PEtLGzE=";
+      "https://dl.u-he.com/betas/public/uhbik/Uhbik_200_public_beta_18517_Linux.tar.xz";
+    sha256 = "sha256-67cmw0Gttsb6FrtUSpBl8fyjqXt3rwPLecY+7DPqY4A=";
   };
 }
