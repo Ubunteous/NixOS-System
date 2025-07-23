@@ -27,6 +27,8 @@ with lib; {
     nix.settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      # max-jobs = 6;
+      # cores = 6;
     };
 
     programs.dconf.enable = true; # for themes and more
