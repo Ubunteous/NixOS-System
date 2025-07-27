@@ -27,7 +27,7 @@ with lib; {
     nix.settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
-      # max-jobs = 6;
+      # max-jobs = 6; # see --max-jobs for nixos-rebuild
       # cores = 6;
     };
 
@@ -83,6 +83,8 @@ with lib; {
     # gpg encryption
     # programs.gnupg.agent.enable = true;
     # services.pcscd.enable = true;
+
+    i18n.defaultLocale = "en_GB.UTF-8";
 
     environment = {
       # Warning: NixOS assumes that Bash is used by default for /bin/sh
