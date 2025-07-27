@@ -156,6 +156,7 @@ in {
       #############################
 
       # cd: zoxide
+      # comma: nix-shell -p
       # ls: eza, exa, lsd
       # dns: dogdns, doggo, dig
       # http: httpie, xh, curlie (curl)
