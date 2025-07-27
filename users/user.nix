@@ -15,9 +15,21 @@ in {
     programs.zsh.enable = true;
 
     # users.groups.uinput = { };; # for KMonad
-	users.groups.multimedia = { }; # for servarr
+    users.groups.multimedia = { }; # for servarr
 
-	# Define a user account
+    # # do not require password for users in the wheel group for the following commands
+    # security.sudo = {
+    #   enable = true;
+    #   extraRules = [{
+    #     commands = [{
+    #       command = "${pkgs.systemd}/bin/reboot";
+    #       options = [ "NOPASSWD" ];
+    #     }];
+    #     groups = [ "wheel" ];
+    #   }];
+    # };
+
+    # Define a user account
     # Do not forget to set a password with ‘passwd’
     users.users.${user} = {
       isNormalUser = true;
