@@ -165,7 +165,7 @@
 
     music.enable = true;
 
-    input-remapper.enable = true; # for minecraft
+    # input-remapper.enable = false; # for minecraft
     # stylix.enable = false;
 
     visual_art.enable = true;

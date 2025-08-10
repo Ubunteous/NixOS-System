@@ -26,7 +26,7 @@ in {
       # miniflux # rss
       # nyxt ;; deps notify broken. 4/2025
       # optifine # minecraft
-      prismlauncher # minecraft + lambdynamic mod
+      # prismlauncher # minecraft + lambdynamic mod
       # qbittorrent
       # screenkey # show keys pressed on screen
       tdesktop
