@@ -14,7 +14,8 @@ in {
       godot = {
         name = "Godot - Alter";
         genericName = "Godot - Alter";
-        exec = "godot ${config.home.homeDirectory}/Desktop/alter/project.godot";
+        exec =
+          "godot --editor --path ${config.home.homeDirectory}/Desktop/Alter";
         icon = "${config.home.homeDirectory}/.nix.d/files/icons/Godot.svg";
         terminal = false;
         type = "Application";
