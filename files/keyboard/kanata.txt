@@ -24,7 +24,7 @@
 
 (deflayer colemak
   _    _    _    _    _    _    _    _    _    _    _
-  _    q    w    f    p    b    j    l    u    y    lmet
+  _    q    w    f    p    b    j    l    u    y    _
   _    a    r    s    t    g    m    n    e    i    o
   @ols @t_m z    x    c    d    v    k    h    _    _    _    @ors ;; @lst
   lctl lmet lalt                _              ralt rctl
@@ -32,7 +32,7 @@
 
 ;; (deflayer colemak-tap-min
 ;;   _    _    _    _    _    _    _    _    _    _    _
-;;   _    q    w    f    p    @m_b @m_j l    u    y    lmet
+;;   _    q    w    f    p    @m_b @m_j l    u    y    _
 ;;   _    a    r    s    t    @c_g @c_m n    e    i    o
 ;;   @ols _    z    x    c    @s_d v    @s_k h    _    _    _    @ors
 ;;   lctl lmet lalt                _              ralt rctl
@@ -40,7 +40,7 @@
 
 ;; (deflayer colemak-tap
 ;;   _    _    _    _    _    _    _    _    _    _    _
-;;   _    q    w    f    p    b    j    l    u    y    lmet
+;;   _    q    w    f    p    b    j    l    u    y    _
 ;;   _    @a_a @m_r @c_s @s_t g    m    @s_n @c_e @m_i @a_o
 ;;   @ols _    z    x    c    d    v    k    h    _    _    _    @ors
 ;;   lctl lmet lalt                _              ralt rctl
