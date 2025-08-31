@@ -8,7 +8,8 @@ with lib; {
     ./packages.nix
     ./music.nix
     ./visual-art.nix
-    # ./input-remapper.nix
+    # ./steam.nix
     # ./stylix.nix
+    # ./input-remapper.nix
   ];
 }

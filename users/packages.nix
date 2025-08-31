@@ -17,6 +17,7 @@ in {
 
       # (opera.override { proprietaryCodecs = true; }) # fix videos
       # bookworm # ebook reader
+      # calibre
       # kazam # screen recording. maybe broken, try simplescreenrecorder
       # kmag # magnifier. alt: xzoom, xmag
       # libreoffice

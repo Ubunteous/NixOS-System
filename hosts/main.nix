@@ -165,8 +165,9 @@
 
     music.enable = true;
 
-    # input-remapper.enable = false; # for minecraft
+    # steam.enable = true;
     # stylix.enable = false;
+    # input-remapper.enable = false; # for minecraft
 
     visual_art.enable = true;
     visual_art.wacom_kernel = true;
@@ -201,6 +202,7 @@
         # not necessary now that plugins are packages
         u-he.enable = false;
         godot.enable = true;
+        # helix.enable = false;
 
         git.enable = true;
         mime.enable = true;

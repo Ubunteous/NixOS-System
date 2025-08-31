@@ -39,7 +39,7 @@ in {
           "reaper"
           # "rider"
 
-          # steam-run
+          "steam"
           "steam-run"
           "unrar"
           # "steam-original"

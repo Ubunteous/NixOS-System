@@ -31,6 +31,7 @@ with lib; {
     ./vscode.nix
     ./xautolock.nix # replace it with a service
     ./godot.nix
+    # ./helix.nix
 
     # ./kodi.nix
 
