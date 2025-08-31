@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -9,6 +9,8 @@ in {
 
   config = mkIf (homecfg.enable && cfg.enable) {
     programs.helix = {
+      enable = true;
+
       settings = {
         theme = "catppuccin_mocha";
 
@@ -35,7 +37,8 @@ in {
         };
       };
 
-      defaultEditor = true;
+      # defaultEditor = true;
+
       languages = {
         language = [
           {
