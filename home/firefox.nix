@@ -49,6 +49,130 @@ in {
     programs.firefox = {
       enable = true;
 
+      policies = {
+        AllowFileSelectionDialogs = true;
+        AutofillAddressEnabled = false;
+        AutofillCreditCardEnabled = false;
+        BlockAboutAddons = false;
+        BlockAboutConfig = false;
+        BlockAboutProfiles = false;
+        BlockAboutSupport = false;
+
+        Cookies = {
+          Allow = [ "https://github.com/" "https://nixos.org/" ];
+          Behavior = "reject-tracker-and-partition-foreign";
+          BehaviorPrivateBrowsing = "reject-tracker-and-partition-foreign";
+          Locked = true;
+        };
+
+        DisableFirefoxStudies = true;
+        DisableForgetButton = false;
+        DisableFormHistory = true;
+        DisablePocket = false;
+        DisableTelemetry = true;
+        DisplayBookmarksToolbar = "newtab";
+        DisplayMenuBar = "default-off";
+        # DNSOverHTTPS = {
+        #   Enabled = true;
+        #   Fallback = true;
+        #   Locked = true;
+        #   ProviderURL = "https://dns11.quad9.net/dns-query";
+        # };
+
+        DontCheckDefaultBrowser = true;
+        EnableTrackingProtection = {
+          Category = "strict";
+          Cryptomining = true;
+          EmailTracking = true;
+          Fingerprinting = true;
+          Locked = true;
+          # SuspectedFingerprinting = true;
+          Value = true;
+        };
+
+        EncryptedMediaExtensions = {
+          Enabled = true;
+          Locked = true;
+        };
+
+        ExtensionSettings = {
+          "uBlock0@raymondhill.net" = {
+            default_area = "menubar";
+            installation_mode = "normal_installed";
+            install_url =
+              "https://addons.mozilla.org/firefox/downloads/latest/uBlock0@raymondhill.net/latest.xpi";
+            private_browsing = true;
+            updates_disabled = false;
+          };
+        };
+
+        ExtensionUpdate = true;
+        FirefoxHome = {
+          Highlights = false;
+          Pocket = false;
+          Search = true;
+          SponsoredPocket = false;
+          SponsoredTopSites = false;
+          TopSites = false;
+          Locked = false;
+        };
+
+        FirefoxSuggest = {
+          ImproveSuggest = false;
+          Locked = true;
+          SponsoredSuggestions = false;
+          WebSuggestions = false;
+        };
+
+        HardwareAcceleration = true;
+        Homepage = {
+          Locked = true;
+          StartPage = "homepage";
+          URL = "about:home";
+        };
+
+        HttpsOnlyMode = "enabled";
+        NoDefaultBookmarks = true;
+        OfferToSaveLogins = false;
+        PasswordManagerEnabled = false;
+
+        PDFjs = {
+          Enabled = true;
+          EnablePermissions = false;
+        };
+
+        # PictureInPicture = {
+        #   Enabled = true;
+        #   Locked = true;
+        # };
+
+        SanitizeOnShutdown = {
+          Cache = true;
+          Cookies = true;
+          FormData = true;
+          History = true;
+          Locked = true;
+          Sessions = true;
+          SiteSettings = true;
+        };
+
+        SearchSuggestEnabled = true;
+        ShowHomeButton = true;
+        SkipTermsOfUse = true;
+        # StartDownloadsInTempDirectory = false;
+        TranslateEnabled = true;
+
+        UserMessaging = {
+          ExtensionRecommendations = false;
+          FeatureRecommendations = false;
+          FirefoxLabs = true;
+          Locked = true;
+          MoreFromMozilla = false;
+          SkipOnboarding = false;
+          UrlbarInterventions = true;
+        };
+      };
+
       profiles.default = {
         extensions.packages = if cfgext then
           with osConfig; firefox-addons
