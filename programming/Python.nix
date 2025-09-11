@@ -35,6 +35,7 @@ in {
               # pillow # PIL for embuary
 
               pip # necessary for emacs anaconda mode
+              # debugpy
               # python-lsp-server
               # isort
               # tools
