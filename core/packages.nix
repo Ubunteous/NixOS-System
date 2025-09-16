@@ -156,6 +156,7 @@ in {
       #   NixOS-COMMANDS   #
       ######################
 
+      # nh # user friendly cli
       # nixos-option # get access to configuration data
 
       #################
