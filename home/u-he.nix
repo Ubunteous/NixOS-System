@@ -20,7 +20,6 @@ in {
     # com.bitwig.BitwigStudio.desktop or bitwig-studio.desktop ?
 
     xdg.desktopEntries = {
-
       u-he-reaper = {
         name = "REAPER (ld)";
         genericName = "REAPER (ld)";

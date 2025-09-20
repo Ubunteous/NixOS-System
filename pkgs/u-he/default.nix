@@ -46,6 +46,22 @@
     sha256 = "sha256-DBOMVmj6OBAODbdCWoKhuhVq9h5wZyzeuyijG6LpBZQ=";
   };
 
+  #####################
+  # Computer Magazine #
+  #####################
+
+  bazille-cm = pkgs.callPackage ./derivations/common-tar.nix {
+    name = "Bazille-CM";
+    url = "https://dl.u-he.com/releases/BazilleCM_101_12185_Linux.tar.xz";
+    sha256 = "sha256-4TlSSHcL8t/6i0kv0HqW4kghjpQLMldP0oR39M0mUOw=";
+  };
+
+  zebra-cm = pkgs.callPackage ./derivations/common-tar.nix {
+    name = "Zebra-CM";
+    url = "https://dl.u-he.com/releases/ZebraCM_111_12185_Linux.tar.xz";
+    sha256 = "sha256-bZE+BTcWcpC7w/gGjnpRr0xiap62o9IBqO7JxEy2bNk=";
+  };
+
   ################
   #   FREEBIES   #
   ################

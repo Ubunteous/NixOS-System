@@ -2,7 +2,7 @@
 
 let
   pname = "midihub";
-  version = "1.15.3";
+  version = "1.15.3"; # update later to 1.16.0
 
   src = fetchurl {
     url = "https://blokas.io/midihub/downloads/latest/linux/";

@@ -24,6 +24,8 @@ plugins=(
     "uhbik"
     "zebra-legacy"
     "zebralette3"
+	"zebra-cm"
+	"bazille-cm"
 )
 
 if [[ ! " ${plugins[@]} " =~ " $PLUGIN " ]]; then
