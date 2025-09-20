@@ -34,13 +34,15 @@
   };
 
   #--------------------#
-  #         LAB          #
+  #         LAB        #
   #--------------------#
 
   lab = {
     enable = true;
     ssh.enable = false;
     # dataDir = "/run/media/data/";
+
+    # routing.enable = true;
 
     # overview. add widgets once enable other services
     homepage = {
@@ -128,6 +130,7 @@
 
     wireguard.enable = false;
     # unbound.enable = false;
+    # blocky.enable = false;
     # bind.enable = false;
     adguard.enable = false; # 3000
 

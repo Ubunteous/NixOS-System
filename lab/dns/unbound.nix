@@ -19,9 +19,18 @@ in {
         # When only using Unbound as DNS, make sure to replace 127.0.0.1 with your ip address
         # When using Unbound in combination with pi-hole or Adguard, leave 127.0.0.1, and point Adguard to 127.0.0.1:PORT
         server = {
-          interface = [ "127.0.0.1" ];
+          # interface = [ "127.0.0.1" ];
+          interface = [ "127.0.0.8" ]; # to use with blocky
+
           port = 5335;
           access-control = [ "127.0.0.1 allow" ];
+
+          do-ip4 = true;
+          do-ip6 = false;
+
+          cache-max-ttl = 60;
+          cache-max-negative-ttl = 60;
+          serve-original-ttl = true;
 
           # Based on recommended settings in https://docs.pi-hole.net/guides/dns/unbound/#configure-unbound
           harden-glue = true;

@@ -45,6 +45,9 @@ with lib;
     # ./proxy/nginx.nix
     # ./proxy/traefik.nix
 
+    # ./router/dhcpcd.nix
+    # ./router/routing.nix
+
     ./streaming/kodi.nix
     ./streaming/plex.nix
     ./streaming/jellyfin.nix
@@ -89,6 +92,7 @@ with lib;
     # ./self-hosted/shiori.nix
     # ./self-hosted/minecraft.nix
 
+    # ./dns/blocky.nix
     ./dns/adguard.nix
     ./dns/unbound.nix
     ./dns/bind.nix
