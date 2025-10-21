@@ -35,9 +35,9 @@ in {
         # Languages #
         #############
 
-        ms-dotnettools.csdevkit
-        ms-dotnettools.csharp
-        ms-dotnettools.vscode-dotnet-runtime
+        # ms-dotnettools.csdevkit
+        # ms-dotnettools.csharp
+        # ms-dotnettools.vscode-dotnet-runtime
         # ms-vscode.powershell
 
         #######

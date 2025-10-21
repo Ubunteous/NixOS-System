@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.user.packages;
+  cfg = config.user.packages.main;
   usercfg = config.user;
 in {
-  options.user.packages = {
-    enable = mkEnableOption "Install ubunteous packages";
+  options.user.packages.main = {
+    enable = mkEnableOption "Install main packages";
   };
 
   config = mkIf (usercfg.enable && cfg.enable) {
@@ -223,4 +223,3 @@ in {
     hardware.keyboard.qmk.enable = true;
   };
 }
-

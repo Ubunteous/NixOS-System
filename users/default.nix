@@ -5,7 +5,9 @@ with lib; {
 
   imports = [
     ./user.nix
-    ./packages.nix
+    ./packages/main.nix
+    ./packages/core.nix
+    ./packages/srm.nix
     ./music.nix
     ./visual-art.nix
     # ./steam.nix

@@ -164,7 +164,10 @@
     enable = true;
     prince.enable = true;
 
-    packages.enable = true;
+    packages = {
+      core.enable = true;
+      main.enable = true;
+    };
 
     music.enable = true;
 

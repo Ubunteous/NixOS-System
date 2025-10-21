@@ -1,4 +1,4 @@
-{ config, lib, user, pkgs, ... }:
+{ config, lib, user, ... }:
 
 with lib;
 let
@@ -13,6 +13,11 @@ in {
     displayManager = mkOption {
       description = "Display Manager used";
       type = types.enum [ "sddm" "gdm" "lightdm" ];
+    };
+    keyboardLayout = mkOption {
+      default = "qwerty";
+      description = "Keyboard layout used";
+      type = types.enum [ "qwerty" "colemak" ];
     };
   };
 
@@ -69,9 +74,11 @@ in {
         # More xkbOptions with man xkeyboard-config or at https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee
         xkb = {
           options = "ctrl:nocaps"; # caps lock as ctrl
-
-          layout =
-            if config.core.kanata.enable then "fr-qwerty" else "fr-colemak, fr";
+          # setxkbmap -query | grep layout
+          layout = if cfg.keyboardLayout == "colemak" then
+            "fr-colemak, fr"
+          else
+            "fr-qwerty";
 
           extraLayouts = {
             fr-qwerty = {

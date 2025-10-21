@@ -17,13 +17,12 @@
     enable = true;
 
     boot.enable = true;
-    #boot-server.enable = true;
     networking.enable = true;
-    #zfs.enable = true;
 
     xserver = {
       enable = true;
       displayManager = "sddm"; # sddm, gdm, lightdm
+      keyboardLayout = "colemak"; # "qwerty" (default), "colemak"
     };
 
     sound.enable = true;
@@ -37,27 +36,29 @@
   #--------------------#
 
   lab = {
-    enable = false;
-    # mkDataDir = true; # zfs datasets
-    dataDir = "/run/media/data";
+    enable = true;
 
-    #ssh.enable = true;
+    ssh.enable = true;
 
     #homepage = {
     #  enable = true; # 8082
     #  address = "192.168.1.99"; # server.local or localhost or 192.168.1.99
     #};
 
-    #podman.enable = false;
+    podman.enable = true;
   };
 
   #------------------------#
-  #            USER        #
+  #          USER          #
   #------------------------#
 
   user = {
     enable = true;
     prince.enable = true;
+    packages = {
+      core.enable = true;
+      srm.enable = true;
+    };
   };
 
   #--------------------#
@@ -89,7 +90,7 @@
         flameshot.enable = true;
         xautolock.enable = true;
         redshift.enable = true; # see config for activation
-        # kodi.enable = false;
+        vscode.enable = true;
 
         terminal = {
           enable = true;
@@ -110,8 +111,9 @@
   languages = {
     enable = true;
     nix.enable = true;
-    janet.enable = true;
-    #javascript.enable = true;
+    # janet.enable = true;
+    javascript.enable = true;
+    postgresql.enable = true;
   };
 
   #--------------------#

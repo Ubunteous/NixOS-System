@@ -30,6 +30,7 @@ in {
         builtins.elem (lib.getName pkg) [
           "aseprite"
           "bitwig-studio"
+          "discord"
           # "minecraft-launcher"
           "minecraft-server"
           # "optifine" # minecraft
@@ -37,7 +38,7 @@ in {
           "opera"
           "plexmediaserver"
           "reaper"
-          # "rider"
+          "rider"
 
           "steam"
           "steam-run"
