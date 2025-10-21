@@ -1,0 +1,49 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;           KANATA : defsrc          ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0
+  tab  q    w    e    r    t    y    u    i    o    p
+  caps a    s    d    f    g    h    j    k    l    ;
+  lsft lsgt z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc                 ralt rctl
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;          KANATA : deflayer         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(deflayer colemak
+  _    _    _    _    _    _    _    _    _    _    _
+  _    _    @m_w _    _    _    _    _    _    @m_y _
+  _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    @s_c @c_d _    @c_k @s_h _    _    _    _
+  _    _    _              _                   _    _
+)
+
+;;;;;;;;;;;;;;;
+;; VARIABLES ;;
+;;;;;;;;;;;;;;;
+
+;; tap-timeout, tap-hold and sticky-time
+(defvar
+        tt 200
+        ht 200
+        st 200
+)
+
+;;;;;;;;;;;;;;;;;;;
+;; HOME ROW MODS ;;
+;;;;;;;;;;;;;;;;;;;
+
+(defalias
+  m_w (tap-hold-press $tt $ht w lmet)
+  m_y (tap-hold-press $tt $ht o lmet)
+
+  s_c (tap-hold-press $tt $ht c lsft)
+  s_h (tap-hold-press $tt $ht m rsft)
+
+  c_d (tap-hold-press $tt $ht v rctl)
+  c_k (tap-hold-press $tt $ht n rctl)
+)

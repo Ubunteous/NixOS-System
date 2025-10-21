@@ -41,11 +41,20 @@ in {
 
           # extraArgs = [ "..." ];
         };
+
         "kbd" = {
           devices =
             [ "/dev/input/by-id/usb-KBDfans_kbd67mkiirgb_v3-event-kbd" ];
 
           config = builtins.readFile ../files/keyboard/kbd67.txt;
+        };
+
+        "amazon" = {
+          devices = [
+            "/dev/input/by-id/usb-SONiX_AMAZON_MD005_Wired_Keyboard-event-kbd"
+          ];
+
+          config = builtins.readFile ../files/keyboard/kb-amazon.txt;
         };
       };
     };
