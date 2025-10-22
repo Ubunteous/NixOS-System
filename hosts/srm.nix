@@ -45,6 +45,11 @@
     #  address = "192.168.1.99"; # server.local or localhost or 192.168.1.99
     #};
 
+    syncthing = {
+      enable = true; # 8384
+      extraSyncDirs = false;
+    };
+
     podman.enable = true;
   };
 

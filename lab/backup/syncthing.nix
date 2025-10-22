@@ -4,6 +4,111 @@ with lib;
 let
   cfg = config.lab.syncthing;
   labcfg = config.lab;
+
+  share = {
+    enable = true;
+    path = "~/share";
+    label = "Share";
+    paused = true;
+    devices = [ "droid" ];
+
+    versioning = {
+      type = "simple";
+      params.keep = "3";
+    };
+  };
+
+  extras = {
+    oad = {
+      # needs the following stignore patterns:
+      # !*.pdf
+      # !*.tex
+      # *
+
+      # # add later if I make an option for stignore
+      # let config = optionalString cfg.extraConfig);
+      # stignore = "\n";
+
+      enable = true;
+      path = "~/org/Wiki/Oeuvres à Découvrir";
+      label = "Oeuvres à Découvrir";
+      type = "sendonly";
+      paused = true;
+      devices = [ "droid" ]; # must be defined in settings.devices
+      # id = ""; # must be same on all devices
+
+      # copyOwnershipFromParent = false;
+
+      # more options can be used with versioning.option
+      # one of "external", "simple", "staggered", "trashcan"
+      versioning = {
+        type = "simple";
+        params.keep = "3";
+      };
+
+      # versioning = { 
+      #   type = "staggered"; 
+      #   params = { 
+      #     cleanInterval = "3600"; 
+      #     maxAge = "15768000";
+      #   };
+      # };
+    };
+    alter = {
+      # needs the following stignore patterns:
+      # *~
+
+      enable = true;
+      path = "~/org/Alter";
+      label = "Alter";
+      type = "sendonly";
+      paused = true;
+      devices = [ "droid" ];
+
+      versioning = {
+        type = "simple";
+        params.keep = "10";
+      };
+    };
+    org = {
+      # needs the following stignore patterns:
+      # Alter/*
+      # Wiki/Notes/*
+      # !*.org
+      # !*.py
+      # !Fictions/Latex/Oeuvres à Découvrir/*.{tex,pdf}*
+      # *
+
+      enable = true;
+      path = "~/org";
+      label = "Org";
+      type = "sendonly";
+      paused = true;
+      devices = [ "droid" ];
+
+      versioning = {
+        type = "simple";
+        params.keep = "3";
+      };
+    };
+    notes = {
+      # needs the following stignore patterns:
+      # *.pdf
+
+      enable = true;
+      # path = "~/Notes";
+      path = "~/org/Wiki/Notes";
+      label = "Notes";
+      type = "receiveonly";
+      paused = true;
+      devices = [ "droid" ];
+
+      versioning = {
+        type = "simple";
+        params.keep = "3";
+      };
+    };
+  };
 in {
 
   options.lab.syncthing = {
@@ -59,108 +164,10 @@ in {
       #   folders   #
       ###############
 
-      settings.folders = mkIf cfg.extraSyncDirs {
-        oad = {
-          # needs the following stignore patterns:
-          # !*.pdf
-          # !*.tex
-          # *
-
-          # # add later if I make an option for stignore
-          # let config = optionalString cfg.extraConfig);
-          # stignore = "\n";
-
-          enable = true;
-          path = "~/org/Wiki/Oeuvres à Découvrir";
-          label = "Oeuvres à Découvrir";
-          type = "sendonly";
-          paused = true;
-          devices = [ "droid" ]; # must be defined in settings.devices
-          # id = ""; # must be same on all devices
-
-          # copyOwnershipFromParent = false;
-
-          # more options can be used with versioning.option
-          # one of "external", "simple", "staggered", "trashcan"
-          versioning = {
-            type = "simple";
-            params.keep = "3";
-          };
-
-          # versioning = { 
-          #   type = "staggered"; 
-          #   params = { 
-          #     cleanInterval = "3600"; 
-          #     maxAge = "15768000";
-          #   };
-          # };
-        };
-        alter = {
-          # needs the following stignore patterns:
-          # *~
-
-          enable = true;
-          path = "~/org/Alter";
-          label = "Alter";
-          type = "sendonly";
-          paused = true;
-          devices = [ "droid" ];
-
-          versioning = {
-            type = "simple";
-            params.keep = "10";
-          };
-        };
-        org = {
-          # needs the following stignore patterns:
-          # Alter/*
-          # Wiki/Notes/*
-          # !*.org
-          # !*.py
-          # !Fictions/Latex/Oeuvres à Découvrir/*.{tex,pdf}*
-          # *
-
-          enable = true;
-          path = "~/org";
-          label = "Org";
-          type = "sendonly";
-          paused = true;
-          devices = [ "droid" ];
-
-          versioning = {
-            type = "simple";
-            params.keep = "3";
-          };
-        };
-        notes = {
-          # needs the following stignore patterns:
-          # *.pdf
-
-          enable = true;
-          # path = "~/Notes";
-          path = "~/org/Wiki/Notes";
-          label = "Notes";
-          type = "receiveonly";
-          paused = true;
-          devices = [ "droid" ];
-
-          versioning = {
-            type = "simple";
-            params.keep = "3";
-          };
-        };
-        share = {
-          enable = true;
-          path = "~/share";
-          label = "Share";
-          paused = true;
-          devices = [ "droid" ];
-
-          versioning = {
-            type = "simple";
-            params.keep = "3";
-          };
-        };
+      settings.folders = if cfg.extraSyncDirs then
+        { share = share; } // extras
+      else {
+        share = share;
       };
 
       ##################

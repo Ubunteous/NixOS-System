@@ -14,6 +14,9 @@ in {
       jetbrains.rider
       discord
       # mkdocs
+      msbuild
+      thunderbird
+      sql-studio # sql-studio mssql [connection]
     ];
   };
 }
