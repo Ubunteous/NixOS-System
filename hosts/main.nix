@@ -43,6 +43,8 @@
     # dataDir = "/run/media/data/";
 
     # routing.enable = true;
+    hostapd.enable = false;
+    create_ap.enable = false;
 
     # overview. add widgets once enable other services
     homepage = {
@@ -281,7 +283,7 @@
 
     python.enable = true;
     godot.enable = true;
-    csharp.enable = true;
+    csharp.enable = false;
 
     nix.enable = true;
     lua.enable = false;

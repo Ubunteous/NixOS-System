@@ -47,6 +47,8 @@ with lib;
 
     # ./router/dhcpcd.nix
     # ./router/routing.nix
+    ./router/hostapd.nix
+    ./router/create_ap.nix
 
     ./streaming/kodi.nix
     ./streaming/plex.nix

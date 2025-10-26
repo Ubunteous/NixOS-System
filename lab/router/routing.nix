@@ -7,7 +7,7 @@ let
 in {
 
   options.lab.routing = {
-    enable = mkEnableOption "Enables support for rounting";
+    enable = mkEnableOption "Enables support for routing";
   };
 
   config = mkIf (corecfg.enable && cfg.enable) {
