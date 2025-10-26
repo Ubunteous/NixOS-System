@@ -19,12 +19,15 @@ in {
       # allowUnfree = true; # vscode
 
       permittedInsecurePackages = [
-        "aspnetcore-runtime-6.0.36"
-        "dotnet-runtime-6.0.36"
-        "dotnet-core-combined"
-        "dotnet-sdk-6.0.428"
-        "dotnet-sdk-wrapped-6.0.428"
-        "dotnet-sdk-7.0.410"
+        # "aspnetcore-runtime-6.0.36"
+        # "dotnet-core-combined"
+        # "dotnet-sdk-6.0.428"
+        # "dotnet-sdk-wrapped-6.0.428"
+        # "dotnet-sdk-7.0.410"
+        # "electron-25.9.0" # obsidian
+        "ventoy-1.1.05"
+        # "vscode-1.86.2"
+        # "unfree"
       ];
 
       allowUnfreePredicate = pkg:
@@ -52,6 +55,7 @@ in {
           "vscode-extension-ms-dotnettools-csdevkit"
 
           # "unfree"
+          "ventoy"
           "vital"
           "vcv-rack"
           "vscode"
@@ -66,13 +70,6 @@ in {
       # unfree # aseprite and too many others
       # obsidian
       # unfreeRedistributable # steam-run and too many others
-      # ];
-
-      # permittedInsecurePackages = [
-      # "electron-25.9.0" # obsidian
-
-      # "vscode-1.86.2"
-      # "unfree"
       # ];
     };
 
