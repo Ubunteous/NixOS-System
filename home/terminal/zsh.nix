@@ -43,6 +43,21 @@ in {
         # ls = ''eza --hide="*~"'';
         ls = ''eza --ignore-glob="*~"'';
         cat = "bat";
+        # try later with mkdir -p
+
+        # ni = ''
+        #   if !(command -v janet); then
+        #       echo "Janet not installed";
+        #   elif test -d "/home/$USER/.local/share/janet/jpm_tree/"; then
+        #       janet ~/.nix.d/bin/ni.janet;
+        #   else
+        #       echo "Directory ~/.local/share/janet/jpm_tree does not exist, making it."
+        #       mkdir -p ~/.local/share/janet/jpm_tree
+        #       (cd ~/.nix.d/ && jpm deps)
+        #       printf "\nJanet ready. Use it with ni";
+        #   fi
+        # '';
+
         ni = "janet ~/.nix.d/bin/ni.janet";
 
         # safety.

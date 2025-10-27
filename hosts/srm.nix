@@ -116,7 +116,7 @@
   languages = {
     enable = true;
     nix.enable = true;
-    # janet.enable = true;
+    janet.enable = true;
     javascript.enable = true;
     postgresql.enable = true;
   };

@@ -1,3 +1,5 @@
+# run jpm test to get dependencies. Add missing dir ~/.local/share/janet/ if necessary
+
 (declare-project
  :name "it"
  :description "Nix command line utility"
