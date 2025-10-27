@@ -11,12 +11,14 @@ in {
 
   config = mkIf (usercfg.enable && cfg.enable) {
     users.users.${user}.packages = with pkgs; [
-      jetbrains.rider
+      # jetbrains.rider
       discord
       # mkdocs
-      msbuild
+      # msbuild
       thunderbird
-      sql-studio # sql-studio mssql [connection]
+      sqlcmd
+      nextcloud-client
+      gdu
     ];
   };
 }
