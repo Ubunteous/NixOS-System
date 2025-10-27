@@ -5,19 +5,6 @@ let
   cfg = config.languages.javascript;
   langcfg = config.languages;
 
-  nodepkgs = with pkgs.nodePackages; [
-    typescript-language-server
-    prettier
-    eslint
-
-    # jupyter. setup with ijsinstall command
-    # ijavascript # 1/2025. broken
-
-    # jshint
-
-    # "@jest" # unit tests
-    # mocha # unit testing framework
-  ]; # ++ [ pkgs.stable.nodePackages.ijavascript ]; # broken in 25-05
 in {
   options.languages.javascript = {
     enable =
@@ -34,26 +21,28 @@ in {
   config = mkMerge [
     (mkIf (langcfg.enable && cfg.enable) {
       users.users.${user} = {
-        packages = with pkgs;
-          [
+        packages = with pkgs; [
+          eslint
+          nodePackages.prettier # available as prettier from v25.11
+          typescript-language-server
 
-            # runtime (bun is the fastest)
-            # nodejs
-            bun # also a bundler, transpiler and package manager
-            # deno
+          # runtime (bun is the fastest)
+          # nodejs
+          bun # also a bundler, transpiler and package manager
+          # deno
 
-            # package managers:
-            # node2nix
-            # yarn2nix
-            # yarn-berry # next-gen yarn
-            # pnpm # link deps to avoid dupplicates
+          # package managers:
+          # node2nix
+          # yarn2nix
+          # yarn-berry # next-gen yarn
+          # pnpm # link deps to avoid dupplicates
 
-            # create-react-app
+          # create-react-app
 
-            # biome # lint/format => does not send to stdout. try later
-            # stylelint # css linter
-            # validator-nu # html/css checker
-          ] ++ nodepkgs;
+          # biome # lint/format => does not send to stdout. try later
+          # stylelint # css linter
+          # validator-nu # html/css checker
+        ];
       };
     })
     (mkIf (langcfg.enable && cfg.addTypescript) {
