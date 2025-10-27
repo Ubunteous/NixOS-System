@@ -16,7 +16,7 @@
 
 (deflayer colemak-tap-min
   _    _    _    _    _    _    _    _    _    _    _
-  _    q    @m_w f    p    b    j    l    u    @m_y lmet
+  _    q    @m_w f    p    b    j    l    u    @m_y _
   _    a    r    s    t    g    m    n    e    i    o
   @ols @t_c @a_z x    @s_c @c_d v    @c_k @s_h _    _    @a_/ @ors
   lctl lmet lalt                _              ralt rctl

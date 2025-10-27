@@ -19,7 +19,7 @@ xkb_symbols "fr-colemak"
   key <LatI> { [ u, U ] };
   key <LatO> { [ y, Y ] };
   key <LatP> { [ exclam, question ] };
-  key <AD11> { [ Control_L, dead_circumflex, dead_diaeresis ] };
+  key <AD11> { [ dead_circumflex, dead_diaeresis ] };
     
   key <LatA> { [ a, A ] }; // q. should be a
   key <LatS> { [ r, R ] };
