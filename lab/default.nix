@@ -100,8 +100,10 @@ with lib;
     ./dns/bind.nix
 
     ./vpn/wireguard.nix
-    ./vpn/authelia.nix
-    ./vpn/fail2ban.nix
+
+    ./security/keycloak.nix
+    ./security/authelia.nix
+    ./security/fail2ban.nix
   ];
 
   # config = let dirs = [ "films" "series" "musics" "books" "comics" ];
