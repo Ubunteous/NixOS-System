@@ -60,7 +60,8 @@
 
   user = {
     enable = true;
-    prince.enable = true;
+    main.enable = true;
+
     packages = {
       core.enable = true;
       srm.enable = true;

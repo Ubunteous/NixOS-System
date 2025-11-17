@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
@@ -17,6 +17,13 @@ in {
     # prevent creation of ~/.config/wezterm/wezterm.lua
     # xdg.configFile."wezterm/wezterm.lua".enable = false;
     xdg.configFile."wezterm/".source = ../../files/wezterm;
+
+    dconf.settings = {
+      "org/cinnamon/desktop/applications/terminal" = {
+        exec = "wezterm";
+        # exec-arg = ""; # argument
+      };
+    };
 
     programs.wezterm = {
       enable = true;

@@ -71,13 +71,5 @@ in {
         # interfaces."eth0".allowedTCPPorts = [ 80 443 ];
       };
     };
-
-    # Set your time zone.
-    # time.timeZone = "Europe/London";
-    time.timeZone = "Europe/Paris";
-
-    # Select internationalisation properties.
-    # also crashes on zfs
-    # i18n.defaultLocale = "en_GB.utf8";
   };
 }

@@ -2,10 +2,10 @@
 
 with lib;
 let
-  cfg = config.user.prince;
+  cfg = config.user.main;
   usercfg = config.user;
 in {
-  options.user.prince = { enable = mkEnableOption "Add principal user"; };
+  options.user.main = { enable = mkEnableOption "Add main user"; };
 
   config = mkIf (usercfg.enable && cfg.enable) {
     # add zsh to /etc/shells

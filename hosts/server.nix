@@ -29,6 +29,7 @@
     boot-server.enable = true;
     networking.enable = true;
     zfs.enable = true;
+    misc.enable = true;
 
     xserver = {
       enable = true;
@@ -168,12 +169,12 @@
   };
 
   #------------------------#
-  #            USER             #
+  #          USER          #
   #------------------------#
 
   user = {
     enable = true;
-    prince.enable = true;
+    main.enable = true;
   };
 
   #--------------------#
