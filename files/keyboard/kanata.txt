@@ -18,7 +18,7 @@
   _    _    _    _    _    _    _    _    _    _    _
   _    q    @m_w f    p    b    j    l    u    @m_y _
   _    a    r    s    t    g    m    n    e    i    o
-  @ols @t_c @a_z x    @s_c @c_d v    @c_k @s_h _    _    @a_/ @ors
+  @ols _    @a_z x    @s_c @c_d v    @c_k @s_h _    _    @a_/ @ors
   lctl lmet lalt                _              ralt rctl
 )
 
@@ -26,7 +26,7 @@
   _    _    _    _    _    _    _    _    _    _    _
   _    q    w    f    p    b    j    l    u    y    _
   _    a    r    s    t    g    m    n    e    i    o
-  @ols @t_m z    x    c    d    v    k    h    _    _    _    @ors ;; @lst
+  @ols _    z    x    c    d    v    k    h    _    _    _    @ors ;; @lst
   lctl lmet lalt                _              ralt rctl
 )
 
@@ -152,8 +152,8 @@
   ;; LAYERS ;;
   ;;;;;;;;;;;;
 
-  t_c (tap-dance 200 (lsgt (layer-switch colemak)))
-  t_m (tap-dance 200 (lsgt (layer-switch colemak-tap-min)))
+  ;; t_c (tap-dance 200 (lsgt (layer-switch colemak)))
+  ;; t_m (tap-dance 200 (lsgt (layer-switch colemak-tap-min)))
   ;; ls (tap-dance 200 (z (layer-switch colemak) (layer-switch azerty)))
   ;; lsa (tap-hold-press 200 1000 @ors (layer-switch azerty))
   ;; lsc (tap-hold-press 200 1000 @ols (layer-switch colemak))
