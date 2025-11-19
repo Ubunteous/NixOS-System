@@ -89,6 +89,7 @@ with lib;
     # ./backup/syncoid.nix
     ./backup/syncthing.nix
     ./backup/filebrowser.nix
+    #./backup/nextcloud.nix
 
     ./self-hosted/homepage.nix
     # ./self-hosted/shiori.nix
