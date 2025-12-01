@@ -17,6 +17,7 @@
     enable = true;
 
     boot.enable = true;
+    boot-srm.enable = true;
     networking.enable = true;
 
     xserver = {
