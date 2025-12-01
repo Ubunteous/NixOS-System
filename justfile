@@ -62,17 +62,30 @@ clean-profiles:
 # 	home-manager expire-generations "$(date)"
 
 
-[group('Misc')]
-delta: # broken
-	#!/usr/bin/env sh
-	if [ $(ls /nix/var/nix/profiles/ | wc -l) -eq 4 ]
-	then
-	    echo "Not enough systems to compare in /nix/var/nix/profiles"
-		exit 0 # avoid just error with this exit code
-	fi
-	
-	previous=$(ls -Art /nix/var/nix/profiles/ | tail -n 3 | head -n 1)
-	nix store diff-closures /nix/var/nix/profiles/$previous /nix/var/nix/profiles/system | grep "+"
+[group('Configs')]
+install-emacs:
+	git clone "git@github.com:Ubunteous/Emacs-Configuration.git" "/home/$USER/.emacs.d"
+
+[group('Configs')]
+install-xmonad:
+	git clone "git@github.com:Ubunteous/XMonad-Configuration.git" "/home/$USER/.xmonad"
+
+[group('Configs')]
+recompile-xmonad:
+	xmonad --recompile
+
+
+# [group('Misc')]
+# 	delta: # broken
+# 	#!/usr/bin/env sh
+# 	if [ $(ls /nix/var/nix/profiles/ | wc -l) -eq 4 ]
+# 	then
+# 	    echo "Not enough systems to compare in /nix/var/nix/profiles"
+# 		exit 0 # avoid just error with this exit code
+# 	fi
+
+# 	# previous=$(ls -Art /nix/var/nix/profiles/ | tail -n 3 | head -n 1)
+# 	# nix store diff-closures /nix/var/nix/profiles/$previous /nix/var/nix/profiles/system | grep "+"
 
 [group('Misc')]
 show-gens:
