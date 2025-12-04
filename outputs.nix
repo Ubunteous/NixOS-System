@@ -1,5 +1,5 @@
-{ self, nixpkgs-stable, nixpkgs-unstable, nixos-hardware, home-manager, home-manager-stable, nur
-, musnix }:
+{ self, nixpkgs-stable, nixpkgs-unstable, nixos-hardware, home-manager, nur
+  , musnix }:
 
 let
   system = "x86_64-linux";
@@ -95,13 +95,12 @@ in {
       ];
     };
 
-
     ###########
     #   SRM   #
     ###########
 
     srm = let user = "nix";
-    in nixpkgs-stable.lib.nixosSystem {
+    in nixpkgs-unstable.lib.nixosSystem {
       system = system;
       specialArgs = { inherit user; };
       modules = [
@@ -110,7 +109,7 @@ in {
 
         nur.modules.nixos.default
         musnix.nixosModules.musnix
-        home-manager-stable.nixosModules.home-manager
+        home-manager.nixosModules.home-manager
 
         #({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
       ];
