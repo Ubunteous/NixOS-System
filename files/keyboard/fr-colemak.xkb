@@ -46,6 +46,7 @@ xkb_symbols "fr-colemak"
 
   // replace µ => backspace and make $/£ require maj */$
   // key <AD12> { [ asterisk, dollar ] };
+  key <AD12> { [ dollar, ugrave, ugrave, sterling ] };
 
   // invert ;/. and ://
   key <AB08> { [ comma, question ] };
