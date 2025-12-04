@@ -41,8 +41,8 @@ in {
           "brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r";
 
         # ls = ''eza --hide="*~"'';
-        ls = ''eza --ignore-glob="*~"'';
-        cat = "bat";
+        ls = ''eza --ignore-glob="*~" || ls'';
+        cat = "bat || cat";
         # try later with mkdir -p
 
         # ni = ''
