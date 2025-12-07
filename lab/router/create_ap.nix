@@ -10,33 +10,18 @@ in {
   };
 
   config = mkIf (corecfg.enable && cfg.enable) {
-    # networking.networkmanager.enable = lib.mkForce false; # avoid conflict
+    # systemd.network.netdevs is better maintained
+    # networking = {
+    #   interfaces.ap0 = {
+    #     virtual = true;
+    #     ipv4.addresses = [{
+    #       address = "192.168.1.62";
+    #       prefixLength = 24;
+    #     }];
+    #   };
+    # };
 
-    # same as:
-    # nix-shell -p linux-wifi-hotspot
-    # sudo ip link add link wlp1s0 name ap0 type macvlan
-    # sudo ip addr add 192.168.1.100/24 dev ap0
-    # sudo ip link set dev ap0 up
-    # create_ap wlp1s0 ap0 hotspot passpass
-
-    networking = {
-      #   # defaultGateway = {
-      #   #   address = "192.0.2.1";
-      #   #   interface = "ap0";
-      #   # };
-
-      #   # <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel => state DOWN
-      #   # <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue => state UP
-
-      # ap0 goes down but create_ap makes its own to work anyway
-      interfaces.ap0 = {
-        virtual = true;
-        ipv4.addresses = [{
-          address = "192.168.12.1";
-          prefixLength = 24;
-        }];
-      };
-    };
+    system.nixos.tags = [ "Local-Network" ];
 
     # recommended for performances
     services.haveged.enable = true;
@@ -47,11 +32,41 @@ in {
 
       settings = {
         WIFI_IFACE = "wlp1s0";
-        INTERNET_IFACE = "ap0";
         SSID = "Hotspot";
         PASSPHRASE = "testtest";
 
-        # channel = 11;
+        CHANNEL = "default";
+        GATEWAY = "192.168.12.1";
+        WPA_VERSION = 2;
+        ETC_HOSTS = 0;
+        DHCP_DNS = "gateway";
+        NO_DNS = 0;
+        NO_DNSMASQ = 0;
+        HIDDEN = 0;
+        MAC_FILTER = 0;
+        MAC_FILTER_ACCEPT = "/etc/hostapd/hostapd.accept";
+        ISOLATE_CLIENTS = 0;
+        SHARE_METHOD = "none";
+        IEEE80211N = 0;
+        IEEE80211AC = 0;
+        IEEE80211AX = 0;
+        # HT_CAPAB=["HT40+"];
+        # VHT_CAPAB=
+        # DRIVER="nl80211";
+        NO_VIRT = 0;
+        # COUNTRY=
+        FREQ_BAND = "2.4";
+        # NEW_MACADDR=
+        DAEMONIZE = 0;
+        # DAEMON_PIDFILE=
+        DAEMON_LOGFILE = "/dev/null";
+        # DNS_LOGFILE=
+        NO_HAVEGED = 0;
+        # WIFI_IFACE = "wlp1s0";
+        # INTERNET_IFACE=
+        # SSID = "hotspot";
+        # PASSPHRASE = "passpass";
+        USE_PSK = 0;
       };
     };
   };

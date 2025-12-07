@@ -1,4 +1,4 @@
-{ user, ... }:
+{ user, lib, ... }:
 
 # Options: config, pkgs, lib, modulesPath, inputs, ... 
 # Help: man configuration.nix(5) or nixos-help’
@@ -46,12 +46,17 @@
   #        LAB         #
   #--------------------#
 
+  # sudo nixos-rebuild switch --flake ~/.nix.d/#nixos --specialisation localNetwork
+  specialisation.localNetwork.configuration.lab.create_ap.enable =
+    lib.mkForce false;
+
   lab = {
     enable = true;
     # mkDataDir = true; # zfs datasets
     dataDir = "/run/media/data";
 
     ssh.enable = true;
+    create_ap.enable = true;
 
     homepage = {
       enable = true; # 8082
