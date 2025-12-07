@@ -51,6 +51,12 @@
   # EFFECTS #
   ###########
 
+  eq = {
+    name = "TAL-EQ";
+    url = "https://tal-software.com/downloads/plugins/TAL-EQ_64_linux.zip";
+    sha256 = "sha256-XwJWvChkL3pkwhFB+YyOT6qp8FaFExjoFI8woQhuYnE=";
+  };
+
   g-verb = {
     name = "TAL-G-Verb";
     url = "https://tal-software.com/downloads/plugins/TAL-G-Verb_64_linux.zip";

@@ -1,4 +1,4 @@
-{ stdenv, pkgs, lib, name, url, sha256 }:
+{ stdenv, pkgs, name, url, sha256 }:
 
 stdenv.mkDerivation {
   inherit name;
@@ -11,7 +11,7 @@ stdenv.mkDerivation {
     mkdir -p $out/lib/{lv2,vst,vst3}
 
     cp -r Linux/Linux-64b-LV2-FREE/* $out/lib/lv2/
-    cp -r Linux/Linux-64b-VST2-FREE/* $out/lib/vst/
+    # cp -r Linux/Linux-64b-VST2-FREE/* $out/lib/vst/ # removed since selene in 12/25
     cp -r Linux/Linux-64b-VST3-FREE/* $out/lib/vst3/
   '';
 }

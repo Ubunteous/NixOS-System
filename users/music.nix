@@ -17,13 +17,13 @@ let
   callAuburn = plug_name:
     (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
 
-  bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
-    version = "7.34";
-    src = pkgs.fetchurl {
-      url = "https://www.reaper.fm/files/7.x/reaper734_linux_x86_64.tar.xz";
-      hash = "sha256-R6nFi6OPBTIJhg752o9r0lGb24VYobiaWgp5bfvFykg=";
-    };
-  });
+  # bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
+  #   version = "7.34";
+  #   src = pkgs.fetchurl {
+  #     url = "https://www.reaper.fm/files/7.x/reaper734_linux_x86_64.tar.xz";
+  #     hash = "sha256-R6nFi6OPBTIJhg752o9r0lGb24VYobiaWgp5bfvFykg=";
+  #   };
+  # });
 
   midihub = import ../pkgs/Midihub/default.nix;
 in {
@@ -66,6 +66,7 @@ in {
       # surge-XT # surge with some extras
       cardinal # vcv rack as vst
       vcv-rack # needs manual installation of plugins
+      zlequalizer
 
       # small gui. needs to be compiled after tweaking these values:
       # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
@@ -81,6 +82,7 @@ in {
       (callTal tal.drum)
       (callTal tal.sampler)
 
+      (callTal tal.eq)
       # (callTal tal.mod)
       # (callTal tal.g-verb)
       # (callTal tal.dub-x)
@@ -97,8 +99,10 @@ in {
       # (callAuburn auburn.renegate)
       # (callAuburn auburn.panagement)
       # (callAuburn auburn.couture)
+      (callAuburn auburn.selene)
 
-      bleedingEdgeReaper
+      reaper
+      # bleedingEdgeReaper
       # reaper # see pkgs/ for reaimgui
 
       (callPackage midihub { }) # run as sudo
@@ -129,12 +133,15 @@ in {
 
       # wineWowPackages.staging # v9.9 in 09/2024
       # wineWowPackages.staging # v9.9 in 09/2024
+
+      # stable.wine
+      # stable.winetricks
       wine
-
       winetricks
-      yabridge
-      yabridgectl
+      stable.yabridge
+      stable.yabridgectl
 
+      # nix-shell -p dxvk --run setup_dxvk.sh install
       # dxvk # impure. adds setup_dxvk.sh in shell
 
       # was necessary for native instrument

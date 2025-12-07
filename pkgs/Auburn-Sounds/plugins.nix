@@ -34,4 +34,10 @@
     url = "https://www.auburnsounds.com/downloads/Couture-FREE-1.8.zip";
     sha256 = "sha256-jX+E+TpQUx5tjdovHzj29qzFNjd5VDIWQXYaoiBjASk=";
   };
+
+  selene = {
+    name = "Selene";
+    url = "https://www.auburnsounds.com/downloads/Selene-FREE-1.0.0.zip";
+    sha256 = "sha256-BRk9RBqhUzFILisNzEcZ2D50ulCKI3NvwDH3sLVFv/w=";
+  };
 }
