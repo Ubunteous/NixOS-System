@@ -60,7 +60,7 @@
     ##################
 
     # shiori.enable = false; # 8080 => 2525 bookmarks
-    kavita.enable = false; # 5000 reading server (library)
+    # kavita.enable = false; # 5000 reading server (library)
     navidrome.enable = true; # 4533
 
     #################

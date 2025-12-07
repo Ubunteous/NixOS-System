@@ -52,7 +52,7 @@ in {
     #   LID ACTION   #
     ##################
 
-    services.logind.lidSwitch = "lock"; # "lock", "suspend"
+    services.logind.settings.Login.handleLidSwitch = "lock"; # "lock", "suspend"
     # services.logind.lidSwitchExternalPower = ;
     # services.logind.lidSwitchDocked = ; # lid closed and another monitor added
 

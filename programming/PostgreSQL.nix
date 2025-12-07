@@ -39,7 +39,7 @@ in {
         # lsp #
         #######
 
-        postgres-lsp
+        # postgres-language-server
         # sqls
 
         ############

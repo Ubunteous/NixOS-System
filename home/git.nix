@@ -14,16 +14,17 @@ in {
 
     programs.git = {
       enable = true;
-      userName = "Ubunteous";
       # try another mail provided by git
-      userEmail = "46612154+Ubunteous@users.noreply.github.com";
+      settings.user = {
+        name = "Ubunteous";
+        email = "46612154+Ubunteous@users.noreply.github.com";
 
-      # See all options with man git-config
-      # also check https://jvns.ca/blog/2024/02/16/popular-git-config-options/
-      extraConfig = {
         ############
         # COMMANDS #
         ############
+
+        # See all options with man git-config
+        # also check https://jvns.ca/blog/2024/02/16/popular-git-config-options/
 
         init.defaultBranch = "master";
 

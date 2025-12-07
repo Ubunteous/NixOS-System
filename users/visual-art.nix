@@ -20,9 +20,10 @@ in {
   };
 
   config = mkIf (usercfg.enable && cfg.enable) (mkMerge [
-    (mkIf (cfgwacom) {
+    (mkIf cfgwacom {
       # provides xsetwacom command
-      users.users.${user}.packages = with pkgs; [ wacomtablet ] ++ graphicpkgs;
+      users.users.${user}.packages = graphicpkgs
+        ++ [ pkgs.kdePackages.wacomtablet ];
 
       services = {
         xserver = {
@@ -67,7 +68,6 @@ in {
     })
     (mkIf (!cfgwacom) {
       users.users.${user}.packages = with pkgs; graphicpkgs;
-
       hardware.opentabletdriver = {
         enable = true;
         daemon.enable = true;

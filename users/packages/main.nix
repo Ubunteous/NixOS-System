@@ -30,7 +30,7 @@ in {
       # prismlauncher # minecraft + lambdynamic mod
       # qbittorrent
       # screenkey # show keys pressed on screen
-      tdesktop
+      telegram-desktop
       # teams # unmaintained as of 29-9-2023
       # yacreader # cbr/cbz reader
 
