@@ -24,6 +24,7 @@ plugins=(
     "uhbik"
     "zebra-legacy"
     "zebralette3"
+	"zebra3"
 	"zebra-cm"
 	"bazille-cm"
 )

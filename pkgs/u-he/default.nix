@@ -1,8 +1,6 @@
 { pkgs ? import <nixpkgs> { } }:
 
-# Future update (beta to release):
-# + zebra(lette) 3
-# + tyrell
+# use nix-prefetch-url <url> to get shas
 
 {
   ##############
@@ -86,9 +84,15 @@
 
   zebralette3 = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Zebralette-3";
+    url = "https://dl.u-he.com/releases/Zebralette3_300_20399_Linux.tar.xz";
+    sha256 = "10655vh5xsw65k4brlrq4qa6ax5bqgqyzg9w9n4h49viwv6d2d6z";
+  };
+
+  zebra3 = pkgs.callPackage ./derivations/common-tar.nix {
+    name = "Zebra-3";
     url =
-      "https://dl.u-he.com/betas/public/zebralette3/Zebralette3_001_public_beta_17567_Linux.tar.xz";
-    sha256 = "sha256-vlxk2a9ceaYs4Kjazln4nCkvwn+3zEDK219m0OmSdF4=";
+      "https://dl.u-he.com/betas/public/zebra3/Zebra3_300_Public_Beta_20399_Linux.tar.xz";
+    sha256 = "1v9rlk3nwl72iicbzmbygmxr41kzpn6z5337vxa5fm8dx2xhj456";
   };
 
   ###############
