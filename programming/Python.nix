@@ -40,7 +40,6 @@ in {
               # isort
               # tools
               # pytest
-              # debugpy
               # pylama # neovim
 
               # django
