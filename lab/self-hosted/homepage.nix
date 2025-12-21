@@ -9,7 +9,8 @@ in {
     enable = mkEnableOption "Enables support for Homepage";
 
     address = mkOption {
-      type = types.enum [ "server.local" "localhost" "192.168.1.99" ];
+      type =
+        types.enum [ "server.local" "localhost" "192.168.1.99" "192.168.12.1" ];
       default = "localhost";
       description = lib.mdDoc ''
         Service address. Either server (dns setting) or localhost.

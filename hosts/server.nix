@@ -56,11 +56,16 @@
     dataDir = "/run/media/data";
 
     ssh.enable = true;
-    create_ap.enable = true;
+
+    create_ap = {
+      enable = true;
+      wifiInterface = "wlp2s0";
+    };
 
     homepage = {
       enable = true; # 8082
-      address = "192.168.1.99"; # server.local or localhost or 192.168.1.99
+      address =
+        "192.168.12.1"; # server.local or localhost or 192.168.1.99 or 192.168.12.1
     };
 
     # minecraft.enable = false;
@@ -69,8 +74,8 @@
     #   streaming   #
     #################
 
-    plex.enable = true; # 8096 # localhost:32400/web
-    tautulli.enable = false; # 8181 plex manager
+    # plex.enable = true; # 8096 # localhost:32400/web
+    # tautulli.enable = false; # 8181 plex manager
     # kavita.enable = false;
     komga.enable = true; # 8080 => 8069
 
@@ -81,40 +86,40 @@
     #    servarr    #
     #################
 
-    radarr.enable = true; # 7878 movies
-    bazarr.enable = true; # 6767 subtitles
-    sonarr.enable = true; # 8989 tv series
-    lidarr.enable = true; # 8686 music
+    # radarr.enable = true; # 7878 movies
+    # bazarr.enable = true; # 6767 subtitles
+    # sonarr.enable = true; # 8989 tv series
+    # lidarr.enable = true; # 8686 music
 
-    prowlarr.enable = true; # 9696 indexer
-    # readarr.enable = false; # 8787 books
+    # prowlarr.enable = true; # 9696 indexer
+    # # readarr.enable = false; # 8787 books
     # flaresolverr.enable = false; # 8191 bypass cloudflare. down since mid 2024
 
     ################
     #    backup    #
     ################
 
-    borg.enable = false;
-    restic.enable = false; # 8000
+    # borg.enable = false;
+    # restic.enable = false; # 8000
     # syncoid.enable = true;
     # sanoid.enable = true;
     # rsyncd.enable = true;
     filebrowser.enable = true; # 8080 => 8888
-    immich.enable = true; # 2283
+    # immich.enable = true; # 2283
 
-    git = {
-      enable = true;
+    # git = {
+    #   enable = true;
 
-      # "gitweb" (/gitweb), "cgit" (/cgit), "gitea" (:3000), null
-      webUI = "gitea";
-      daemon.enable = false; # 9418
-      # repoDir = "/var/www/git";
-    };
+    #   # "gitweb" (/gitweb), "cgit" (/cgit), "gitea" (:3000), null
+    #   webUI = "gitea";
+    #   daemon.enable = false; # 9418
+    #   # repoDir = "/var/www/git";
+    # };
 
-    syncthing = {
-      enable = false; # 8384
-      extraSyncDirs = false;
-    };
+    # syncthing = {
+    #   enable = false; # 8384
+    #   extraSyncDirs = false;
+    # };
 
     ####################
     #    monitoring    #
@@ -128,18 +133,18 @@
     #    DNS/VPN    #
     #################
 
-    unbound.enable = true; # 5335
-    adguard.enable = true; # 3000
+    # unbound.enable = true; # 5335
+    # adguard.enable = true; # 3000
 
-    bind.enable = false;
-    wireguard.enable = false;
+    # bind.enable = false;
+    # wireguard.enable = false;
 
     ####################
     #    containers    #
     ####################
 
-    k3s.enable = false;
-    podman.enable = false;
+    # k3s.enable = false;
+    # podman.enable = false;
 
     #####################
     #    downloaders    #
@@ -150,7 +155,7 @@
 
     # give full access with 0.0.0.0/0 subnet
     # default: admin and see systemctl status for password
-    qbittorrent-nox.enable = true; # 8080
+    # qbittorrent-nox.enable = true; # 8080
 
     # rtorrent.enable = true; # ?
     # rutorrent.enable = true; # ?
@@ -167,10 +172,10 @@
     #    proxy    #
     ###############
 
-    caddy = {
-      enable = true; # 2019 (default admin port)
-      # domain = "server.local";
-    };
+    # caddy = {
+    #   enable = true; # 2019 (default admin port)
+    #   # domain = "server.local";
+    # };
   };
 
   #------------------------#
