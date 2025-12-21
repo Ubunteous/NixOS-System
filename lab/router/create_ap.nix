@@ -7,6 +7,10 @@ let
 in {
   options.lab.create_ap = {
     enable = mkEnableOption "Enables support for linux-wifi-hotspot";
+    wifiInterface = mkOption {
+      description = "Wifi interface for hotspot";
+      type = types.string;
+    };
   };
 
   config = mkIf (corecfg.enable && cfg.enable) {
@@ -31,7 +35,7 @@ in {
       enable = true;
 
       settings = {
-        WIFI_IFACE = "wlp1s0";
+        WIFI_IFACE = cfg.wifiInterface;
         SSID = "Hotspot";
         PASSPHRASE = "testtest";
 
@@ -53,7 +57,7 @@ in {
         # HT_CAPAB=["HT40+"];
         # VHT_CAPAB=
         # DRIVER="nl80211";
-        NO_VIRT = 0;
+        NO_VIRT = 1; # do not use a virtual interface
         # COUNTRY=
         FREQ_BAND = "2.4";
         # NEW_MACADDR=
@@ -62,10 +66,7 @@ in {
         DAEMON_LOGFILE = "/dev/null";
         # DNS_LOGFILE=
         NO_HAVEGED = 0;
-        # WIFI_IFACE = "wlp1s0";
         # INTERNET_IFACE=
-        # SSID = "hotspot";
-        # PASSPHRASE = "passpass";
         USE_PSK = 0;
       };
     };
