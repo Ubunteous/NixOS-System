@@ -25,9 +25,13 @@ in {
         noauth = true;
         address = "0.0.0.0";
         root = "${labcfg.dataDir}";
+
+        # limitation: --x-mode stored as row integer
+        fileMode = 436; # filebrowser config set --file-mode=0664
+        dirMode = 509; # filebrowser config set --dir-mode=0775
       };
 
-      # user = "filebrowser";
+      user = "multimedia"; # fix for zfs only allowing user access on mount
       # group = "filebrowser";
       # package = pkgs.filebrowser;.
     };
