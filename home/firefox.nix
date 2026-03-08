@@ -258,7 +258,7 @@ in {
         };
 
         # note: browser.startup.homepage can point to a local html file
-        # settings stored in prefs.js (like extraconfig = ...)
+        # settings stored in prefs.js (like extraconfig = ...) can be seen in about.config
         settings = {
           "browser.urlbar.placeholderName" = "This is were the fun begins";
 
@@ -278,6 +278,22 @@ in {
 
           # DEVTOOLS
           "devtools.dom.enabled" = true;
+
+          # # AI (ml)
+          # "browser.ml.enable" = false;
+          # "browser.ml.chat.enabled" = false;
+          # "browser.ml.chat.page" = false;
+          # "browser.ml.chat.menu" = false;
+          # "browser.ml.linkPreview.enabled" = false; # defaults to false
+          # "browser.ml.chat.shortcuts" = false;
+          # "browser.ml.chat.shortcuts.custom" = false;
+          # "browser.ml.chat.sidebar" = false;
+          # "browser.ml.smartAssist.enabled" = false; # defaults to false
+          # "pdfjs.enableAltText" = false;
+          # "extensions.ml.enabled" = false;
+          # "browser.tabs.groups.smart.enabled" = false;
+          # "browser.tabs.groups.smart.searchTopicEnabled" = false;
+          # "browser.tabs.groups.smart.userEnabled" = false;
 
           # MISC (about:config)
           "browser.aboutConfig.showWarning" = false;

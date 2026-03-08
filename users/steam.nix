@@ -27,7 +27,9 @@ in {
       # dedicatedServer.openFirewall = false;
       # localNetworkGameTransfers.openFirewall = false;
 
-      # package = pkgs.steam;
+      # example of environment variable set for all games
+      # package = pkgs.steam.override { extraEnv = { WINEDLLOVERRIDES = "dxgi"; }; };
+
       # extraPackages = [ pkgs.gamescope ];
       # protontricks.package = pkgs.protontricks;
       # extraCompatPackages = [ pkgs.pronton-ge-bin ];
