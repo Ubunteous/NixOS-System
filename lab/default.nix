@@ -60,6 +60,7 @@ with lib;
     ./streaming/komga.nix
     ./streaming/immich.nix
 
+    # ./servarr/nixflix.nix
     ./servarr/sonarr.nix
     ./servarr/radarr.nix
     # ./servarr/readarr.nix

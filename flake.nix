@@ -14,6 +14,11 @@
     musnix.url = "github:musnix/musnix";
     nur.url = "github:nix-community/NUR";
 
+    nixflix = {
+      url = "github:kiriwalawren/nixflix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # stylix.url = "github:danth/stylix";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
