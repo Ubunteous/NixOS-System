@@ -77,7 +77,7 @@
     # plex.enable = true; # 8096 # localhost:32400/web
     # tautulli.enable = false; # 8181 plex manager
     # kavita.enable = false;
-    komga.enable = true; # 8080 => 8069
+    komga.enable = true; # 8080/25600 => 8069
 
     # auto deactivated if music dir missing
     navidrome.enable = true; # 4533

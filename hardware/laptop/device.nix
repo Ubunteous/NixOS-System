@@ -24,6 +24,13 @@ in {
     # this may be useful for a future nix upgrade to unstable
     # hardware.enableRedistributableFirmware = true;
 
+    ##############
+    #   KERNEL   #
+    ##############
+
+    # zen is supposedly slightly faster on laptops (broken 2026)
+    # boot.kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
+
     ###################
     #   FILESYSTEMS   #
     ###################

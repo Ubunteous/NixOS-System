@@ -12,7 +12,7 @@ in {
     services.komga = {
       enable = true;
       openFirewall = true;
-      settings.server.port = 8069; # 8080
+      settings.server.port = 8069; # 8080. can also default to 25600
 
       # group = "komga";
       user = "multimedia"; # fix for zfs only allowing user access on mount

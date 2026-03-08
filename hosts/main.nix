@@ -72,11 +72,14 @@
     # plex.enable = true; # 8096 # localhost:32400/web
     # jellyseer.enable = false; # 5055
     # tautulli.enable = true; # 8181 plex manager
-    # komga.enable = true; # 8080 => 8069
+    # komga.enable = true; # 8080/25600 => 8069
 
-    ###############
+    ##################
     #     servarr    #
-    ###############
+    ##################
+
+    # promising. conflict with postgresql and torrentClient broken
+    # nixflix.enable = false; # http://<service>.nixflix
 
     radarr.enable = false; # 7878 movies
     bazarr.enable = false; # 6767 subtitles
