@@ -239,7 +239,7 @@
           zsh.enable = true;
           wezterm.enable = true;
 
-          ghostty.enable = true;
+          ghostty.enable = false;
 
           bash.enable = false;
           alacritty.enable = false;
