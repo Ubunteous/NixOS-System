@@ -9,7 +9,8 @@ let
     (plugin:
       (pkgs.callPackage plug_path { inherit (plugin) name url sha256; }));
 
-  ob-xd = import ../pkgs/ob-xd/ob-xd.nix;
+  # ob-xd = import ../pkgs/ob-xd/ob-xd.nix;
+  ob-xf = import ../pkgs/ob-xf/ob-xf.nix;
   tal = import ../pkgs/TAL/plugins.nix;
   callTal = plug_name: (callPlugin ../pkgs/TAL/tal.nix plug_name);
 
@@ -73,7 +74,8 @@ in {
       # zynaddsubfx # zynfusion - new gui
       # lsp-plugins
 
-      (callPackage ob-xd { })
+      # (callPackage ob-xd { })
+      (callPackage ob-xf { })
 
       (callTal tal.pha)
       (callTal tal.j-8)
