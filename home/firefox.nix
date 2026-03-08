@@ -14,6 +14,7 @@ let
     tridactyl
     ublock-origin
     istilldontcareaboutcookies
+    noscript
     # tab-stash
     # multi-account-containers
   ];
