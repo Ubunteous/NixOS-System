@@ -55,6 +55,12 @@ in {
       xserver = {
         enable = true;
 
+        # time in ms  before a key press triggers autorepeat
+        autoRepeatDelay = 400;
+
+        # time in ms between autorepeat-generated keystroke
+        autoRepeatInterval = 40;
+
         ##############
         #   KEYMAP   #
         ##############
