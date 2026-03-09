@@ -19,87 +19,89 @@ in {
 
       # package = pkgs.vscode-fhs;
 
-      enableExtensionUpdateCheck = false;
-      enableUpdateCheck = false;
+      profiles.default = {
+        enableExtensionUpdateCheck = false;
+        enableUpdateCheck = false;
+
+        ##############
+        # EXTENSIONS #
+        ##############
+
+        extensions = with pkgs.vscode-extensions; [
+          #############
+          # Languages #
+          #############
+
+          # ms-dotnettools.csdevkit
+          # ms-dotnettools.csharp
+          # ms-dotnettools.vscode-dotnet-runtime
+          # ms-vscode.powershell
+
+          #######
+          # Git #
+          #######
+          eamodio.gitlens
+          # donjayamanne.githistory
+          # github.vscode-pull-request-github
+          # waderyan.gitblame
+          # mhutchie.git-graph
+          # github.vscode-github-actions
+
+          ############
+          # Bindings #
+          ############
+
+          # vscodevim.vim
+          tuttieee.emacs-mcx
+
+          ########
+          # Misc #
+          ########
+
+          oderwat.indent-rainbow
+          streetsidesoftware.code-spell-checker
+        ];
+
+        # written in settings.json
+        # "[nix]"."editor.tabSize" = 2;
+        # "workbench.sideBar.location" = "left"; # sidebar
+        userSettings = {
+          "editor.acceptSuggestionOnEnter" = "off";
+          "editor.cursorStyle" = "block";
+          "editor.fontFamily" = "Fira Code";
+          "editor.fontLigatures" = true;
+          "editor.fontSize" = 18;
+          "editor.formatOnPaste" = true;
+          "editor.formatOnSave" = true;
+          "editor.renderWhitespace" = "trailing";
+
+          "explorer.excludeGitIgnore" = true;
+          "explorer.sortOrder" = "type";
+
+          "files.autoSave" = "afterDelay";
+          "files.trimFinalNewlines" = true;
+          "files.trimTrailingWhitespace" = true;
+
+          "workbench.panel.defaultLocation" = "right";
+          "workbench.colorTheme" = "Monokai";
+          "workbench.editor.centeredLayoutAutoResize" = false;
+          "workbench.editor.highlightModifiedTabs" = true;
+          "workbench.externalBrowser" = "firefox";
+
+          "extensions.autoCheckUpdates" = false;
+          "telemetry.telemetryLevel" = "off";
+          "update.mode" = "none";
+          "window.zoomLevel" = 3;
+        };
+      };
 
       # DISABLE THIS LATER ONCE SETTINGS IN NIX
       # do not let vscode install/updated extensions
       mutableExtensionsDir = false;
 
-      ##############
-      # EXTENSIONS #
-      ##############
-
-      extensions = with pkgs.vscode-extensions; [
-        #############
-        # Languages #
-        #############
-
-        # ms-dotnettools.csdevkit
-        # ms-dotnettools.csharp
-        # ms-dotnettools.vscode-dotnet-runtime
-        # ms-vscode.powershell
-
-        #######
-        # Git #
-        #######
-        eamodio.gitlens
-        # donjayamanne.githistory
-        # github.vscode-pull-request-github
-        # waderyan.gitblame
-        # mhutchie.git-graph
-        # github.vscode-github-actions
-
-        ############
-        # Bindings #
-        ############
-
-        # vscodevim.vim
-        tuttieee.emacs-mcx
-
-        ########
-        # Misc #
-        ########
-
-        oderwat.indent-rainbow
-        streetsidesoftware.code-spell-checker
-      ];
-
-      # written in settings.json
-      # "[nix]"."editor.tabSize" = 2;
-      # "workbench.sideBar.location" = "left"; # sidebar
-      userSettings = {
-        "editor.acceptSuggestionOnEnter" = "off";
-        "editor.cursorStyle" = "block";
-        "editor.fontFamily" = "Fira Code";
-        "editor.fontLigatures" = true;
-        "editor.fontSize" = 18;
-        "editor.formatOnPaste" = true;
-        "editor.formatOnSave" = true;
-        "editor.renderWhitespace" = "trailing";
-
-        "explorer.excludeGitIgnore" = true;
-        "explorer.sortOrder" = "type";
-
-        "files.autoSave" = "afterDelay";
-        "files.trimFinalNewlines" = true;
-        "files.trimTrailingWhitespace" = true;
-
-        "workbench.panel.defaultLocation" = "right";
-        "workbench.colorTheme" = "Monokai";
-        "workbench.editor.centeredLayoutAutoResize" = false;
-        "workbench.editor.highlightModifiedTabs" = true;
-        "workbench.externalBrowser" = "firefox";
-
-        "extensions.autoCheckUpdates" = false;
-        "telemetry.telemetryLevel" = "off";
-        "update.mode" = "none";
-        "window.zoomLevel" = 3;
-      };
-
-      #############
+      ################
       #   BINDINGS   #
-      #############
+      ################
 
       # keybindings.kb = {
       #   args = {
