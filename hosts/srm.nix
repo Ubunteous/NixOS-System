@@ -19,6 +19,7 @@
     boot.enable = true;
     boot-srm.enable = true;
     networking.enable = true;
+    misc.enable = true;
 
     xserver = {
       enable = true;
@@ -46,10 +47,10 @@
     #  address = "192.168.1.99"; # server.local or localhost or 192.168.1.99
     #};
 
-    syncthing = {
-      enable = true; # 8384
-      extraSyncDirs = false;
-    };
+    # syncthing = {
+    #   enable = true; # 8384
+    #   extraSyncDirs = false;
+    # };
 
     podman.enable = true;
   };

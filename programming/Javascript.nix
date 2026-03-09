@@ -22,12 +22,13 @@ in {
     (mkIf (langcfg.enable && cfg.enable) {
       users.users.${user} = {
         packages = with pkgs; [
-          eslint
+          # eslint
           nodePackages.prettier # available as prettier from v25.11
           typescript-language-server
+          vscode-js-debug
 
           # runtime (bun is the fastest)
-          # nodejs
+          nodejs
           bun # also a bundler, transpiler and package manager
           # deno
 

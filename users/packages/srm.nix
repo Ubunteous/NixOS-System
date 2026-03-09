@@ -12,13 +12,16 @@ in {
   config = mkIf (usercfg.enable && cfg.enable) {
     users.users.${user}.packages = with pkgs; [
       # jetbrains.rider
-      discord
       # mkdocs
       # msbuild
-      thunderbird
-      sqlcmd
-      nextcloud-client
+      # thunderbird
+      # ventoy-bin
+      discord
       gdu
+      nextcloud-client
+      openvpn
+      sqlcmd
+      tmux
     ];
   };
 }
