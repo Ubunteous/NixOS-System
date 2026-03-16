@@ -1,11 +1,10 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
   cfg = config.home.nix-direnv;
   homecfg = config.home;
-in
-{
+in {
   options.home.nix-direnv = {
     enable = mkEnableOption "Enable support for nix-direnv";
   };
@@ -13,7 +12,7 @@ in
   config = mkIf (homecfg.enable && cfg.enable) {
     # Instructions:
     # + add the following shell.nix
-    # + run the echo ... and direnv commands
+    # + run the piped echo and direnv commands
 
     # { pkgs ? import <nixpkgs> {}}:
     # pkgs.mkShell { packages = [ pkgs.hello ]; }

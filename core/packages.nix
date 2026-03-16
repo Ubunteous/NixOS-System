@@ -25,7 +25,7 @@ in {
         # "dotnet-sdk-wrapped-6.0.428"
         # "dotnet-sdk-7.0.410"
         # "electron-25.9.0" # obsidian
-        "ventoy-1.1.05"
+        # "ventoy-1.1.05"
         # "vscode-1.86.2"
         # "unfree"
       ];
@@ -34,31 +34,32 @@ in {
         builtins.elem (lib.getName pkg) [
           "aseprite"
           "bitwig-studio"
+          "claude-code"
           "discord"
           # "minecraft-launcher"
-          "minecraft-server"
+          # "minecraft-server"
           # "optifine" # minecraft
           # "obsidian"
           "opera"
           "plexmediaserver"
           "reaper"
-          "rider"
+          # "rider"
 
           "steam"
           "steam-run"
-          "unrar"
           # "steam-original"
           "steam-unwrapped"
           # "teams"
+          "unrar"
 
-          "code"
-          "vscode-extension-ms-dotnettools-csdevkit"
+          # "code"
+          # "vscode-extension-ms-dotnettools-csdevkit"
 
           # "unfree"
           "ventoy"
           "vital"
           "vcv-rack"
-          "vscode"
+          # "vscode"
           # "plexmediaserver"
           # "gitkraken"
           # "Oracle_VM_VirtualBox_Extension_Pack"

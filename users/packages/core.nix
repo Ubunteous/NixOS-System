@@ -11,25 +11,25 @@ in {
 
   config = mkIf (usercfg.enable && cfg.enable) {
     users.users.${user}.packages = with pkgs; [
+      eww
       file-roller # file-roller
       gnome-disk-utility # gnome-disks
       keepassxc
       networkmanagerapplet
-      # tlp # battery life
-      eww
       rofi # history sorted by frequency in ~/.cache/rofi3.(d)runcache
+      # tlp # battery life
 
-      zip
-      eza # ls
       bat # cat
+      eza # ls
       fd # find
-      just # make
       fzf # alternative: peco
       hstr # history. see also mcfly
-      tldr # man. see also navi, cheat
-      ripgrep # grep. combine it with fzf later
       # httm # zfs/restic time machine
+      just # make
+      ripgrep # grep. combine it with fzf later
+      tldr # man. see also navi, cheat
       # uutils-coreutils # rust coreutils
+      zip
     ];
   };
 }
