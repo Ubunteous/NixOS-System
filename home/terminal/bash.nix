@@ -1,11 +1,10 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
   cfg = config.home.terminal.bash;
   homecfg = config.home;
-in
-{
+in {
   options.home.terminal.bash = {
     enable = mkEnableOption "Enable support for Bash";
   };
@@ -16,30 +15,33 @@ in
     ############
 
     # overwrite .bashrc if already there
-    home.file.".bashrc".force = true;
-    
+    # actually dangerous. This has maybe broken direnv compat
+    # which relied on this line: eval '$(direnv hook bash)';
+    # home.file.".bashrc".force = true;
+
     # !/bin/env bash
     programs.bash = {
       enable = true;
-      
+
       shellAliases = {
-        sticky = "xkbset bell sticky -twokey -latchlock feedback led stickybeep &";
+        sticky =
+          "xkbset bell sticky -twokey -latchlock feedback led stickybeep &";
         # powermenu = "${config.home.homeDirectory}/.config/rofi/powermenu.sh";
       };
-      
+
       bashrcExtra = ''
-          PS1='\[\e[38;5;177m\]>>> \[\e[38;5;69m\]\w\[\e[0m\] '
-        '';
+        PS1='\[\e[38;5;177m\]>>> \[\e[38;5;69m\]\w\[\e[0m\] '
+      '';
     };
   };
 }
-  
-  ######################
-  #   COMMON ALIASES   #
-  ######################
 
-  # Works with bash only. maybe with others outside home manager
-  # environment.shellAliases = {
-  #   sticky = "xkbset bell sticky -twokey -latchlock feedback led stickybeep &";
-  #   polybar = "${config.home.homeDirectory}/.config/polybar/launch.sh";
-  # };
+######################
+#   COMMON ALIASES   #
+######################
+
+# Works with bash only. maybe with others outside home manager
+# environment.shellAliases = {
+#   sticky = "xkbset bell sticky -twokey -latchlock feedback led stickybeep &";
+#   polybar = "${config.home.homeDirectory}/.config/polybar/launch.sh";
+# };

@@ -16,7 +16,6 @@ in {
 
     programs.zsh = {
       enable = true;
-      autocd = true;
 
       # dirHashes = {
       # 	docs  = "$HOME/Documents";
@@ -29,6 +28,7 @@ in {
       # Example:
       # history.path = "${config.xdg.dataHome}/zsh/zsh_history";
 
+      autocd = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
@@ -41,8 +41,8 @@ in {
           "brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r";
 
         # ls = ''eza --hide="*~"'';
-        ls = ''eza --ignore-glob="*~" || ls'';
-        cat = "bat || cat";
+        ls = "eza --ignore-glob='*~' || ls";
+        # cat = "bat || cat"; # forces usage of C-c
         # try later with mkdir -p
 
         # ni = ''
