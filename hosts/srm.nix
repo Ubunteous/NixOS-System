@@ -98,7 +98,7 @@
         flameshot.enable = true;
         xautolock.enable = true;
         redshift.enable = true; # see config for activation
-        vscode.enable = true;
+        vscode.enable = false;
 
         terminal = {
           enable = true;
