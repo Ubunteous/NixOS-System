@@ -312,6 +312,7 @@
     janet.enable = true;
     clojure.enable = true;
     elixir.enable = false;
+    kotlin.enable = false;
     common-lisp.enable = false;
 
     # only adds lsp/fmt/lint

@@ -25,6 +25,7 @@ with lib; {
 
     ./Go.nix
     ./Rust.nix
+    ./Kotlin.nix
 
     ./Guile.nix
     ./Janet.nix
