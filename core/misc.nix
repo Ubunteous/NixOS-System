@@ -106,7 +106,13 @@ in {
     ################
 
     i18n.defaultLocale = "en_GB.UTF-8";
-    time.timeZone = "Europe/Paris";
+
+    time = {
+      timeZone = "Europe/Paris";
+
+      # prevent UTC usage which delays windows time on dual boot
+      hardwareClockInLocalTime = true;
+    };
 
     ##########
     # THEMES #
