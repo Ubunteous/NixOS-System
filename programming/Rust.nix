@@ -15,6 +15,7 @@ in {
         rustc
         rust-script # used by ob-rust. modify it to accept rustc
 
+        # cargo-tauri
         # rustup # toolchain installer
 
         cargo # packet manager

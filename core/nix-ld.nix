@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -22,9 +22,10 @@ in {
 
       # libraries = with pkgs;
       #   [
+      #     # appimage-run
       #     # imgui
-      #     #   glib
-      #     #   gtk3
+      #     # glib
+      #     # gtk3
       #   ];
     };
 
