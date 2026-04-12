@@ -1,13 +1,13 @@
-{ config, lib, pkgs, user, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
   cfg = config.home.mime;
   homecfg = config.home;
-  in {
-    options.home.mime = { enable = mkEnableOption "Enable support for Mime"; };
+in {
+  options.home.mime = { enable = mkEnableOption "Enable support for Mime"; };
 
-    config = mkIf (homecfg.enable && cfg.enable) {
+  config = mkIf (homecfg.enable && cfg.enable) {
     ############
     #   MIME   #
     ############
@@ -40,9 +40,10 @@ let
         "inode/directory" = "nemo.desktop";
         # images
         "image/png" = "pix.desktop";
-	"image/avif" = "pix.desktop";
+        "image/avif" = "pix.desktop";
         "image/jpg" = "pix.desktop";
         "image/jpeg" = "pix.desktop";
+        "image/webp" = "pix.desktop";
         "image/svg+xml" = "pix.desktop";
         "image/x-nikon-nef" = "darktable.desktop";
         "image/x-xcf" = "gimp.desktop";
