@@ -79,16 +79,17 @@ in {
 
       (callTal tal.pha)
       (callTal tal.j-8)
+      (callTal tal.j-8x)
       (callTal tal.u-no-lx)
       (callTal tal.bassline-101)
       (callTal tal.drum)
       (callTal tal.sampler)
 
       (callTal tal.eq)
+      (callTal tal.dac)
       # (callTal tal.mod)
       # (callTal tal.g-verb)
       # (callTal tal.dub-x)
-      # (callTal tal.dac)
       # (callTal tal.filter-2)
       # (callTal tal.reverb-4)
       # (callTal tal.chorus-lx)

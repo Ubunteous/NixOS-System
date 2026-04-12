@@ -15,6 +15,12 @@
     sha256 = "sha256-ifXxxMwYT511aajVTIXJukb+/9WokFQX/xovJi4qhEM=";
   };
 
+  j-8x = {
+    name = "TAL-J8X";
+    url = "https://tal-software.com/downloads/plugins/TAL-J8X_64_linux.zip";
+    sha256 = "sha256-9L9LSSMUqEx/Hrwp3gJgwq7rFBmEFQ3pXwjmA3dbSHI=";
+  };
+
   u-no-lx = {
     name = "TAL-U-NO-LX-V2";
     url =
