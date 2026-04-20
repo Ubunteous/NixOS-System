@@ -90,9 +90,8 @@
 
   zebra3 = pkgs.callPackage ./derivations/common-tar.nix {
     name = "Zebra-3";
-    url =
-      "https://dl.u-he.com/betas/public/zebra3/Zebra3_300_Public_Beta_20552_Linux.tar.xz";
-    sha256 = "1rsghasqa8nhw3rmqlvirf0mx05xplp4lqgfax7inxxhccc6pgnm";
+    url = "https://dl.u-he.com/releases/Zebra3_300_21799_Linux.tar.xz";
+    sha256 = "sha256-gPvvtEzu1M9MNOOelG/4H99as8Wtq2CUm8ZyvY1fpmY=";
   };
 
   ###############
