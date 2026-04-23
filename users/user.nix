@@ -38,7 +38,7 @@ in {
       # realtime audio for musnix
       # uinput and input for kmonad and kanata
 
-      extraGroups = [ "networkmanager" "wheel" "uinput" ]
+      extraGroups = [ "networkmanager" "wheel" "uinput" ] # "kvm" for android
         ++ (if ("${user}" != "server") then [ "realtime" "audio" ] else [ ]);
 
       shell = pkgs.zsh; # set user's default shell

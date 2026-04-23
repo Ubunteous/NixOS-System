@@ -32,6 +32,7 @@ in {
 
       allowUnfreePredicate = pkg:
         builtins.elem (lib.getName pkg) [
+          "android-studio-stable"
           "aseprite"
           "bitwig-studio"
           "claude-code"

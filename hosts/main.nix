@@ -55,17 +55,17 @@
 
     # minecraft.enable = false;
 
-    ##################
+    ######################
     #     multimedia     #
-    ##################
+    ######################
 
     # shiori.enable = false; # 8080 => 2525 bookmarks
     # kavita.enable = false; # 5000 reading server (library)
     navidrome.enable = true; # 4533
 
-    #################
+    #####################
     #     streaming     #
-    #################
+    #####################
 
     # kodi.enable = false; # also defined with home-manager
     # jellyfin.enable = false; # 8096
@@ -89,9 +89,9 @@
     # readarr.enable = false; # 8787 books
     lidarr.enable = false; # 8686 music
 
-    ##############
+    #################
     #    backup     #
-    ##############
+    #################
 
     borg.enable = false;
     restic.enable = false; # 8000
@@ -115,25 +115,25 @@
       extraSyncDirs = true;
     };
 
-    ##################
+    ######################
     #     monitoring     #
-    ##################
+    ######################
 
     # grafana.enable = true; # 3000 => 3002
     # prometheus.enable = true; # 9090
     # loki.enable = false;
 
-    ##################
+    ######################
     #     containers     #
-    ##################
+    ######################
 
     k3s.enable = false;
     podman.enable = false;
     # virtualbox.enable = false;
 
-    ###############
+    ##################
     #     DNS/VPN    #
-    ###############
+    ##################
 
     wireguard.enable = false;
     # unbound.enable = false;
@@ -150,9 +150,9 @@
 
     qbittorrent-nox.enable = false;
 
-    #############
+    ################
     #    proxy     #
-    #############
+    ################
 
     caddy = {
       enable = false; # 2019 (default admin port)
@@ -188,7 +188,7 @@
   };
 
   #--------------------#
-  #         HOME         #
+  #         HOME       #
   #--------------------#
 
   home-manager = {
@@ -281,7 +281,7 @@
   };
 
   #------------------------#
-  #          LANGUAGES        #
+  #        LANGUAGES       #
   #------------------------#
 
   languages = {
@@ -345,9 +345,9 @@
     hyprland.enable = false;
   };
 
-  ############
+  ##############
   #    Misc    #
-  ############
+  ##############
 
   ## NOT useful for the time being => gnupg.agent useful with mail
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.
