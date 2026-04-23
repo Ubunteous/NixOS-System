@@ -173,6 +173,7 @@
 
     packages = {
       core.enable = true;
+      security.enable = true;
       main.enable = true;
     };
 

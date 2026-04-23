@@ -8,6 +8,7 @@ with lib; {
     ./packages/main.nix
     ./packages/core.nix
     ./packages/srm.nix
+    ./packages/security.nix
     ./music.nix
     ./visual-art.nix
     # ./steam.nix
