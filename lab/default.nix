@@ -103,9 +103,9 @@ with lib;
 
     ./vpn/wireguard.nix
 
-    ./security/keycloak.nix
-    ./security/authelia.nix
-    ./security/fail2ban.nix
+    ./auth/keycloak.nix
+    ./auth/authelia.nix
+    ./auth/fail2ban.nix
   ];
 
   # config = let dirs = [ "films" "series" "musics" "books" "comics" ];
