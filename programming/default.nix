@@ -22,6 +22,7 @@ with lib; {
     # ./Typst.nix
     ./LaTeX.nix
     ./PostgreSQL.nix
+    ./SQLite.nix
 
     ./Go.nix
     ./Rust.nix

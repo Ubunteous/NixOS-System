@@ -302,6 +302,7 @@
     rust.enable = false;
     java.enable = false;
     postgresql.enable = true;
+    sqlite.enable = false;
 
     javascript = {
       enable = true;
