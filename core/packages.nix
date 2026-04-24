@@ -35,6 +35,7 @@ in {
           "android-studio-stable"
           "aseprite"
           "bitwig-studio"
+          "burpsuite"
           "claude-code"
           "discord"
           # "minecraft-launcher"
