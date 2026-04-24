@@ -17,6 +17,7 @@ in {
       tcpdump # network sniffer
       mitm6 # network spoofing
       # fping # faster ping with multiple targets
+      nuclei # vulnerability scanner
 
       # toolkits
       # autopsy # sleuth kit gui
