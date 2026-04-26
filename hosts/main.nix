@@ -218,6 +218,7 @@
         godot.enable = true;
         # helix.enable = false;
 
+        gallery-dl.enable = true;
         git.enable = true;
         mime.enable = true;
         dunst.enable = true;

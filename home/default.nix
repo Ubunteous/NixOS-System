@@ -22,6 +22,7 @@ with lib; {
     ./firefox.nix
     ./flameshot.nix
     ./dunst.nix
+    ./gallery-dl.nix
     ./git.nix
     ./mime.nix # another app is creating mimes => fixed with force
     ./picom.nix
