@@ -5,7 +5,7 @@ let
   cfg = config.user.packages.security;
   usercfg = config.user;
 in {
-  options.user.packages.srm = {
+  options.user.packages.security = {
     enable = mkEnableOption "Enable security packages";
   };
 
@@ -15,7 +15,7 @@ in {
       nmap # network discovery/auditing
       # netcat-gnu # read network i/o. nc already available
       tcpdump # network sniffer
-      mitm6 # network spoofing
+      # mitm6 # network spoofing # python broken 4/2026
       # fping # faster ping with multiple targets
       nuclei # vulnerability scanner
 
