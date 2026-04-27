@@ -135,11 +135,12 @@
     #     DNS/VPN    #
     ##################
 
+    # openvpn.enable = true; # broken. fix later
     wireguard.enable = false;
     # unbound.enable = false;
     # blocky.enable = false;
     # bind.enable = false;
-    adguard.enable = false; # 3000
+    adguard.enable = true; # 3000
 
     # fail2ban.enable = true;
     # authelia.enable = true;
@@ -218,7 +219,7 @@
         godot.enable = true;
         # helix.enable = false;
 
-        gallery-dl.enable = true;
+        gallery-dl.enable = false;
         git.enable = true;
         mime.enable = true;
         dunst.enable = true;
@@ -304,7 +305,7 @@
     rust.enable = false;
     java.enable = false;
     postgresql.enable = true;
-    sqlite.enable = false;
+    sqlite.enable = true;
 
     javascript = {
       enable = true;

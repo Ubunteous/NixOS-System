@@ -101,6 +101,7 @@ with lib;
     ./dns/unbound.nix
     ./dns/bind.nix
 
+    ./vpn/openvpn.nix
     ./vpn/wireguard.nix
 
     ./auth/keycloak.nix
