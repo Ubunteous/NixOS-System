@@ -29,7 +29,6 @@ in {
 
           # runtime (bun is the fastest)
           nodejs
-          bun # also a bundler, transpiler and package manager
           # deno
 
           # package managers:

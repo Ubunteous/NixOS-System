@@ -35,7 +35,7 @@ in {
               # pillow # PIL for embuary
 
               pip # necessary for emacs anaconda mode
-              # debugpy
+              debugpy
               # python-lsp-server
               # isort
               # tools
@@ -58,7 +58,7 @@ in {
               # opencv4 # import as cv2 
               # dlib
               # keras
-              # tqdm
+              tqdm
               # scikitimage # error
               # tensorflow # error => loads slowly
 
