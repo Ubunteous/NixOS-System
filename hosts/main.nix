@@ -137,10 +137,11 @@
 
     # openvpn.enable = true; # broken. fix later
     wireguard.enable = false;
-    # unbound.enable = false;
     # blocky.enable = false;
-    # bind.enable = false;
-    adguard.enable = true; # 3000
+
+    bind.enable = false;
+    unbound.enable = false;
+    adguard.enable = true; # 3000 => 3090
 
     # fail2ban.enable = true;
     # authelia.enable = true;
