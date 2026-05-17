@@ -27,6 +27,7 @@ in {
       # httm # zfs/restic time machine
       just # make
       ripgrep # grep. combine it with fzf later
+      tealdeer # tldr
       tldr # man. see also navi, cheat
       # uutils-coreutils # rust coreutils
       zip
