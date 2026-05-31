@@ -1,6 +1,6 @@
 { stdenv, fetchurl, alsa-lib, cairo, dpkg, freetype, gdk-pixbuf, glib, gtk3, lib
 , xorg, libglvnd, libjack2, ffmpeg, libxkbcommon, xdg-utils, zlib, pulseaudio
-, wrapGAppsHook3, makeWrapper }:
+  , wrapGAppsHook3, makeWrapper, pkgs }:
 
 stdenv.mkDerivation rec {
   pname = "bitwig-studio";
@@ -23,26 +23,28 @@ stdenv.mkDerivation rec {
   dontBuild = true;
   dontWrapGApps = true; # we only want $gappsWrapperArgs here
 
-  buildInputs = with xorg; [
-    alsa-lib
-    cairo
-    freetype
-    gdk-pixbuf
-    glib
-    gtk3
-    libxcb
-    xcbutil
-    xcbutilwm
-    zlib
-    libXtst
-    libxkbcommon
-    pulseaudio
-    libjack2
-    libX11
-    libglvnd
-    libXcursor
-    stdenv.cc.cc.lib
-  ];
+  buildInputs = with xorg;
+    [
+      alsa-lib
+      cairo
+      freetype
+      gdk-pixbuf
+      glib
+      gtk3
+      zlib
+      pulseaudio
+      libjack2
+      libglvnd
+      stdenv.cc.cc.lib
+    ] ++ (with pkgs; [
+      libxcb
+      libxcb-util
+      libxcb-wm
+      libx11
+      libxtst
+      libxkbcommon
+      libxcursor
+    ]);
 
   ldLibraryPath = lib.strings.makeLibraryPath buildInputs;
 

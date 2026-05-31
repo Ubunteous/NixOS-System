@@ -6,45 +6,45 @@
   pha = {
     name = "TAL Pha";
     url = "https://tal-software.com/downloads/plugins/TAL-Pha_64_linux.zip";
-    sha256 = "sha256-I6LxwoEQU9fqMa+idu4T55noyVLcm9wcexjv/ypMSh0=";
+    sha256 = "sha256-44xaZeqFMpuao//W7nlNMx+z+wpNrsaSw8XEZER7CSw=";
   };
 
   j-8 = {
     name = "TAL-J-8";
     url = "https://tal-software.com/downloads/plugins/TAL-J-8_64_linux.zip";
-    sha256 = "sha256-ifXxxMwYT511aajVTIXJukb+/9WokFQX/xovJi4qhEM=";
+    sha256 = "sha256-Afrszbx2frNGpuz9Bobnm+dvcvJvC86at//+gw9zSSQ=";
   };
 
   j-8x = {
     name = "TAL-J8X";
     url = "https://tal-software.com/downloads/plugins/TAL-J8X_64_linux.zip";
-    sha256 = "sha256-9L9LSSMUqEx/Hrwp3gJgwq7rFBmEFQ3pXwjmA3dbSHI=";
+    sha256 = "sha256-k6TgD+r9mlOFkiYbojpfHCS98OrITDHzwYKWLFjC98A=";
   };
 
   u-no-lx = {
     name = "TAL-U-NO-LX-V2";
     url =
       "https://tal-software.com/downloads/plugins/TAL-U-NO-LX-V2_64_linux.zip";
-    sha256 = "sha256-QucLd7n27gz7A1u5wP1xuyWewfWpvRK9cCB7SxC5yEQ=";
+    sha256 = "sha256-NVvlfmyBI/ngfszV01SY/kNt85TH/GwpVIojTKjMTRA=";
   };
 
   bassline-101 = {
     name = "TAL-BassLine-101";
     url =
       "https://tal-software.com/downloads/plugins/TAL-BassLine-101_64_linux.zip";
-    sha256 = "sha256-udLAJbsKGTa1oNjXrPnl2uH/UcnhBHba/qxKGXCNAGQ=";
+    sha256 = "sha256-u6lOx2PPYNFRueTOPHeFgSNGRbKCYk1JM3CwTil+l+E=";
   };
 
   drum = {
     name = "TAL-Drum";
     url = "https://tal-software.com/downloads/plugins/TAL-Drum_64_linux.zip";
-    sha256 = "sha256-IxLt6LpVR0y7QMCB9ynt1sZ/XcESFG1jXli8FNrTjks=";
+    sha256 = "sha256-tt6DVXU1XJ4/Wcux8GLPRc7iRYwWL1Xun7FSKs9wolY=";
   };
 
   sampler = {
     name = "TAL-Sampler";
     url = "https://tal-software.com/downloads/plugins/TAL-Sampler_64_linux.zip";
-    sha256 = "sha256-8CC5HEhxmU5me0ebVyBdDngriFF4tJcOgCUBzN4jazw=";
+    sha256 = "sha256-pFXdwORyR1cfrrIQL57dq0ikyc4Oh3I5vi4UgaTjh7k=";
   };
 
   mod = {

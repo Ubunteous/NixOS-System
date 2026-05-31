@@ -1,5 +1,5 @@
 { self, nixpkgs-stable, nixpkgs-unstable, nixos-hardware, home-manager, nur
-  , musnix, nixflix }:
+  , musnix }:
 
 let
   system = "x86_64-linux";
@@ -45,7 +45,7 @@ in {
 
         nur.modules.nixos.default
         musnix.nixosModules.musnix
-        nixflix.nixosModules.default
+        # nixflix.nixosModules.default
         # stylix.nixosModules.stylix
         # agenix.nixosModules.default
         home-manager.nixosModules.home-manager

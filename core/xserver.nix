@@ -47,7 +47,6 @@ in {
 
         gdm = {
           enable = if cfg.displayManager == "gdm" then true else false;
-          wayland = true;
           # debug; settings; autoSuspend; autoLogin.delay;
         };
       };

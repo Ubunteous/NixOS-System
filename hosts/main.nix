@@ -1,13 +1,19 @@
 { user, ... }:
 
-# Options: config, pkgs, lib, modulesPath, inputs, ... 
+# Options: config, pkgs, lib, modulesPath, inputs, ...
 # Help: man configuration.nix(5) or nixos-help’
 {
   ##################
   #     IMPORTS    #
   ##################
 
-  imports = [ ../core ../lab ../users ../wm ../programming ];
+  imports = [
+    ../core
+    ../lab
+    ../users
+    ../wm
+    ../programming
+  ];
 
   #--------------------#
   #        CORE        #
@@ -61,7 +67,7 @@
 
     # shiori.enable = false; # 8080 => 2525 bookmarks
     # kavita.enable = false; # 5000 reading server (library)
-    navidrome.enable = true; # 4533
+    navidrome.enable = false; # 4533
 
     #####################
     #     streaming     #
@@ -97,7 +103,7 @@
     restic.enable = false; # 8000
     # syncoid.enable = true;
     # sanoid.enable = true;
-    # rsyncd.enable = true;
+    # rsyncd.enable = true; # claude broke it after v3.4.4
     # filebrowser.enable = false; # 8080 => 8888
     # immich.enable = true; # 3001
 
@@ -141,7 +147,7 @@
 
     bind.enable = false;
     unbound.enable = false;
-    adguard.enable = true; # 3000 => 3090
+    adguard.enable = false; # 3000 => 3090
 
     # fail2ban.enable = true;
     # authelia.enable = true;
@@ -207,8 +213,6 @@
       config.home = {
         enable = true;
 
-        # packages = with pkgs; [ reaper ];
-
         firefox = {
           enable = true; # nur missing without osConfig
           on-nixos = true;
@@ -216,7 +220,7 @@
 
         # needs nix-ld
         # not necessary now that plugins are packages
-        u-he.enable = false;
+        # u-he.enable = false;
         godot.enable = true;
         # helix.enable = false;
 
@@ -234,7 +238,7 @@
         emacs.enable = false;
         vscode.enable = false;
 
-        nix-direnv.enable = true;
+        nix-direnv.enable = false;
         xdg-user-dir.enable = false;
 
         terminal = {
@@ -348,9 +352,9 @@
     hyprland.enable = false;
   };
 
-  ##############
+  #------------#
   #    Misc    #
-  ##############
+  #------------#
 
   ## NOT useful for the time being => gnupg.agent useful with mail
   # Some programs need SUID wrappers, can be configured further or are started in user sessions.

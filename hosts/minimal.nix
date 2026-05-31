@@ -60,7 +60,7 @@
     gnome.gnome-system-monitor
     vim
     xed-editor
-    xorg.xkbcomp # to generate a custom xkb layout
+    xkbcomp # to generate a custom xkb layout
   ];
 
   fonts = {

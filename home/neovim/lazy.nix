@@ -9,7 +9,7 @@ in {
 
       plugins = with pkgs.vimPlugins; [ lazy-nvim ];
 
-      extraLuaConfig = let
+      initLua = let
         plugins = with pkgs.vimPlugins; [
           gruvbox-nvim
 

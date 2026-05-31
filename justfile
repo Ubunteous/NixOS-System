@@ -74,6 +74,10 @@ install-xmonad:
 recompile-xmonad:
 	xmonad --recompile
 
+[group('Configs')]
+upgrade-janet-force:
+	rm -fr /home/$USER/.local/share/janet/jpm_tree && jpm deps
+
 
 # [group('Misc')]
 # 	delta: # broken

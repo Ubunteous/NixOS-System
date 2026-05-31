@@ -2,26 +2,26 @@
 
 with lib;
 let cfg = config.home.neovim;
-  in {
-    config = mkIf (cfg.enable && cfg.distro == "Lazy") {
-      # config made following:
-      # https://github.com/LazyVim/LazyVim/discussions/1972
+in {
+  config = mkIf (cfg.enable && cfg.distro == "Lazy") {
+    # config made following:
+    # https://github.com/LazyVim/LazyVim/discussions/1972
 
-      programs.neovim = {
-	enable = true;
+    programs.neovim = {
+      enable = true;
 
-	# extraPackages = with pkgs;
-	# [
-	# # LazyVim
-	# lua-language-server
-	# stylua
-	# # Telescope
-	# ripgrep
-	# ];
+      # extraPackages = with pkgs;
+      # [
+      # # LazyVim
+      # lua-language-server
+      # stylua
+      # # Telescope
+      # ripgrep
+      # ];
 
-	plugins = with pkgs.vimPlugins; [ lazy-nvim ];
+      plugins = with pkgs.vimPlugins; [ lazy-nvim ];
 
-	extraLuaConfig = let
+      initLua = let
         plugins = with pkgs.vimPlugins;
           [
             LazyVim # distro based on lazy-nvim
@@ -99,10 +99,10 @@ let cfg = config.home.neovim;
             }
           ] ++ [ gruvbox-nvim ];
         mkEntryFromDrv = drv:
-          if lib.isDerivation drv then {
-            name = "${lib.getName drv}";
-            path = drv;
-          } else
+        if lib.isDerivation drv then {
+          name = "${lib.getName drv}";
+          path = drv;
+        } else
             drv;
         lazyPath =
           pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);

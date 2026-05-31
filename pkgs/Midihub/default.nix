@@ -6,6 +6,6 @@ let
 
   src = fetchurl {
     url = "https://blokas.io/midihub/downloads/latest/linux/";
-    hash = "sha256-E0Hh3YQiJF8LaoRPwMF1Q3Wr8uqQxZ92XAzACw01gYs=";
+    hash = "sha256-Fn6YqmwyH+I3YcY5RhQQXUAefczhc+LQX/0imK2cJjs=";
   };
 in appimageTools.wrapType2 { inherit pname version src; }

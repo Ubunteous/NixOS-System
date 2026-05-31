@@ -1,12 +1,19 @@
-{ config, lib, pkgs, user, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 with lib;
 let
   cfg = config.home.themes;
   homecfg = config.home;
-in {
-  options.home.themes = {
-    enable = mkEnableOption "Enable support for themes";
+in
+  {
+	options.home.themes = {
+      enable = mkEnableOption "Enable support for themes";
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
@@ -41,7 +48,11 @@ in {
         package = pkgs.nordzy-cursor-theme;
       };
 
-      gtk3.extraConfig = { gtk-application-prefer-dark-theme = true; };
+      gtk4.theme = null; # required since v26.05
+
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
     };
   };
 }

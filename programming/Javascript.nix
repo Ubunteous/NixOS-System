@@ -23,11 +23,10 @@ in {
       users.users.${user} = {
         packages = with pkgs; [
           # eslint
-          nodePackages.prettier # available as prettier from v25.11
+          prettier # available as prettier from v25.11
           typescript-language-server
           vscode-js-debug
 
-          # runtime (bun is the fastest)
           nodejs
           # deno
 
@@ -46,9 +45,7 @@ in {
       };
     })
     (mkIf (langcfg.enable && cfg.addTypescript) {
-      users.users.${user} = {
-        packages = with pkgs; [ typescript nodePackages.ts-node ];
-      };
+      users.users.${user} = { packages = with pkgs; [ typescript ts-node ]; };
     })
   ];
 }

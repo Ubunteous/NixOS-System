@@ -150,7 +150,7 @@ in {
       # firefox
       # networkmanager # already installed
       # networkmanager-dmenu # requires dmenu 
-      # xorg.xkbcomp # to generate a custom xkb layout
+      # xkbcomp # to generate a custom xkb layout
 
       # wlr-randr # for qtile until a fix is found
 

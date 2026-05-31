@@ -90,10 +90,10 @@ mkShell {
     # missing for September 2024 update
     cairo # libcairo.so.2 => not found
     freetype # libfreetype.so.6 => not found
-    xorg.xcbutilkeysyms # libxcb-keysyms.so.1 => not found
-    xorg.libxcb # libxcb-shm.so.0 => not found
-    xorg.xcbutil # libxcb-util.so.1 => not found
-    # xorg.libxcb # libxcb.so.1 => not found
+    libxcb-keysyms # libxcb-keysyms.so.1 => not found
+    libxcb # libxcb-shm.so.0 => not found
+    libxcb-util # libxcb-util.so.1 => not found
+    # libxcb # libxcb.so.1 => not found
 
     # use either
     zlib # libz.so.1 => not found
@@ -106,7 +106,7 @@ mkShell {
     # libgio-2.0.so.0 => None
     # libgobject-2.0.so.0 => None
 
-    # xorg.libpthreadstubs ? libpthread.so.0 => None
+    # libpthread-stubs ? libpthread.so.0 => None
 
     # ld-linux-x86-64.so.2 => None
   ];

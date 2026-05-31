@@ -15,8 +15,8 @@ in {
         # nil # lsp > light
         nixd # lsp > powerfull
 
-        # nixfmt # for the new RFC 166-style formatter
-        nixfmt-classic # formatter
+        nixfmt # for the new RFC 166-style formatter
+        # nixfmt-classic # formatter. unmaintained
         # alejandra # formatter
 
         deadnix # find unused vars/params

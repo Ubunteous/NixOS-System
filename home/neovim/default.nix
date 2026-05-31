@@ -4,14 +4,19 @@ with lib;
 let
   homecfg = config.home;
   nvimcfg = config.home.neovim;
-  in {
-    options = {
-      home.neovim = {
-	enable = mkEnableOption "Neovim configuration";
+in
+  {
+	options = {
+    home.neovim = {
+      enable = mkEnableOption "Neovim configuration";
 
-	distro = mkOption {
+      distro = mkOption {
         default = "nix";
-        type = types.enum [ "nix" "Lazy" "lazy" ];
+        type = types.enum [
+          "nix"
+          "Lazy"
+          "lazy"
+        ];
         description = lib.mdDoc ''
           Choose the neovim configuration to use
         '';
@@ -50,7 +55,11 @@ let
       viAlias = true;
       vimAlias = true;
 
-      extraLuaConfig = lib.fileContents ./Lua/settings.lua;
+      # required since v26.05
+      withRuby = false;
+      withPython3 = false;
+
+      initLua = lib.fileContents ./Lua/settings.lua;
       # extraConfig = lib.fileContents ./vimrc;
     };
   };

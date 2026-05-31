@@ -103,7 +103,7 @@
     # restic.enable = false; # 8000
     # syncoid.enable = true;
     # sanoid.enable = true;
-    # rsyncd.enable = true;
+    # rsyncd.enable = true; # claude broke it after v3.4.4
     filebrowser.enable = true; # 8080 => 8888
     # immich.enable = true; # 2283
 

@@ -123,19 +123,19 @@ in {
       # Moreover, some packages are called wine64 instead of wine
       # (wine.override { wineBuild = "wine64"; })
       # (stable.wine.override { wineBuild = "wine64"; })
-      # nixpkgs.overlays = [ (self: super: { wine = super.wineWowPackages.stable; }) ];
+      # nixpkgs.overlays = [ (self: super: { wine = super.wineWow64Packages.stable; }) ];
       # wine # changed with an overlay to fix it in NixOS 22.05/11
       # stable.wine
-      # stable.wineWowPackages.stable
+      # stable.wineWow64Packages.stable
       # winetricks # useful to get gdiplus for serum
 
-      # stable.wineWowPackages.stable
+      # stable.wineWow64Packages.stable
       # stable.winetricks
       # stable.yabridge
       # stable.yabridgectl
 
-      # wineWowPackages.staging # v9.9 in 09/2024
-      # wineWowPackages.staging # v9.9 in 09/2024
+      # wineWow64Packages.staging # v9.9 in 09/2024
+      # wineWow64Packages.staging # v9.9 in 09/2024
 
       # stable.wine
       # stable.winetricks
@@ -188,8 +188,8 @@ in {
       # hardware support for wine: hardware.opengl.driSupport32Bit
 
       (self: super: {
-        wine = super.wineWowPackages.stable;
-        stable.wine = super.wineWowPackages.stable;
+        wine = super.wineWow64Packages.stable;
+        stable.wine = super.wineWow64Packages.stable;
       })
 
       ##############

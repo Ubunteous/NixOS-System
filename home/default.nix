@@ -1,7 +1,10 @@
 { lib, ... }:
 
-with lib; {
-  options.home = { enable = mkEnableOption "Home manager configuration"; };
+with lib;
+{
+  options.home = {
+    enable = mkEnableOption "Home manager configuration";
+  };
 
   # Unstable: "https://github.com/nix-community/home-manager/archive/master.tar.gz";
   # Troubleshoot: systemctl status "home-manager-$USER.service"
@@ -28,7 +31,7 @@ with lib; {
     ./picom.nix
     ./redshift.nix
     ./themes.nix
-    ./u-he.nix
+    # ./u-he.nix
     ./vscode.nix
     ./xautolock.nix # replace it with a service
     ./godot.nix

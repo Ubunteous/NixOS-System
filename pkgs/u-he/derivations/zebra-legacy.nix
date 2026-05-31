@@ -1,5 +1,4 @@
-{ pkgs, autoPatchelfHook, stdenv, gtk3, glib, xorg, name
-  , url, sha256 }:
+{ pkgs, autoPatchelfHook, stdenv, gtk3, glib, name, url, sha256 }:
 
 stdenv.mkDerivation {
   inherit name;
@@ -10,7 +9,7 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ autoPatchelfHook ];
-  buildInputs = [ gtk3 glib xorg.xcbutil xorg.xcbutilkeysyms ];
+  buildInputs = [ gtk3 glib libxcb-util libxcb-keysyms ];
 
   installPhase = ''
     mkdir -p $out/lib

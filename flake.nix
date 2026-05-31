@@ -8,28 +8,28 @@
   # sudo nixos-rebuild build --flake '.nix.d/#' beforehand
 
   inputs = {
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
 
     musnix.url = "github:musnix/musnix";
     nur.url = "github:nix-community/NUR";
 
-    nixflix = {
-      url = "github:kiriwalawren/nixflix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    # nixflix = {
+    #   url = "github:kiriwalawren/nixflix";
+    #   inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # };
 
     # stylix.url = "github:danth/stylix";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # url = "github:nix-community/home-manager";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
 
       # stable release, may not work
-      # url = "github:nix-community/home-manager/release-23.05";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     # nix-index-database = {

@@ -5,8 +5,8 @@ stdenv.mkDerivation {
 
   src = pkgs.fetchurl {
     url =
-      "https://github.com/surge-synthesizer/OB-Xf/releases/download/Nightly/obxf-2026-02-20-b34831b-Linux.zip";
-    sha256 = "sha256-hmXK1Re34Zb1zzkZ29xqhSu7Tbxr4oTkapjCcuEIyck=";
+      "https://github.com/surge-synthesizer/OB-Xf/releases/download/v1.0.3/ob-xf-Linux-v1.0.3.zip";
+    sha256 = "sha256-crYMg89kJjNwMd90TDSgRxBKnZXx/q9s0Ejs+jn3TJY=";
   };
 
   dontBuild = true;
