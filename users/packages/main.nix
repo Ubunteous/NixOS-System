@@ -91,6 +91,8 @@ in {
       # environment.interactiveShellInit = "alias dive='dive --source podman'";
       # dive # analyse docker image
 
+      # ethtool # interface management
+
       ################
       #   SECURITY   #
       ################

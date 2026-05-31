@@ -61,6 +61,9 @@ in {
     # Bluetooth
     hardware.bluetooth.enable = false;
 
+    # gracefully spin-down external storage during shutdown
+    hardware.usbStorage.manageShutdown = true;
+
     ######################
     #   KERNEL VERSION   #
     ######################

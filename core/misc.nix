@@ -34,6 +34,9 @@ in {
     ############
 
     environment = {
+      # removes need to pass --flake every time
+      # etc."/nixos/flake.nix".source = "/home/${user}/.nix.d/flake.nix";
+
       # Warning: NixOS assumes that Bash is used by default for /bin/sh
       # Dash is faster than bash
       binsh = "${pkgs.dash}/bin/dash";
