@@ -33,15 +33,14 @@ in {
       syntaxHighlighting.enable = true;
 
       shellAliases = {
-        sticky =
-          "xkbset exp -bell -sticky -twokey -latchlock -accessx -feedback -stickybeep -led 9999 && xkbset bell sticky -twokey -latchlock feedback led stickybeep";
+        sticky = "xkbset exp -bell -sticky -twokey -latchlock -accessx -feedback -stickybeep -led 9999 && xkbset bell sticky -twokey -latchlock feedback led stickybeep";
 
         powermenu = "${config.home.homeDirectory}/.config/rofi/powermenu.sh";
-        gem-lock =
-          "brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r";
+        gem-lock = "brightnessctl -s set 5 && i3lock -ueni ~/Pictures/gem_full.png; brightnessctl -r";
 
-        # ls = ''eza --hide="*~"'';
-        ls = "eza --ignore-glob='*~' || ls";
+        trash = "mv -t ~/.local/share/Trash/files/";
+
+        ll = "(eza --icons=auto --ignore-glob='*~' || ls --ignore-backups)";
         # cat = "bat || cat"; # forces usage of C-c
         # try later with mkdir -p
 
@@ -116,6 +115,14 @@ in {
         #######################
 
         source ~/.config/p10k/p10k.zsh
+
+        ########
+        # MKCD #
+        ########
+
+        mkcd() {
+            mkdir -p "$1" && cd "$1"
+        }
       '';
 
       plugins = [
