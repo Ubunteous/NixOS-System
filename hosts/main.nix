@@ -187,6 +187,7 @@
     };
 
     music.enable = true;
+    winbox.enable = true;
 
     # steam.enable = true;
     # stylix.enable = false;
