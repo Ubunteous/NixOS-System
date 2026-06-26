@@ -4,14 +4,16 @@ with lib;
 let
   cfg = config.lab.unbound;
   corecfg = config.lab;
-in {
+in
+  {
 
-  options.lab.unbound = {
+	options.lab.unbound = {
     enable = mkEnableOption "Enables support for Unbound";
   };
 
   config = mkIf (corecfg.enable && cfg.enable) {
     services.unbound = {
+      # also check unbound checkconf for debugging
       enable = true;
 
       # example for settings

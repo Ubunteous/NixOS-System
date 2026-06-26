@@ -27,6 +27,8 @@ in {
         # cannot build from source with current ram
         # python3Packages.tensorflow
 
+        # # alternative to import python packages:
+        # (python3.withPackages(ps: with ps; [tkinter]))
         (let
           my-python-packages = python-packages:
             with python-packages; [
