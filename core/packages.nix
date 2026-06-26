@@ -65,6 +65,7 @@ in {
           # "plexmediaserver"
           # "gitkraken"
           # "Oracle_VM_VirtualBox_Extension_Pack"
+          "winbox"
         ];
 
       # unfreePredicate is more precise than unfreeLicenses

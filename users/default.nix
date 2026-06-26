@@ -11,6 +11,7 @@ with lib; {
     ./packages/security.nix
     ./music.nix
     ./visual-art.nix
+    ./winbox.nix
     # ./steam.nix
     # ./stylix.nix
     # ./input-remapper.nix
