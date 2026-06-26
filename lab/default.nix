@@ -98,6 +98,7 @@ with lib;
 
     # ./dns/blocky.nix
     ./dns/adguard.nix
+    # ./dns/dnsmasq.nix
     ./dns/unbound.nix
     ./dns/bind.nix
 

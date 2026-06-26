@@ -145,9 +145,10 @@
     wireguard.enable = false;
     # blocky.enable = false;
 
+    # dnsmasq.enable = false;
     bind.enable = false;
     unbound.enable = false;
-    adguard.enable = false; # 3000 => 3090
+    adguard.enable = false; # 3000 (if needed, set to 3090)
 
     # fail2ban.enable = true;
     # authelia.enable = true;
