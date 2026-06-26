@@ -1,31 +1,38 @@
-{ config, lib, pkgs, user, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 with lib;
 let
   cfg = config.user.packages.security;
   usercfg = config.user;
-in {
-  options.user.packages.security = {
-    enable = mkEnableOption "Enable security packages";
-  };
+in
+  {
+	options.user.packages.security = {
+      enable = mkEnableOption "Enable security packages";
+	};
 
-  config = mkIf (usercfg.enable && cfg.enable) {
+	config = mkIf (usercfg.enable && cfg.enable) {
     users.users.${user}.packages = with pkgs; [
       # cli
       nmap # network discovery/auditing
       # netcat-gnu # read network i/o. nc already available
       tcpdump # network sniffer
-      # mitm6 # network spoofing # python broken 4/2026
+      # # mitm6 # network spoofing # python broken 4/2026
       # fping # faster ping with multiple targets
-      nuclei # vulnerability scanner
+      # nuclei # vulnerability scanner
 
       # toolkits
       # autopsy # sleuth kit gui
       # ghidra # reverse engineering. decompiles to c
-      metasploit
-      armitage # metasploit frontend
+      # metasploit
+      # armitage # metasploit frontend
       wireshark # packet sniffer
-      burpsuite # web app testing. layer 7 man in the middle
+      # burpsuite # web app testing. layer 7 man in the middle
 
       # password recovery
       # john # try johnny for gui frontend
@@ -42,17 +49,17 @@ in {
       # # spiderfoot # can be installed from source
 
       # wifi/network
-      aircrack-ng # security audit
-      recon-ng # web reconnaissance
-      bettercap # man in the middle
-      netexec # crackmapexec fork. exploits
-      # responder # man in the middle. insanely comprehensive
+      # aircrack-ng # security audit (crack wpa keys)
+      # # recon-ng # web reconnaissance # last commit 2 years ago
+      # bettercap # man in the middle
+      # netexec # crackmapexec fork. exploits, creds spray
+      # # responder # man in the middle. insanely comprehensive
 
       # web app/server
-      sqlmap # injection
-      nikto # web server scanner. plugins
-      # whatweb # web server scanner. many plugins
-      # ffuf # web fuzzing. flags like curl. FUZZ from file
+      # sqlmap # injection
+      # nikto # web server scanner. plugins
+      # # whatweb # web server scanner. many plugins
+      # # ffuf # web fuzzing. flags like curl. FUZZ from file
     ];
   };
 }
