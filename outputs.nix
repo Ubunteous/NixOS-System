@@ -1,5 +1,12 @@
-{ self, nixpkgs-stable, nixpkgs-unstable, nixos-hardware, home-manager, nur
-  , musnix }:
+{
+  self,
+  nixpkgs-stable,
+  nixpkgs-unstable,
+  nixos-hardware,
+  home-manager,
+  nur,
+  musnix,
+}:
 
 let
   system = "x86_64-linux";
@@ -23,7 +30,8 @@ let
       stable = nixpkgs-stable.legacyPackages.${prev.system};
     };
   };
-in {
+in
+{
   # also see alejandra, and nixpkgs-fmt
   # formatter.x86_64-linux = nixpkgs-unstable.legacyPackages.x86_64-linux.nixfmt;
 
@@ -32,106 +40,141 @@ in {
     #   NIXOS   #
     #############
 
-    nixos = let user = "ubunteous";
-    in nixpkgs-unstable.lib.nixosSystem {
-      system = system;
-      specialArgs = { inherit user; };
+    nixos =
+      let
+        user = "ubunteous";
+      in
+      nixpkgs-unstable.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit user; };
 
-      modules = [
-        # Fix touchpad/wifi
-        #<nixos-hardware/lenovo/thinkpad/t14s/amd/gen1>
-        ./hardware/laptop
-        ./hosts/main.nix
+        modules = [
+          # Fix touchpad/wifi
+          #<nixos-hardware/lenovo/thinkpad/t14s/amd/gen1>
+          ./hardware/laptop
+          ./hosts/main.nix
 
-        nur.modules.nixos.default
-        musnix.nixosModules.musnix
-        # nixflix.nixosModules.default
-        # stylix.nixosModules.stylix
-        # agenix.nixosModules.default
-        home-manager.nixosModules.home-manager
-        # nix-index-database.nixosModules.nix-index
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+          nur.modules.nixos.default
+          musnix.nixosModules.musnix
+          # nixflix.nixosModules.default
+          # stylix.nixosModules.stylix
+          # agenix.nixosModules.default
+          home-manager.nixosModules.home-manager
+          # nix-index-database.nixosModules.nix-index
+          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
 
-        #################
-        #   NIX INDEX   #
-        #################
+          #################
+          #   NIX INDEX   #
+          #################
 
-        # nix-index-database.nixosModules.nix-index
-        # # optional to also wrap and install comma
-        # { programs.command-not-found.enable = false; }
-        # # { programs.nix-index-database.comma.enable = true; }
+          # nix-index-database.nixosModules.nix-index
+          # # optional to also wrap and install comma
+          # { programs.command-not-found.enable = false; }
+          # # { programs.nix-index-database.comma.enable = true; }
 
-        ###############
-        #   PROXMOX   #
-        ###############
+          ###############
+          #   PROXMOX   #
+          ###############
 
-        # proxmox-nixos.nixosModules.proxmox-ve
+          # proxmox-nixos.nixosModules.proxmox-ve
 
-        # ({ pkgs, lib, ... }: {
-        #   services.proxmox-ve.enable = true;
-        #   nixpkgs.overlays = [ proxmox-nixos.overlays.${system} ];
-        # })
+          # ({ pkgs, lib, ... }: {
+          #   services.proxmox-ve.enable = true;
+          #   nixpkgs.overlays = [ proxmox-nixos.overlays.${system} ];
+          # })
 
-      ];
-    };
+        ];
+      };
 
     ##############
     #   SERVER   #
     ##############
 
-    server = let user = "nix";
-    in nixpkgs-unstable.lib.nixosSystem {
-      system = system;
-      specialArgs = { inherit user; };
-      modules = [
-        ./hosts/server.nix
-        ./hardware/server
+    server =
+      let
+        user = "nix";
+      in
+      nixpkgs-unstable.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit user; };
+        modules = [
+          ./hosts/server.nix
+          ./hardware/server
 
-        nur.modules.nixos.default
-        musnix.nixosModules.musnix
-        home-manager.nixosModules.home-manager
+          nur.modules.nixos.default
+          musnix.nixosModules.musnix
+          home-manager.nixosModules.home-manager
 
-        ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
-      ];
-    };
+          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+        ];
+      };
+
+    #############
+    #   OLDIE   #
+    #############
+
+    server =
+      let
+        user = "nix";
+      in
+		nixpkgs-unstable.lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit user; };
+          modules = [
+			./hosts/oldie.nix
+			./hardware/oldie
+
+			nur.modules.nixos.default
+			musnix.nixosModules.musnix
+			home-manager.nixosModules.home-manager
+
+			# ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+          ];
+		};
 
     ###########
     #   SRM   #
     ###########
 
-    srm = let user = "nix";
-    in nixpkgs-unstable.lib.nixosSystem {
-      system = system;
-      specialArgs = { inherit user; };
-      modules = [
-        ./hosts/srm.nix
-        ./hardware/srm
+    srm =
+      let
+        user = "nix";
+      in
+		nixpkgs-unstable.lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit user; };
+          modules = [
+			./hosts/srm.nix
+			./hardware/srm
 
-        nur.modules.nixos.default
-        musnix.nixosModules.musnix
-        home-manager.nixosModules.home-manager
+			nur.modules.nixos.default
+			musnix.nixosModules.musnix
+			home-manager.nixosModules.home-manager
 
-        #({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
-      ];
-    };
+			#({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+          ];
+		};
 
     ###############
     #   MINIMAL   #
     ###############
 
-    minimal = let user = "ubunteous";
-    in nixpkgs-unstable.lib.nixosSystem {
-      system = system;
-      specialArgs = { inherit user; };
+    minimal =
+      let
+        user = "ubunteous";
+      in
+		nixpkgs-unstable.lib.nixosSystem {
+          system = system;
+          specialArgs = { inherit user; };
 
-      modules = [
-        ./hosts/minimal.nix
-        ./hardware/hardware-configuration.nix
-        home-manager.nixosModules.home-manager
+          modules = [
+			./hosts/minimal.nix
+			./hardware/hardware-configuration.nix
+			home-manager.nixosModules.home-manager
 
-        # ./hosts/audition.nix
-      ];
-    };
+			# ./hosts/audition.nix
+          ];
+		};
   };
 
   ######################
@@ -140,22 +183,25 @@ in {
 
   defaultPackage.${system} = home-manager.defaultPackage.${system};
 
-  homeConfigurations = let user = "ubunteous";
-  in {
-    # nix run . -- build --flake . # or switch
-    # Then restart your shell or run exec $SHELL -l
+  homeConfigurations =
+    let
+      user = "ubunteous";
+    in
+      {
+		# nix run . -- build --flake . # or switch
+		# Then restart your shell or run exec $SHELL -l
 
-    work = home-manager.lib.homeManagerConfiguration {
-      extraSpecialArgs = { inherit user; };
-      pkgs = import nixpkgs-unstable { system = system; };
+		work = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit user; };
+          pkgs = import nixpkgs-unstable { system = system; };
 
-      modules = [
-        ./hosts/work.nix
+          modules = [
+			./hosts/work.nix
 
-        nur.nixosModules.nur
-        # nur.hmModules.nur
-      ];
-    };
-  };
+			nur.nixosModules.nur
+			# nur.hmModules.nur
+          ];
+		};
+      };
 
 }
