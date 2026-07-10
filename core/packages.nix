@@ -87,23 +87,27 @@ in {
       enable = true;
       startWithGraphical = true;
 
-      package = with pkgs;
-        ((emacsPackagesFor emacs30).emacsWithPackages
+      package =
+        with pkgs;
+        ((emacsPackagesFor emacs31).emacsWithPackages
           # (epkgs: with epkgs; [ # adds epkgs prefix to all
-          (epkgs: [
-            # does not provide the package itself but the binary
-            epkgs.vterm
-            epkgs.jinx
-            epkgs.auctex
+          (
+            epkgs: [
+              # does not provide the package itself but the binary
+              epkgs.vterm
+              epkgs.jinx
+              epkgs.auctex
 
-            # mu does not install mu4e automatically anymore
-            # pkgs.mu
-            # epkgs.mu4e
-            # pkgs.emacs-lsp-booster
+              # mu does not install mu4e automatically anymore
+              # pkgs.mu
+              # epkgs.mu4e
+              # pkgs.emacs-lsp-booster
 
-            # tree-sitter-langs # maybe deprecated
-            epkgs.treesit-grammars.with-all-grammars
-          ]));
+              # tree-sitter-langs # maybe deprecated
+              epkgs.treesit-grammars.with-all-grammars
+            ]
+          )
+        );
     };
 
     environment.systemPackages = with pkgs; [
