@@ -113,7 +113,7 @@ in
     #   OLDIE   #
     #############
 
-    server =
+    oldie =
       let
         user = "nix";
       in
@@ -202,6 +202,6 @@ in
 			# nur.hmModules.nur
           ];
 		};
-      };
+    };
 
 }
