@@ -35,7 +35,7 @@ with lib;
     ./sysadmin/ssh.nix
     ./sysadmin/k3s.nix
     ./sysadmin/podman.nix
-    # ./sysadmin/virtual-box.nix
+    ./sysadmin/virtual-box.nix
 
     # ./monitoring/grafana.nix
     # ./monitoring/prometheus.nix

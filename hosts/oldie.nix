@@ -15,9 +15,6 @@
     ../programming
   ];
 
-  lab.enable = true;
-  lab.virtualbox.enable = true;
-
   languages = {
     enable = true;
     # python.enable = true;
@@ -33,6 +30,7 @@
     boot.enable = true;
     networking.enable = true;
     zfs.enable = true;
+    misc.enable = true;
 
     xserver = {
       enable = true;
@@ -47,18 +45,18 @@
   };
 
   #--------------------#
-  #         USER         #
+  #        USER        #
   #--------------------#
 
   user = {
     enable = true;
+    main.enable = true;
 
-    prince.enable = true;
-    packages.enable = true;
+    packages.core.enable = true;
   };
 
   #--------------------#
-  #         HOME         #
+  #        HOME        #
   #--------------------#
 
   home-manager = {
@@ -102,6 +100,23 @@
         dots.enable = true;
       };
     };
+  };
+
+  #--------------------#
+  #         LAB        #
+  #--------------------#
+
+  lab = {
+    enable = true;
+
+    virtualbox.enable = true;
+    homepage.enable = true;
+
+    radarr.enable = true; # 7878 movies
+    bazarr.enable = true; # 6767 subtitles
+    sonarr.enable = true; # 8989 tv series
+    prowlarr.enable = true; # 9696 indexer
+    qbittorrent.enable = true; # 8080
   };
 
   #--------------------#
