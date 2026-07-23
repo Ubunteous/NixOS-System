@@ -6,6 +6,7 @@
   home-manager,
   nur,
   musnix,
+  lem,
 }:
 
 let
@@ -61,7 +62,11 @@ in
           # agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           # nix-index-database.nixosModules.nix-index
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [
+              overlay-stable
+            ];
+          })
 
           #################
           #   NIX INDEX   #
@@ -83,6 +88,12 @@ in
           #   nixpkgs.overlays = [ proxmox-nixos.overlays.${system} ];
           # })
 
+          ###########
+          #   LEM   #
+          ###########
+
+          { nixpkgs.overlays = [ lem.overlays.default ]; }
+          ({ config, pkgs, ... }: { environment.systemPackages = [ pkgs.lem-ncurses ]; })
         ];
       };
 

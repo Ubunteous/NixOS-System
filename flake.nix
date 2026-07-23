@@ -20,6 +20,7 @@
     # };
 
     # stylix.url = "github:danth/stylix";
+    lem.url = "github:lem-project/lem";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 

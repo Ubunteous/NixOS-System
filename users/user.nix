@@ -1,13 +1,22 @@
-{ config, lib, pkgs, user, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 with lib;
 let
   cfg = config.user.main;
   usercfg = config.user;
-in {
-  options.user.main = { enable = mkEnableOption "Add main user"; };
+in
+  {
+	options.user.main = {
+      enable = mkEnableOption "Add main user";
+	};
 
-  config = mkIf (usercfg.enable && cfg.enable) {
+	config = mkIf (usercfg.enable && cfg.enable) {
     # add zsh to /etc/shells
     environment.shells = with pkgs; [ zsh ];
 
@@ -38,8 +47,13 @@ in {
       # realtime audio for musnix
       # uinput and input for kmonad and kanata
 
-      extraGroups = [ "networkmanager" "wheel" "uinput" ] # "kvm" for android
-        ++ (if ("${user}" != "server") then [ "realtime" "audio" ] else [ ]);
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "uinput"
+        "realtime"
+        "audio"
+      ]; # "kvm" for android
 
       shell = pkgs.zsh; # set user's default shell
 

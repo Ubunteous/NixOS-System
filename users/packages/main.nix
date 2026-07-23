@@ -130,7 +130,7 @@ in {
       gnuplot
 
       # sudo cd /mnt && jmtpfs android && nemo android
-      jmtpfs # alt: go-mtpfs or services.gvfs.enable = true;
+      # jmtpfs # unmainained. alt: go-mtpfs or services.gvfs.enable = true;
 
       # libnotify # notify-send. alternative to dunstify
       # neofetch

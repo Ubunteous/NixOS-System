@@ -157,7 +157,7 @@
     #   downloads   #
     #################
 
-    qbittorrent-nox.enable = false;
+    qbittorrent.enable = false; # check if still working/up to date
 
     ################
     #    proxy     #
@@ -324,7 +324,7 @@
     clojure.enable = true;
     elixir.enable = false;
     kotlin.enable = false;
-    common-lisp.enable = false;
+    common-lisp.enable = true;
 
     # only adds lsp/fmt/lint
     shell.enable = false;

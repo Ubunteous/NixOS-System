@@ -96,6 +96,7 @@ in {
             epkgs: [
               # does not provide the package itself but the binary
               epkgs.vterm
+              # epkgs.ghostel # broken 7/2026
               epkgs.jinx
               epkgs.auctex
 

@@ -19,7 +19,7 @@ in
 	config = mkIf (usercfg.enable && cfg.enable) {
     users.users.${user}.packages = with pkgs; [
       # cli
-      nmap # network discovery/auditing
+      # nmap # network discovery/auditing
       # netcat-gnu # read network i/o. nc already available
       tcpdump # network sniffer
       # # mitm6 # network spoofing # python broken 4/2026

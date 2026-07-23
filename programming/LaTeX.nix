@@ -1,13 +1,19 @@
-{ config, lib, pkgs, user, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 with lib;
 let
   cfg = config.languages.latex;
   langcfg = config.languages;
-in {
+in
+{
   options.languages.latex = {
-    enable =
-      mkEnableOption "Enables support for the LaTeX programming language";
+    enable = mkEnableOption "Enables support for the LaTeX programming language";
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {
@@ -25,9 +31,9 @@ in {
         # lilypond-with-fonts # try version with fonts
         lilypond-unstable-with-fonts
 
-        (texlive.combine {
-          inherit (texlive)
-          # scheme-basic # base (but not minimal)
+        (texliveSmall.withPackages (
+          ps: with ps; [
+            # scheme-basic # base (but not minimal)
             scheme-small # for missing mf command
             comment
 
@@ -38,7 +44,12 @@ in {
             # microtype
 
             # oad
-            pdfpages ulem fp changepage xcolor pdflscape
+            pdfpages
+            ulem
+            fp
+            changepage
+            xcolor
+            pdflscape
 
             # cv
             fontawesome
@@ -51,7 +62,8 @@ in {
             # capt-of
             # kpathsea
             # metafont
-            parskip listings
+            parskip
+            listings
 
             # presentations
             # beamer
@@ -72,15 +84,16 @@ in {
             # misc
             enumitem
             # forest
-            ragged2e preprint # corresponds to fullpage package
+            ragged2e
+            preprint # corresponds to fullpage package
             # caption
             # pgfgantt
             # extsizes
             # multirow
             # biblatex
             # biber
-          ;
-        })
+          ]
+        ))
       ];
     };
   };
