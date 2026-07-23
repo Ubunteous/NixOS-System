@@ -4,13 +4,18 @@ with lib;
 let
   cfg = config.lab.homepage;
   labcfg = config.lab;
-in {
+in
+{
   options.lab.homepage = {
     enable = mkEnableOption "Enables support for Homepage";
 
     address = mkOption {
-      type =
-        types.enum [ "server.local" "localhost" "192.168.1.99" "192.168.12.1" ];
+      type = types.enum [
+        "localhost"
+        "server.local" # dns
+        "192.168.1.99" # router
+        "192.168.88.9" # mikrotik
+      ];
       default = "localhost";
       description = lib.mdDoc ''
         Service address. Either server (dns setting) or localhost.
@@ -26,6 +31,11 @@ in {
     services.homepage-dashboard = {
       enable = true;
 
+      # Open listen port in the firewall for Homepage
+      # note these: 22000 (transfers) and 21027 (discovery)
+      openFirewall = true;
+      allowedHosts = "${cfg.address}:8082";
+
       widgets = [
         {
           datetime = {
@@ -38,7 +48,8 @@ in {
           };
         }
         {
-          resources = { # glances monitors ext machine
+          resources = {
+            # glances monitors ext machine
             cpu = true;
             disk = "/";
             memory = true;
@@ -58,8 +69,7 @@ in {
         # language = "en";
 
         background = {
-          image =
-            "https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80";
+          image = "https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fit=crop&w=2560&q=80";
           # blur = "sm"; # sm, md, xl
           # saturate = "50"; # 0, 50, 100
           # brightness = "50"; # 0, 50, 75
@@ -104,7 +114,8 @@ in {
             columns = "2";
             rows = "3";
           };
-          monitoring = { # group Name in services/bookmarks.yaml
+          monitoring = {
+            # group Name in services/bookmarks.yaml
             style = "column";
             columns = "3";
             # initiallyCollapsed = "true";
@@ -168,8 +179,7 @@ in {
             {
               "Restic" = {
                 # icon = "restic.png"; # unavailable
-                icon =
-                  "https://forum.restic.net/uploads/default/original/1X/3773c7993ff25bf4c15aa18cdd336f94bccd96f5.png";
+                icon = "https://forum.restic.net/uploads/default/original/1X/3773c7993ff25bf4c15aa18cdd336f94bccd96f5.png";
                 href = "http://${cfg.address}:8000/";
               };
             }
@@ -202,18 +212,18 @@ in {
                 href = "http://${cfg.address}:4533/";
               };
             }
-            {
-              "Komga" = {
-                icon = "komga.png";
-                href = "http://${cfg.address}:8069/";
-              };
-            }
             # {
-            #   "Kavita" = {
-            #     icon = "kavita.png";
-            #     href = "http://${cfg.address}:5000/";
+            #   "Komga" = {
+            #     icon = "komga.png";
+            #     href = "http://${cfg.address}:8069/";
             #   };
             # }
+            {
+              "Kavita" = {
+                icon = "kavita.png";
+                href = "http://${cfg.address}:5000/";
+              };
+            }
           ];
         }
 
@@ -499,10 +509,6 @@ in {
 
       # http://${cfg.address}:8082/
       # listenPort = 8082; # default is 8082
-
-      # Open listen port in the firewall for Homepage
-      # note these: 22000 (transfers) and 21027 (discovery)
-      openFirewall = true;
     };
   };
 }

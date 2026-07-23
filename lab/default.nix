@@ -10,7 +10,11 @@ with lib;
       enable = mkEnableOption "Git utilities";
 
       webUI = mkOption {
-        type = types.enum [ "gitea" "gitweb" "cgit" ];
+        type = types.enum [
+          "gitea"
+          "gitweb"
+          "cgit"
+        ];
         default = null;
         description = "Git web UI used (gitea, gitweb or cgit)";
       };
@@ -55,9 +59,9 @@ with lib;
     ./streaming/jellyfin.nix
     ./streaming/jellyseer.nix
     ./streaming/tautulli.nix
-    # ./streaming/kavita.nix
+    ./streaming/kavita.nix
     ./streaming/navidrome.nix
-    ./streaming/komga.nix
+    # ./streaming/komga.nix
     ./streaming/immich.nix
 
     # ./servarr/nixflix.nix

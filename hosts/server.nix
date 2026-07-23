@@ -46,10 +46,6 @@
   #        LAB         #
   #--------------------#
 
-  # sudo nixos-rebuild switch --flake ~/.nix.d/#nixos --specialisation localNetwork
-  specialisation.localNetwork.configuration.lab.create_ap.enable =
-    lib.mkForce false;
-
   lab = {
     enable = true;
     # mkDataDir = true; # zfs datasets
@@ -57,15 +53,14 @@
 
     ssh.enable = true;
 
-    create_ap = {
-      enable = true;
-      wifiInterface = "wlp2s0";
-    };
+    # create_ap = {
+    #   enable = true;
+    #   wifiInterface = "wlp2s0";
+    # };
 
     homepage = {
       enable = true; # 8082
-      address =
-        "192.168.12.1"; # server.local or localhost or 192.168.1.99 or 192.168.12.1
+      address = "192.168.88.9"; # server.local or localhost or 192.168.1.99 or 192.168.12.1
     };
 
     # minecraft.enable = false;
@@ -76,8 +71,8 @@
 
     # plex.enable = true; # 8096 # localhost:32400/web
     # tautulli.enable = false; # 8181 plex manager
-    # kavita.enable = false;
-    komga.enable = true; # 8080/25600 => 8069
+    kavita.enable = true; # 5000
+    # komga.enable = false; # 8080/25600 => 8069
 
     # auto deactivated if music dir missing
     navidrome.enable = true; # 4533
@@ -155,7 +150,7 @@
 
     # give full access with 0.0.0.0/0 subnet
     # default: admin and see systemctl status for password
-    # qbittorrent-nox.enable = true; # 8080
+    # qbittorrent.enable = true; # 8080
 
     # rtorrent.enable = true; # ?
     # rutorrent.enable = true; # ?
