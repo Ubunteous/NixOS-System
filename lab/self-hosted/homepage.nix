@@ -34,7 +34,7 @@ in
       # Open listen port in the firewall for Homepage
       # note these: 22000 (transfers) and 21027 (discovery)
       openFirewall = true;
-      allowedHosts = "${cfg.address}:8082";
+      allowedHosts = "${cfg.address}:8082,server.lan:8082";
 
       widgets = [
         {

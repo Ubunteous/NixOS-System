@@ -21,6 +21,7 @@ in
   config = mkIf (labcfg.enable && cfg.enable) {
     # port is already defined in kavita configuration
     networking.firewall = mkIf cfg.openFirewall { allowedTCPPorts = [ cfg.port ]; };
+    users.users.kavita.extraGroups = "multimedia";
 
     services.kavita = {
       enable = true;

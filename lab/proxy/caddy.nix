@@ -64,6 +64,12 @@ in {
     services.caddy = {
       enable = true;
 
+      # maybe extraConfig = { skip_install_trust } or configFile = pkgs.writeText "CaddyFile" ''...''
+      # prevents downloading missing lib to validate certs which is not necessary in lan
+      # globalConfig = ''
+      #   skip_install_trust
+      # '';
+
       # test caddy with: curl localhost:2019/config/
       # test redirects with: curl localhost -i -L -k
       virtualHosts = {
