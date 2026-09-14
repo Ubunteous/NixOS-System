@@ -38,6 +38,7 @@ in {
           "burpsuite"
           "claude-code"
           "discord"
+          "discord-unwrapped"
           # "minecraft-launcher"
           # "minecraft-server"
           # "optifine" # minecraft

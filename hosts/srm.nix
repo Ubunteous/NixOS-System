@@ -122,6 +122,7 @@
     janet.enable = true;
     javascript.enable = true;
     postgresql.enable = true;
+    common-lisp.enable = true;
   };
 
   #--------------------#
