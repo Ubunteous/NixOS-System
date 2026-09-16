@@ -167,7 +167,7 @@ in
             {
               "Syncthing" = {
                 icon = "syncthing.png";
-                href = "http://${cfg.address}:8384/";
+                href = "http://localhost:8384/";
 
                 # # requires syncthing relay
                 # widget = {
