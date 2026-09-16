@@ -25,7 +25,7 @@ in {
       # logseq
       # minecraft # broken
       # miniflux # rss
-      # nyxt ;; deps notify broken. 4/2025
+      # nyxt
       # optifine # minecraft
       # prismlauncher # minecraft + lambdynamic mod
       # qbittorrent
