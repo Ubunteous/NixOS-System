@@ -51,6 +51,12 @@ in
             xcolor
             pdflscape
 
+            # music
+            musicography
+            musixtex
+            makecell
+            stackengine
+
             # cv
             fontawesome
             # hyperref
