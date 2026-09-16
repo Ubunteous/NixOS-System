@@ -46,7 +46,7 @@ in {
         # analyser #
         ############
 
-        sqlfluff # linter and formatter
+        # sqlfluff # linter and formatter
         # sqlcheck
 
         ############
@@ -98,14 +98,18 @@ in {
 
       # superUser = "${user}"; # "postgres";
 
-      # authentication = pkgs.lib.mkOverride 10 ''
+      # for file pg_hba.conf written in /nix/store
       authentication = ''
-        #type database DBuser address      auth-method
-        local all      all                 trust
-        #local all     postgres            peer map=eroot
+        #type  database DBuser address      auth-method
+        #local all      all                 trust
+        local  all      postgres            trust
+        local  alter    cynthia             password
 
-        #host  all     all    127.0.0.1/32 trust
-        #host  all     all    ::1/128      trust
+        #local all      postgres            password
+        #local all      postgres            peer map=eroot
+
+        #host  all      all    127.0.0.1/32 trust
+        #host  all      all    ::1/128      trust
       '';
 
       #   identMap = ''
