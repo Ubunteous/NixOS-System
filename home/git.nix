@@ -15,6 +15,13 @@ in {
     programs.git = {
       enable = true;
       # try another mail provided by git
+
+      # due to existence of a driver called lisp, the new v.2.55.0 lisp driver is called scheme
+      attributes = [
+        "*.lisp diff=scheme"
+        "*.el diff=elisp"
+      ];
+
       settings.user = {
         name = "Ubunteous";
         email = "46612154+Ubunteous@users.noreply.github.com";
@@ -88,6 +95,7 @@ in {
         core = {
           editor = "emacs";
           # excludesfile = "~/.gitignore";
+          # attributesfile = "~/.gitattributes";
           # pager = "delta"; # external package
         };
 
