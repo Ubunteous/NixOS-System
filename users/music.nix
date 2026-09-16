@@ -1,22 +1,27 @@
-{ config, lib, user, pkgs, ... }:
+{
+  config,
+  lib,
+  user,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
   cfg = config.user.music;
   usercfg = config.user;
 
-  callPlugin = plug_path:
-    (plugin:
-      (pkgs.callPackage plug_path { inherit (plugin) name url sha256; }));
+  callPlugin =
+    plug_path: (plugin: (pkgs.callPackage plug_path { inherit (plugin) name url sha256; }));
 
   # ob-xd = import ../pkgs/ob-xd/ob-xd.nix;
   ob-xf = import ../pkgs/ob-xf/ob-xf.nix;
   tal = import ../pkgs/TAL/plugins.nix;
+  glitch = import ../pkgs/glitch/glitch.nix;
   callTal = plug_name: (callPlugin ../pkgs/TAL/tal.nix plug_name);
 
   auburn = import ../pkgs/Auburn-Sounds/plugins.nix;
-  callAuburn = plug_name:
-    (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
+  callAuburn = plug_name: (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
 
   # bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
   #   version = "7.34";
@@ -48,9 +53,11 @@ in {
       (callPackage ../pkgs/bitwig3.nix { })
       # bitwig-studio4
 
+      reaper
+      # (callPackage ../pkgs/reaper/reaper.nix { })
       # (callPackage ../pkgs/reaper.nix {
       #   jackLibrary = null;
-      #   libpulseaudio = libpulseaudio; 
+      #   libpulseaudio = libpulseaudio;
       # })
 
       ###############
@@ -73,6 +80,8 @@ in {
       # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
       # zynaddsubfx # zynfusion - new gui
       # lsp-plugins
+
+      (callPackage glitch { })
 
       # (callPackage ob-xd { })
       (callPackage ob-xf { })
@@ -104,7 +113,7 @@ in {
       # (callAuburn auburn.couture)
       (callAuburn auburn.selene)
 
-      reaper
+      # reaper
       # bleedingEdgeReaper
       # reaper # see pkgs/ for reaimgui
 
