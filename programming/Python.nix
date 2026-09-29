@@ -1,13 +1,19 @@
-{ config, lib, pkgs, user, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 with lib;
 let
   cfg = config.languages.python;
   langcfg = config.languages;
-in {
-  options.languages.python = {
-    enable =
-      mkEnableOption "Enables support for the Python programming language";
+in
+  {
+	options.languages.python = {
+      enable = mkEnableOption "Enables support for the Python programming language";
   };
 
   config = mkIf (langcfg.enable && cfg.enable) {
@@ -29,75 +35,78 @@ in {
 
         # # alternative to import python packages:
         # (python3.withPackages(ps: with ps; [tkinter]))
-        (let
-          my-python-packages = python-packages:
-            with python-packages; [
-              # pynvim # for deoplete-nvim
+        (
+          let
+            my-python-packages =
+              python-packages: with python-packages; [
+                # pynvim # for deoplete-nvim
+                # mido # midi
+                # pillow # PIL for embuary
 
-              # pillow # PIL for embuary
+                pip # necessary for emacs anaconda mode
+                debugpy
+                # python-lsp-server
+                # isort
+                # tools
+                # pytest
+                # pylama # neovim
 
-              pip # necessary for emacs anaconda mode
-              debugpy
-              # python-lsp-server
-              # isort
-              # tools
-              # pytest
-              # pylama # neovim
+                # django
+                # requests
+                # gdtoolkit
+                beautifulsoup4
 
-              # django
-              # requests
-              # gdtoolkit
-              beautifulsoup4
+                # Data Science
+                # numpy
+                # matplotlib
+                # pandas
+                # scipy
+                # scikit-learn
 
-              # Data Science
-              # numpy
-              # matplotlib
-              # pandas
-              # scipy
-              # scikit-learn
+                # AMLS
+                # opencv4 # import as cv2
+                # dlib
+                # keras
+                tqdm
+                # scikitimage # error
+                # tensorflow # error => loads slowly
 
-              # AMLS
-              # opencv4 # import as cv2 
-              # dlib
-              # keras
-              tqdm
-              # scikitimage # error
-              # tensorflow # error => loads slowly
+                # data formats
+                # h5py
+                # asdf
 
-              # data formats
-              # h5py
-              # asdf
+                # AI
+                # nltk
+                # pytorch
+                # spacy
+                # spacy-transformers
+                # transformers
+                # tokenizers
+                # datasets
 
-              # AI
-              # nltk
-              # pytorch
-              # spacy
-              # spacy-transformers
-              # transformers
-              # tokenizers
-              # datasets
+                # ipython
+                jupyterlab
+                # notebook
+                # ipywidgets # for TQDM warnings
 
-              # ipython
-              jupyterlab
-              # notebook
-              # ipywidgets # for TQDM warnings
+                # lsp-bridge (dependencies)
+                # epc
+                # orjson
+                # sexpdata
+                # six
 
-              # lsp-bridge (dependencies)
-              # epc
-              # orjson
-              # sexpdata
-              # six
+                # Misc
+                # pymupdf
+                # tabulate # for pandas dataframes in org mode
 
-              # Misc
-              # pymupdf
-              # tabulate # for pandas dataframes in org mode
+                # screenplain # not on nix
 
-              # screenplain # not on nix
-
-              # youtube-dl # alternative: yt-dlp
-            ];
-          python-with-my-packages = python3.withPackages my-python-packages;
-        in python-with-my-packages)
+                # youtube-dl # alternative: yt-dlp
+              ];
+            python-with-my-packages = python3.withPackages my-python-packages;
+          in
+			python-with-my-packages
+        )
       ];
     };
   };

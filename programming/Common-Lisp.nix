@@ -103,7 +103,7 @@ in
             ##########
 
             hunchentoot
-            # easy-routes
+            easy-routes
 
             # clack
             # woo
