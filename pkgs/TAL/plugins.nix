@@ -57,6 +57,12 @@
   # EFFECTS #
   ###########
 
+  bitcrusher = {
+    name = "TAL-Bitcrusher";
+    url = "https://tal-software.com/downloads/plugins/TAL-Bitcrusher_64_linux.zip";
+    sha256 = "sha256-a7l43kW0roUxWWukLymJ95Ei5gFbrgqACA6dQC7n//A=";
+  };
+
   eq = {
     name = "TAL-EQ";
     url = "https://tal-software.com/downloads/plugins/TAL-EQ_64_linux.zip";

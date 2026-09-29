@@ -96,6 +96,7 @@ in {
 
       (callTal tal.eq)
       (callTal tal.dac)
+      (callTal tal.bitcrusher)
       # (callTal tal.mod)
       # (callTal tal.g-verb)
       # (callTal tal.dub-x)
