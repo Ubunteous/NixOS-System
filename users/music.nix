@@ -32,12 +32,13 @@ let
   # });
 
   midihub = import ../pkgs/Midihub/default.nix;
-in {
-  options.user.music = {
-    enable = mkEnableOption "Enables support for Music related software";
-  };
+in
+  {
+	options.user.music = {
+      enable = mkEnableOption "Enables support for Music related software";
+	};
 
-  config = mkIf (usercfg.enable && cfg.enable) {
+	config = mkIf (usercfg.enable && cfg.enable) {
     users.users.${user}.packages = with pkgs; [
       #############
       #   MUSIC   #
@@ -74,17 +75,17 @@ in {
       # surge-XT # surge with some extras
       cardinal # vcv rack as vst
       vcv-rack # needs manual installation of plugins
-      zlequalizer
+      # zlequalizer
 
       # small gui. needs to be compiled after tweaking these values:
       # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
       # zynaddsubfx # zynfusion - new gui
       # lsp-plugins
 
-      (callPackage glitch { })
+      # (callPackage glitch { })
 
       # (callPackage ob-xd { })
-      (callPackage ob-xf { })
+      # (callPackage ob-xf { })
 
       (callTal tal.pha)
       (callTal tal.j-8)
@@ -95,8 +96,8 @@ in {
       (callTal tal.sampler)
 
       (callTal tal.eq)
-      (callTal tal.dac)
-      (callTal tal.bitcrusher)
+      # (callTal tal.dac)
+      # (callTal tal.bitcrusher)
       # (callTal tal.mod)
       # (callTal tal.g-verb)
       # (callTal tal.dub-x)
@@ -112,7 +113,7 @@ in {
       # (callAuburn auburn.renegate)
       # (callAuburn auburn.panagement)
       # (callAuburn auburn.couture)
-      (callAuburn auburn.selene)
+      # (callAuburn auburn.selene)
 
       # reaper
       # bleedingEdgeReaper
@@ -172,7 +173,7 @@ in {
       # the following can be used without musnix.enable true
       # musnix.kernel.realtime = true;
 
-      # Don't. It's completely buggy and loops forever 
+      # Don't. It's completely buggy and loops forever
       # musnix.kernel.packages = pkgs.linuxPackages_5_4_rt;
 
       # OPTIONS for kernel package:
@@ -218,7 +219,7 @@ in {
 
       #       # runtimeDependencies = [ pkgs.pulseaudio pkgs.libjack2 ];
       #     });
-      #   })   
+      #   })
     ];
   };
 }
