@@ -30,6 +30,7 @@
 
     xserver = {
       enable = true;
+      autologin = true;
       displayManager = "sddm"; # sddm, gdm, lightdm
     };
 

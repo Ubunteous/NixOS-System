@@ -23,6 +23,7 @@
 
     xserver = {
       enable = true;
+      autologin = false;
       displayManager = "sddm"; # sddm, gdm, lightdm
       keyboardLayout = "colemak"; # "qwerty" (default), "colemak"
     };

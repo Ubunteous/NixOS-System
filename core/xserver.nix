@@ -1,23 +1,39 @@
-{ config, lib, user, ... }:
+{
+  config,
+  lib,
+  user,
+  ...
+}:
 
 with lib;
 let
   cfg = config.core.xserver;
+  autologincfg = config.core.xserver.autologin;
   corecfg = config.core;
 
   # formats the displayManager.defaultSession string depending on
   # whether it is a windows manager or desktop environment
-in {
-  options.core.xserver = {
-    enable = mkEnableOption "Activate xserver";
-    displayManager = mkOption {
+in
+  {
+	options.core.xserver = {
+      enable = mkEnableOption "Activate xserver";
+      autologin = mkEnableOption "Login automatically at startup";
+
+      displayManager = mkOption {
       description = "Display Manager used";
-      type = types.enum [ "sddm" "gdm" "lightdm" ];
+      type = types.enum [
+        "sddm"
+        "gdm"
+        "lightdm"
+      ];
     };
     keyboardLayout = mkOption {
       default = "qwerty";
       description = "Keyboard layout used";
-      type = types.enum [ "qwerty" "colemak" ];
+      type = types.enum [
+        "qwerty"
+        "colemak"
+      ];
     };
   };
 
@@ -33,7 +49,7 @@ in {
         # sessionPackages = [ pkgs.qtile-unwrapped ];
 
         # Enable automatic login for the user.
-        autoLogin.enable = true;
+        autoLogin.enable = autologincfg;
         autoLogin.user = "${user}";
 
         # Enable sticky keys at startup:
