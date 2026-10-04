@@ -15,21 +15,21 @@ let
     plug_path: (plugin: (pkgs.callPackage plug_path { inherit (plugin) name url sha256; }));
 
   # ob-xd = import ../pkgs/ob-xd/ob-xd.nix;
-  ob-xf = import ../pkgs/ob-xf/ob-xf.nix;
+  # ob-xf = import ../pkgs/ob-xf/ob-xf.nix;
   tal = import ../pkgs/TAL/plugins.nix;
-  glitch = import ../pkgs/glitch/glitch.nix;
+  # glitch = import ../pkgs/glitch/glitch.nix;
   callTal = plug_name: (callPlugin ../pkgs/TAL/tal.nix plug_name);
 
-  auburn = import ../pkgs/Auburn-Sounds/plugins.nix;
-  callAuburn = plug_name: (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
+  # auburn = import ../pkgs/Auburn-Sounds/plugins.nix;
+  # callAuburn = plug_name: (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
 
-  # bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
-  #   version = "7.34";
-  #   src = pkgs.fetchurl {
-  #     url = "https://www.reaper.fm/files/7.x/reaper734_linux_x86_64.tar.xz";
-  #     hash = "sha256-R6nFi6OPBTIJhg752o9r0lGb24VYobiaWgp5bfvFykg=";
-  #   };
-  # });
+  bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
+    version = "7.81";
+    src = pkgs.fetchurl {
+      url = "https://www.reaper.fm/files/7.x/reaper781_linux_x86_64.tar.xz";
+      hash = "sha256-1WVIaKD08xowslG1T//DLKmsV42ZgV6HwAkD1Ln3iLk=";
+    };
+  });
 
   midihub = import ../pkgs/Midihub/default.nix;
 in
@@ -54,12 +54,14 @@ in
       (callPackage ../pkgs/bitwig3.nix { })
       # bitwig-studio4
 
-      reaper
+      # reaper # see pkgs/ for reaimgui
       # (callPackage ../pkgs/reaper/reaper.nix { })
       # (callPackage ../pkgs/reaper.nix {
       #   jackLibrary = null;
       #   libpulseaudio = libpulseaudio;
       # })
+
+      bleedingEdgeReaper
 
       ###############
       #   PLUGINS   #
@@ -114,10 +116,6 @@ in
       # (callAuburn auburn.panagement)
       # (callAuburn auburn.couture)
       # (callAuburn auburn.selene)
-
-      # reaper
-      # bleedingEdgeReaper
-      # reaper # see pkgs/ for reaimgui
 
       (callPackage midihub { }) # run as sudo
 
