@@ -1,17 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  user,
-  ...
-}:
+{ config, lib, pkgs, user, ... }:
 
 with lib;
 let
   cfg = config.languages.common-lisp;
   langcfg = config.languages;
-in
-{
+in {
   options.languages.common-lisp = {
     enable = mkEnableOption "Enables support for the Common Lisp programming language";
   };
@@ -103,7 +96,12 @@ in
             ##########
 
             hunchentoot
+
+            # Easy Routes
             easy-routes
+            puri
+            iterate
+            split-sequence
 
             # clack
             # woo
