@@ -26,9 +26,7 @@ in {
           prettier # available as prettier from v25.11
           typescript-language-server
           vscode-js-debug
-
           nodejs
-          # deno
 
           # package managers:
           # node2nix
