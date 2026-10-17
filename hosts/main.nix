@@ -126,6 +126,7 @@
     #     monitoring     #
     ######################
 
+    wireshark.enable = true;
     # grafana.enable = true; # 3000 => 3002
     # prometheus.enable = true; # 9090
     # loki.enable = false;
@@ -138,9 +139,9 @@
     podman.enable = false;
     # virtualbox.enable = false;
 
-    ##################
-    #     DNS/VPN    #
-    ##################
+    ###################
+    #     DNS/VPN     #
+    ###################
 
     # openvpn.enable = true; # broken. fix later
     wireguard.enable = false;

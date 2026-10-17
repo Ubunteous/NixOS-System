@@ -31,7 +31,7 @@ in
       # ghidra # reverse engineering. decompiles to c
       # metasploit
       # armitage # metasploit frontend
-      wireshark # packet sniffer
+      # wireshark # packet sniffer (use the nixos option instead)
       # burpsuite # web app testing. layer 7 man in the middle
 
       # password recovery

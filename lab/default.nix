@@ -44,6 +44,7 @@ with lib;
     # ./monitoring/grafana.nix
     # ./monitoring/prometheus.nix
     # ./monitoring/loki.nix
+    ./monitoring/wireshark.nix
 
     ./proxy/caddy.nix
     # ./proxy/nginx.nix

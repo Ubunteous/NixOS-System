@@ -58,6 +58,20 @@ in {
       };
     };
 
+    qt = {
+      enable = true;
+      platformTheme = "gnome";
+      style = "adwaita-dark";
+    };
+
+    environment.systemPackages = with pkgs; [
+      adwaita-qt
+    ];
+
+    environment.variables = {
+      QT_STYLE_OVERRIDE = "adwaita-dark";
+    };
+
     # gpg encryption
     # programs.gnupg.agent.enable = true;
     # services.pcscd.enable = true;
