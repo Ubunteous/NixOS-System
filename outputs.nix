@@ -6,7 +6,7 @@
   home-manager,
   nur,
   musnix,
-  lem,
+  # lem,
 }:
 
 let
@@ -92,8 +92,8 @@ in
           #   LEM   #
           ###########
 
-          { nixpkgs.overlays = [ lem.overlays.default ]; }
-          ({ config, pkgs, ... }: { environment.systemPackages = [ pkgs.lem-ncurses ]; })
+          # { nixpkgs.overlays = [ lem.overlays.default ]; }
+          # ({ config, pkgs, ... }: { environment.systemPackages = [ pkgs.lem-ncurses ]; })
         ];
       };
 
