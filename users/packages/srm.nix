@@ -20,9 +20,9 @@ in {
       gdu
       nextcloud-client
       openvpn
+      proxmox-backup-client
       sqlcmd
       tmux
     ];
   };
 }
-
