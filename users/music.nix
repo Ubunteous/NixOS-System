@@ -16,29 +16,29 @@ let
 
   # ob-xd = import ../pkgs/ob-xd/ob-xd.nix;
   # ob-xf = import ../pkgs/ob-xf/ob-xf.nix;
-  tal = import ../pkgs/TAL/plugins.nix;
   # glitch = import ../pkgs/glitch/glitch.nix;
+  tal = import ../pkgs/TAL/plugins.nix;
   callTal = plug_name: (callPlugin ../pkgs/TAL/tal.nix plug_name);
 
   # auburn = import ../pkgs/Auburn-Sounds/plugins.nix;
   # callAuburn = plug_name: (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
 
   bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
-    version = "7.81";
+    version = "7.83";
     src = pkgs.fetchurl {
-      url = "https://www.reaper.fm/files/7.x/reaper781_linux_x86_64.tar.xz";
-      hash = "sha256-1WVIaKD08xowslG1T//DLKmsV42ZgV6HwAkD1Ln3iLk=";
+      url = "https://www.reaper.fm/files/7.x/reaper783_linux_x86_64.tar.xz";
+      hash = "sha256-dsSZcP2VILK+q/ZIXjrhzL5DS8k1xoqm5aFDsOCrZZQ=";
     };
   });
 
   midihub = import ../pkgs/Midihub/default.nix;
 in
-  {
-	options.user.music = {
-      enable = mkEnableOption "Enables support for Music related software";
-	};
+{
+  options.user.music = {
+    enable = mkEnableOption "Enables support for Music related software";
+  };
 
-	config = mkIf (usercfg.enable && cfg.enable) {
+  config = mkIf (usercfg.enable && cfg.enable) {
     users.users.${user}.packages = with pkgs; [
       #############
       #   MUSIC   #
