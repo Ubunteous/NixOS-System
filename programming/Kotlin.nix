@@ -1,25 +1,33 @@
-{ config, lib, pkgs, user, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 with lib;
 let
   cfg = config.languages.kotlin;
   langcfg = config.languages;
-in {
-  options.languages.kotlin = {
-    enable =
-      mkEnableOption "Enables support for the Kotlin programming language";
-  };
+in
+  {
+	options.languages.kotlin = {
+      enable = mkEnableOption "Enables support for the Kotlin programming language";
+	};
 
-  config = mkIf (langcfg.enable && cfg.enable) {
+	config = mkIf (langcfg.enable && cfg.enable) {
     users.users.${user} = {
       packages = with pkgs; [
         kotlin
+        android-tools # adb
         jdk
-        # android-studio
+        android-studio
         # ktlint
         # detekt
         ktfmt
         kotlin-language-server
+        apktool # reverse engineeering
       ];
     };
   };
