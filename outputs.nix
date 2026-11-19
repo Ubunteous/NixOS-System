@@ -6,7 +6,7 @@
   home-manager,
   nur,
   musnix,
-  # lem,
+  ni-wine,
 }:
 
 let
@@ -62,7 +62,7 @@ in
           # agenix.nixosModules.default
           home-manager.nixosModules.home-manager
           # nix-index-database.nixosModules.nix-index
-          ({ config, pkgs, ... }: {
+          ({ ... }: {
             nixpkgs.overlays = [
               overlay-stable
             ];
@@ -92,8 +92,23 @@ in
           #   LEM   #
           ###########
 
+<<<<<<< HEAD
           # { nixpkgs.overlays = [ lem.overlays.default ]; }
           # ({ config, pkgs, ... }: { environment.systemPackages = [ pkgs.lem-ncurses ]; })
+=======
+          { nixpkgs.overlays = [ lem.overlays.default ]; }
+          ({ pkgs, ... }: {
+            environment.systemPackages = [ pkgs.lem-ncurses ];
+          })
+
+          ##########################
+          #   NATIVE INSTRUMENTS   #
+          ##########################
+
+          ({ pkgs, ... }: {
+            home-manager.users.${user}.home.packages = [ ni-wine.packages.${pkgs.system}.default ];
+          })
+>>>>>>> ea84da7 (Add ni-wine for native instrument support)
         ];
       };
 
@@ -116,7 +131,7 @@ in
           musnix.nixosModules.musnix
           home-manager.nixosModules.home-manager
 
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+          ({ ... }: { nixpkgs.overlays = [ overlay-stable ]; })
         ];
       };
 
@@ -139,7 +154,7 @@ in
 			musnix.nixosModules.musnix
 			home-manager.nixosModules.home-manager
 
-			# ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+			# ({ ... }: { nixpkgs.overlays = [ overlay-stable ]; })
           ];
 		};
 
@@ -213,6 +228,6 @@ in
 			# nur.hmModules.nur
           ];
 		};
-    };
+      };
 
 }

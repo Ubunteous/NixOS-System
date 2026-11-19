@@ -19,6 +19,8 @@
     #   inputs.nixpkgs.follows = "nixpkgs-unstable";
     # };
 
+    ni-wine.url = "github:selimbucher/native-instruments";
+
     # stylix.url = "github:danth/stylix";
     # lem.url = "github:lem-project/lem";
 
