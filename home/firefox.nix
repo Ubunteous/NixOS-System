@@ -291,6 +291,7 @@ in
             "browser.newtabpage.activity-stream.feeds.topsites" = false;
 
             # DEVTOOLS
+            "devtools.theme" = "dark";
             "devtools.dom.enabled" = true;
 
             # # AI (ml)
@@ -728,13 +729,5 @@ in
     #       istilldontcareaboutcookies
     #     ];
     # })
-
-    # tridactyl main changes:
-    # bind m scrollpx -10
-    # bind i scrollpx 10
-    # bind n scrollline 10
-    # bind e scrollline -10
-    # bind h back
-    # unbind <C-f>
   ]);
 }
