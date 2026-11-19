@@ -138,7 +138,6 @@ in {
       steam-run
       # telegram-cli # does not work
       # traceroute
-      # tmux
       unrar
 
       # How to use wrap for fountain files:

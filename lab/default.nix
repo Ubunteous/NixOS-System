@@ -37,6 +37,7 @@ with lib;
 
   imports = [
     ./sysadmin/ssh.nix
+    ./sysadmin/tmux.nix
     ./sysadmin/k3s.nix
     ./sysadmin/podman.nix
     ./sysadmin/virtual-box.nix
