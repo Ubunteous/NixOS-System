@@ -92,14 +92,8 @@ in
           #   LEM   #
           ###########
 
-<<<<<<< HEAD
           # { nixpkgs.overlays = [ lem.overlays.default ]; }
           # ({ config, pkgs, ... }: { environment.systemPackages = [ pkgs.lem-ncurses ]; })
-=======
-          { nixpkgs.overlays = [ lem.overlays.default ]; }
-          ({ pkgs, ... }: {
-            environment.systemPackages = [ pkgs.lem-ncurses ];
-          })
 
           ##########################
           #   NATIVE INSTRUMENTS   #
@@ -108,7 +102,6 @@ in
           ({ pkgs, ... }: {
             home-manager.users.${user}.home.packages = [ ni-wine.packages.${pkgs.system}.default ];
           })
->>>>>>> ea84da7 (Add ni-wine for native instrument support)
         ];
       };
 
@@ -143,20 +136,20 @@ in
       let
         user = "nix";
       in
-		nixpkgs-unstable.lib.nixosSystem {
-          system = system;
-          specialArgs = { inherit user; };
-          modules = [
-			./hosts/oldie.nix
-			./hardware/oldie
+      nixpkgs-unstable.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit user; };
+        modules = [
+          ./hosts/oldie.nix
+          ./hardware/oldie
 
-			nur.modules.nixos.default
-			musnix.nixosModules.musnix
-			home-manager.nixosModules.home-manager
+          nur.modules.nixos.default
+          musnix.nixosModules.musnix
+          home-manager.nixosModules.home-manager
 
-			# ({ ... }: { nixpkgs.overlays = [ overlay-stable ]; })
-          ];
-		};
+          # ({ ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+        ];
+      };
 
     ###########
     #   SRM   #
@@ -166,20 +159,20 @@ in
       let
         user = "nix";
       in
-		nixpkgs-unstable.lib.nixosSystem {
-          system = system;
-          specialArgs = { inherit user; };
-          modules = [
-			./hosts/srm.nix
-			./hardware/srm
+      nixpkgs-unstable.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit user; };
+        modules = [
+          ./hosts/srm.nix
+          ./hardware/srm
 
-			nur.modules.nixos.default
-			musnix.nixosModules.musnix
-			home-manager.nixosModules.home-manager
+          nur.modules.nixos.default
+          musnix.nixosModules.musnix
+          home-manager.nixosModules.home-manager
 
-			#({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
-          ];
-		};
+          #({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-stable ]; })
+        ];
+      };
 
     ###############
     #   MINIMAL   #
@@ -189,18 +182,18 @@ in
       let
         user = "ubunteous";
       in
-		nixpkgs-unstable.lib.nixosSystem {
-          system = system;
-          specialArgs = { inherit user; };
+      nixpkgs-unstable.lib.nixosSystem {
+        system = system;
+        specialArgs = { inherit user; };
 
-          modules = [
-			./hosts/minimal.nix
-			./hardware/hardware-configuration.nix
-			home-manager.nixosModules.home-manager
+        modules = [
+          ./hosts/minimal.nix
+          ./hardware/hardware-configuration.nix
+          home-manager.nixosModules.home-manager
 
-			# ./hosts/audition.nix
-          ];
-		};
+          # ./hosts/audition.nix
+        ];
+      };
   };
 
   ######################
@@ -213,21 +206,21 @@ in
     let
       user = "ubunteous";
     in
-      {
-		# nix run . -- build --flake . # or switch
-		# Then restart your shell or run exec $SHELL -l
+    {
+      # nix run . -- build --flake . # or switch
+      # Then restart your shell or run exec $SHELL -l
 
-		work = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit user; };
-          pkgs = import nixpkgs-unstable { system = system; };
+      work = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = { inherit user; };
+        pkgs = import nixpkgs-unstable { system = system; };
 
-          modules = [
-			./hosts/work.nix
+        modules = [
+          ./hosts/work.nix
 
-			nur.nixosModules.nur
-			# nur.hmModules.nur
-          ];
-		};
+          nur.nixosModules.nur
+          # nur.hmModules.nur
+        ];
       };
+    };
 
 }
