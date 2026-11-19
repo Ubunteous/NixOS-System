@@ -48,5 +48,7 @@ with lib;
 
     # ./eww.nix
     ./dots.nix
+
+    ./music
   ];
 }

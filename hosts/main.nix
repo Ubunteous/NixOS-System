@@ -286,6 +286,11 @@
           thunderbird.enable = true;
         };
 
+        music = {
+          enable = true;
+          apulsoft.enable = true;
+        };
+
         dots.enable = true;
       };
     };
