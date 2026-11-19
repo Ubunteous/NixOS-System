@@ -56,6 +56,10 @@ in {
         "MANPAGER" = "/bin/sh -c 'col -bx | bat -p -l man'";
         # "MANPAGER" = "/bin/sh -c 'col -bx | bat -p -l man --theme=Monokai'";
       };
+
+      # # changing this might be a bit risky
+      # # defaults to umask 022 => 644 for files and 755 for directories (default)
+      # extraInit = "umask 027"; # 640 for files and 750 for directories (safer)
     };
 
     qt = {
