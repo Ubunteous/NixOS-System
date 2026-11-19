@@ -288,7 +288,9 @@
 
         music = {
           enable = true;
+
           apulsoft.enable = true;
+          tdr.enable = true; # mostly demo. GE versions urls are hidden
         };
 
         dots.enable = true;

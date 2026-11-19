@@ -6,5 +6,6 @@ with lib;
 
   imports = [
     ./apulsoft.nix
+    ./tdr.nix
   ];
 }
