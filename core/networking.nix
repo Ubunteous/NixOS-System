@@ -62,13 +62,28 @@ in {
         # extraForwardRules = "iifname wg0 accept";
 
         # Open ports in the firewall. Alternative: allowedTCP/UDPPortsRanges
-        allowedTCPPorts = [ 22 80 ]; # HTTPS on 443
+        allowedTCPPorts = [
+          22
+          80
+        ]; # HTTPS on 443
         # allowedUDPPorts = [ 53 ];
 
         # try https firefox, nmtui, synthing and homepage
 
         # # interface specific rule
         # interfaces."eth0".allowedTCPPorts = [ 80 443 ];
+
+        # # untested
+        # # note: a precise address such as 192.168.88.8 should have a prefixLength of 32
+        # interfaces.<name/eth1>.ipv4.routes = [
+        #   {
+        # 	address = "192.168.88.0";
+        # 	prefixLength = 24;
+        # 	via = "10.0.0.1"; # Omit if directly connected
+        # 	# type = "local"; # "unicast" / "local" / "broadcast" / "multicast" (see ip-route(8))
+        # 	# options = { ... };
+        #   }
+        # ];
       };
     };
   };
