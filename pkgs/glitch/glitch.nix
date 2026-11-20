@@ -15,9 +15,11 @@ stdenv.mkDerivation {
   dontBuild = true;
 
   installPhase = ''
-    mkdir -p $out/lib/{vst,vst3}
+    mkdir -p $out/lib/{vst,vst3,extra}
 
     cp -r glitch2.vst2 $out/lib/vst
     cp -r glitch2.vst3 $out/lib/vst3
+    cp -r Glitch2_Presets $out/lib/extra
+    cp Glitch2_User_Guide.pdf $out/lib/extra
   '';
 }
