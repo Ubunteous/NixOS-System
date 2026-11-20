@@ -40,4 +40,10 @@
     url = "https://www.auburnsounds.com/downloads/Selene-FREE-1.0.0.zip";
     sha256 = "sha256-BRk9RBqhUzFILisNzEcZ2D50ulCKI3NvwDH3sLVFv/w=";
   };
+
+  psypan = {
+    name = "Psypan";
+    url = "https://www.auburnsounds.com/downloads/Psypan-FREE-2.0.zip";
+    sha256 = "sha256-katd8zHkPHZM+w36n+EpWkbWvwE4NWLU1BVd22gBlH4=";
+  };
 }

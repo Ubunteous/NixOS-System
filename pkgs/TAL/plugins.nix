@@ -23,15 +23,13 @@
 
   u-no-lx = {
     name = "TAL-U-NO-LX-V2";
-    url =
-      "https://tal-software.com/downloads/plugins/TAL-U-NO-LX-V2_64_linux.zip";
+    url = "https://tal-software.com/downloads/plugins/TAL-U-NO-LX-V2_64_linux.zip";
     sha256 = "sha256-NVvlfmyBI/ngfszV01SY/kNt85TH/GwpVIojTKjMTRA=";
   };
 
   bassline-101 = {
     name = "TAL-BassLine-101";
-    url =
-      "https://tal-software.com/downloads/plugins/TAL-BassLine-101_64_linux.zip";
+    url = "https://tal-software.com/downloads/plugins/TAL-BassLine-101_64_linux.zip";
     sha256 = "sha256-u6lOx2PPYNFRueTOPHeFgSNGRbKCYk1JM3CwTil+l+E=";
   };
 
@@ -72,13 +70,13 @@
   g-verb = {
     name = "TAL-G-Verb";
     url = "https://tal-software.com/downloads/plugins/TAL-G-Verb_64_linux.zip";
-    sha256 = "sha256-KATN5UZjUTxfupbNJ/7pVx+SfgHirMGUWrIGqXHKPrk=";
+    sha256 = "sha256-XcfXeCqw9fj/pLAux69bVDiyZNwVACLnK8KejNAILMQ=";
   };
 
   dub-x = {
     name = "TAL-Dub-X";
     url = "https://tal-software.com/downloads/plugins/TAL-Dub-X_64_linux.zip";
-    sha256 = "sha256-DpzgjM6uAwRca1FMmnxXdoOC8KeuyINQIl4odkCadeg=";
+    sha256 = "sha256-nzkivggCbxSdNK8UJytp2FibjPfzFTLTaauKaEYm9lU=";
   };
 
   dac = {
@@ -93,36 +91,31 @@
 
   filter-2 = {
     name = "TAL-Filter-2";
-    url =
-      "https://tal-software.com/downloads/plugins/TAL-Filter-2_64_linux.zip";
+    url = "https://tal-software.com/downloads/plugins/TAL-Filter-2_64_linux.zip";
     sha256 = "sha256-UoAQ3LMt2Ig6F96pcnV3nOaL4JE76yEKC/N2p9BBaX8=";
   };
 
   reverb-4 = {
     name = "TAL-Reverb-4";
-    url =
-      "https://tal-software.com/downloads/plugins/TAL-Reverb-4_64_linux.zip";
+    url = "https://tal-software.com/downloads/plugins/TAL-Reverb-4_64_linux.zip";
     sha256 = "sha256-iZdf5NdDwelRAWASRngg07/iwkpLdSVwALyWwR9So3g=";
   };
 
   chorus-lx = {
     name = "TAL-Chorus-LX";
-    url =
-      "https://tal-software.com/downloads/plugins/TAL-Chorus-LX_64_linux.zip";
+    url = "https://tal-software.com/downloads/plugins/TAL-Chorus-LX_64_linux.zip";
     sha256 = "sha256-1VJikvzIT0/FYQqt6M/w7VYsS9adPjQz2apttdQfr/M=";
   };
 
   noisemaker = {
     name = "TAL-NoiseMaker";
-    url =
-      "https://tal-software.com/downloads/plugins/TAL-NoiseMaker_64_linux.zip";
+    url = "https://tal-software.com/downloads/plugins/TAL-NoiseMaker_64_linux.zip";
     sha256 = "sha256-Gv/dgsqbG9HDahBqwaZbe8G1SyQ3UuCgpT76ZKwPBHg=";
   };
 
   vocoder = {
     name = "TAL-Vocoder-2";
-    url =
-      "https://tal-software.com/downloads/plugins/TAL-Vocoder-2_64_linux.zip";
+    url = "https://tal-software.com/downloads/plugins/TAL-Vocoder-2_64_linux.zip";
     sha256 = "sha256-QrYjoD9fs/JotlM86ZN/3N2Svcwds7xvXYudKuKt9gI=";
   };
 }

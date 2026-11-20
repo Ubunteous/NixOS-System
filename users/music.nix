@@ -11,18 +11,6 @@ let
   cfg = config.user.music;
   usercfg = config.user;
 
-  callPlugin =
-    plug_path: (plugin: (pkgs.callPackage plug_path { inherit (plugin) name url sha256; }));
-
-  # ob-xd = import ../pkgs/ob-xd/ob-xd.nix;
-  # ob-xf = import ../pkgs/ob-xf/ob-xf.nix;
-  # glitch = import ../pkgs/glitch/glitch.nix;
-  tal = import ../pkgs/TAL/plugins.nix;
-  callTal = plug_name: (callPlugin ../pkgs/TAL/tal.nix plug_name);
-
-  # auburn = import ../pkgs/Auburn-Sounds/plugins.nix;
-  # callAuburn = plug_name: (callPlugin ../pkgs/Auburn-Sounds/auburn-sounds.nix plug_name);
-
   bleedingEdgeReaper = pkgs.reaper.overrideAttrs (old: {
     version = "7.83";
     src = pkgs.fetchurl {
@@ -63,6 +51,8 @@ in
 
       bleedingEdgeReaper
 
+      (callPackage midihub { }) # run as sudo
+
       ###############
       #   PLUGINS   #
       ###############
@@ -83,41 +73,6 @@ in
       # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
       # zynaddsubfx # zynfusion - new gui
       # lsp-plugins
-
-      # (callPackage glitch { })
-
-      # (callPackage ob-xd { })
-      # (callPackage ob-xf { })
-
-      (callTal tal.pha)
-      (callTal tal.j-8)
-      (callTal tal.j-8x)
-      (callTal tal.u-no-lx)
-      (callTal tal.bassline-101)
-      (callTal tal.drum)
-      (callTal tal.sampler)
-
-      (callTal tal.eq)
-      # (callTal tal.dac)
-      # (callTal tal.bitcrusher)
-      # (callTal tal.mod)
-      # (callTal tal.g-verb)
-      # (callTal tal.dub-x)
-      # (callTal tal.filter-2)
-      # (callTal tal.reverb-4)
-      # (callTal tal.chorus-lx)
-      # (callTal tal.noisemaker)
-      # (callTal tal.vocoder)
-
-      # (callAuburn auburn.graillon)
-      # (callAuburn auburn.inner_pitch)
-      # (callAuburn auburn.lens)
-      # (callAuburn auburn.renegate)
-      # (callAuburn auburn.panagement)
-      # (callAuburn auburn.couture)
-      # (callAuburn auburn.selene)
-
-      (callPackage midihub { }) # run as sudo
 
       ############
       #   WINE   #
