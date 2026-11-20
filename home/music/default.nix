@@ -7,5 +7,12 @@ with lib;
   imports = [
     ./apulsoft.nix
     ./tdr.nix
+    ./tal.nix
+    ./auburn.nix
+    ./ob-xf.nix
+    ./toneboosters.nix
+
+    # ./glitch.nix
+    # ./reaimgui.nix
   ];
 }

@@ -289,8 +289,15 @@
         music = {
           enable = true;
 
+          tal.enable = true;
           apulsoft.enable = true;
           tdr.enable = true; # mostly demo. GE versions urls are hidden
+          auburn.enable = true; # mostly freebies. huge/slow downloads
+          ob-xf.enable = true;
+          toneboosters.enable = true; # huge archive with every plugin (250mb)
+
+          # glitch.enable = false; # not resizable
+          # reaimgui.enable = true; # not needed anymore
         };
 
         dots.enable = true;
