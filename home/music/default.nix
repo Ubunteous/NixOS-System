@@ -11,6 +11,8 @@ with lib;
     ./auburn.nix
     ./ob-xf.nix
     ./toneboosters.nix
+    ./u-he.nix
+    ./u-he-legacy.nix
 
     # ./glitch.nix
     # ./reaimgui.nix

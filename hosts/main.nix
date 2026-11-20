@@ -224,7 +224,6 @@
 
         # needs nix-ld
         # not necessary now that plugins are packages
-        # u-he.enable = false;
         godot.enable = true;
         # helix.enable = false;
 
@@ -290,6 +289,8 @@
           enable = true;
 
           tal.enable = true;
+          u-he.enable = false;
+          u-he-legacy.enable = true;
           apulsoft.enable = true;
           tdr.enable = true; # mostly demo. GE versions urls are hidden
           auburn.enable = true; # mostly freebies. huge/slow downloads
