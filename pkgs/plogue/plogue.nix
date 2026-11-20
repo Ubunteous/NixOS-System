@@ -1,34 +1,117 @@
 {
+  lib,
   stdenv,
-  pkgs,
-  name,
-  url,
-  sha256,
+  fetchzip,
+  dpkg,
+  autoPatchelfHook,
+  makeWrapper,
+  alsa-lib,
+  cairo,
+  curl,
+  glib,
+  gtk3,
+  gtkmm3,
+  libpulseaudio,
+  pango,
+  xcbutil,
+  zenity,
 }:
 
+let
+  version = "1.982";
+in
 stdenv.mkDerivation {
-  inherit name;
+  pname = "sforzando";
+  inherit version;
 
-  src = pkgs.fetchzip {
-    inherit url sha256;
+  src = fetchzip {
+    url = "https://sforzando.s3.us-east-1.amazonaws.com/LINUX_plogue-sforzando_${version}_x86_64.zip";
+    hash = "sha256-Qcwv5DgReNxA68CWosvIwZkhDAxnc5/A15lmlc/Mr3M=";
   };
 
-  dontBuild = true;
+  nativeBuildInputs = [
+    autoPatchelfHook
+    dpkg
+    makeWrapper
+  ];
+
+  buildInputs = [
+    alsa-lib
+    cairo
+    curl
+    glib
+    gtk3
+    gtkmm3
+    libpulseaudio
+    pango
+    xcbutil
+  ];
 
   unpackPhase = ''
-    echo "unpack"
-        ls -la
-        # dpkg-deb --fsys-tarfile $src | \
-        # tar -x --no-same-owner
-        # mv usr $out
+    runHook preUnpack
+    for deb in $src/*.deb; do
+      dpkg-deb -x "$deb" pkgs
+    done
+    runHook postUnpack
   '';
 
   installPhase = ''
-    echo "install"
-        ls -la
-        # mkdir -p $out/lib/{vst,vst3}
+    runHook preInstall
 
-        # cp *.so $out/lib/vst
-        # cp -r *.vst3 $out/lib/vst3
+    mkdir -p "$out/Plogue"
+    cp -r pkgs/opt/Plogue/Aria       "$out/Plogue/"
+    cp -r pkgs/opt/Plogue/sforzando  "$out/Plogue/"
+    cp -r pkgs/opt/Plogue/TableWarp2 "$out/Plogue/"
+
+    # Patch hardcoded /opt/Plogue paths inside the .config JSON files.
+    # The Aria engine reads these to locate libAria.so and its resources.
+    sed -i "s|/opt/Plogue/Aria|$out/Plogue/Aria|g"           "$out/Plogue/Aria/.config"
+    sed -i "s|/opt/Plogue/sforzando|$out/Plogue/sforzando|g" "$out/Plogue/sforzando/.config"
+
+    mkdir -p "$out/lib/vst3"
+    cp -r pkgs/usr/lib/vst3/sforzando.vst3 "$out/lib/vst3/"
+
+    mkdir -p "$out/lib/clap"
+    cp pkgs/usr/lib/clap/sforzando.clap "$out/lib/clap/"
+
+    mkdir -p "$out/share/applications" "$out/share/icons/hicolor/256x256/apps"
+    cp pkgs/usr/share/applications/plogue-sforzando.desktop \
+       "$out/share/applications/"
+    cp pkgs/usr/share/icons/hicolor/256x256/apps/plogue-sforzando.png \
+       "$out/share/icons/hicolor/256x256/apps/"
+    substituteInPlace "$out/share/applications/plogue-sforzando.desktop" \
+      --replace 'Exec=/opt/Plogue/sforzando/sforzando' "Exec=$out/bin/sforzando"
+
+    mkdir -p "$out/bin"
+    makeWrapper "$out/Plogue/sforzando/sforzando" "$out/bin/sforzando" \
+      --prefix PATH : ${lib.makeBinPath [ zenity ]}
+
+    runHook postInstall
   '';
+
+  # Teach autoPatchelfHook to find libAria.so when patching the VST3/CLAP plugins.
+  preFixup = ''
+    addAutoPatchelfSearchPath "$out/Plogue/Aria"
+  '';
+
+  meta = {
+    description = "Free, highly SFZ 2.0 compliant sample player";
+    longDescription = ''
+      sforzando is a free, highly SFZ 2.0 compliant sample player by Plogue.
+      It supports the SFZ 2.0 format and ships as a standalone application
+      plus VST3 and CLAP plugins.
+
+      Note: if the application fails to find the Aria engine on first launch,
+      place the following at ~/.config/Plogue/Aria/.config:
+        { "base_dir": "<store-path>/Plogue/Aria",
+          "path":     "<store-path>/Plogue/Aria/libAria.so" }
+      where <store-path> is the result of `nix-store --query $(which sforzando)`.
+    '';
+    homepage = "https://plogue.com/products/sforzando.html";
+    # license = lib.licenses.unfree;
+    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+    maintainers = [ ];
+    platforms = [ "x86_64-linux" ];
+    mainProgram = "sforzando";
+  };
 }

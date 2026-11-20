@@ -13,6 +13,7 @@ with lib;
     ./toneboosters.nix
     ./u-he.nix
     ./u-he-legacy.nix
+    ./plogue.nix
 
     # ./glitch.nix
     # ./reaimgui.nix

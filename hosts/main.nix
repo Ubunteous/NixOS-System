@@ -13,7 +13,11 @@
     ../users
     ../wm
     ../programming
+    #
+    ../modules/plogue.nix
   ];
+
+  programs.plogue.enable = true;
 
   #--------------------#
   #        CORE        #
@@ -296,6 +300,7 @@
           auburn.enable = true; # mostly freebies. huge/slow downloads
           ob-xf.enable = true;
           toneboosters.enable = true; # huge archive with every plugin (250mb)
+          plogue.enable = true;
 
           # glitch.enable = false; # not resizable
           # reaimgui.enable = true; # not needed anymore
