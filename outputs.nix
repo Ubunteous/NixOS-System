@@ -100,7 +100,9 @@ in
           ##########################
 
           ({ pkgs, ... }: {
-            home-manager.users.${user}.home.packages = [ ni-wine.packages.${pkgs.system}.default ];
+            home-manager.users.${user}.home.packages = [
+              ni-wine.packages.${pkgs.stdenv.hostPlatform.system}.default
+            ];
           })
         ];
       };
