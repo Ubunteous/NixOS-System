@@ -21,158 +21,160 @@ let
 
   midihub = import ../pkgs/Midihub/default.nix;
 in
-{
-  options.user.music = {
-    enable = mkEnableOption "Enables support for Music related software";
-  };
+  {
+	options.user.music = {
+      enable = mkEnableOption "Enables support for Music related software";
+	};
 
-  config = mkIf (usercfg.enable && cfg.enable) {
-    users.users.${user}.packages = with pkgs; [
-      #############
-      #   MUSIC   #
-      #############
+	imports = [ ../modules/plogue.nix ];
 
-      puddletag # music metadata
-      nicotine-plus
+	config = mkIf (usercfg.enable && cfg.enable) {
+      users.users.${user}.packages = with pkgs; [
+		#############
+		#   MUSIC   #
+		#############
 
-      # config.nur.repos.dukzcry.bitwig-studio3 # version 3.1 # deleted and replaced by bitwig 5
-      # bitwig-studio # latest
-      # bitwig-studio3 # can be modified with overlay
+		puddletag # music metadata
+		nicotine-plus
 
-      (callPackage ../pkgs/bitwig3.nix { })
-      # bitwig-studio4
+		# config.nur.repos.dukzcry.bitwig-studio3 # version 3.1 # deleted and replaced by bitwig 5
+		# bitwig-studio # latest
+		# bitwig-studio3 # can be modified with overlay
 
-      # reaper # see pkgs/ for reaimgui
-      # (callPackage ../pkgs/reaper/reaper.nix { })
-      # (callPackage ../pkgs/reaper.nix {
-      #   jackLibrary = null;
-      #   libpulseaudio = libpulseaudio;
-      # })
+		(callPackage ../pkgs/bitwig3.nix { })
+		# bitwig-studio4
 
-      bleedingEdgeReaper
+		# reaper # see pkgs/ for reaimgui
+		# (callPackage ../pkgs/reaper/reaper.nix { })
+		# (callPackage ../pkgs/reaper.nix {
+		#   jackLibrary = null;
+		#   libpulseaudio = libpulseaudio;
+		# })
 
-      (callPackage midihub { }) # run as sudo
+		bleedingEdgeReaper
 
-      ###############
-      #   PLUGINS   #
-      ###############
+		(callPackage midihub { }) # run as sudo
 
-      # vital
-      # helm
-      # dexed
-      # delayarchitect
-      # chow-tape-model
-      # dragonfly-reverb
-      # odin2
-      # surge-XT # surge with some extras
-      cardinal # vcv rack as vst
-      vcv-rack # needs manual installation of plugins
-      # zlequalizer
+		###############
+		#   PLUGINS   #
+		###############
 
-      # small gui. needs to be compiled after tweaking these values:
-      # ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
-      # zynaddsubfx # zynfusion - new gui
-      # lsp-plugins
+		# vital
+		# helm
+		# dexed
+		# delayarchitect
+		# chow-tape-model
+		# dragonfly-reverb
+		# odin2
+		# surge-XT # surge with some extras
+		cardinal # vcv rack as vst
+		vcv-rack # needs manual installation of plugins
+		# zlequalizer
 
-      ############
-      #   WINE   #
-      ############
+		# small gui. needs to be compiled after tweaking these values:
+		# ZynAddSubFXUI() : UI(1181, 659) and z.zest_resize(z.zest, width, height);
+		# zynaddsubfx # zynfusion - new gui
+		# lsp-plugins
 
-      # wine
-      # wine64
-      # wine64Packages.stagingFull # does not work yet
+		############
+		#   WINE   #
+		############
 
-      # Danger with wine: default wine packages only come with 32 bits support
-      # use winewow in an overlay for 64 bits support
-      # Moreover, some packages are called wine64 instead of wine
-      # (wine.override { wineBuild = "wine64"; })
-      # (stable.wine.override { wineBuild = "wine64"; })
-      # nixpkgs.overlays = [ (self: super: { wine = super.wineWow64Packages.stable; }) ];
-      # wine # changed with an overlay to fix it in NixOS 22.05/11
-      # stable.wine
-      # stable.wineWow64Packages.stable
-      # winetricks # useful to get gdiplus for serum
+		# wine
+		# wine64
+		# wine64Packages.stagingFull # does not work yet
 
-      # stable.wineWow64Packages.stable
-      # stable.winetricks
-      # stable.yabridge
-      # stable.yabridgectl
+		# Danger with wine: default wine packages only come with 32 bits support
+		# use winewow in an overlay for 64 bits support
+		# Moreover, some packages are called wine64 instead of wine
+		# (wine.override { wineBuild = "wine64"; })
+		# (stable.wine.override { wineBuild = "wine64"; })
+		# nixpkgs.overlays = [ (self: super: { wine = super.wineWow64Packages.stable; }) ];
+		# wine # changed with an overlay to fix it in NixOS 22.05/11
+		# stable.wine
+		# stable.wineWow64Packages.stable
+		# winetricks # useful to get gdiplus for serum
 
-      # wineWow64Packages.staging # v9.9 in 09/2024
-      # wineWow64Packages.staging # v9.9 in 09/2024
+		# stable.wineWow64Packages.stable
+		# stable.winetricks
+		# stable.yabridge
+		# stable.yabridgectl
 
-      # stable.wine
-      # stable.winetricks
-      wine
-      winetricks
-      stable.yabridge
-      stable.yabridgectl
+		# wineWow64Packages.staging # v9.9 in 09/2024
+		# wineWow64Packages.staging # v9.9 in 09/2024
 
-      # nix-shell -p dxvk --run setup_dxvk.sh install
-      # dxvk # impure. adds setup_dxvk.sh in shell
+		# stable.wine
+		# stable.winetricks
+		wine
+		winetricks
+		stable.yabridge
+		stable.yabridgectl
 
-      # was necessary for native instrument
-      # samba
-      # samba4Full
-    ];
+		# nix-shell -p dxvk --run setup_dxvk.sh install
+		# dxvk # impure. adds setup_dxvk.sh in shell
 
-    musnix = {
-      enable = true;
+		# was necessary for native instrument
+		# samba
+		# samba4Full
+      ];
 
-      # musnix.alsaSeq.enable = true;
-      # musnix.ffado.enable = true;
-      # musnix.soundcardPciId = "string";
+      musnix = {
+		enable = true;
 
-      # the following can be used without musnix.enable true
-      # musnix.kernel.realtime = true;
+		# musnix.alsaSeq.enable = true;
+		# musnix.ffado.enable = true;
+		# musnix.soundcardPciId = "string";
 
-      # Don't. It's completely buggy and loops forever
-      # musnix.kernel.packages = pkgs.linuxPackages_5_4_rt;
+		# the following can be used without musnix.enable true
+		# musnix.kernel.realtime = true;
 
-      # OPTIONS for kernel package:
-      # pkgs.linuxPackages_5_4_rt
-      # pkgs.linuxPackages_5_15_rt
-      # pkgs.linuxPackages_6_0_rt
-      # pkgs.linuxPackages_rt
-      # pkgs.linuxPackages_latest_rt
-    };
+		# Don't. It's completely buggy and loops forever
+		# musnix.kernel.packages = pkgs.linuxPackages_5_4_rt;
 
-    ################
-    #   OVERLAYS   #
-    ################
+		# OPTIONS for kernel package:
+		# pkgs.linuxPackages_5_4_rt
+		# pkgs.linuxPackages_5_15_rt
+		# pkgs.linuxPackages_6_0_rt
+		# pkgs.linuxPackages_rt
+		# pkgs.linuxPackages_latest_rt
+      };
 
-    # necessary to fix wine
-    nixpkgs.overlays = [
+      ################
+      #   OVERLAYS   #
+      ################
 
-      ############
-      #   WINE   #
-      ############
+      # necessary to fix wine
+      nixpkgs.overlays = [
 
-      # opengl support for wine
-      # hardware support for wine: hardware.opengl.driSupport32Bit
+		############
+		#   WINE   #
+		############
 
-      (self: super: {
-        wine = super.wineWow64Packages.stable;
-        stable.wine = super.wineWow64Packages.stable;
-      })
+		# opengl support for wine
+		# hardware support for wine: hardware.opengl.driSupport32Bit
 
-      ##############
-      #   BITWIG   #
-      ##############
+		(self: super: {
+          wine = super.wineWow64Packages.stable;
+          stable.wine = super.wineWow64Packages.stable;
+		})
 
-      # BUG: AUDIO ENGINE CRASHING
-      # (final: prev:
-      #   {
-      #     bitwig-studio3 = prev.bitwig-studio3.overrideAttrs (old: {
-      #       version = "3.2.8";
-      #       src = prev.fetchurl {
-      #         url = "https://downloads.bitwig.com/stable/3.2.8/bitwig-studio-3.2.8.deb";
-      #         sha256 = "18ldgmnv7bigb4mch888kjpf4abalpiwmlhwd7rjb9qf6p72fhpj";
-      #       };
+		##############
+		#   BITWIG   #
+		##############
 
-      #       # runtimeDependencies = [ pkgs.pulseaudio pkgs.libjack2 ];
-      #     });
-      #   })
-    ];
-  };
-}
+		# BUG: AUDIO ENGINE CRASHING
+		# (final: prev:
+		#   {
+		#     bitwig-studio3 = prev.bitwig-studio3.overrideAttrs (old: {
+		#       version = "3.2.8";
+		#       src = prev.fetchurl {
+		#         url = "https://downloads.bitwig.com/stable/3.2.8/bitwig-studio-3.2.8.deb";
+		#         sha256 = "18ldgmnv7bigb4mch888kjpf4abalpiwmlhwd7rjb9qf6p72fhpj";
+		#       };
+
+		#       # runtimeDependencies = [ pkgs.pulseaudio pkgs.libjack2 ];
+		#     });
+		#   })
+      ];
+	};
+  }

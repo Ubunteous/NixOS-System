@@ -1,34 +1,37 @@
 {
-  config,
   lib,
   pkgs,
   ...
 }:
 let
-  cfg = config.programs.plogue;
-  plogue = pkgs.callPackage ../pkgs/plogue/plogue.nix { };
+  plugins = map (plugin: pkgs.callPackage ../pkgs/plogue/plogue.nix plugin) (
+    lib.attrValues (import ../pkgs/plogue/plugins.nix)
+  );
+
+  # combine packages without running them sequentially
+  # (which would overwrite them one after each other besides the last one)
+  pluginsEnv = pkgs.symlinkJoin {
+    name = "plogue";
+    paths = plugins;
+  };
 in
-{
-  options.programs.plogue = {
-    enable = lib.mkEnableOption "Plogue (including sforzando, a free SFZ 2.0 sample player)";
-  };
+  {
+	# sforzando's VST3/CLAP plugins dlopen "/opt/Plogue/Aria/libAria.so" as a
+	# hardcoded string - autoPatchelf can't fix string constants. Symlink the
+	# Plogue tree from the nix store so the path resolves without a manual install.
 
-  config = lib.mkIf (cfg.enable) {
-    # sforzando's VST3/CLAP plugins dlopen "/opt/Plogue/Aria/libAria.so" as a
-    # hardcoded string — autoPatchelf can't fix string constants. Symlink the
-    # Plogue tree from the nix store so the path resolves without a manual install.
-    systemd.tmpfiles.rules = [
+	systemd.tmpfiles.rules = [
       "d /opt 0755 root root - -"
-      "L+ /opt/Plogue - - - - ${plogue}/Plogue"
-      # Plogue hardcodes access("/usr/bin/zenity") — ignores PATH entirely.
+      # Plogue hardcodes access("/usr/bin/zenity") - ignores PATH entirely.
       "L+ /usr/bin/zenity - - - - ${pkgs.zenity}/bin/zenity"
-    ];
 
-    # zenity provides the dialog Plogue products need for license acceptance;
-    # works on KDE, GNOME, and any other desktop.
-    environment.systemPackages = lib.mkIf cfg.enable [
-      plogue
+      # do not list/mapconcat plugins as each one would rewrite /opt/Plogue
+      "L+ /opt/Plogue - - - - ${pluginsEnv}/Plogue"
+	];
+
+	# zenity provides the dialog Plogue products (license)
+	environment.systemPackages = [
       pkgs.zenity
-    ];
-  };
+	]
+  ++ plugins;
 }

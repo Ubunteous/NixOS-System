@@ -13,10 +13,7 @@
     ../users
     ../wm
     ../programming
-    ../modules/plogue.nix
   ];
-
-  programs.plogue.enable = true;
 
   #--------------------#
   #        CORE        #
@@ -115,11 +112,6 @@
 
           zsh.enable = true;
           wezterm.enable = true;
-        };
-
-        music = {
-          enable = true;
-          plogue.enable = true;
         };
 
         dots.enable = true;

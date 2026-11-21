@@ -14,104 +14,112 @@
   libpulseaudio,
   pango,
   xcbutil,
+  libxcb-cursor,
   zenity,
+  #
+  name,
+  url,
+  hash,
+  version,
 }:
 
 let
-  version = "1.982";
+  nameWithoutSpace =
+    if name == "chipcrusher" then "chipcrusher2" else "${builtins.replaceStrings [ " " ] [ "-" ] name}";
 in
-stdenv.mkDerivation {
-  pname = "sforzando";
-  inherit version;
+  stdenv.mkDerivation {
+	pname = nameWithoutSpace;
+	inherit version;
 
-  src = fetchzip {
-    url = "https://sforzando.s3.us-east-1.amazonaws.com/LINUX_plogue-sforzando_${version}_x86_64.zip";
-    hash = "sha256-Qcwv5DgReNxA68CWosvIwZkhDAxnc5/A15lmlc/Mr3M=";
-  };
+	src = fetchzip { inherit url hash; };
 
-  nativeBuildInputs = [
-    autoPatchelfHook
-    dpkg
-    makeWrapper
-  ];
+	nativeBuildInputs = [
+      autoPatchelfHook
+      dpkg
+      makeWrapper
+	];
 
-  buildInputs = [
-    alsa-lib
-    cairo
-    curl
-    glib
-    gtk3
-    gtkmm3
-    libpulseaudio
-    pango
-    xcbutil
-  ];
+	buildInputs = [
+      alsa-lib
+      cairo
+      curl
+      glib
+      gtk3
+      gtkmm3
+      libpulseaudio
+      pango
+      xcbutil
+      libxcb-cursor
+	];
 
-  unpackPhase = ''
-    runHook preUnpack
-    for deb in $src/*.deb; do
-      dpkg-deb -x "$deb" pkgs
-    done
-    runHook postUnpack
-  '';
-
-  installPhase = ''
-    runHook preInstall
-
-    mkdir -p "$out/Plogue"
-    cp -r pkgs/opt/Plogue/Aria       "$out/Plogue/"
-    cp -r pkgs/opt/Plogue/sforzando  "$out/Plogue/"
-    cp -r pkgs/opt/Plogue/TableWarp2 "$out/Plogue/"
-
-    # Patch hardcoded /opt/Plogue paths inside the .config JSON files.
-    # The Aria engine reads these to locate libAria.so and its resources.
-    sed -i "s|/opt/Plogue/Aria|$out/Plogue/Aria|g"           "$out/Plogue/Aria/.config"
-    sed -i "s|/opt/Plogue/sforzando|$out/Plogue/sforzando|g" "$out/Plogue/sforzando/.config"
-
-    mkdir -p "$out/lib/vst3"
-    cp -r pkgs/usr/lib/vst3/sforzando.vst3 "$out/lib/vst3/"
-
-    mkdir -p "$out/lib/clap"
-    cp pkgs/usr/lib/clap/sforzando.clap "$out/lib/clap/"
-
-    mkdir -p "$out/share/applications" "$out/share/icons/hicolor/256x256/apps"
-    cp pkgs/usr/share/applications/plogue-sforzando.desktop \
-       "$out/share/applications/"
-    cp pkgs/usr/share/icons/hicolor/256x256/apps/plogue-sforzando.png \
-       "$out/share/icons/hicolor/256x256/apps/"
-    substituteInPlace "$out/share/applications/plogue-sforzando.desktop" \
-      --replace 'Exec=/opt/Plogue/sforzando/sforzando' "Exec=$out/bin/sforzando"
-
-    mkdir -p "$out/bin"
-    makeWrapper "$out/Plogue/sforzando/sforzando" "$out/bin/sforzando" \
-      --prefix PATH : ${lib.makeBinPath [ zenity ]}
-
-    runHook postInstall
-  '';
-
-  # Teach autoPatchelfHook to find libAria.so when patching the VST3/CLAP plugins.
-  preFixup = ''
-    addAutoPatchelfSearchPath "$out/Plogue/Aria"
-  '';
-
-  meta = {
-    description = "Free, highly SFZ 2.0 compliant sample player";
-    longDescription = ''
-      sforzando is a free, highly SFZ 2.0 compliant sample player by Plogue.
-      It supports the SFZ 2.0 format and ships as a standalone application
-      plus VST3 and CLAP plugins.
-
-      Note: if the application fails to find the Aria engine on first launch,
-      place the following at ~/.config/Plogue/Aria/.config:
-        { "base_dir": "<store-path>/Plogue/Aria",
-          "path":     "<store-path>/Plogue/Aria/libAria.so" }
-      where <store-path> is the result of `nix-store --query $(which sforzando)`.
+	unpackPhase = ''
+      runHook preUnpack
+      for deb in $src/*.deb; do
+        dpkg-deb -x "$deb" pkgs
+      done
+      runHook postUnpack
     '';
-    homepage = "https://plogue.com/products/sforzando.html";
-    # license = lib.licenses.unfree;
-    sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
-    maintainers = [ ];
-    platforms = [ "x86_64-linux" ];
-    mainProgram = "sforzando";
-  };
-}
+
+	installPhase = ''
+      runHook preInstall
+
+      mkdir -p "$out/Plogue"
+      cp -r "pkgs/opt/Plogue/${name}"    "$out/Plogue/"
+
+      if [ -d pkgs/opt/Plogue/TableWarp ]; then
+        cp -r pkgs/opt/Plogue/TableWarp "$out/Plogue/"
+	  fi
+
+      if [ -d pkgs/opt/Plogue/Aria ]; then
+        cp -r pkgs/opt/Plogue/Aria       "$out/Plogue/"
+
+        # Patch hardcoded /opt/Plogue paths inside the .config JSON files.
+        # The Aria engine reads these to locate libAria.so and its resources.
+        sed -i "s|/opt/Plogue/Aria|$out/Plogue/Aria|g"           "$out/Plogue/Aria/.config"
+	  fi
+
+      if [ -d pkgs/opt/Plogue/Fermata ]; then
+        cp -r pkgs/opt/Plogue/Fermata       "$out/Plogue/"
+
+        # TODO: probably needed (like Aria above). worth checking out later
+        sed -i "s|/opt/Plogue/Fermata|$out/Plogue/Fermata|g"           "$out/Plogue/Fermata/.config"
+      fi
+
+      sed -i "s|/opt/Plogue/${name}|$out/Plogue/${name}|g" "$out/Plogue/${name}/.config"
+
+      # TODO: does not work without a home manager module. Somehow, reaper finds the .clap version
+      # mkdir -p "$out/lib/vst3"
+      # cp -r "pkgs/usr/lib/vst3/${nameWithoutSpace}.vst3" "$out/lib/vst3/"
+
+      mkdir -p "$out/lib/clap"
+      cp "pkgs/usr/lib/clap/${nameWithoutSpace}.clap" "$out/lib/clap/"
+
+      # TODO: check if all appear or only the most recent one
+      if [ ${name} != "chipcrusher" ]; then
+        mkdir -p "$out/share/applications" "$out/share/icons/hicolor/256x256/apps"
+        cp "pkgs/usr/share/applications/plogue-${nameWithoutSpace}.desktop" \
+           "$out/share/applications/"
+        cp "pkgs/usr/share/icons/hicolor/256x256/apps/plogue-${nameWithoutSpace}.png" \
+           "$out/share/icons/hicolor/256x256/apps/"
+        substituteInPlace "$out/share/applications/plogue-${nameWithoutSpace}.desktop" \
+          --replace 'Exec="/opt/Plogue/${name}/${nameWithoutSpace}"' 'Exec="$out/bin/${name}"'
+
+        mkdir -p "$out/bin"
+        makeWrapper "$out/Plogue/${name}/${nameWithoutSpace}" "$out/bin/${name}" \
+          --prefix PATH : ${lib.makeBinPath [ zenity ]}
+      fi
+
+      runHook postInstall
+	'';
+
+	# Teach autoPatchelfHook to find libAria.so/libFermata.so when patching the VST3/CLAP plugins.
+	preFixup = ''
+	  if [ -d $out/Plogue/Aria ]; then
+        addAutoPatchelfSearchPath "$out/Plogue/Aria"
+      fi
+
+	  if [ -d $out/Plogue/Fermata ]; then
+        addAutoPatchelfSearchPath "$out/Plogue/Fermata"
+      fi
+	'';
+  }
