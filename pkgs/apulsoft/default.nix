@@ -1,6 +1,3 @@
-# nix-build # requires default.nix
-# nix-build -A apqualizer
-
 {
   pkgs ? import <nixpkgs> { },
 }:

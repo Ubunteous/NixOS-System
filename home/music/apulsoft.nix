@@ -10,7 +10,6 @@ let
   cfg = config.home.music.apulsoft;
   homecfg = config.home;
 
-  # { Opalize: pkgs.opalize, ... }
   pluginsPkgsByName = mapAttrs' (
     pluginName: pluginValue:
     nameValuePair (pluginValue.name) (pkgs.callPackage ../../pkgs/apulsoft/apulsoft.nix pluginValue)
@@ -24,7 +23,7 @@ let
     # presets/
     "apulSoft/${pluginName}/Presets" = {
       source = "${pluginPkg}/lib/vst3/${pluginName}/Presets";
-      recursive = true; # one symlink/preset to keep the directory editable for more presets
+      # recursive = true; # one symlink/preset to keep the directory editable for more presets
     };
 
     # LfoCurves/ (apqualizr only)
@@ -32,7 +31,7 @@ let
       mkIf (pathExists "${pluginPkg}/lib/vst3/${pluginName}/LfoCurves")
         {
           source = "${pluginPkg}/lib/vst3/${pluginName}/LfoCurves";
-          recursive = true;
+          # recursive = true;
         };
 
     # ColorSchemes/ (most but not opalize notably)
@@ -40,7 +39,7 @@ let
       mkIf (pathExists "${pluginPkg}/lib/vst3/${pluginName}/ColorSchemes")
         {
           source = "${pluginPkg}/lib/vst3/${pluginName}/ColorSchemes";
-          recursive = true;
+          # recursive = true;
         };
 
     # Extra: triggers for apTrigga
