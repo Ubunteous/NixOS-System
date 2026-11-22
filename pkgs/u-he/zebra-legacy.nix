@@ -37,10 +37,15 @@ stdenv.mkDerivation {
     cd ./*/01* &&
     tar xvf *.tar.xz &&
     cd ./Zebra2-* &&
-    # cp -r . $out/lib
-    cp "./Zebra2/Zebra2.64.so" "$out/lib/Zebra2/Zebra2.64.so" &&
-    cp "./Zebra2/dialog" "$out/lib/Zebra2/dialog" &&
-    cp "./Zebra2/dialog.64" "$out/lib/Zebra2/dialog.64")
+
+	# rmdir  --ignore-fail-on-non-empty ./Zebra2/Support/Themes &&
+    # rm -r ./Zebra2/UserPresets && # crash if missing
+    cp -r . $out/lib
+
+    # cp "./Zebra2/Zebra2.64.so" "$out/lib/Zebra2/Zebra2.64.so" &&
+    # cp "./Zebra2/dialog" "$out/lib/Zebra2/dialog" &&
+    # cp "./Zebra2/dialog.64" "$out/lib/Zebra2/dialog.64"
+	)
 
     ###########
     # ZebraHZ #
@@ -52,10 +57,15 @@ stdenv.mkDerivation {
     cd ./*/02* &&
     tar xvf *.tar.xz &&
     cd ./ZebraHZ-* &&
-    # cp -r . $out/lib
-    cp "./ZebraHZ/ZebraHZ.64.so" "$out/lib/ZebraHZ/ZebraHZ.64.so" &&
-    cp "./ZebraHZ/dialog" "$out/lib/ZebraHZ/dialog" &&
-    cp "./ZebraHZ/dialog.64" "$out/lib/ZebraHZ/dialog.64")
+
+	# rmdir  --ignore-fail-on-non-empty ./ZebraHZ/Support/Themes &&
+    # rm -r ./ZebraHZ/UserPresets &&
+    cp -r ./* $out/lib
+
+    # cp "./ZebraHZ/ZebraHZ.64.so" "$out/lib/ZebraHZ/ZebraHZ.64.so" &&
+    # cp "./ZebraHZ/dialog" "$out/lib/ZebraHZ/dialog" &&
+    # cp "./ZebraHZ/dialog.64" "$out/lib/ZebraHZ/dialog.64"
+	)
 
     #############
     # SOUNDSETS #

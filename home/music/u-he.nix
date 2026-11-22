@@ -24,17 +24,17 @@ let
     #   recursive = true; # one symlink/preset to keep the directory editable for more presets
     # };
 
-    ".u-he/${pluginName}/${pluginName}.64.so" = {
-      source = "${pluginPkg}/lib/${pluginName}/${pluginName}.64.so";
-    };
+    # ".u-he/${pluginName}/${pluginName}.64.so" = {
+    #   source = "${pluginPkg}/lib/${pluginName}/${pluginName}.64.so";
+    # };
 
-    ".u-he/${pluginName}/dialog" = {
-      source = "${pluginPkg}/lib/${pluginName}/dialog";
-    };
+    # ".u-he/${pluginName}/dialog" = {
+    #   source = "${pluginPkg}/lib/${pluginName}/dialog";
+    # };
 
-    ".u-he/${pluginName}/dialog.64" = {
-      source = "${pluginPkg}/lib/${pluginName}/dialog.64";
-    };
+    # ".u-he/${pluginName}/dialog.64" = {
+    #   source = "${pluginPkg}/lib/${pluginName}/dialog.64";
+    # };
 
     ".clap/u-he/${pluginName}.64.clap".source = "${pluginPkg}/lib/${pluginName}/${pluginName}.64.so";
   }) pluginsPkgsByName;
@@ -45,6 +45,19 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
+	# runs on every home manager switch
+	# important: installing a new version of the synth will not cause a rebuild
+	home.activation = lib.mapAttrs'
+      (name: plugin: lib.nameValuePair "copyUhe${name}"
+		(lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          if [ ! -d "$HOME/.u-he/${name}" ]; then
+            mkdir -p "$HOME/.u-he/${name}"
+            cp -rn --no-preserve=mode "${plugin}/lib/${name}/." "$HOME/.u-he/${name}/"
+		    chmod 744 $HOME/.u-he/${name}/{dialog,dialog.64}
+        fi
+		''))
+      pluginsPkgsByName;
+
     # home.packages = (attrValues pluginsPkgsByName); # not needed and causes conflict on file install.sh
     home.file = filesForPlugins;
   };

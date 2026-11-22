@@ -23,9 +23,12 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/lib/${name}
 
-    # cp -r . $out/lib
-    cp "./${name}/${name}.64.so" "$out/lib/${name}/${name}.64.so"
-    cp "./${name}/dialog" "$out/lib/${name}/dialog"
-    cp "./${name}/dialog.64" "$out/lib/${name}/dialog.64"
+    # maybe also unlink PresetDatabase/UserPresets
+    # rm -r ./${name}/Presets &&
+    cp -r . $out/lib
+
+    # cp "./${name}/${name}.64.so" "$out/lib/${name}/${name}.64.so"
+    # cp "./${name}/dialog" "$out/lib/${name}/dialog"
+    # cp "./${name}/dialog.64" "$out/lib/${name}/dialog.64"
   '';
 }

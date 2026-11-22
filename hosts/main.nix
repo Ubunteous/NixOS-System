@@ -290,7 +290,7 @@
 
           tal.enable = true;
           u-he.enable = true;
-          u-he-legacy.enable = true;
+          zebra-legacy.enable = true;
           apulsoft.enable = true;
           tdr.enable = true; # mostly demo. GE versions urls are hidden
           auburn.enable = true; # mostly freebies. huge/slow downloads
