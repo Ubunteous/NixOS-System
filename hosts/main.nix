@@ -329,7 +329,7 @@
     go.enable = false;
     rust.enable = false;
     java.enable = false;
-    postgresql.enable = true;
+    postgresql.enable = false;
     sqlite.enable = true;
 
     javascript = {
