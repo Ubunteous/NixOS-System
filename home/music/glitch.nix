@@ -23,7 +23,7 @@ in
     # these folders can be placed anywhere
     xdg.configFile."glitch/Glitch2_Presets" = {
       source = "${glitch}/lib/extra/Glitch2_Presets";
-      recursive = true;
+      # recursive = true;
     };
 
     xdg.configFile."glitch/Glitch2_User_Guide.pdf".source =
