@@ -12,7 +12,8 @@ with lib;
     ./ob-xf.nix
     ./toneboosters.nix
     ./u-he.nix
-    ./u-he-legacy.nix
+    ./zebra-legacy.nix
+    ./madrona.nix
 
     # ./glitch.nix
     # ./reaimgui.nix

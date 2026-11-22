@@ -16,9 +16,24 @@ let
   ) (import ../../pkgs/u-he/plugins.nix);
 
   filesForPlugins = lib.attrsets.concatMapAttrs (pluginName: pluginPkg: {
-    ".u-he/${pluginName}" = {
-      source = "${pluginPkg}/lib/${pluginName}";
-      recursive = true; # one symlink/preset to keep the directory editable for more presets
+    # Important: only essential files are installed to prevent bloating home manager with
+    # thousands of presets and images links. Install the .u-he folders manually if needed
+
+    # ".u-he/${pluginName}" = {
+    #   source = "${pluginPkg}/lib/${pluginName}";
+    #   recursive = true; # one symlink/preset to keep the directory editable for more presets
+    # };
+
+    ".u-he/${pluginName}/${pluginName}.64.so" = {
+      source = "${pluginPkg}/lib/${pluginName}/${pluginName}.64.so";
+    };
+
+    ".u-he/${pluginName}/dialog" = {
+      source = "${pluginPkg}/lib/${pluginName}/dialog";
+    };
+
+    ".u-he/${pluginName}/dialog.64" = {
+      source = "${pluginPkg}/lib/${pluginName}/dialog.64";
     };
 
     ".clap/u-he/${pluginName}.64.clap".source = "${pluginPkg}/lib/${pluginName}/${pluginName}.64.so";
@@ -30,7 +45,7 @@ in
   };
 
   config = mkIf (homecfg.enable && cfg.enable) {
-    home.packages = (attrValues pluginsPkgsByName);
+    # home.packages = (attrValues pluginsPkgsByName); # not needed and causes conflict on file install.sh
     home.file = filesForPlugins;
   };
 }

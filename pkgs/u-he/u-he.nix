@@ -16,11 +16,16 @@ stdenv.mkDerivation {
   buildInputs = [
     gtk3
     pkgs.libxcb-keysyms
+    pkgs.libxcb-cursor
     pkgs.libxcb-util
   ];
 
   installPhase = ''
-    mkdir -p $out/lib
-    cp -r . $out/lib
+    mkdir -p $out/lib/${name}
+
+    # cp -r . $out/lib
+    cp "./${name}/${name}.64.so" "$out/lib/${name}/${name}.64.so"
+    cp "./${name}/dialog" "$out/lib/${name}/dialog"
+    cp "./${name}/dialog.64" "$out/lib/${name}/dialog.64"
   '';
 }
