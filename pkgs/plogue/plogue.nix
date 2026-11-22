@@ -94,20 +94,20 @@ in
       mkdir -p "$out/lib/clap"
       cp "pkgs/usr/lib/clap/${nameWithoutSpace}.clap" "$out/lib/clap/"
 
-      # TODO: check if all appear or only the most recent one
-      if [ ${name} != "chipcrusher" ]; then
-        mkdir -p "$out/share/applications" "$out/share/icons/hicolor/256x256/apps"
-        cp "pkgs/usr/share/applications/plogue-${nameWithoutSpace}.desktop" \
-           "$out/share/applications/"
-        cp "pkgs/usr/share/icons/hicolor/256x256/apps/plogue-${nameWithoutSpace}.png" \
-           "$out/share/icons/hicolor/256x256/apps/"
-        substituteInPlace "$out/share/applications/plogue-${nameWithoutSpace}.desktop" \
-          --replace 'Exec="/opt/Plogue/${name}/${nameWithoutSpace}"' 'Exec="$out/bin/${name}"'
-
-        mkdir -p "$out/bin"
-        makeWrapper "$out/Plogue/${name}/${nameWithoutSpace}" "$out/bin/${name}" \
-          --prefix PATH : ${lib.makeBinPath [ zenity ]}
-      fi
+      # TODO: each iteration overwrites the previous shortcut. only the last one remains
+      # if [ ${name} != "chipcrusher" ]; then
+      #   mkdir -p "$out/share/applications" "$out/share/icons/hicolor/256x256/apps"
+      #   cp "pkgs/usr/share/applications/plogue-${nameWithoutSpace}.desktop" \
+      #      "$out/share/applications/"
+      #   cp "pkgs/usr/share/icons/hicolor/256x256/apps/plogue-${nameWithoutSpace}.png" \
+      #      "$out/share/icons/hicolor/256x256/apps/"
+      #   substituteInPlace "$out/share/applications/plogue-${nameWithoutSpace}.desktop" \
+      #     --replace 'Exec="/opt/Plogue/${name}/${nameWithoutSpace}"' 'Exec="$out/bin/${name}"'
+	  #
+      #   mkdir -p "$out/bin"
+      #   makeWrapper "$out/Plogue/${name}/${nameWithoutSpace}" "$out/bin/${name}" \
+      #     --prefix PATH : ${lib.makeBinPath [ zenity ]}
+      # fi
 
       runHook postInstall
 	'';
