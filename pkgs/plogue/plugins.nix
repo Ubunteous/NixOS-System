@@ -20,11 +20,18 @@
     hash = "sha256-8jHDItUQBj9sa+tjt7AU3JJjjIe0cNLnkL5ngqwW9VE=";
   };
 
-  # opmz = {
-  #   name = "chipsynth OPMZ";
-  #   version = "1.002";
-  #   url = "https://s3.amazonaws.com/chipsynth/LINUX_plogue-chipsynth-opmz_1.002_x86_64.zip";
-  #   hash = "sha256-VBnuiFatW3033w0h0xChVH4KQ0dPChx+xMANXasj0fM=";
+  opmz = {
+    name = "chipsynth OPMZ";
+    version = "1.002";
+    url = "https://s3.amazonaws.com/chipsynth/LINUX_plogue-chipsynth-opmz_1.002_x86_64.zip";
+    hash = "sha256-VBnuiFatW3033w0h0xChVH4KQ0dPChx+xMANXasj0fM=";
+  };
+
+  # portaFM = {
+  #   name = "chipsynth PortaFM";
+  #   version = "1.132";
+  #   url = "https://s3.amazonaws.com/chipsynth/LINUX_plogue-chipsynth-portafm_1.132_x86_64.zip";
+  #   hash = "sha256-YkpZcGqYJ/6bExBpcDMFl8ob+mQ8kATIDOKKP1hROnc=";
   # };
 
   # c64 = {
@@ -39,13 +46,6 @@
   #   version = "1.132";
   #   url = "https://s3.amazonaws.com/chipsynth/LINUX_plogue-chipsynth-md_1.132_x86_64.zip";
   #   hash = "sha256-9ZPdHYKw0YAU2rGvVcMS8kvCViSSpQ2paEqFH38Vk1A=";
-  # };
-
-  # portaFM = {
-  #   name = "chipsynth PortaFM";
-  #   version = "1.132";
-  #   url = "https://s3.amazonaws.com/chipsynth/LINUX_plogue-chipsynth-portafm_1.132_x86_64.zip";
-  #   hash = "sha256-YkpZcGqYJ/6bExBpcDMFl8ob+mQ8kATIDOKKP1hROnc=";
   # };
 
   # chipcrusher = {
