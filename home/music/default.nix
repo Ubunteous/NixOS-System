@@ -14,6 +14,7 @@ with lib;
     ./u-he.nix
     ./zebra-legacy.nix
     ./madrona.nix
+    ./tx16wx.nix
 
     # ./glitch.nix
     # ./reaimgui.nix

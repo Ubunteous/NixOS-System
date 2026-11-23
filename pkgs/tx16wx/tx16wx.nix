@@ -1,7 +1,7 @@
 {
   lib,
   stdenv,
-  fetchzip,
+  fetchurl,
   dpkg,
   autoPatchelfHook,
   makeWrapper,
@@ -10,9 +10,9 @@
 stdenv.mkDerivation {
   name = "tx16wx";
 
-  src = fetchzip {
-    url = "https://www.tx16wx.com/download/tx16wx-software-sampler-3-linux-x64-debian-2/?wpdmdl=19516&refresh=6b0309e9799291795361257";
-    hash = "";
+  src = fetchurl {
+    url = "https://www.tx16wx.com/download/tx16wx-software-sampler-3-linux-x64-debian-2/?wpdmdl=19516";
+    hash = "sha256-A8jEIunbW+hcqvnslhKt0WEInG9dO7lsffGm3Z2eLVM=";
   };
 
   nativeBuildInputs = [
@@ -21,27 +21,17 @@ stdenv.mkDerivation {
     makeWrapper
   ];
 
-  buildInputs = [ ];
-
   unpackPhase = ''
-    runHook preUnpack
-
-    echo "Starting unpack phase"
-	ls -la
+	runHook preUnpack
     dpkg-deb -x "$src" unpack
-
-    # tx16wx-software-sampler-{version}-amd64.deb
-    # for deb in $src/*.deb; do
-    #   dpkg-deb -x "$deb" pkgs
-    # done
-
     runHook postUnpack
   '';
 
   installPhase = ''
     runHook preInstall
 
-    cp lib $out
-    cp share $out
+    mkdir -p $out/{lib,share}
+    cp -r unpack/usr/lib $out/lib
+    cp -r unpack/usr/share $out
   '';
 }
