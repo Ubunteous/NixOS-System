@@ -296,7 +296,8 @@
           auburn.enable = true; # mostly freebies. huge/slow downloads
           ob-xf.enable = true;
           toneboosters.enable = true; # huge archive with every plugin (250mb)
-          madrona.enable = false;
+          madrona.enable = true;
+          tx16wx.enable = true;
 
           # glitch.enable = false; # not resizable
           # reaimgui.enable = true; # not needed anymore
